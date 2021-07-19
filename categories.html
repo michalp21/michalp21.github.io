@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<div class="home other-pages">
+  <h1 class="page-heading">Categories</h1>
+  {% capture temp_cats %}
+    {% for cat in site.categories %}
+      {{ cat[1].size | plus: 1000 }}#{{ cat[0] }}#{{ cat[1].size }}
+    {% endfor %}
+  {% endcapture %}
+  {% assign sorted_temp_cats = temp_cats | split:' ' | sort %}
+  {% for temp_cat in sorted_temp_cats %}
+    {% assign cat_items = temp_cat | split: '#' %}
+    <span class="post-meta">
+      <a class="post-category" href="/category/{{ cat_items[1] }}">{{ cat_items[1]}} ({{ cat_items[2] }})</a>
+    </span><br/>
+  {% endfor %}
+</div>

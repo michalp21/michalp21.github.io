@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2021-07-19T00:12:00-07:00</updated><id>/blog/feed.xml</id><title type="html">brrrr</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><author><name>Michal Porubcin</name></author><entry><title type="html">New Site!</title><link href="/blog/article/2021/07/16/hello-world.html" rel="alternate" type="text/html" title="New Site!" /><published>2021-07-16T00:00:00-07:00</published><updated>2021-07-16T00:00:00-07:00</updated><id>/blog/article/2021/07/16/hello-world</id><content type="html" xml:base="/blog/article/2021/07/16/hello-world.html">&lt;blockquote&gt;
+  &lt;p&gt;Hello, world! Beep boop.&lt;/p&gt;
+
+  &lt;p&gt;This is my first post on my fresh new blog. The real introduction is &lt;a href=&quot;/about.html&quot;&gt;here&lt;/a&gt;; in this post I will just be commenting on my old site.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;my-old-website&quot;&gt;My Old Website&lt;/h2&gt;
+
+&lt;p&gt;Before this I had a pretty barebones personal site written in vanilla HTML and CSS. I say “vanilla” but then you see this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/mostly-js.png&quot; alt=&quot;mostly-js&quot; /&gt;
+&lt;em&gt;would you like a side of HTML with your JavaScript?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Okay so I used Bootstrap, mostly on a friend’s recomendation, and because of the easy grids. I guess I didn’t believe in CDNs either?&lt;/p&gt;
+
+&lt;p&gt;Believe it or not I had some custom JavaScript in there too. Well, JQuery. Same difference.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scroll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.scroll&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;css&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scrollTop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Corresponding HTML:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;scroll&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;svg&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;version=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;40&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;15&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2000/svg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;polygon&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;points=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0,0 34,0 17,15&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fill:#F7C7C4;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/svg&amp;gt;&lt;/span&gt;
+    Scroll for projects
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;svg&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;version=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;40&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;15&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2000/svg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;polygon&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;points=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0,0 34,0 17,15&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fill:#F7C7C4;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/svg&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Those two handcrafted triangle SVGs will be missed.&lt;/p&gt;
+
+&lt;p&gt;Here’s a snapshot of my old site.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/old-site-1.png&quot; alt=&quot;old-site-1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The top of my site is a bland greeting, but hey the background was cool. It’s just the pixelate&amp;gt;crystallize filter in Photoshop over an angle gradient.&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+	&lt;span class=&quot;callout-icon&quot;&gt;😐&lt;/span&gt;
+	&lt;p&gt;The author is about to go on a tangent just to demo LaTeX and footnotes on his site.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;the-crystallize-filter&quot;&gt;The Crystallize Filter&lt;/h2&gt;
+
+&lt;p&gt;That got me thinking, how does the crystallize filter actually work? Until we get them Adobe leaks our best starting point probably has something to do with Voronoi diagrams. I found a decent intro &lt;a href=&quot;https://elrnv.com/blog/weighted-lloyds-method-for-voronoi-tesselation/&quot;&gt;here&lt;/a&gt;. Considering a 2D diagram, define Voronoi sites as a set of \(n\) random points: \(\mathcal{P} = \{\vec{x}_i\}_{i=1}^n\), where \(\vec{x}_i \in \mathbb{R}^2\). Define the Voronoi tessellation generated by \(\mathcal{P}\) as the set of Voronoi regions \(\mathcal{V} = \{ V_i \}\), where for each point \(i\):&lt;/p&gt;
+
+\[V_i = \left\{ \vec{x} \in \mathbb{R}^2 \mathrel{}:\mathrel{} \|\vec{x} - \vec{x}_i\| &amp;lt; \|\vec{x} - \vec{x}_j\|,\ \, \forall j\not=i \right\}.\]
+
+&lt;p&gt;Here’s an example Voronoi diagram.&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/voronoi.png&quot; alt=&quot;voronoi&quot; /&gt;
+&lt;em&gt;Sites are the visible black dots. Regions are the colored polygons. Colors are for aesthetic purposes only&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Basically each region is a polygonal cell where all points inside are closer to its corresponding site than any other site. Unfortunately some of the cells can look stretched out so we want to make them more homogenous. We can use something called Lloyd’s algorithm to spread the sites out more evenly, and make the regions more uniform. Define the centroid of a Voronoi region as:&lt;/p&gt;
+
+\[C_i = \frac{1}{A_i} \iint_{V_i} \vec{x}_i\, d\vec{x}\]
+
+&lt;p&gt;Where \(A_i\) is the area of the region. The centroid is not necessarily the same as the site. The idea is to use the centroids as new sites for a new tesselation, and over time the centroid will get closer to the sites until convergence.&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;why-i-switched-to-a-blog&quot;&gt;Why I Switched to a Blog&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/old-site-2.png&quot; alt=&quot;old-site-2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The rest of my site showed off my projects on a grid of flippy panels with images on the front and short descriptions on the back. Two problems here:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;I couldn’t find appropriate images most of the time. I ended up using silly stock photos.&lt;/li&gt;
+  &lt;li&gt;I had to compact the project description into a Tweet-length quip.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Flippy cards are cute but impractical. But why switch to a blog? Why not ditch the cards and use a bigger description box? I’ll save it for a future post, but basically it was a natural outgrowth of my efforts to consolidate my knowledge. That and Jekyll is really nice. My two favorite things about Jekyll, in order:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Templates are encouraged. Even though it’s a bit more complex (due to the blog aspect, not the templates), my new site feels more modular and less gross.&lt;/li&gt;
+  &lt;li&gt;Thanks in part to templates, I can write posts exclusively in markdown, and I can focus more on the content. Even better for blogs, since blog posts are very template-able.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Demo checklist:&lt;/p&gt;
+&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Blockquotes&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Headers&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Images&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Captions&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Code&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Callouts (and emojis)&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Footnotes&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;LaTeX&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Unordered lists&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Ordered lists&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Checkboxes&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Unchecked checkboxes 🤯&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Alright, demo complete :D stay tuned for more. Hope I can keep this up.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Image credit: Wikipedia &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Surprise k-means? Surprise k-means. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="article" /><category term="blog" /><summary type="html">Hello, world! Beep boop. This is my first post on my fresh new blog. The real introduction is here; in this post I will just be commenting on my old site.</summary></entry></feed>
