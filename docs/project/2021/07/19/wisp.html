@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/main.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Project Reupload #1: Wisp | Xn - CS/AI blog</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Project Reupload #1: Wisp" />
+<meta name="author" content="Michal Porubcin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I’m writing posts on my old projects. In this post, I talk about a game I made with Henry G. for Ludum Dare 40. I also talk about my old game dev experiences." />
+<meta property="og:description" content="I’m writing posts on my old projects. In this post, I talk about a game I made with Henry G. for Ludum Dare 40. I also talk about my old game dev experiences." />
+<meta property="og:site_name" content="Xn - CS/AI blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-07-19T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Project Reupload #1: Wisp" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/project/2021/07/19/wisp.html"},"description":"I’m writing posts on my old projects. In this post, I talk about a game I made with Henry G. for Ludum Dare 40. I also talk about my old game dev experiences.","author":{"@type":"Person","name":"Michal Porubcin"},"headline":"Project Reupload #1: Wisp","dateModified":"2021-07-19T00:00:00-05:00","datePublished":"2021-07-19T00:00:00-05:00","url":"/project/2021/07/19/wisp.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Xn - CS/AI blog" /><!-- Favicon -->
+  <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
+
+  <!-- MathJax for LaTeX -->
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
+</head>
+<body><header class="site-header">
+  <div class="wrapper-logo">
+    <div class="logo">
+      <!-- <a class="site-title" href="/">Xn - CS/AI blog</a> -->
+      <a href="/">
+        <img src="/assets/images/logo.png" />
+      </a>
+    </div>
+  </div>
+  <div class="wrapper">
+    <nav class="site-nav">
+      <a class="page-link" href="/"> Home</a>
+      <a class="page-link" href="/category/project/"> Projects</a>
+      <a class="page-link" href="/categories.html"> Categories</a>
+      <a class="page-link" href="/tags.html"> Tags</a>
+      <a class="page-link" href="/archive.html"> Archive</a>
+      <a class="page-link" href="/about.html"> About</a>
+    </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Project Reupload #1: Wisp</h1>
+    <p class="post-meta">
+      <time datetime="2021-07-19T00:00:00-05:00" itemprop="datePublished">
+        
+        Jul 19, 2021
+      </time>
+
+      <!---->
+
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        by <span itemprop="name">Michal Porubcin</span>
+      </span>
+
+      <span class="post-categories">
+        <span>
+              
+              <a class="post-category" href="/category/project/">project&nbsp;</a>
+            </span>
+      </span>
+
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <blockquote>
+  <p>I’m writing posts on my old projects. In this post, I talk about a game I made with Henry G. for Ludum Dare 40. I also talk about my old game dev experiences.</p>
+</blockquote>
+
+<!--more-->
+
+<h2 id="before-the-actual-project-i-will-tell-you-about-my-previous-life-as-an-aspiring-game-dev-deal-with-it">Before The Actual Project I Will Tell You About My Previous Life As an Aspiring Game Dev, Deal With It</h2>
+
+<p>Prior to discovering AI, I guess I could say game dev was my first choice of career. I made my first game back in high school with GameMaker. In college I ran through enough Unity tutorials to make an (unpublished) Android puzzle game. I vaguely recall some back-and-forth with Zynga about a summer internship, but withdrew my application.</p>
+
+<p>I decided to start a new project with a larger scope. Down the line I met Henry at gamedev club and even convinced him to help me out somehow. Unfortunately we weren’t making much meaningful progress because I kept adding features and underestimating the ballooning scope of the project. I had started with a basic multiplayer pirate-themed game with attack-defense gameplay like Clash of Clans – a big task already! Then I thought, why not add a two-phased battle? How about custom attacks for each troop with MOBA-style cooldowns? Maybe clans? (Why was I such a Supercell fanboy?)</p>
+
+<p><img src="/assets/images/pirates.png" alt="pirates" />
+<em>Flat Boats at Dusk, 2017. Acrylic on canvas.</em></p>
+
+<p>I also got stuck on details. I wanted deployed troops to avoid colliding, and I came across a paper about <a href="https://gamma.cs.unc.edu/RVO/icra2008.pdf">reciprocal velocity obstacles</a> (the first research paper I ever read of my own volition, to my knowledge). I decided to code it in C# right in Unity, even though Henry later found a library which implemented it efficiently. We didn’t even need such strict collision avoidance; a proximity-based repelling force would have sufficed.</p>
+
+<p>It wasn’t getting anywhere, and in fact it never did get anywhere. In light of all this, Henry eventually suggested we try doing Ludum Dare, a competition to build a game from scratch over a single weekend. I can’t speak for him, but I at least saw the opportunity to walk away with a finished game.</p>
+
+<h2 id="ludum-dare-40">Ludum Dare 40</h2>
+
+<p>Every Ludum Dare has a theme, and for 2017 it was: <strong>The more you have, the worse it is</strong>. After some brainstorming, we decided on a <a href="https://en.wikipedia.org/wiki/Roguelike">rogue-like</a> game. Rogue-likes are a specific subgenre of role-playing games, and a key commonality is procedurally generated dungeons, yet another feature I secretly wanted to add to my pirate game.</p>
+
+<p>It was sort of an interesting problem. We had parameters for room count, room size, and hall size. We built the rooms randomly, then connected them with a minimum spanning tree, and added a few extra halls based on another connectivity parameter. We used Unity Tilemap to implement the actual grid.</p>
+
+<p>None of that was relevant to the theme of course. We stuffed the entire theme into a lighting buddy orbiting the player, called a wisp. The player could make the wisp brighter to see more of the dungeon, but the monsters would become more aggressive. It was pretty hard – I don’t even think we gave the player a weapon. We scattered healing potions around the map, but they gave some light too, making the monsters more aggressive in the vicinity.</p>
+
+<p><img src="/assets/images/wisp1.png" alt="wisp1" />
+<em>Some in-game screenshots</em></p>
+
+<p>We didn’t win anything, but I think some guy on YouTube played a bunch of submissions and said some slightly positive things about ours. I wish I could find it!</p>
+
+<h2 id="takeaways">Takeaways</h2>
+
+<p>It struck me late in the weekend that I went in with the explicit purpose of <em>finishing</em> a game, yet I still found a way to muddle around with a completely unnecessary feature. Ludum Dare taught me to value the MVP over whatever new idea or silly intellectual problem catches my fancy, something I hadn’t figured out in over a year of game dev on the side.</p>
+
+<p>I stopped working on any games after that. The semester of Ludum Dare 40, I took a Machine Learning class, which kickstarted my interest in AI. My game dev phase was far from a waste though. I didn’t use C# again, but experience with an extra language is never bad. I used Unity for several future projects, and the interface alone carries over to tons of different programs. And though it’s a bit difficult to articulate, there is a way of thinking like a game designer that I’ll always carry with me.</p>
+
+
+  </div>
+
+  <div class="post-tags">
+    Tags:&nbsp; 
+    <span>
+      <!-- 
+        
+        <a class="post-tag" href="/tag/game"><nobr>game</nobr>&nbsp;</a>
+      
+        
+        <a class="post-tag" href="/tag/gamedev"><nobr>gamedev</nobr>&nbsp;</a>
+      
+        
+        <a class="post-tag" href="/tag/unity"><nobr>unity</nobr>&nbsp;</a>
+       -->
+          
+          <a href="/tag/game/">game&nbsp;</a>
+        
+          
+          <a href="/tag/gamedev/">gamedev&nbsp;</a>
+        
+          
+          <a href="/tag/unity/">unity&nbsp;</a>
+        </span>
+  </div>
+
+  <div class="page-navigation"><a class="prev" href="/article/2021/07/16/hello-world.html">&larr; New Site!</a><a class="next" href="/project/2021/07/20/poker-ai.html">Project Reupload #2: Poker AI &rarr;</a></div><a class="u-url" href="/project/2021/07/19/wisp.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer">
+  2021 &copy; by Michal Porubcin. All Rights Reserved. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>. View on <a href="https://github.com/michalp21/michalp21.github.io" target="_blank">Github</a>.
+
+  <p>
+    <a href="/feed.xml" target="_blank">
+      <img src="/assets/images/logo_rss.png" />
+    </a>
+    <a href="https://github.com/michalp21" target="_blank">
+      <img src="/assets/images/logo_github.png" />
+    </a>
+  </p>
+
+</footer></body>
+
+</html>

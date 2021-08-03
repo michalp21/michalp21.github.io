@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/main.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Project Reupload #2: Poker AI | Xn - CS/AI blog</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Project Reupload #2: Poker AI" />
+<meta name="author" content="Michal Porubcin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I’m writing posts on my old projects. In this post, I’ll introduce my final project for one of my classes in junior year, a simplified implementation of a state-of-the-art poker AI." />
+<meta property="og:description" content="I’m writing posts on my old projects. In this post, I’ll introduce my final project for one of my classes in junior year, a simplified implementation of a state-of-the-art poker AI." />
+<meta property="og:site_name" content="Xn - CS/AI blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-07-20T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Project Reupload #2: Poker AI" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/project/2021/07/20/poker-ai.html"},"description":"I’m writing posts on my old projects. In this post, I’ll introduce my final project for one of my classes in junior year, a simplified implementation of a state-of-the-art poker AI.","author":{"@type":"Person","name":"Michal Porubcin"},"headline":"Project Reupload #2: Poker AI","dateModified":"2021-07-20T00:00:00-05:00","datePublished":"2021-07-20T00:00:00-05:00","url":"/project/2021/07/20/poker-ai.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Xn - CS/AI blog" /><!-- Favicon -->
+  <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
+
+  <!-- MathJax for LaTeX -->
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
+</head>
+<body><header class="site-header">
+  <div class="wrapper-logo">
+    <div class="logo">
+      <!-- <a class="site-title" href="/">Xn - CS/AI blog</a> -->
+      <a href="/">
+        <img src="/assets/images/logo.png" />
+      </a>
+    </div>
+  </div>
+  <div class="wrapper">
+    <nav class="site-nav">
+      <a class="page-link" href="/"> Home</a>
+      <a class="page-link" href="/category/project/"> Projects</a>
+      <a class="page-link" href="/categories.html"> Categories</a>
+      <a class="page-link" href="/tags.html"> Tags</a>
+      <a class="page-link" href="/archive.html"> Archive</a>
+      <a class="page-link" href="/about.html"> About</a>
+    </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Project Reupload #2: Poker AI</h1>
+    <p class="post-meta">
+      <time datetime="2021-07-20T00:00:00-05:00" itemprop="datePublished">
+        
+        Jul 20, 2021
+      </time>
+
+      <!---->
+
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        by <span itemprop="name">Michal Porubcin</span>
+      </span>
+
+      <span class="post-categories">
+        <span>
+              
+              <a class="post-category" href="/category/project/">project&nbsp;</a>
+            </span>
+      </span>
+
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <blockquote>
+  <p>I’m writing posts on my old projects. In this post, I’ll introduce my final project for one of my classes in junior year, a simplified implementation of a state-of-the-art poker AI.</p>
+</blockquote>
+
+<!--more-->
+
+<h2 id="ai-poker">AI Poker</h2>
+<p>Zoom in to my COMS4995 lecture in Spring of 2018, where I was discussing with two random classmates, Dan and Ethan, what we should do for our class project. We all recently learned about <a href="https://www.nature.com/articles/nature16961">AlphaGo’s</a> victory against Lee Sedol in Go, and Ethan liked poker, so we thought, <em>maybe someone made an AlphaGo for poker</em>. Turns out in January of that year, a duo from Carnegie Mellon presented Libratus, an algorithm that beat four top human professionals at <strong>heads-up no-limit (HUNL) Texas Hold’em poker</strong>:</p>
+<ul>
+  <li>Texas Hold’em: the most popular “core rules” of poker, including dealing and betting</li>
+  <li>No-limit: bets are not fixed, and are bounded by a predetermined minimum and an all-in maximum</li>
+  <li>Heads-up: two players</li>
+</ul>
+
+<p>The immediate question: did they more or less apply the method from AlphaGo to HUNL poker? The short answer is no.</p>
+
+<p>Even considering a two-player version, poker is different from Go in several aspects:</p>
+<ul>
+  <li>Drawn cards introduce randomness.</li>
+  <li>Each player’s hand is hidden from the other.</li>
+</ul>
+
+<p>While the first point complicates evaluation of the stronger player, the second point is more important. In Go, both players always know the exact state of the game, but in Poker, players have to deal with <strong>imperfect information</strong>. This renders useless the core methods of AlphaGo and its successors.</p>
+
+<p>Like AlphaGo, no official open-source code was released, but unlike AlphaGo, nobody had taken a shot at an unofficial implementation. So Ethan, Dan, and I decided to create an open-source version of Libratus, with the added goal of aiding the research community. Enthusiasm and naivette: the perfect combo!</p>
+
+<p><img src="/assets/images/noam.png" alt="noam" />
+<em>Objection: it needs 25 million core hours anyway so what’s the big deal??</em></p>
+
+<h2 id="process">Process</h2>
+<p>Here’s a silly timeline of my experiences that spring:</p>
+<ol>
+  <li>This notation is incomprehensible</li>
+  <li>There is no deep learning</li>
+  <li>This is actually a super complicated project but we’re past project milestone…</li>
+  <li>We cracked a core algorithm!</li>
+  <li>Wait we have to write a poker simulator</li>
+  <li>Wait we have to interface with ACPC in order to benchmark</li>
+  <li>Wait the class is over??</li>
+</ol>
+
+<p>I’ll walk through some of it.</p>
+
+<h3 id="notation">Notation</h3>
+<p>At the time I had zero experience with poker or game theory, crucial components of Libratus (and only brief exposure to reinforcement learning, which hindered understanding of related game AI literature). It would take almost a whole week to get through a paper. I remember griping over the Notation and Background section of the paper <a href="https://arxiv.org/abs/1705.02955">Safe And Nested Subsolving For Imperfect-Information Games</a>.</p>
+
+<h3 id="deep-learning">Deep Learning</h3>
+<p>I skipped over this, but we were initially going to implement <a href="https://science.sciencemag.org/content/356/6337/508">DeepStack</a>, a poker AI from 2017 that utilized deep learning. When we switched to Libratus, I think I just assumed there would be deep learning, because it seemed like the only way to tackle super challenging games like Go and Poker. I was shocked to find that Libratus did <em>not</em> use deep learning and still performed better than DeepStack.</p>
+
+<h3 id="project-milestone">Project Milestone</h3>
+<p>Towards the middle of our project we realized just how complicated Libratus was. I thought we would be dealing with something like <a href="https://www.nature.com/articles/nature24270">AlphaGo Zero</a> (the first successor to AlphaGo) which elegantly combined MCTS with a two-headed policy and value network, and removed “human data, guidance or domain knowledge beyond game rules.”</p>
+
+<p>I discovered, however, that AlphaGo Zero was an anomaly among game AIs, and for Libratus, domain knowledge was just as important as game theory. Even worse, we were well into the project already, and we faced the all too common dilemma of building a complete, faithful implementation versus having something presentable at the end of the semester. For example we may not have fully implemented card and action abstractions, which are basically groupings of cards and actions to reduce the number of possibilities per turn.<sup id="fnref:forgot" role="doc-noteref"><a href="#fn:forgot" class="footnote" rel="footnote">1</a></sup></p>
+
+<p>It was at this point too that I became a bit jaded about benchmarking AIs with games. I might write another post about it, but in summary, the world-class poker bot transformed in my mind from a leap forward for AI into just another game someone was able to build an algorithm for.<sup id="fnref:same" role="doc-noteref"><a href="#fn:same" class="footnote" rel="footnote">2</a></sup> Not a unique view at all, and not a slight against Libratus either; it’s still an unprecedented feat.</p>
+
+<h3 id="core-algorithm-cracked">Core Algorithm Cracked</h3>
+<p>We got one major win, successfully writing MCCFR-p, the algorithm which computes a so-called blueprint strategy. We started by reading up on the more basic CFR algorithm (this <a href="http://modelai.gettysburg.edu/2013/cfr/cfr.pdf">paper</a> specifically), and writing a basic implementation for Khun poker, a toy version of poker. We were then able to translate this to the more sophisticated algorithm on a bigger poker game.</p>
+
+<h3 id="simulator-and-acpc-server">Simulator and ACPC server</h3>
+<p>The last stretch saw algorithmic challenges almost wholly replaced by engineering ones. We had to finalize the poker simulator, so a) we could demo the game and b) to simulate valid moves while pre-training the strategies. We wrote rules for Leduc poker which reduced the game size to something trainable on our puny machines (but still larger than Kuhn poker), but introduced its own difficulties because it’s a lesser known ruleset, and we had trouble validating it. Finally we needed to implement gameplay with other bots via an ACPC server. Luckily we found a Python wrapper and plugged it in.</p>
+
+<h2 id="takeaways">Takeaways</h2>
+<p>I at least was completely burnt out by the end, and just when we were getting a hang of things we put a bow on it and never touched it again. I highly doubt it was helpful to researchers, as we had hoped. The message “This is a work in progress” sits on the readme like a dead “open” sign on a dilapidated storefront. It’s all kind of a regret of mine! Still I have to remember this was my first class with a final project, and I learned an incredible amount in a short period of time. It was also my first attempt at reading through the literature of a certain field and trying to implement something in it from scratch. The repo is <a href="https://github.com/michalp21/coms4995-finalproj">here</a> for the curious.</p>
+
+<p>The research world doesn’t slow down. Noam Brown has continued putting out excellent work, such as <a href="https://www.cs.cmu.edu/~noamb/papers/19-Science-Superhuman.pdf">Pluribus</a> for multiplayer poker, and <a href="https://arxiv.org/abs/2007.13544">ReBeL</a>, which utilizes deep reinforcement learning. Someone seems to be working on an <a href="https://github.com/fedden/poker_ai">open-source</a> implementation of Pluribus, and an official repo exists for ReBeL implemented on a different game called <a href="https://github.com/facebookresearch/rebel">Liar’s Dice</a>. I’m excited to see what the future holds for poker AIs!</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:forgot" role="doc-endnote">
+      <p>Unfortunately I forgot a lot of the details, and looking at it now, our code isn’t a paragon of best practices. <a href="#fnref:forgot" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:same" role="doc-endnote">
+      <p>Same applies to all versions of AlphaGo by the way. <a href="#fnref:same" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div>
+
+  <div class="post-tags">
+    Tags:&nbsp; 
+    <span>
+      <!-- 
+        
+        <a class="post-tag" href="/tag/game"><nobr>game</nobr>&nbsp;</a>
+      
+        
+        <a class="post-tag" href="/tag/poker"><nobr>poker</nobr>&nbsp;</a>
+      
+        
+        <a class="post-tag" href="/tag/reinforcement-learning"><nobr>reinforcement-learning</nobr>&nbsp;</a>
+       -->
+          
+          <a href="/tag/game/">game&nbsp;</a>
+        
+          
+          <a href="/tag/poker/">poker&nbsp;</a>
+        
+          
+          <a href="/tag/reinforcement-learning/">reinforcement-learning&nbsp;</a>
+        </span>
+  </div>
+
+  <div class="page-navigation"><a class="prev" href="/project/2021/07/19/wisp.html">&larr; Project Reupload #1: Wisp</a><a class="next" href="/project/2021/07/21/sensor.html">Project Reupload #3: VI sensor &rarr;</a></div><a class="u-url" href="/project/2021/07/20/poker-ai.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer">
+  2021 &copy; by Michal Porubcin. All Rights Reserved. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>. View on <a href="https://github.com/michalp21/michalp21.github.io" target="_blank">Github</a>.
+
+  <p>
+    <a href="/feed.xml" target="_blank">
+      <img src="/assets/images/logo_rss.png" />
+    </a>
+    <a href="https://github.com/michalp21" target="_blank">
+      <img src="/assets/images/logo_github.png" />
+    </a>
+  </p>
+
+</footer></body>
+
+</html>

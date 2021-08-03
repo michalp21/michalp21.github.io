@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/main.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Project Reupload #3: VI sensor | Xn - CS/AI blog</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Project Reupload #3: VI sensor" />
+<meta name="author" content="Michal Porubcin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I’m writing posts on my old projects. Here I will introduce one of my most ambitious projects, the creation of a visual-inertial sensor for use with SLAM." />
+<meta property="og:description" content="I’m writing posts on my old projects. Here I will introduce one of my most ambitious projects, the creation of a visual-inertial sensor for use with SLAM." />
+<meta property="og:site_name" content="Xn - CS/AI blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-07-21T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Project Reupload #3: VI sensor" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/project/2021/07/21/sensor.html"},"description":"I’m writing posts on my old projects. Here I will introduce one of my most ambitious projects, the creation of a visual-inertial sensor for use with SLAM.","author":{"@type":"Person","name":"Michal Porubcin"},"headline":"Project Reupload #3: VI sensor","dateModified":"2021-07-21T00:00:00-05:00","datePublished":"2021-07-21T00:00:00-05:00","url":"/project/2021/07/21/sensor.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Xn - CS/AI blog" /><!-- Favicon -->
+  <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
+
+  <!-- MathJax for LaTeX -->
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
+</head>
+<body><header class="site-header">
+  <div class="wrapper-logo">
+    <div class="logo">
+      <!-- <a class="site-title" href="/">Xn - CS/AI blog</a> -->
+      <a href="/">
+        <img src="/assets/images/logo.png" />
+      </a>
+    </div>
+  </div>
+  <div class="wrapper">
+    <nav class="site-nav">
+      <a class="page-link" href="/"> Home</a>
+      <a class="page-link" href="/category/project/"> Projects</a>
+      <a class="page-link" href="/categories.html"> Categories</a>
+      <a class="page-link" href="/tags.html"> Tags</a>
+      <a class="page-link" href="/archive.html"> Archive</a>
+      <a class="page-link" href="/about.html"> About</a>
+    </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Project Reupload #3: VI sensor</h1>
+    <p class="post-meta">
+      <time datetime="2021-07-21T00:00:00-05:00" itemprop="datePublished">
+        
+        Jul 21, 2021
+      </time>
+
+      <!---->
+
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        by <span itemprop="name">Michal Porubcin</span>
+      </span>
+
+      <span class="post-categories">
+        <span>
+              
+              <a class="post-category" href="/category/project/">project&nbsp;</a>
+            </span>
+      </span>
+
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <blockquote>
+  <p>I’m writing posts on my old projects. Here I will introduce one of my most ambitious projects, the creation of a visual-inertial sensor for use with SLAM.</p>
+</blockquote>
+
+<!--more-->
+
+<h2 id="tele-cube">Tele-Cube</h2>
+
+<p>For this project, I tried to make a virtual cube move based on sensor movement.</p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">🙄</div>
+    
+    <div class="callout-text">That's trivial. There are cheap sensors with out-of-box demos for this.</div>
+  </div>
+</blockquote>
+
+<p><img src="/assets/images/sparkfunimu.gif" alt="sparkfunimu" />
+<em>Straight from the Sparkfun website</em></p>
+
+<p>I could have made that my project but I wanted to do more. A rotation demo shows three degrees of (rotational) freedom. That’s like knowing how an airplane is oriented without knowing where it actually is in the sky. I wanted an extra three degrees of freedom along positional axes.</p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">🙄</div>
+    
+    <div class="callout-text">Any IMU will have an accelerometer and a gyroscope, one for calculating position and one for rotation.</div>
+  </div>
+</blockquote>
+
+<p>The problem with IMUs is that the accelerometer directly measures acceleration. To get a position estimate, the IMU has to double integrate over the acceleration. The error from this operation accumulates pretty quickly and the result is a drifting position estimate, which becomes useless pretty quickly. The gyroscope has a similar problem.</p>
+
+<p>The problem of using sensor data to determining change of position and orientation, or pose, over time is called <strong>odometry</strong>. IMUs are not capable of good odometry on their own,<sup id="fnref:imubad" role="doc-noteref"><a href="#fn:imubad" class="footnote" rel="footnote">1</a></sup> so one improvement is to combine multiple sensors with different properties together, like a visual-inertial (VI) sensor, and perform <strong>visual-inertial odometry</strong>. Yet another improvement is to use a more sophisticated algorithm,<sup id="fnref:sophisticated" role="doc-noteref"><a href="#fn:sophisticated" class="footnote" rel="footnote">2</a></sup> called <strong>simultaneous localization and mapping (SLAM)</strong>.</p>
+
+<h2 id="the-hardware">The Hardware</h2>
+
+<p>A good VI sensor, like the discontinued <a href="/assets/images/visensor.png">Skybotix VI-sensor</a> below, uses one or more high quality cameras and IMUs, with hardware synchronization and god-tier calibration.</p>
+
+<p><img src="/assets/images/visensor.png" alt="visensor" />
+<em>For just  €3900.00!</em></p>
+
+<p>Obviously my sensor was a bit lower spec. I decided to use an open-source SLAM algorithm called ROVIO, which requires hardware synchronization of the camera and IMU, and a global shutter camera. To satisfy those two points I got a Point Grey Firefly MV camera, the cheapest global shutter camera I could find with an external triggering capability. My IMU on the other hand was a cheapy from Sparkfun, which at least incorporated a magnetometer to improve measurements a bit. The IMU supports Arduino onboard, which I used to trigger the camera shutter at regular intervals. I 3D-printed a holder to keep both sensors locked in place. The sensors needed to be calibrated, both as individual sensors and together as a unit. The IMU came with a handy calibration tutorial, and <a href="https://github.com/ethz-asl/kalibr">Kalibr</a> took care of the rest.</p>
+
+<p><img src="/assets/images/visensor2.png" alt="visensor2" />
+<em>My VI sensor ._.</em></p>
+
+<p>The sensor ended up being the focus of the project, but remember it was just part of a whole pipeline. It needed to feed its data to a computer, which needed to run ROVIO, feed the pose data to a graphics engine, and rotate a cube.</p>
+
+<p>I wanted to keep a fairly mobile system so I could <em>in principle</em> mount everything on a drone, which ruled out a desktop computer. I tried the very low power Raspberry Pi, but it was too weak to run SLAM, ruling out most single board computers. I chose Unity to handle the virtual cube, so I chose Ubuntu 16 for its compatibility with Unity and ROS (for ROVIO). The smallest system I could find that could run a full Ubuntu OS and had enough processing power to run ROVIO was an Intel NUC. Finally I used a battery pack to power the NUC.</p>
+
+<p><img src="/assets/images/glow.jpg" alt="glow" />
+<em>I thought this was a cool picture when I took it. Shows a NUC, my laptop, and an external drive.</em></p>
+
+<h2 id="note-on-money">Note on Money</h2>
+
+<p>One flaw in this tidy little blog post is the omission of all the failed approaches I tried first, many which involved acquiring some special hardware.</p>
+
+<p>A small investment can go a long way. I would not have finished this project without some key purchases like the IMU or camera. As I realized, however, the purchases eventually hit diminishing returns. I ended up buying things and then returning them when I realized they didn’t quite fit my needs, or holding onto them to this day. Some of those items were somewhat cheap, like the Raspberry Pi, and some were not (like an eGPU…yeah…I later tried to make up for it by cryptomining).</p>
+
+<p>Some of the waste can be offset by spending even more time asking knowledgeable people, either online or in real life. Research is also hit by diminshing returns though, eventually resulting in a paralysis of ambivalence. You will eventually have to make a purchase and sometimes there’s no better way to know if it works than to buy it and try it.</p>
+
+<p>So while I did spend an uncomfortable amount of internship earnings on this project, I learned a few tips to squeeze the most efficiency out of my time and money. In order, I recommend:</p>
+<ol>
+  <li>Sticking to software instead of hardware if possible.</li>
+  <li>Reducing the scope of the project.</li>
+  <li>Taking advantage of a lab or makerspace.</li>
+  <li>Using Amazon Prime.<sup id="fnref:sponsor" role="doc-noteref"><a href="#fn:sponsor" class="footnote" rel="footnote">3</a></sup></li>
+</ol>
+
+<p>Notice choosing software projects comes <em>first!</em> Nearly everything software-related outside of a production environment can be done for free. <em>Maybe</em> you pay a few bucks for hosting or cloud services. For hardware projects, the other tips should help. To explain Amazon Prime a bit more, I found it useful both for quick deliveries and fully refunded returns, allowing me to iterate quickly. Students get a discount, and a free trial is available to anyone.</p>
+
+<h2 id="results">Results</h2>
+
+<p>After many painful months, I did manage to move the virtual cube!</p>
+
+<p><img src="/assets/images/videmo.png" alt="videmo" />
+<em>Please hold your applause</em></p>
+
+<p>A video feed from the camera is displayed in the upper left corner, and the cube is rotated and translated to match the pose of the sensor in real time.</p>
+
+<p>Well, there was actually some noticeable lag in the movement, and I identified a few sources:</p>
+<ul>
+  <li>At the time, I was using a package called ros-sharp to pass ROS video frames to Unity. I think either they were raw instead of compressed image frames, or they were being passed with JSON instead of BSON.</li>
+  <li>The method to display the video feed in Unity may have been inefficient. The demo ran more smoothly without video.</li>
+  <li>As my advisor kindly pointed out, SLAM is intensive enough that many mobile/embedded SLAM systems have a VPU dedicated to underlying computer vision procedures. My homemade version obviously lacked anything of the sort, but the NUC did have a decent general purpose CPU. I wasn’t able to test if SLAM alone was a bottleneck, but I did notice a performance difference with and without the screen recording running.</li>
+</ul>
+
+<p>I wish I had more time to fix the display issues, but at least ROVIO runs smoothly, meaning my sensor worked too. I even managed to get the whole thing working off the battery, carrying it around in a backpack setup. I will add a picture if I can find it or recreate it.</p>
+
+<p>You may be wondering things like:</p>
+<ul>
+  <li>Why not just display the video straight from ROS?</li>
+  <li>Why not use a laptop instead of a NUC?</li>
+  <li>Why use Unity instead of say Gazebo?</li>
+  <li>Why use SLAM at all?</li>
+</ul>
+
+<p>Some choices can be excused by incomplete knowledge, some were completely asinine, and all were cut off from a satisfactory level of deliberation in my stubborn commitment to the MVP.</p>
+
+<h2 id="takeaways">Takeaways</h2>
+
+<p>As usual, I ran into issues with project scope. Unlike my <a href="/project/2021/07/19/wisp.html">Wisp</a> project, I <em>never</em> added features, but instead the true scale of the project was completely hidden from me since I lacked experience with the field (even worse than the <a href="/project/2021/07/20/poker-ai.html">poker project</a>). I thought okay the state-of-the-art is in SLAM so I’ll do that! When I realized how complicated everything was, I ended up using an off-the-shelf SLAM in order to reach the MVP. There’s nothing wrong with using a prebuilt package, but I could have chosen from a more lightweight family of algorithms like VIO, which would have lowered requirements on both the sensor components and computer. Additionally, I was unable to debug it when things went awry. I actually started with a completely different SLAM algorithm called VINS-MONO, but had to ditch it because I simply couldn’t get it to run.</p>
+
+<p>My number one priority after building the sensor was to dive more deeply into SLAM and related algorithms. Still, basic knowledge of the sensor and how it fits into the whole pose estimation pipeline is invaluable. I was exposed to tons of concepts about cameras, lenses, and basic photography that I find fascinating even now. Most of all I dove into the completely new fields of robotics and computer vision and came out with something to show for it. Without a doubt, this was one of my favorite projects.</p>
+
+<p>I will release specific tutorials I put together during the project.</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:imubad" role="doc-endnote">
+      <p>In particular, I mean cheap MEMS IMUs. <a href="#fnref:imubad" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:sophisticated" role="doc-endnote">
+      <p>VIO is more complicated than one-sensor odometry by virtue of the additional sensor modality. SLAM is more sophisticated than VIO for reasons other than the particular sensor(s) used, namely mapping and loop-closure. <a href="#fnref:sophisticated" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:sponsor" role="doc-endnote">
+      <p>Not sponsored I promise. <a href="#fnref:sponsor" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div>
+
+  <div class="post-tags">
+    Tags:&nbsp; 
+    <span>
+      <!-- 
+        
+        <a class="post-tag" href="/tag/vio"><nobr>vio</nobr>&nbsp;</a>
+      
+        
+        <a class="post-tag" href="/tag/slam"><nobr>slam</nobr>&nbsp;</a>
+      
+        
+        <a class="post-tag" href="/tag/computer-vision"><nobr>computer-vision</nobr>&nbsp;</a>
+      
+        
+        <a class="post-tag" href="/tag/rovio"><nobr>rovio</nobr>&nbsp;</a>
+      
+        
+        <a class="post-tag" href="/tag/hardware"><nobr>hardware</nobr>&nbsp;</a>
+       -->
+          
+          <a href="/tag/vio/">vio&nbsp;</a>
+        
+          
+          <a href="/tag/slam/">slam&nbsp;</a>
+        
+          
+          <a href="/tag/computer-vision/">computer-vision&nbsp;</a>
+        
+          
+          <a href="/tag/rovio/">rovio&nbsp;</a>
+        
+          
+          <a href="/tag/hardware/">hardware&nbsp;</a>
+        </span>
+  </div>
+
+  <div class="page-navigation"><a class="prev" href="/project/2021/07/20/poker-ai.html">&larr; Project Reupload #2: Poker AI</a><a class="next" href="/tutorial/2021/08/01/jekyll-tutorial.html">Jekyll Blog Tutorial (+ Lots of Features) &rarr;</a></div><a class="u-url" href="/project/2021/07/21/sensor.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer">
+  2021 &copy; by Michal Porubcin. All Rights Reserved. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>. View on <a href="https://github.com/michalp21/michalp21.github.io" target="_blank">Github</a>.
+
+  <p>
+    <a href="/feed.xml" target="_blank">
+      <img src="/assets/images/logo_rss.png" />
+    </a>
+    <a href="https://github.com/michalp21" target="_blank">
+      <img src="/assets/images/logo_github.png" />
+    </a>
+  </p>
+
+</footer></body>
+
+</html>

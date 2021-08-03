@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/main.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Jekyll Blog Tutorial (+ Lots of Features) | Xn - CS/AI blog</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Jekyll Blog Tutorial (+ Lots of Features)" />
+<meta name="author" content="Michal Porubcin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Here are the notes and external tutorials I used and gathered while creating this blog! Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!" />
+<meta property="og:description" content="Here are the notes and external tutorials I used and gathered while creating this blog! Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!" />
+<meta property="og:site_name" content="Xn - CS/AI blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-01T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Jekyll Blog Tutorial (+ Lots of Features)" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/tutorial/2021/08/01/jekyll-tutorial.html"},"description":"Here are the notes and external tutorials I used and gathered while creating this blog! Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!","author":{"@type":"Person","name":"Michal Porubcin"},"headline":"Jekyll Blog Tutorial (+ Lots of Features)","dateModified":"2021-08-01T00:00:00-05:00","datePublished":"2021-08-01T00:00:00-05:00","url":"/tutorial/2021/08/01/jekyll-tutorial.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Xn - CS/AI blog" /><!-- Favicon -->
+  <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
+
+  <!-- MathJax for LaTeX -->
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
+</head>
+<body><header class="site-header">
+  <div class="wrapper-logo">
+    <div class="logo">
+      <!-- <a class="site-title" href="/">Xn - CS/AI blog</a> -->
+      <a href="/">
+        <img src="/assets/images/logo.png" />
+      </a>
+    </div>
+  </div>
+  <div class="wrapper">
+    <nav class="site-nav">
+      <a class="page-link" href="/"> Home</a>
+      <a class="page-link" href="/category/project/"> Projects</a>
+      <a class="page-link" href="/categories.html"> Categories</a>
+      <a class="page-link" href="/tags.html"> Tags</a>
+      <a class="page-link" href="/archive.html"> Archive</a>
+      <a class="page-link" href="/about.html"> About</a>
+    </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Jekyll Blog Tutorial (+ Lots of Features)</h1>
+    <p class="post-meta">
+      <time datetime="2021-08-01T00:00:00-05:00" itemprop="datePublished">
+        
+        Aug 1, 2021
+      </time>
+
+      <!---->
+
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        by <span itemprop="name">Michal Porubcin</span>
+      </span>
+
+      <span class="post-categories">
+        <span>
+              
+              <a class="post-category" href="/category/tutorial/">tutorial&nbsp;</a>
+            </span>
+      </span>
+
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <blockquote>
+  <p>Here are the notes and external tutorials I used and gathered while creating this blog! Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!</p>
+</blockquote>
+
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#summary" id="markdown-toc-summary">Summary</a>    <ul>
+      <li><a href="#prerequisites" id="markdown-toc-prerequisites">Prerequisites</a></li>
+    </ul>
+  </li>
+  <li><a href="#jekyll-overview" id="markdown-toc-jekyll-overview">Jekyll Overview</a></li>
+  <li><a href="#setup" id="markdown-toc-setup">Setup</a></li>
+  <li><a href="#the-gemfile" id="markdown-toc-the-gemfile">The Gemfile</a></li>
+  <li><a href="#github-pages" id="markdown-toc-github-pages">GitHub Pages</a></li>
+  <li><a href="#the-config" id="markdown-toc-the-config">The Config</a></li>
+  <li><a href="#adding-content" id="markdown-toc-adding-content">Adding Content</a></li>
+  <li><a href="#file-organization" id="markdown-toc-file-organization">File Organization</a></li>
+  <li><a href="#themes" id="markdown-toc-themes">Themes</a></li>
+  <li><a href="#kramdown" id="markdown-toc-kramdown">Kramdown</a></li>
+  <li><a href="#other-features" id="markdown-toc-other-features">Other Features</a>    <ul>
+      <li><a href="#callouts" id="markdown-toc-callouts">Callouts</a></li>
+      <li><a href="#code" id="markdown-toc-code">Code</a></li>
+      <li><a href="#excerpts" id="markdown-toc-excerpts">Excerpts</a></li>
+      <li><a href="#fonts" id="markdown-toc-fonts">Fonts</a></li>
+      <li><a href="#footnotes" id="markdown-toc-footnotes">Footnotes</a></li>
+      <li><a href="#images" id="markdown-toc-images">Images</a></li>
+      <li><a href="#image-captions" id="markdown-toc-image-captions">Image Captions</a></li>
+      <li><a href="#latex" id="markdown-toc-latex">LaTeX</a></li>
+      <li><a href="#links" id="markdown-toc-links">Links</a></li>
+      <li><a href="#pagination" id="markdown-toc-pagination">Pagination</a></li>
+      <li><a href="#table-of-contents" id="markdown-toc-table-of-contents">Table of Contents</a></li>
+      <li><a href="#tags" id="markdown-toc-tags">Tags</a></li>
+      <li><a href="#reference-bibtex" id="markdown-toc-reference-bibtex">Reference (Bibtex)</a></li>
+    </ul>
+  </li>
+  <li><a href="#publishing-the-site" id="markdown-toc-publishing-the-site">Publishing the Site!</a></li>
+  <li><a href="#misc-troubleshooting" id="markdown-toc-misc-troubleshooting">Misc. Troubleshooting</a>    <ul>
+      <li><a href="#changes-not-visible" id="markdown-toc-changes-not-visible">Changes not visible</a></li>
+      <li><a href="#404-error" id="markdown-toc-404-error">404 Error</a></li>
+      <li><a href="#bundle-install-fails" id="markdown-toc-bundle-install-fails">Bundle Install Fails</a></li>
+      <li><a href="#browser-problems" id="markdown-toc-browser-problems">Browser Problems</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="summary">Summary</h2>
+<p>I built this blog with Jekyll, and this is a compilation of tutorials I used, along with my own notes on the steps I took. Lilian’s <a href="https://github.com/lilianweng/lil-log">site</a> is my inspiration. I use Github Pages to host the site, but I do use incompatible plugins.</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+  <li><strong>Tech</strong>: Intel macOS Big Sur<sup id="fnref:forthis" role="doc-noteref"><a href="#fn:forthis" class="footnote" rel="footnote">1</a></sup></li>
+  <li><strong>Skills</strong>: terminal (command prompt) competency</li>
+</ul>
+
+<h2 id="jekyll-overview">Jekyll Overview</h2>
+<p>What is Jekyll? This <a href="https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll">page</a> is a quick intro. Maybe read through it once.</p>
+
+<p>I’ll still try to convey the allure of Jekyll (to me anyways). With Jekyll, I can scaffold my blog once using reusable templates, and reduce repeated content creation, like blog posts, to simple markdown files. Jekyll gives you a static site, so you don’t have to worry about backends and databases and all this over-engineering, and you can host it on GitHub for free.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>Run the laptop <a href="https://github.com/monfresh/laptop">script</a> to setup a Ruby environment and Jekyll. Make sure to follow the prerequisites and the install section in that tutorial. While going through those steps, rather than fixing my Homebrew I just reinstalled it fresh.</p>
+
+<p>In this GitHub <a href="https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll">tutorial</a>, follow “Creating site with Jekyll,” minus prerequisites, since those were taken care of with the laptop script. This will set up a remote GitHub repo and a local repo, and set up Jekyll in the local repo. STOP before pushing to remote (unless you don’t care that your barebones website will be live). At this point we can test locally.</p>
+
+<p>We now see several files in our repo. Gemfile and Gemfile.lock are due to Bundler. I found this explanation about Bundler: “Bundler manages an application’s dependencies through its entire life across many machines systematically and repeatably.” In the Gemfile we write the gem dependencies we want to use for Ruby programs, and the autogenerated Gemfile.lock lists every dependency and version installed. More info <a href="https://medium.com/never-hop-on-the-bandwagon/gemfile-and-gemfile-lock-in-ruby-65adc918b856">here</a>.</p>
+
+<p>Basically, run <code class="language-plaintext highlighter-rouge">bundle install</code> now, and later whenever you change the Gemfile.</p>
+
+<p>To host the site locally, run <code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code>. If successful, you should be able to go to <a href="http://localhost:4000/"></a><a href="http://localhost:4000">http://localhost:4000</a> in the browser and view the default Jekyll blog.</p>
+
+<p>When we’re ready to deploy, run <code class="language-plaintext highlighter-rouge">bundler exec jekyll build</code> to generate the site files. This is called <em>building</em> the site (wow!) and I will refer to it as such from here on – I will not say building in the colloquial sense of just creating the blog.</p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">😐</div>
+    
+    <div class="callout-text">The following do the same thing: 'bundle' 'bundler' 'bundle install' 'bundle i'.</div>
+  </div>
+</blockquote>
+
+<h2 id="the-gemfile">The Gemfile</h2>
+
+<p>The default Gemfile has good comments to help you figure things out but let’s quickly run through it anyway. A gem will be listed like this: <code class="language-plaintext highlighter-rouge">gem "jekyll", "~&gt; 4.2.0"</code> . First comes the gem name, followed by a version number.</p>
+
+<p>We see a gem for the default theme, <em>minima</em>. It’s pretty minimal as we will see.</p>
+
+<p>Further down is a group called <code class="language-plaintext highlighter-rouge">:jekyll_plugins</code> . We should throw all our jekyll plugins in here, pretty self-explanatory.</p>
+
+<p>The rest of the default Gemfile is Windows stuff.</p>
+
+<h2 id="github-pages">GitHub Pages</h2>
+
+<p>Since we’re using GitHub Pages to host our site, it’s important to know that Github Pages runs Jekyll to build the site by default, but it doesn’t support most Jekyll plugins and themes. Supported themes are listed <a href="https://pages.github.com/themes/">here</a>, and supported plugins are listed <a href="https://pages.github.com/versions/">here</a>.</p>
+
+<p>You have to decide whether or not to have full compatibility. I chose not to since the convenience offered by plugins outweighed the inconvenience of building my site locally. If you go to the last section of this tutorial before troubleshooting, maybe you’ll share my opinion.</p>
+
+<h2 id="the-config">The Config</h2>
+
+<p>The default _config.yml stores settings used by Jekyll to build the site. These are site-wide settings, plugins, and themes. Anything defined here can be accessed as a variable in the content.</p>
+
+<h2 id="adding-content">Adding Content</h2>
+
+<p>A blog needs content! There’s two types of content: pages and posts. Pages have no dates and are standalone, like the About page. Posts have a date, and they form the core of the blog. Some <a href="https://stackoverflow.com/questions/15095625/what-are-the-differences-between-a-post-and-a-page-in-jekyll">more</a> on the difference.</p>
+
+<p>The posts must be stored in _posts, found in the root directory. The posts must have the format yyyy-mm-dd-name.markdown. That is, the date in the given format followed by the name, and finally the markdown file extension.</p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">😐</div>
+    
+    <div class="callout-text">Note that a post's date corresponds with the date in the filename, but can be overridden by the date given in the _front matter_ of the post — more on that immediately.</div>
+  </div>
+</blockquote>
+
+<p>A simple post will look like this:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Name"</span>
+<span class="na">date</span><span class="pi">:</span> <span class="s">2021-07-10 14:10:58 -0700</span>
+<span class="na">categories</span><span class="pi">:</span> <span class="s">jekyll</span>
+<span class="nn">---</span>
+
+This is a post. Blablablablablabla
+Thank you for your time.
+</code></pre></div></div>
+
+<p>The text between the triple dashes is called the front matter, and it holds non-content like title, date, tags, etc. Content, or the actual blog text, goes below the front matter. Jekyll takes care of formatting and preparing the content for the web, leaving us to focus on the content.</p>
+
+<p>The front matter is in YAML format, like the config file. The rest of the content is in markdown format. From now on, anything done in markdown is implicitly referring to the posts!</p>
+
+<h2 id="file-organization">File Organization</h2>
+
+<p>Markdown handles basic text formatting like italics, lists, links, and tables, but it is possible to customize the overall <strong>style</strong> and <strong>structure</strong> of the site as a whole. A theme is a drop-in solution for this.</p>
+
+<p>The default theme is minima. Take a look at the minima repo <a href="https://github.com/jekyll/minima">here</a>.</p>
+
+<p>There are several important directories here:</p>
+<ul>
+  <li>_includes: secondary templates to “plug into” other templates, or includes</li>
+  <li>_layouts: primary templates, or layouts</li>
+  <li>_posts: posts</li>
+  <li>_sass/minima: styling</li>
+</ul>
+
+<p>Styling is handled by sass files in _sass/minima and assets.</p>
+
+<p>Structure is handled by <a href="https://jekyllrb.com/docs/layouts/">layouts</a> and <a href="https://jekyllrb.com/docs/includes/">includes</a> (found in _layouts and _includes). In summary, both layouts and includes are templates, which are html documents with additional special syntax so they can be reused in different contexts. “Includes” are templates meant to be plugged into designated spots in another template. “Layouts” on the other hand are templates that can stand on their own.</p>
+
+<p>It is important to note that template inheritance works differently than template includes. In inheritance, the parent template marks a single spot to plug in the child with the string <code class="language-plaintext highlighter-rouge">{{ content }}</code>. The template or markdown post to be plugged in puts the parent template in the front matter, for example <code class="language-plaintext highlighter-rouge">layout: default</code>. Includes are when a template marks a specific template to be plugged in, for example <code class="language-plaintext highlighter-rouge">{% include header.html %}</code>. The template to be plugged in does <em>not</em> have to specify what it is being plugged into. The braces syntax is part of the Liquid template language.</p>
+
+<p>Generally, keep base templates in _layouts, and reusable components in _includes.</p>
+
+<h2 id="themes">Themes</h2>
+
+<p>Returning to themes, while they aren’t necessary I highly recommend at least using one as a base, especially if you’re not super savvy with styling. To do so, copy the files from the minima repo to your repository.</p>
+
+<p>To customize the styling, you need to write custom CSS/Sass. <a href="https://jekyllrb.com/docs/step-by-step/07-assets/">This tutorial</a> should get you started. You should do your styling in the Sass files under _sass.</p>
+
+<p>You can also use a theme as-is. See <a href="https://jekyllrb.com/docs/themes/">here</a> for more details, and places to find themes. Note that a gem-based theme may be incompatible with GitHub Pages. Copying files directly into your repo doesn’t have this limitation.</p>
+
+<h2 id="kramdown">Kramdown</h2>
+
+<p>The default Markdown renderer for Jekyll is Kramdown, and the default processor is the GitHub Flavored Markdown (GFM) parser. It’s enabled by default, and I assume it’s set for the remainder of the tutorial. See the Kramdown <a href="https://kramdown.gettalong.org/syntax.html">documentation</a> for more info on specific functions.</p>
+
+<h2 id="other-features">Other Features</h2>
+
+<p>The remaining features are optional so I’ll list them alphabetically.</p>
+
+<h3 id="callouts">Callouts</h3>
+
+<p>I’m calling a callout any blockquote with an emoji to the side. I like the way Notion does it so I’m copying their look.</p>
+
+<p>Unlike the clever solution with image captions (scroll down), I couldn’t find a way to make callouts without using Liquid syntax in the markdown. It’s not a big deal but if the markdown file is used for something else, then the Liquid probably won’t be supported.</p>
+
+<p>Put this in the markdown:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% include callout.html content="Put the callout message here." icon="neutral"%}
+</code></pre></div></div>
+
+<p>The content variable is the message in the callout. The icon variable is the emoji you use for the callout. Then make a new file _includes/callout.html:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;blockquote</span> <span class="na">class=</span><span class="s">"callout"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"flexy"</span><span class="nt">&gt;</span>
+    {% if include.icon == "neutral" %}
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"callout-icon"</span><span class="nt">&gt;</span>😐<span class="nt">&lt;/div&gt;</span>
+    {% elsif include.icon == "eyeroll" %}
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"callout-icon"</span><span class="nt">&gt;</span>🙄<span class="nt">&lt;/div&gt;</span>
+    {% elsif include.icon == "browraise" %}
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"callout-icon"</span><span class="nt">&gt;</span>🤨<span class="nt">&lt;/div&gt;</span>
+    {% else %}
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"callout-icon"</span><span class="nt">&gt;</span>{{ include.icon }}<span class="nt">&lt;/div&gt;</span>
+    {% endif %}
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"callout-text"</span><span class="nt">&gt;</span>{{ include.content }}<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/blockquote&gt;</span>
+</code></pre></div></div>
+
+<p>Add more emojis as desired. In a scss file, style it something like so:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="nt">override</span> <span class="nt">blockquote</span> <span class="nt">left</span> <span class="nt">border</span> <span class="nt">color</span> <span class="nt">and</span> <span class="nt">padding</span>
+<span class="nc">.callout</span> <span class="p">{</span>
+  <span class="nl">padding-left</span><span class="p">:</span> <span class="m">12px</span><span class="p">;</span>
+  <span class="nl">border-color</span><span class="p">:</span> <span class="n">grey</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">//</span><span class="nt">flex</span> <span class="nt">container</span>
+<span class="nc">.flexy</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">//</span><span class="nt">icon</span><span class="o">,</span> <span class="nt">fixed</span> <span class="nt">width</span><span class="o">,</span> <span class="nt">left</span> <span class="nt">flex</span> <span class="nt">item</span>
+<span class="nc">.callout-icon</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">30px</span><span class="p">;</span>
+  <span class="nl">flex-shrink</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">//</span><span class="nt">text</span><span class="o">,</span> <span class="nt">remaining</span> <span class="nt">width</span><span class="o">,</span> <span class="nt">right</span> <span class="nt">flex</span> <span class="nt">item</span>
+<span class="nc">.callout-text</span> <span class="p">{</span>
+  <span class="nl">flex-grow</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>I tweaked things like padding and font size until it looked good.</p>
+
+<h3 id="code">Code</h3>
+
+<p>Syntax highlighting is provided in minima. Just copy the <code class="language-plaintext highlighter-rouge">.highlight</code> section from <code class="language-plaintext highlighter-rouge">_sass/minima/skins/classic.scss</code> .</p>
+
+<p>When typing code, use spaces instead of tabs, or else the indent length on the site will be too large (in my opinion). In my Markdown editor, there is an option to put four spaces automatically when I hit tab.</p>
+
+<h3 id="excerpts">Excerpts</h3>
+
+<p>If we want to add post excerpts, add <code class="language-plaintext highlighter-rouge">excerpt_separator: &lt;!--more--&gt;</code> to _config.yaml. The excerpt in each post will go from the beginning to the excerpt separator. Add <code class="language-plaintext highlighter-rouge">&lt;!--more--&gt;</code> to each post at the desired end of the excerpt.</p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">😐</div>
+    
+    <div class="callout-text">'excerpt_separator: <!--more-->' can also be added per post in the front matter but you have to be more careful about using the separator in the main page (index.html or similar)</div>
+  </div>
+</blockquote>
+
+<p>I like the idea from Lil’log of blockquote summaries as the excerpts, so I stole it.</p>
+
+<h3 id="fonts">Fonts</h3>
+
+<p>Clarification on terms:</p>
+
+<ul>
+  <li>Typeface: Visual design of the symbols (what you see)</li>
+  <li>Font: Implementation of the symbols (what you use)</li>
+  <li>Style: Single typeface, e.g. bold</li>
+  <li>Family: Complete set of styles</li>
+</ul>
+
+<p><a href="https://web.dev/variable-fonts/">More info</a></p>
+
+<p>Go to <a href="https://fonts.google.com/">Google Fonts</a>, find a nice font family, select the desired styles (or create your own if it’s a variable font), (optionally at this stage, click the icon in the top right to open a sidebar, if it doesn’t happen automatically), from the sidebar select “@import”, copy the text INSIDE the style tags, and paste it in one of the scss files in _sass. Here’s a picture of the sidebar:</p>
+
+<p><img src="/assets/images/font.png" alt="sidebar" />
+<em>I dare you to use this font on your site.</em></p>
+
+<p>Last step is to actually use it. For example, if we’re following closely to the minima styling files, we might see <code class="language-plaintext highlighter-rouge">$base-font-family: "Your Old Font", "Helvetica Neue", "Times New Roman", serif !default;</code>. Replace the first option with the name of the font family we just imported.</p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">😐</div>
+    
+    <div class="callout-text">Some fonts will break LaTeX. See the LaTeX section.</div>
+  </div>
+</blockquote>
+
+<h3 id="footnotes">Footnotes</h3>
+<p>Footnotes are supported by Kramdown! See this <a href="https://stackoverflow.com/a/48250535">SO answer</a> for how to use them and about compatibility.</p>
+
+<p>Now, if you want to have a title above your footnotes, use this:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.footnotes</span><span class="nd">::before</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+  <span class="nl">content</span><span class="p">:</span> <span class="s1">"Footnotes:"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>I think a footnotes title will be helpful if I end up having a references section in the same article, but I might change my mind.</p>
+
+<h3 id="images">Images</h3>
+
+<p>Images are added like this in markdown:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">alt_text</span><span class="p">](</span><span class="sx">/assets/images/image.png</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>You can also separate the path from the rest like so:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>![alt_text]
+...
+<span class="p">[</span><span class="ss">alt_text</span><span class="p">]:</span> <span class="sx">/assets/images/image.png</span>
+</code></pre></div></div>
+
+<p>Use <strong>absolute</strong> links (full path from project root) when inserting an image in markdown.</p>
+
+<h3 id="image-captions">Image Captions</h3>
+
+<p>Want to have image captions but don’t want to pollute your markdown files with specialized Liquid syntax? You’ve come to the right place : )</p>
+
+<p>Use this in markdown:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">alt_text</span><span class="p">](</span><span class="sx">path_to_image</span><span class="p">)</span>
+<span class="ge">*image_caption*</span>
+</code></pre></div></div>
+
+<p>Then use this in Sass:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">img</span> <span class="o">+</span> <span class="nt">em</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+  <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This selects the first em element after an img. When the above markdown is processed it will generate an img followed by an em as desired.</p>
+
+<p>Source: this <a href="https://stackoverflow.com/questions/19331362/using-an-image-caption-in-markdown-jekyll">SO thread</a>.</p>
+
+<h3 id="latex">LaTeX</h3>
+
+<p>There are many outdated tutorials for LaTeX out there, so don’t follow them!</p>
+
+<p>In includes/head.html (or somewhere in the head section of your site), add:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">script</span> <span class="nt">type</span><span class="o">=</span><span class="s1">"text/javascript"</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"MathJax-script"</span> <span class="nt">async</span>
+  <span class="nt">src</span><span class="o">=</span><span class="s1">"&lt;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&gt;"</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>Notice we are using mathjax 3, which is faster than mathjax 2. Notice we are not using the mathjax cdn (<a href="http://cdn.mathjax.org">cdn.mathjax.org</a>) since it was <a href="https://www.mathjax.org/cdn-shutting-down/">shut down</a>. It may still work due to a redirect to <a href="http://cdnjs.cloudflare.com">cdnjs.cloudflare.com</a>. We use jsdelivr instead. Finally, be sure to use https instead of http or mathjax may be blocked for security reasons.</p>
+
+<p>Finally, in markdown, surround LaTeX expressions with double dollar signs: <code class="language-plaintext highlighter-rouge">$$y=x^2$$</code>, for both inline and block expressions. Instead of using dedicated syntax, block expressions have to be separated from surrounding text by a newline on each side.</p>
+
+<p>If you use a font called Crimson Text (and possibly other fonts), from Google Fonts, the LaTeX expressions may be too small on Firefox. If you use mathjax 2 for whatever reason, see <a href="https://groups.google.com/g/mathjax-users/c/v3W-daBz87k/m/xjxFFdfQBQAJ">here</a> for an explanation and two possible fixes. Those solutions did not work for me with mathjax 3, so I just switched to a different font.</p>
+
+<p>Random note: if you want to type a vertical bar in inline LaTeX, use <code class="language-plaintext highlighter-rouge">\vert</code>, because otherwise Jekyll might think it’s the start of a table.</p>
+
+<h3 id="links">Links</h3>
+
+<p>Links are added like this in markdown:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">link text</span><span class="p">](</span><span class="sx">http://www.example.com/</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>You can also separate the path from the rest like so:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">reference style link</span><span class="p">][</span><span class="ss">linkid</span><span class="p">]</span>
+...
+<span class="p">[</span><span class="ss">linkid</span><span class="p">]:</span> <span class="sx">http://www.example.com/</span> <span class="nn">"Optional Title"</span>
+</code></pre></div></div>
+
+<p>The “reference style link” text should be replaced by your own text.</p>
+
+<h3 id="pagination">Pagination</h3>
+
+<p>Pagination is supported. Modify the Gemfile like so:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>group :jekyll_plugins do
+	gem "jekyll-paginate"
+	...
+</code></pre></div></div>
+
+<p>Modify the _config.yaml like so:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugins:
+<span class="p">  -</span> jekyll-paginate
+	...
+
+paginate: 10
+</code></pre></div></div>
+
+<p>The number after <code class="language-plaintext highlighter-rouge">paginate</code> is the max number of posts per page.</p>
+
+<p>Run <code class="language-plaintext highlighter-rouge">bundler</code> to install.</p>
+
+<p>Now to implement the pagination in the site files. jekyll-paginate only works on index.html. In particular, the default jekyll project uses an <a href="http://index.md">index.md</a> which extends an html template, but that won’t work. After appropriate refactoring (using an index.html), replace all mention of <code class="language-plaintext highlighter-rouge">site.posts</code> with <code class="language-plaintext highlighter-rouge">paginator.posts</code>. Finally, add this blob towards the bottom to add page navigation buttons.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% if paginator.total_pages &gt; 1 %}
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pagination"</span><span class="nt">&gt;</span>
+    {% if paginator.previous_page %}
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"ml-1 mr-1"</span> <span class="na">href=</span><span class="s">"{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}"</span><span class="nt">&gt;</span><span class="ni">&amp;laquo;</span> Prev<span class="nt">&lt;/a&gt;</span>
+    {% else %}
+      <span class="nt">&lt;span&gt;</span><span class="ni">&amp;laquo;</span> Prev<span class="nt">&lt;/span&gt;</span>
+    {% endif %}
+    {% for page in (1..paginator.total_pages) %}
+      {% if page == paginator.page %}
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"ml-1 mr-1"</span><span class="nt">&gt;</span>{{ page }}<span class="nt">&lt;/span&gt;</span>
+      {% elsif page == 1 %}
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"ml-1 mr-1"</span> <span class="na">href=</span><span class="s">"{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}"</span><span class="nt">&gt;</span>{{ page }}<span class="nt">&lt;/a&gt;</span>
+      {% else %}
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"ml-1 mr-1"</span> <span class="na">href=</span><span class="s">"{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}"</span><span class="nt">&gt;</span>{{ page }}<span class="nt">&lt;/a&gt;</span>
+      {% endif %}
+    {% endfor %}
+    {% if paginator.next_page %}
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"ml-1 mr-1"</span> <span class="na">href=</span><span class="s">"{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}"</span><span class="nt">&gt;</span>Next <span class="ni">&amp;raquo;</span><span class="nt">&lt;/a&gt;</span>
+    {% else %}
+      <span class="nt">&lt;span&gt;</span>Next <span class="ni">&amp;raquo;</span><span class="nt">&lt;/span&gt;</span>
+    {% endif %}
+  <span class="nt">&lt;/div&gt;</span>
+{% endif %}
+</code></pre></div></div>
+
+<p>There is a more sophisticated pagination package <a href="https://github.com/sverrirs/jekyll-paginate-v2">here</a>, but it is not supported by GitHub Pages. I decided I didn’t need it.</p>
+
+<h3 id="table-of-contents">Table of Contents</h3>
+<p>Plop this in your markdown.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">-</span> TOC
+{:toc}
+</code></pre></div></div>
+
+<p>It will be replaced by an list of all your headers, with indentation.</p>
+
+<p>Here are some <a href="https://kramdown.gettalong.org/converter/html.html#toc">kramdown settings</a> affecting table of contents, which you can set in _config.yml.</p>
+
+<h3 id="tags">Tags</h3>
+
+<p>Tags are supported in Jekyll. Just list tags separated by spaces in the front matter of the corresponding post. Unfortunately that’s pretty much it. There are packages to view a page of tags, or list posts by tag, but they are not supported by GitHub Pages. I’d have to implement that functionality myself.</p>
+
+<p>Someone did just that in <a href="https://longqian.me/2017/02/09/github-jekyll-tag/">this tutorial</a>. With this approach, the markdown files in the tag folder must be generated for every new tag (even if automated with the given Python script).</p>
+
+<p>That felt like complete crap so I turned to <a href="https://github.com/jekyll/jekyll-archives">jekyll-archives</a> (before this I was fully compatible with GitHub Pages, this was the breaking point for me haha). It also handles categories and archives. The only problem is the added burden of building the site on my own before pushing to GitHub, but if tag generation is not completely smooth it’s not worth sticking so fiercely to GitHub Pages.</p>
+
+<p>To have a dedicated page to display all your tags, make a tags.html with something like this in it:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: default
+---
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"home other-pages"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"page-heading"</span><span class="nt">&gt;</span>Tags<span class="nt">&lt;/h1&gt;</span>
+  {% capture temp_tags %}
+    {% for tag in site.tags %}
+      {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
+    {% endfor %}
+  {% endcapture %}
+  {% assign sorted_temp_tags = temp_tags | split:' ' | sort %}
+  {% for temp_tag in sorted_temp_tags %}
+    {% assign tag_items = temp_tag | split: '#' %}
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"post-meta"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"post-tag"</span> <span class="na">href=</span><span class="s">"/tag/{{ tag_items[1] }}"</span><span class="nt">&gt;</span>{{ tag_items[1]}} ({{ tag_items[2] }})<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/span&gt;&lt;br/&gt;</span>
+  {% endfor %}
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>Similar things can be done for categories and archives.</p>
+
+<h3 id="reference-bibtex">Reference (Bibtex)</h3>
+
+<p><a href="https://github.com/inukshuk/jekyll-scholar"></a><a href="https://github.com/inukshuk/jekyll-scholar">https://github.com/inukshuk/jekyll-scholar</a> (I might expand on this)</p>
+
+<h2 id="publishing-the-site">Publishing the Site!</h2>
+
+<p>Done? Time to publish! Remember we used custom plugins, so we can’t push to GitHub and let it build our site for us. Now at this stage many will say you need to build the site yourself, then move it to another branch called gh-pages, then push that to GitHub Pages, and since it is <em>such</em> a burden, they will then promote their GitHub Actions and Travis CIs. I don’t know if that was all necessary in the past but it’s definitely not necessary now.</p>
+
+<p>Here’s what you do. Check you are on master or main branch (I haven’t checked if any arbitrary branch will work). Wrap up your changes and git commits. Now add <code class="language-plaintext highlighter-rouge">destination: docs</code> to _config.yml to change the destination of the static site generated by Jekyll from _site to docs. Now run <code class="language-plaintext highlighter-rouge">bundler exec jekyll build</code> to build the site. Also in terminal, run <code class="language-plaintext highlighter-rouge">touch .nojekyll</code> . This is a file which tells GitHub not to run Jekyll on your files because you already did. Now commit .nojekyll and docs and push to GitHub. Finally, in GitHub, go to Settings &gt; Pages &gt; Source and change the root folder to docs.</p>
+
+<p>From now on, just build before pushing. I tested this with a main branch and a user site. I haven’t tried other branches, or project or organization sites. It seems the only acceptable folders are . (root) and ./docs</p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">😐</div>
+    
+    <div class="callout-text">I tested this with a main branch and a user site. I haven't tried other branches, or project or organization sites. It seems the only acceptable folders are . (root) and ./docs</div>
+  </div>
+</blockquote>
+
+<p>Assuming you are making a user site and you have not set a baseurl in _config.yml, you should be able to go to username.github.io and view your blog!<sup id="fnref:otherwise" role="doc-noteref"><a href="#fn:otherwise" class="footnote" rel="footnote">2</a></sup> Congratulations!</p>
+
+<h2 id="misc-troubleshooting">Misc. Troubleshooting</h2>
+
+<p>I tried to keep troubleshooting to each specific section above, but here’s some extras. In general, if things are misbehaving, be sure to check for any error messages in the terminal first. They’re pretty descriptive.</p>
+
+<h3 id="changes-not-visible">Changes not visible</h3>
+<p>This class of issues is fixed by having at least double digit IQ.</p>
+<ul>
+  <li>If changes were made to _config.yaml, the site has to be relaunched.</li>
+  <li>If changes were made to styling, make sure it is being imported all the way through to assets/css/main.css.</li>
+  <li>Your styling code could just be wrong.</li>
+  <li>You think you’re editing/replacing one file but you’re changing another one. Or you think you’re refreshing the page you edited but you’re not.</li>
+</ul>
+
+<h3 id="404-error">404 Error</h3>
+
+<p>Annoying and frequent mistake: even if the code is automatically reloaded upon changes, if you just refresh your page you may reload a dead link so check the URL.</p>
+
+<h3 id="bundle-install-fails">Bundle Install Fails</h3>
+
+<p>I remember having to delete the Gemfile.lock file to get my gems to install one time. I think it’s no big deal if you’re working solo but I’m not that knowledgeable about it so take it with a grain of salt.</p>
+
+<h3 id="browser-problems">Browser Problems</h3>
+
+<p>Firefox messed me up with the fonts at least, but browser compatibility could come into play with other things too. Try different browsers. This applies mostly to display oddities.</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:forthis" role="doc-endnote">
+      <p>These are what I used so I can say with some confidence that you too can get a working solution with them. Alternatives may also work though. <a href="#fnref:forthis" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:otherwise" role="doc-endnote">
+      <p>Otherwise it’s not so hard to figure out your URL. Google about GitHub Pages if you need more help there. <a href="#fnref:otherwise" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div>
+
+  <div class="post-tags">
+    Tags:&nbsp; 
+    <span>
+      <!-- 
+        
+        <a class="post-tag" href="/tag/blog"><nobr>blog</nobr>&nbsp;</a>
+      
+        
+        <a class="post-tag" href="/tag/jekyll"><nobr>jekyll</nobr>&nbsp;</a>
+       -->
+          
+          <a href="/tag/blog/">blog&nbsp;</a>
+        
+          
+          <a href="/tag/jekyll/">jekyll&nbsp;</a>
+        </span>
+  </div>
+
+  <div class="page-navigation"><a class="prev" href="/project/2021/07/21/sensor.html">&larr; Project Reupload #3: VI sensor</a></div><a class="u-url" href="/tutorial/2021/08/01/jekyll-tutorial.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer">
+  2021 &copy; by Michal Porubcin. All Rights Reserved. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>. View on <a href="https://github.com/michalp21/michalp21.github.io" target="_blank">Github</a>.
+
+  <p>
+    <a href="/feed.xml" target="_blank">
+      <img src="/assets/images/logo_rss.png" />
+    </a>
+    <a href="https://github.com/michalp21" target="_blank">
+      <img src="/assets/images/logo_github.png" />
+    </a>
+  </p>
+
+</footer></body>
+
+</html>

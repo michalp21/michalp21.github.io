@@ -1,4 +1,754 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2021-07-19T00:12:00-07:00</updated><id>/blog/feed.xml</id><title type="html">brrrr</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><author><name>Michal Porubcin</name></author><entry><title type="html">New Site!</title><link href="/blog/article/2021/07/16/hello-world.html" rel="alternate" type="text/html" title="New Site!" /><published>2021-07-16T00:00:00-07:00</published><updated>2021-07-16T00:00:00-07:00</updated><id>/blog/article/2021/07/16/hello-world</id><content type="html" xml:base="/blog/article/2021/07/16/hello-world.html">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-08-03T11:05:51-05:00</updated><id>/feed.xml</id><title type="html">Xn - CS/AI blog</title><subtitle>Semi-processed thoughts.</subtitle><author><name>Michal Porubcin</name></author><entry><title type="html">Jekyll Blog Tutorial (+ Lots of Features)</title><link href="/tutorial/2021/08/01/jekyll-tutorial.html" rel="alternate" type="text/html" title="Jekyll Blog Tutorial (+ Lots of Features)" /><published>2021-08-01T00:00:00-05:00</published><updated>2021-08-01T00:00:00-05:00</updated><id>/tutorial/2021/08/01/jekyll-tutorial</id><content type="html" xml:base="/tutorial/2021/08/01/jekyll-tutorial.html">&lt;blockquote&gt;
+  &lt;p&gt;Here are the notes and external tutorials I used and gathered while creating this blog! Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#summary&quot; id=&quot;markdown-toc-summary&quot;&gt;Summary&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#prerequisites&quot; id=&quot;markdown-toc-prerequisites&quot;&gt;Prerequisites&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#jekyll-overview&quot; id=&quot;markdown-toc-jekyll-overview&quot;&gt;Jekyll Overview&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#setup&quot; id=&quot;markdown-toc-setup&quot;&gt;Setup&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-gemfile&quot; id=&quot;markdown-toc-the-gemfile&quot;&gt;The Gemfile&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#github-pages&quot; id=&quot;markdown-toc-github-pages&quot;&gt;GitHub Pages&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-config&quot; id=&quot;markdown-toc-the-config&quot;&gt;The Config&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#adding-content&quot; id=&quot;markdown-toc-adding-content&quot;&gt;Adding Content&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#file-organization&quot; id=&quot;markdown-toc-file-organization&quot;&gt;File Organization&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#themes&quot; id=&quot;markdown-toc-themes&quot;&gt;Themes&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#kramdown&quot; id=&quot;markdown-toc-kramdown&quot;&gt;Kramdown&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#other-features&quot; id=&quot;markdown-toc-other-features&quot;&gt;Other Features&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#callouts&quot; id=&quot;markdown-toc-callouts&quot;&gt;Callouts&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#code&quot; id=&quot;markdown-toc-code&quot;&gt;Code&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#excerpts&quot; id=&quot;markdown-toc-excerpts&quot;&gt;Excerpts&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#fonts&quot; id=&quot;markdown-toc-fonts&quot;&gt;Fonts&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#footnotes&quot; id=&quot;markdown-toc-footnotes&quot;&gt;Footnotes&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#images&quot; id=&quot;markdown-toc-images&quot;&gt;Images&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#image-captions&quot; id=&quot;markdown-toc-image-captions&quot;&gt;Image Captions&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#latex&quot; id=&quot;markdown-toc-latex&quot;&gt;LaTeX&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#links&quot; id=&quot;markdown-toc-links&quot;&gt;Links&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#pagination&quot; id=&quot;markdown-toc-pagination&quot;&gt;Pagination&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#table-of-contents&quot; id=&quot;markdown-toc-table-of-contents&quot;&gt;Table of Contents&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tags&quot; id=&quot;markdown-toc-tags&quot;&gt;Tags&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#reference-bibtex&quot; id=&quot;markdown-toc-reference-bibtex&quot;&gt;Reference (Bibtex)&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#publishing-the-site&quot; id=&quot;markdown-toc-publishing-the-site&quot;&gt;Publishing the Site!&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#misc-troubleshooting&quot; id=&quot;markdown-toc-misc-troubleshooting&quot;&gt;Misc. Troubleshooting&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#changes-not-visible&quot; id=&quot;markdown-toc-changes-not-visible&quot;&gt;Changes not visible&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#404-error&quot; id=&quot;markdown-toc-404-error&quot;&gt;404 Error&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#bundle-install-fails&quot; id=&quot;markdown-toc-bundle-install-fails&quot;&gt;Bundle Install Fails&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#browser-problems&quot; id=&quot;markdown-toc-browser-problems&quot;&gt;Browser Problems&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;I built this blog with Jekyll, and this is a compilation of tutorials I used, along with my own notes on the steps I took. Lilian’s &lt;a href=&quot;https://github.com/lilianweng/lil-log&quot;&gt;site&lt;/a&gt; is my inspiration. I use Github Pages to host the site, but I do use incompatible plugins.&lt;/p&gt;
+
+&lt;h3 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Tech&lt;/strong&gt;: Intel macOS Big Sur&lt;sup id=&quot;fnref:forthis&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:forthis&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Skills&lt;/strong&gt;: terminal (command prompt) competency&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;jekyll-overview&quot;&gt;Jekyll Overview&lt;/h2&gt;
+&lt;p&gt;What is Jekyll? This &lt;a href=&quot;https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll&quot;&gt;page&lt;/a&gt; is a quick intro. Maybe read through it once.&lt;/p&gt;
+
+&lt;p&gt;I’ll still try to convey the allure of Jekyll (to me anyways). With Jekyll, I can scaffold my blog once using reusable templates, and reduce repeated content creation, like blog posts, to simple markdown files. Jekyll gives you a static site, so you don’t have to worry about backends and databases and all this over-engineering, and you can host it on GitHub for free.&lt;/p&gt;
+
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;/h2&gt;
+
+&lt;p&gt;Run the laptop &lt;a href=&quot;https://github.com/monfresh/laptop&quot;&gt;script&lt;/a&gt; to setup a Ruby environment and Jekyll. Make sure to follow the prerequisites and the install section in that tutorial. While going through those steps, rather than fixing my Homebrew I just reinstalled it fresh.&lt;/p&gt;
+
+&lt;p&gt;In this GitHub &lt;a href=&quot;https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll&quot;&gt;tutorial&lt;/a&gt;, follow “Creating site with Jekyll,” minus prerequisites, since those were taken care of with the laptop script. This will set up a remote GitHub repo and a local repo, and set up Jekyll in the local repo. STOP before pushing to remote (unless you don’t care that your barebones website will be live). At this point we can test locally.&lt;/p&gt;
+
+&lt;p&gt;We now see several files in our repo. Gemfile and Gemfile.lock are due to Bundler. I found this explanation about Bundler: “Bundler manages an application’s dependencies through its entire life across many machines systematically and repeatably.” In the Gemfile we write the gem dependencies we want to use for Ruby programs, and the autogenerated Gemfile.lock lists every dependency and version installed. More info &lt;a href=&quot;https://medium.com/never-hop-on-the-bandwagon/gemfile-and-gemfile-lock-in-ruby-65adc918b856&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Basically, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle install&lt;/code&gt; now, and later whenever you change the Gemfile.&lt;/p&gt;
+
+&lt;p&gt;To host the site locally, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. If successful, you should be able to go to &lt;a href=&quot;http://localhost:4000/&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://localhost:4000&quot;&gt;http://localhost:4000&lt;/a&gt; in the browser and view the default Jekyll blog.&lt;/p&gt;
+
+&lt;p&gt;When we’re ready to deploy, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundler exec jekyll build&lt;/code&gt; to generate the site files. This is called &lt;em&gt;building&lt;/em&gt; the site (wow!) and I will refer to it as such from here on – I will not say building in the colloquial sense of just creating the blog.&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;😐&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;The following do the same thing: 'bundle' 'bundler' 'bundle install' 'bundle i'.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;the-gemfile&quot;&gt;The Gemfile&lt;/h2&gt;
+
+&lt;p&gt;The default Gemfile has good comments to help you figure things out but let’s quickly run through it anyway. A gem will be listed like this: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gem &quot;jekyll&quot;, &quot;~&amp;gt; 4.2.0&quot;&lt;/code&gt; . First comes the gem name, followed by a version number.&lt;/p&gt;
+
+&lt;p&gt;We see a gem for the default theme, &lt;em&gt;minima&lt;/em&gt;. It’s pretty minimal as we will see.&lt;/p&gt;
+
+&lt;p&gt;Further down is a group called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:jekyll_plugins&lt;/code&gt; . We should throw all our jekyll plugins in here, pretty self-explanatory.&lt;/p&gt;
+
+&lt;p&gt;The rest of the default Gemfile is Windows stuff.&lt;/p&gt;
+
+&lt;h2 id=&quot;github-pages&quot;&gt;GitHub Pages&lt;/h2&gt;
+
+&lt;p&gt;Since we’re using GitHub Pages to host our site, it’s important to know that Github Pages runs Jekyll to build the site by default, but it doesn’t support most Jekyll plugins and themes. Supported themes are listed &lt;a href=&quot;https://pages.github.com/themes/&quot;&gt;here&lt;/a&gt;, and supported plugins are listed &lt;a href=&quot;https://pages.github.com/versions/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You have to decide whether or not to have full compatibility. I chose not to since the convenience offered by plugins outweighed the inconvenience of building my site locally. If you go to the last section of this tutorial before troubleshooting, maybe you’ll share my opinion.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-config&quot;&gt;The Config&lt;/h2&gt;
+
+&lt;p&gt;The default _config.yml stores settings used by Jekyll to build the site. These are site-wide settings, plugins, and themes. Anything defined here can be accessed as a variable in the content.&lt;/p&gt;
+
+&lt;h2 id=&quot;adding-content&quot;&gt;Adding Content&lt;/h2&gt;
+
+&lt;p&gt;A blog needs content! There’s two types of content: pages and posts. Pages have no dates and are standalone, like the About page. Posts have a date, and they form the core of the blog. Some &lt;a href=&quot;https://stackoverflow.com/questions/15095625/what-are-the-differences-between-a-post-and-a-page-in-jekyll&quot;&gt;more&lt;/a&gt; on the difference.&lt;/p&gt;
+
+&lt;p&gt;The posts must be stored in _posts, found in the root directory. The posts must have the format yyyy-mm-dd-name.markdown. That is, the date in the given format followed by the name, and finally the markdown file extension.&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;😐&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;Note that a post's date corresponds with the date in the filename, but can be overridden by the date given in the _front matter_ of the post — more on that immediately.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A simple post will look like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;post&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Name&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2021-07-10 14:10:58 -0700&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;categories&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jekyll&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+
+This is a post. Blablablablablabla
+Thank you for your time.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The text between the triple dashes is called the front matter, and it holds non-content like title, date, tags, etc. Content, or the actual blog text, goes below the front matter. Jekyll takes care of formatting and preparing the content for the web, leaving us to focus on the content.&lt;/p&gt;
+
+&lt;p&gt;The front matter is in YAML format, like the config file. The rest of the content is in markdown format. From now on, anything done in markdown is implicitly referring to the posts!&lt;/p&gt;
+
+&lt;h2 id=&quot;file-organization&quot;&gt;File Organization&lt;/h2&gt;
+
+&lt;p&gt;Markdown handles basic text formatting like italics, lists, links, and tables, but it is possible to customize the overall &lt;strong&gt;style&lt;/strong&gt; and &lt;strong&gt;structure&lt;/strong&gt; of the site as a whole. A theme is a drop-in solution for this.&lt;/p&gt;
+
+&lt;p&gt;The default theme is minima. Take a look at the minima repo &lt;a href=&quot;https://github.com/jekyll/minima&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;There are several important directories here:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;_includes: secondary templates to “plug into” other templates, or includes&lt;/li&gt;
+  &lt;li&gt;_layouts: primary templates, or layouts&lt;/li&gt;
+  &lt;li&gt;_posts: posts&lt;/li&gt;
+  &lt;li&gt;_sass/minima: styling&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Styling is handled by sass files in _sass/minima and assets.&lt;/p&gt;
+
+&lt;p&gt;Structure is handled by &lt;a href=&quot;https://jekyllrb.com/docs/layouts/&quot;&gt;layouts&lt;/a&gt; and &lt;a href=&quot;https://jekyllrb.com/docs/includes/&quot;&gt;includes&lt;/a&gt; (found in _layouts and _includes). In summary, both layouts and includes are templates, which are html documents with additional special syntax so they can be reused in different contexts. “Includes” are templates meant to be plugged into designated spots in another template. “Layouts” on the other hand are templates that can stand on their own.&lt;/p&gt;
+
+&lt;p&gt;It is important to note that template inheritance works differently than template includes. In inheritance, the parent template marks a single spot to plug in the child with the string &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{{ content }}&lt;/code&gt;. The template or markdown post to be plugged in puts the parent template in the front matter, for example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout: default&lt;/code&gt;. Includes are when a template marks a specific template to be plugged in, for example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{% include header.html %}&lt;/code&gt;. The template to be plugged in does &lt;em&gt;not&lt;/em&gt; have to specify what it is being plugged into. The braces syntax is part of the Liquid template language.&lt;/p&gt;
+
+&lt;p&gt;Generally, keep base templates in _layouts, and reusable components in _includes.&lt;/p&gt;
+
+&lt;h2 id=&quot;themes&quot;&gt;Themes&lt;/h2&gt;
+
+&lt;p&gt;Returning to themes, while they aren’t necessary I highly recommend at least using one as a base, especially if you’re not super savvy with styling. To do so, copy the files from the minima repo to your repository.&lt;/p&gt;
+
+&lt;p&gt;To customize the styling, you need to write custom CSS/Sass. &lt;a href=&quot;https://jekyllrb.com/docs/step-by-step/07-assets/&quot;&gt;This tutorial&lt;/a&gt; should get you started. You should do your styling in the Sass files under _sass.&lt;/p&gt;
+
+&lt;p&gt;You can also use a theme as-is. See &lt;a href=&quot;https://jekyllrb.com/docs/themes/&quot;&gt;here&lt;/a&gt; for more details, and places to find themes. Note that a gem-based theme may be incompatible with GitHub Pages. Copying files directly into your repo doesn’t have this limitation.&lt;/p&gt;
+
+&lt;h2 id=&quot;kramdown&quot;&gt;Kramdown&lt;/h2&gt;
+
+&lt;p&gt;The default Markdown renderer for Jekyll is Kramdown, and the default processor is the GitHub Flavored Markdown (GFM) parser. It’s enabled by default, and I assume it’s set for the remainder of the tutorial. See the Kramdown &lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;documentation&lt;/a&gt; for more info on specific functions.&lt;/p&gt;
+
+&lt;h2 id=&quot;other-features&quot;&gt;Other Features&lt;/h2&gt;
+
+&lt;p&gt;The remaining features are optional so I’ll list them alphabetically.&lt;/p&gt;
+
+&lt;h3 id=&quot;callouts&quot;&gt;Callouts&lt;/h3&gt;
+
+&lt;p&gt;I’m calling a callout any blockquote with an emoji to the side. I like the way Notion does it so I’m copying their look.&lt;/p&gt;
+
+&lt;p&gt;Unlike the clever solution with image captions (scroll down), I couldn’t find a way to make callouts without using Liquid syntax in the markdown. It’s not a big deal but if the markdown file is used for something else, then the Liquid probably won’t be supported.&lt;/p&gt;
+
+&lt;p&gt;Put this in the markdown:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{% include callout.html content=&quot;Put the callout message here.&quot; icon=&quot;neutral&quot;%}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The content variable is the message in the callout. The icon variable is the emoji you use for the callout. Then make a new file _includes/callout.html:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;blockquote&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;callout&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;flexy&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    {% if include.icon == &quot;neutral&quot; %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;callout-icon&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;😐&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    {% elsif include.icon == &quot;eyeroll&quot; %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;callout-icon&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;🙄&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    {% elsif include.icon == &quot;browraise&quot; %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;callout-icon&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;🤨&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    {% else %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;callout-icon&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ include.icon }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    {% endif %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;callout-text&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ include.content }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/blockquote&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add more emojis as desired. In a scss file, style it something like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;blockquote&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;border&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;color&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;padding&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.callout&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;padding-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;12px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;border-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;flex&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;container&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.flexy&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;fixed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;flex&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;item&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.callout-icon&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;30px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;flex-shrink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;remaining&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;flex&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;item&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.callout-text&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;flex-grow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I tweaked things like padding and font size until it looked good.&lt;/p&gt;
+
+&lt;h3 id=&quot;code&quot;&gt;Code&lt;/h3&gt;
+
+&lt;p&gt;Syntax highlighting is provided in minima. Just copy the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.highlight&lt;/code&gt; section from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/minima/skins/classic.scss&lt;/code&gt; .&lt;/p&gt;
+
+&lt;p&gt;When typing code, use spaces instead of tabs, or else the indent length on the site will be too large (in my opinion). In my Markdown editor, there is an option to put four spaces automatically when I hit tab.&lt;/p&gt;
+
+&lt;h3 id=&quot;excerpts&quot;&gt;Excerpts&lt;/h3&gt;
+
+&lt;p&gt;If we want to add post excerpts, add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;excerpt_separator: &amp;lt;!--more--&amp;gt;&lt;/code&gt; to _config.yaml. The excerpt in each post will go from the beginning to the excerpt separator. Add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;!--more--&amp;gt;&lt;/code&gt; to each post at the desired end of the excerpt.&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;😐&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;'excerpt_separator: &lt;!--more--&gt;' can also be added per post in the front matter but you have to be more careful about using the separator in the main page (index.html or similar)&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I like the idea from Lil’log of blockquote summaries as the excerpts, so I stole it.&lt;/p&gt;
+
+&lt;h3 id=&quot;fonts&quot;&gt;Fonts&lt;/h3&gt;
+
+&lt;p&gt;Clarification on terms:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Typeface: Visual design of the symbols (what you see)&lt;/li&gt;
+  &lt;li&gt;Font: Implementation of the symbols (what you use)&lt;/li&gt;
+  &lt;li&gt;Style: Single typeface, e.g. bold&lt;/li&gt;
+  &lt;li&gt;Family: Complete set of styles&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://web.dev/variable-fonts/&quot;&gt;More info&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Go to &lt;a href=&quot;https://fonts.google.com/&quot;&gt;Google Fonts&lt;/a&gt;, find a nice font family, select the desired styles (or create your own if it’s a variable font), (optionally at this stage, click the icon in the top right to open a sidebar, if it doesn’t happen automatically), from the sidebar select “@import”, copy the text INSIDE the style tags, and paste it in one of the scss files in _sass. Here’s a picture of the sidebar:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/font.png&quot; alt=&quot;sidebar&quot; /&gt;
+&lt;em&gt;I dare you to use this font on your site.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Last step is to actually use it. For example, if we’re following closely to the minima styling files, we might see &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$base-font-family: &quot;Your Old Font&quot;, &quot;Helvetica Neue&quot;, &quot;Times New Roman&quot;, serif !default;&lt;/code&gt;. Replace the first option with the name of the font family we just imported.&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;😐&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;Some fonts will break LaTeX. See the LaTeX section.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h3&gt;
+&lt;p&gt;Footnotes are supported by Kramdown! See this &lt;a href=&quot;https://stackoverflow.com/a/48250535&quot;&gt;SO answer&lt;/a&gt; for how to use them and about compatibility.&lt;/p&gt;
+
+&lt;p&gt;Now, if you want to have a title above your footnotes, use this:&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.footnotes&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;::before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Footnotes:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I think a footnotes title will be helpful if I end up having a references section in the same article, but I might change my mind.&lt;/p&gt;
+
+&lt;h3 id=&quot;images&quot;&gt;Images&lt;/h3&gt;
+
+&lt;p&gt;Images are added like this in markdown:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;![&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;alt_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;/assets/images/image.png&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also separate the path from the rest like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;![alt_text]
+...
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;alt_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;/assets/images/image.png&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Use &lt;strong&gt;absolute&lt;/strong&gt; links (full path from project root) when inserting an image in markdown.&lt;/p&gt;
+
+&lt;h3 id=&quot;image-captions&quot;&gt;Image Captions&lt;/h3&gt;
+
+&lt;p&gt;Want to have image captions but don’t want to pollute your markdown files with specialized Liquid syntax? You’ve come to the right place : )&lt;/p&gt;
+
+&lt;p&gt;Use this in markdown:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;![&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;alt_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;path_to_image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;ge&quot;&gt;*image_caption*&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then use this in Sass:&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;em&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;text-align&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This selects the first em element after an img. When the above markdown is processed it will generate an img followed by an em as desired.&lt;/p&gt;
+
+&lt;p&gt;Source: this &lt;a href=&quot;https://stackoverflow.com/questions/19331362/using-an-image-caption-in-markdown-jekyll&quot;&gt;SO thread&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;latex&quot;&gt;LaTeX&lt;/h3&gt;
+
+&lt;p&gt;There are many outdated tutorials for LaTeX out there, so don’t follow them!&lt;/p&gt;
+
+&lt;p&gt;In includes/head.html (or somewhere in the head section of your site), add:&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;MathJax-script&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;async&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;&amp;lt;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice we are using mathjax 3, which is faster than mathjax 2. Notice we are not using the mathjax cdn (&lt;a href=&quot;http://cdn.mathjax.org&quot;&gt;cdn.mathjax.org&lt;/a&gt;) since it was &lt;a href=&quot;https://www.mathjax.org/cdn-shutting-down/&quot;&gt;shut down&lt;/a&gt;. It may still work due to a redirect to &lt;a href=&quot;http://cdnjs.cloudflare.com&quot;&gt;cdnjs.cloudflare.com&lt;/a&gt;. We use jsdelivr instead. Finally, be sure to use https instead of http or mathjax may be blocked for security reasons.&lt;/p&gt;
+
+&lt;p&gt;Finally, in markdown, surround LaTeX expressions with double dollar signs: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$y=x^2$$&lt;/code&gt;, for both inline and block expressions. Instead of using dedicated syntax, block expressions have to be separated from surrounding text by a newline on each side.&lt;/p&gt;
+
+&lt;p&gt;If you use a font called Crimson Text (and possibly other fonts), from Google Fonts, the LaTeX expressions may be too small on Firefox. If you use mathjax 2 for whatever reason, see &lt;a href=&quot;https://groups.google.com/g/mathjax-users/c/v3W-daBz87k/m/xjxFFdfQBQAJ&quot;&gt;here&lt;/a&gt; for an explanation and two possible fixes. Those solutions did not work for me with mathjax 3, so I just switched to a different font.&lt;/p&gt;
+
+&lt;p&gt;Random note: if you want to type a vertical bar in inline LaTeX, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\vert&lt;/code&gt;, because otherwise Jekyll might think it’s the start of a table.&lt;/p&gt;
+
+&lt;h3 id=&quot;links&quot;&gt;Links&lt;/h3&gt;
+
+&lt;p&gt;Links are added like this in markdown:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;link text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;http://www.example.com/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also separate the path from the rest like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;reference style link&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;linkid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+...
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;linkid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;http://www.example.com/&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;&quot;Optional Title&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The “reference style link” text should be replaced by your own text.&lt;/p&gt;
+
+&lt;h3 id=&quot;pagination&quot;&gt;Pagination&lt;/h3&gt;
+
+&lt;p&gt;Pagination is supported. Modify the Gemfile like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;group :jekyll_plugins do
+	gem &quot;jekyll-paginate&quot;
+	...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Modify the _config.yaml like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;plugins:
+&lt;span class=&quot;p&quot;&gt;  -&lt;/span&gt; jekyll-paginate
+	...
+
+paginate: 10
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The number after &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;paginate&lt;/code&gt; is the max number of posts per page.&lt;/p&gt;
+
+&lt;p&gt;Run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundler&lt;/code&gt; to install.&lt;/p&gt;
+
+&lt;p&gt;Now to implement the pagination in the site files. jekyll-paginate only works on index.html. In particular, the default jekyll project uses an &lt;a href=&quot;http://index.md&quot;&gt;index.md&lt;/a&gt; which extends an html template, but that won’t work. After appropriate refactoring (using an index.html), replace all mention of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.posts&lt;/code&gt; with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;paginator.posts&lt;/code&gt;. Finally, add this blob towards the bottom to add page navigation buttons.&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{% if paginator.total_pages &amp;gt; 1 %}
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pagination&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    {% if paginator.previous_page %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ml-1 mr-1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;laquo;&lt;/span&gt; Prev&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    {% else %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;laquo;&lt;/span&gt; Prev&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+    {% endif %}
+    {% for page in (1..paginator.total_pages) %}
+      {% if page == paginator.page %}
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ml-1 mr-1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ page }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+      {% elsif page == 1 %}
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ml-1 mr-1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ page }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+      {% else %}
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ml-1 mr-1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ page }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+      {% endif %}
+    {% endfor %}
+    {% if paginator.next_page %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ml-1 mr-1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Next &lt;span class=&quot;ni&quot;&gt;&amp;amp;raquo;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    {% else %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;Next &lt;span class=&quot;ni&quot;&gt;&amp;amp;raquo;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+    {% endif %}
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+{% endif %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There is a more sophisticated pagination package &lt;a href=&quot;https://github.com/sverrirs/jekyll-paginate-v2&quot;&gt;here&lt;/a&gt;, but it is not supported by GitHub Pages. I decided I didn’t need it.&lt;/p&gt;
+
+&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
+&lt;p&gt;Plop this in your markdown.&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; TOC
+{:toc}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It will be replaced by an list of all your headers, with indentation.&lt;/p&gt;
+
+&lt;p&gt;Here are some &lt;a href=&quot;https://kramdown.gettalong.org/converter/html.html#toc&quot;&gt;kramdown settings&lt;/a&gt; affecting table of contents, which you can set in _config.yml.&lt;/p&gt;
+
+&lt;h3 id=&quot;tags&quot;&gt;Tags&lt;/h3&gt;
+
+&lt;p&gt;Tags are supported in Jekyll. Just list tags separated by spaces in the front matter of the corresponding post. Unfortunately that’s pretty much it. There are packages to view a page of tags, or list posts by tag, but they are not supported by GitHub Pages. I’d have to implement that functionality myself.&lt;/p&gt;
+
+&lt;p&gt;Someone did just that in &lt;a href=&quot;https://longqian.me/2017/02/09/github-jekyll-tag/&quot;&gt;this tutorial&lt;/a&gt;. With this approach, the markdown files in the tag folder must be generated for every new tag (even if automated with the given Python script).&lt;/p&gt;
+
+&lt;p&gt;That felt like complete crap so I turned to &lt;a href=&quot;https://github.com/jekyll/jekyll-archives&quot;&gt;jekyll-archives&lt;/a&gt; (before this I was fully compatible with GitHub Pages, this was the breaking point for me haha). It also handles categories and archives. The only problem is the added burden of building the site on my own before pushing to GitHub, but if tag generation is not completely smooth it’s not worth sticking so fiercely to GitHub Pages.&lt;/p&gt;
+
+&lt;p&gt;To have a dedicated page to display all your tags, make a tags.html with something like this in it:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
+layout: default
+---
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;home other-pages&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;page-heading&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Tags&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+  {% capture temp_tags %}
+    {% for tag in site.tags %}
+      {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
+    {% endfor %}
+  {% endcapture %}
+  {% assign sorted_temp_tags = temp_tags | split:' ' | sort %}
+  {% for temp_tag in sorted_temp_tags %}
+    {% assign tag_items = temp_tag | split: '#' %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-meta&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-tag&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/tag/{{ tag_items[1] }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ tag_items[1]}} ({{ tag_items[2] }})&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;br/&amp;gt;&lt;/span&gt;
+  {% endfor %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Similar things can be done for categories and archives.&lt;/p&gt;
+
+&lt;h3 id=&quot;reference-bibtex&quot;&gt;Reference (Bibtex)&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/inukshuk/jekyll-scholar&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/inukshuk/jekyll-scholar&quot;&gt;https://github.com/inukshuk/jekyll-scholar&lt;/a&gt; (I might expand on this)&lt;/p&gt;
+
+&lt;h2 id=&quot;publishing-the-site&quot;&gt;Publishing the Site!&lt;/h2&gt;
+
+&lt;p&gt;Done? Time to publish! Remember we used custom plugins, so we can’t push to GitHub and let it build our site for us. Now at this stage many will say you need to build the site yourself, then move it to another branch called gh-pages, then push that to GitHub Pages, and since it is &lt;em&gt;such&lt;/em&gt; a burden, they will then promote their GitHub Actions and Travis CIs. I don’t know if that was all necessary in the past but it’s definitely not necessary now.&lt;/p&gt;
+
+&lt;p&gt;Here’s what you do. Check you are on master or main branch (I haven’t checked if any arbitrary branch will work). Wrap up your changes and git commits. Now add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;destination: docs&lt;/code&gt; to _config.yml to change the destination of the static site generated by Jekyll from _site to docs. Now run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundler exec jekyll build&lt;/code&gt; to build the site. Also in terminal, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;touch .nojekyll&lt;/code&gt; . This is a file which tells GitHub not to run Jekyll on your files because you already did. Now commit .nojekyll and docs and push to GitHub. Finally, in GitHub, go to Settings &amp;gt; Pages &amp;gt; Source and change the root folder to docs.&lt;/p&gt;
+
+&lt;p&gt;From now on, just build before pushing. I tested this with a main branch and a user site. I haven’t tried other branches, or project or organization sites. It seems the only acceptable folders are . (root) and ./docs&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;😐&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;I tested this with a main branch and a user site. I haven't tried other branches, or project or organization sites. It seems the only acceptable folders are . (root) and ./docs&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Assuming you are making a user site and you have not set a baseurl in _config.yml, you should be able to go to username.github.io and view your blog!&lt;sup id=&quot;fnref:otherwise&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:otherwise&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; Congratulations!&lt;/p&gt;
+
+&lt;h2 id=&quot;misc-troubleshooting&quot;&gt;Misc. Troubleshooting&lt;/h2&gt;
+
+&lt;p&gt;I tried to keep troubleshooting to each specific section above, but here’s some extras. In general, if things are misbehaving, be sure to check for any error messages in the terminal first. They’re pretty descriptive.&lt;/p&gt;
+
+&lt;h3 id=&quot;changes-not-visible&quot;&gt;Changes not visible&lt;/h3&gt;
+&lt;p&gt;This class of issues is fixed by having at least double digit IQ.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;If changes were made to _config.yaml, the site has to be relaunched.&lt;/li&gt;
+  &lt;li&gt;If changes were made to styling, make sure it is being imported all the way through to assets/css/main.css.&lt;/li&gt;
+  &lt;li&gt;Your styling code could just be wrong.&lt;/li&gt;
+  &lt;li&gt;You think you’re editing/replacing one file but you’re changing another one. Or you think you’re refreshing the page you edited but you’re not.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;404-error&quot;&gt;404 Error&lt;/h3&gt;
+
+&lt;p&gt;Annoying and frequent mistake: even if the code is automatically reloaded upon changes, if you just refresh your page you may reload a dead link so check the URL.&lt;/p&gt;
+
+&lt;h3 id=&quot;bundle-install-fails&quot;&gt;Bundle Install Fails&lt;/h3&gt;
+
+&lt;p&gt;I remember having to delete the Gemfile.lock file to get my gems to install one time. I think it’s no big deal if you’re working solo but I’m not that knowledgeable about it so take it with a grain of salt.&lt;/p&gt;
+
+&lt;h3 id=&quot;browser-problems&quot;&gt;Browser Problems&lt;/h3&gt;
+
+&lt;p&gt;Firefox messed me up with the fonts at least, but browser compatibility could come into play with other things too. Try different browsers. This applies mostly to display oddities.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:forthis&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;These are what I used so I can say with some confidence that you too can get a working solution with them. Alternatives may also work though. &lt;a href=&quot;#fnref:forthis&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:otherwise&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Otherwise it’s not so hard to figure out your URL. Google about GitHub Pages if you need more help there. &lt;a href=&quot;#fnref:otherwise&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="tutorial" /><category term="blog" /><category term="jekyll" /><summary type="html">Here are the notes and external tutorials I used and gathered while creating this blog! Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!</summary></entry><entry><title type="html">Project Reupload #3: VI sensor</title><link href="/project/2021/07/21/sensor.html" rel="alternate" type="text/html" title="Project Reupload #3: VI sensor" /><published>2021-07-21T00:00:00-05:00</published><updated>2021-07-21T00:00:00-05:00</updated><id>/project/2021/07/21/sensor</id><content type="html" xml:base="/project/2021/07/21/sensor.html">&lt;blockquote&gt;
+  &lt;p&gt;I’m writing posts on my old projects. Here I will introduce one of my most ambitious projects, the creation of a visual-inertial sensor for use with SLAM.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;tele-cube&quot;&gt;Tele-Cube&lt;/h2&gt;
+
+&lt;p&gt;For this project, I tried to make a virtual cube move based on sensor movement.&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;🙄&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;That's trivial. There are cheap sensors with out-of-box demos for this.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/sparkfunimu.gif&quot; alt=&quot;sparkfunimu&quot; /&gt;
+&lt;em&gt;Straight from the Sparkfun website&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I could have made that my project but I wanted to do more. A rotation demo shows three degrees of (rotational) freedom. That’s like knowing how an airplane is oriented without knowing where it actually is in the sky. I wanted an extra three degrees of freedom along positional axes.&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;🙄&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;Any IMU will have an accelerometer and a gyroscope, one for calculating position and one for rotation.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The problem with IMUs is that the accelerometer directly measures acceleration. To get a position estimate, the IMU has to double integrate over the acceleration. The error from this operation accumulates pretty quickly and the result is a drifting position estimate, which becomes useless pretty quickly. The gyroscope has a similar problem.&lt;/p&gt;
+
+&lt;p&gt;The problem of using sensor data to determining change of position and orientation, or pose, over time is called &lt;strong&gt;odometry&lt;/strong&gt;. IMUs are not capable of good odometry on their own,&lt;sup id=&quot;fnref:imubad&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:imubad&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; so one improvement is to combine multiple sensors with different properties together, like a visual-inertial (VI) sensor, and perform &lt;strong&gt;visual-inertial odometry&lt;/strong&gt;. Yet another improvement is to use a more sophisticated algorithm,&lt;sup id=&quot;fnref:sophisticated&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:sophisticated&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; called &lt;strong&gt;simultaneous localization and mapping (SLAM)&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-hardware&quot;&gt;The Hardware&lt;/h2&gt;
+
+&lt;p&gt;A good VI sensor, like the discontinued &lt;a href=&quot;/assets/images/visensor.png&quot;&gt;Skybotix VI-sensor&lt;/a&gt; below, uses one or more high quality cameras and IMUs, with hardware synchronization and god-tier calibration.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/visensor.png&quot; alt=&quot;visensor&quot; /&gt;
+&lt;em&gt;For just  €3900.00!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Obviously my sensor was a bit lower spec. I decided to use an open-source SLAM algorithm called ROVIO, which requires hardware synchronization of the camera and IMU, and a global shutter camera. To satisfy those two points I got a Point Grey Firefly MV camera, the cheapest global shutter camera I could find with an external triggering capability. My IMU on the other hand was a cheapy from Sparkfun, which at least incorporated a magnetometer to improve measurements a bit. The IMU supports Arduino onboard, which I used to trigger the camera shutter at regular intervals. I 3D-printed a holder to keep both sensors locked in place. The sensors needed to be calibrated, both as individual sensors and together as a unit. The IMU came with a handy calibration tutorial, and &lt;a href=&quot;https://github.com/ethz-asl/kalibr&quot;&gt;Kalibr&lt;/a&gt; took care of the rest.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/visensor2.png&quot; alt=&quot;visensor2&quot; /&gt;
+&lt;em&gt;My VI sensor ._.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The sensor ended up being the focus of the project, but remember it was just part of a whole pipeline. It needed to feed its data to a computer, which needed to run ROVIO, feed the pose data to a graphics engine, and rotate a cube.&lt;/p&gt;
+
+&lt;p&gt;I wanted to keep a fairly mobile system so I could &lt;em&gt;in principle&lt;/em&gt; mount everything on a drone, which ruled out a desktop computer. I tried the very low power Raspberry Pi, but it was too weak to run SLAM, ruling out most single board computers. I chose Unity to handle the virtual cube, so I chose Ubuntu 16 for its compatibility with Unity and ROS (for ROVIO). The smallest system I could find that could run a full Ubuntu OS and had enough processing power to run ROVIO was an Intel NUC. Finally I used a battery pack to power the NUC.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/glow.jpg&quot; alt=&quot;glow&quot; /&gt;
+&lt;em&gt;I thought this was a cool picture when I took it. Shows a NUC, my laptop, and an external drive.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;note-on-money&quot;&gt;Note on Money&lt;/h2&gt;
+
+&lt;p&gt;One flaw in this tidy little blog post is the omission of all the failed approaches I tried first, many which involved acquiring some special hardware.&lt;/p&gt;
+
+&lt;p&gt;A small investment can go a long way. I would not have finished this project without some key purchases like the IMU or camera. As I realized, however, the purchases eventually hit diminishing returns. I ended up buying things and then returning them when I realized they didn’t quite fit my needs, or holding onto them to this day. Some of those items were somewhat cheap, like the Raspberry Pi, and some were not (like an eGPU…yeah…I later tried to make up for it by cryptomining).&lt;/p&gt;
+
+&lt;p&gt;Some of the waste can be offset by spending even more time asking knowledgeable people, either online or in real life. Research is also hit by diminshing returns though, eventually resulting in a paralysis of ambivalence. You will eventually have to make a purchase and sometimes there’s no better way to know if it works than to buy it and try it.&lt;/p&gt;
+
+&lt;p&gt;So while I did spend an uncomfortable amount of internship earnings on this project, I learned a few tips to squeeze the most efficiency out of my time and money. In order, I recommend:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Sticking to software instead of hardware if possible.&lt;/li&gt;
+  &lt;li&gt;Reducing the scope of the project.&lt;/li&gt;
+  &lt;li&gt;Taking advantage of a lab or makerspace.&lt;/li&gt;
+  &lt;li&gt;Using Amazon Prime.&lt;sup id=&quot;fnref:sponsor&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:sponsor&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Notice choosing software projects comes &lt;em&gt;first!&lt;/em&gt; Nearly everything software-related outside of a production environment can be done for free. &lt;em&gt;Maybe&lt;/em&gt; you pay a few bucks for hosting or cloud services. For hardware projects, the other tips should help. To explain Amazon Prime a bit more, I found it useful both for quick deliveries and fully refunded returns, allowing me to iterate quickly. Students get a discount, and a free trial is available to anyone.&lt;/p&gt;
+
+&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
+
+&lt;p&gt;After many painful months, I did manage to move the virtual cube!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/videmo.png&quot; alt=&quot;videmo&quot; /&gt;
+&lt;em&gt;Please hold your applause&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;A video feed from the camera is displayed in the upper left corner, and the cube is rotated and translated to match the pose of the sensor in real time.&lt;/p&gt;
+
+&lt;p&gt;Well, there was actually some noticeable lag in the movement, and I identified a few sources:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;At the time, I was using a package called ros-sharp to pass ROS video frames to Unity. I think either they were raw instead of compressed image frames, or they were being passed with JSON instead of BSON.&lt;/li&gt;
+  &lt;li&gt;The method to display the video feed in Unity may have been inefficient. The demo ran more smoothly without video.&lt;/li&gt;
+  &lt;li&gt;As my advisor kindly pointed out, SLAM is intensive enough that many mobile/embedded SLAM systems have a VPU dedicated to underlying computer vision procedures. My homemade version obviously lacked anything of the sort, but the NUC did have a decent general purpose CPU. I wasn’t able to test if SLAM alone was a bottleneck, but I did notice a performance difference with and without the screen recording running.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I wish I had more time to fix the display issues, but at least ROVIO runs smoothly, meaning my sensor worked too. I even managed to get the whole thing working off the battery, carrying it around in a backpack setup. I will add a picture if I can find it or recreate it.&lt;/p&gt;
+
+&lt;p&gt;You may be wondering things like:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Why not just display the video straight from ROS?&lt;/li&gt;
+  &lt;li&gt;Why not use a laptop instead of a NUC?&lt;/li&gt;
+  &lt;li&gt;Why use Unity instead of say Gazebo?&lt;/li&gt;
+  &lt;li&gt;Why use SLAM at all?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Some choices can be excused by incomplete knowledge, some were completely asinine, and all were cut off from a satisfactory level of deliberation in my stubborn commitment to the MVP.&lt;/p&gt;
+
+&lt;h2 id=&quot;takeaways&quot;&gt;Takeaways&lt;/h2&gt;
+
+&lt;p&gt;As usual, I ran into issues with project scope. Unlike my &lt;a href=&quot;/project/2021/07/19/wisp.html&quot;&gt;Wisp&lt;/a&gt; project, I &lt;em&gt;never&lt;/em&gt; added features, but instead the true scale of the project was completely hidden from me since I lacked experience with the field (even worse than the &lt;a href=&quot;/project/2021/07/20/poker-ai.html&quot;&gt;poker project&lt;/a&gt;). I thought okay the state-of-the-art is in SLAM so I’ll do that! When I realized how complicated everything was, I ended up using an off-the-shelf SLAM in order to reach the MVP. There’s nothing wrong with using a prebuilt package, but I could have chosen from a more lightweight family of algorithms like VIO, which would have lowered requirements on both the sensor components and computer. Additionally, I was unable to debug it when things went awry. I actually started with a completely different SLAM algorithm called VINS-MONO, but had to ditch it because I simply couldn’t get it to run.&lt;/p&gt;
+
+&lt;p&gt;My number one priority after building the sensor was to dive more deeply into SLAM and related algorithms. Still, basic knowledge of the sensor and how it fits into the whole pose estimation pipeline is invaluable. I was exposed to tons of concepts about cameras, lenses, and basic photography that I find fascinating even now. Most of all I dove into the completely new fields of robotics and computer vision and came out with something to show for it. Without a doubt, this was one of my favorite projects.&lt;/p&gt;
+
+&lt;p&gt;I will release specific tutorials I put together during the project.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:imubad&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;In particular, I mean cheap MEMS IMUs. &lt;a href=&quot;#fnref:imubad&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:sophisticated&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;VIO is more complicated than one-sensor odometry by virtue of the additional sensor modality. SLAM is more sophisticated than VIO for reasons other than the particular sensor(s) used, namely mapping and loop-closure. &lt;a href=&quot;#fnref:sophisticated&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:sponsor&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Not sponsored I promise. &lt;a href=&quot;#fnref:sponsor&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="project" /><category term="vio" /><category term="slam" /><category term="computer-vision" /><category term="rovio" /><category term="hardware" /><summary type="html">I’m writing posts on my old projects. Here I will introduce one of my most ambitious projects, the creation of a visual-inertial sensor for use with SLAM.</summary></entry><entry><title type="html">Project Reupload #2: Poker AI</title><link href="/project/2021/07/20/poker-ai.html" rel="alternate" type="text/html" title="Project Reupload #2: Poker AI" /><published>2021-07-20T00:00:00-05:00</published><updated>2021-07-20T00:00:00-05:00</updated><id>/project/2021/07/20/poker-ai</id><content type="html" xml:base="/project/2021/07/20/poker-ai.html">&lt;blockquote&gt;
+  &lt;p&gt;I’m writing posts on my old projects. In this post, I’ll introduce my final project for one of my classes in junior year, a simplified implementation of a state-of-the-art poker AI.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;ai-poker&quot;&gt;AI Poker&lt;/h2&gt;
+&lt;p&gt;Zoom in to my COMS4995 lecture in Spring of 2018, where I was discussing with two random classmates, Dan and Ethan, what we should do for our class project. We all recently learned about &lt;a href=&quot;https://www.nature.com/articles/nature16961&quot;&gt;AlphaGo’s&lt;/a&gt; victory against Lee Sedol in Go, and Ethan liked poker, so we thought, &lt;em&gt;maybe someone made an AlphaGo for poker&lt;/em&gt;. Turns out in January of that year, a duo from Carnegie Mellon presented Libratus, an algorithm that beat four top human professionals at &lt;strong&gt;heads-up no-limit (HUNL) Texas Hold’em poker&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Texas Hold’em: the most popular “core rules” of poker, including dealing and betting&lt;/li&gt;
+  &lt;li&gt;No-limit: bets are not fixed, and are bounded by a predetermined minimum and an all-in maximum&lt;/li&gt;
+  &lt;li&gt;Heads-up: two players&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The immediate question: did they more or less apply the method from AlphaGo to HUNL poker? The short answer is no.&lt;/p&gt;
+
+&lt;p&gt;Even considering a two-player version, poker is different from Go in several aspects:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Drawn cards introduce randomness.&lt;/li&gt;
+  &lt;li&gt;Each player’s hand is hidden from the other.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;While the first point complicates evaluation of the stronger player, the second point is more important. In Go, both players always know the exact state of the game, but in Poker, players have to deal with &lt;strong&gt;imperfect information&lt;/strong&gt;. This renders useless the core methods of AlphaGo and its successors.&lt;/p&gt;
+
+&lt;p&gt;Like AlphaGo, no official open-source code was released, but unlike AlphaGo, nobody had taken a shot at an unofficial implementation. So Ethan, Dan, and I decided to create an open-source version of Libratus, with the added goal of aiding the research community. Enthusiasm and naivette: the perfect combo!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/noam.png&quot; alt=&quot;noam&quot; /&gt;
+&lt;em&gt;Objection: it needs 25 million core hours anyway so what’s the big deal??&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
+&lt;p&gt;Here’s a silly timeline of my experiences that spring:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;This notation is incomprehensible&lt;/li&gt;
+  &lt;li&gt;There is no deep learning&lt;/li&gt;
+  &lt;li&gt;This is actually a super complicated project but we’re past project milestone…&lt;/li&gt;
+  &lt;li&gt;We cracked a core algorithm!&lt;/li&gt;
+  &lt;li&gt;Wait we have to write a poker simulator&lt;/li&gt;
+  &lt;li&gt;Wait we have to interface with ACPC in order to benchmark&lt;/li&gt;
+  &lt;li&gt;Wait the class is over??&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I’ll walk through some of it.&lt;/p&gt;
+
+&lt;h3 id=&quot;notation&quot;&gt;Notation&lt;/h3&gt;
+&lt;p&gt;At the time I had zero experience with poker or game theory, crucial components of Libratus (and only brief exposure to reinforcement learning, which hindered understanding of related game AI literature). It would take almost a whole week to get through a paper. I remember griping over the Notation and Background section of the paper &lt;a href=&quot;https://arxiv.org/abs/1705.02955&quot;&gt;Safe And Nested Subsolving For Imperfect-Information Games&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;deep-learning&quot;&gt;Deep Learning&lt;/h3&gt;
+&lt;p&gt;I skipped over this, but we were initially going to implement &lt;a href=&quot;https://science.sciencemag.org/content/356/6337/508&quot;&gt;DeepStack&lt;/a&gt;, a poker AI from 2017 that utilized deep learning. When we switched to Libratus, I think I just assumed there would be deep learning, because it seemed like the only way to tackle super challenging games like Go and Poker. I was shocked to find that Libratus did &lt;em&gt;not&lt;/em&gt; use deep learning and still performed better than DeepStack.&lt;/p&gt;
+
+&lt;h3 id=&quot;project-milestone&quot;&gt;Project Milestone&lt;/h3&gt;
+&lt;p&gt;Towards the middle of our project we realized just how complicated Libratus was. I thought we would be dealing with something like &lt;a href=&quot;https://www.nature.com/articles/nature24270&quot;&gt;AlphaGo Zero&lt;/a&gt; (the first successor to AlphaGo) which elegantly combined MCTS with a two-headed policy and value network, and removed “human data, guidance or domain knowledge beyond game rules.”&lt;/p&gt;
+
+&lt;p&gt;I discovered, however, that AlphaGo Zero was an anomaly among game AIs, and for Libratus, domain knowledge was just as important as game theory. Even worse, we were well into the project already, and we faced the all too common dilemma of building a complete, faithful implementation versus having something presentable at the end of the semester. For example we may not have fully implemented card and action abstractions, which are basically groupings of cards and actions to reduce the number of possibilities per turn.&lt;sup id=&quot;fnref:forgot&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:forgot&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;It was at this point too that I became a bit jaded about benchmarking AIs with games. I might write another post about it, but in summary, the world-class poker bot transformed in my mind from a leap forward for AI into just another game someone was able to build an algorithm for.&lt;sup id=&quot;fnref:same&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:same&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; Not a unique view at all, and not a slight against Libratus either; it’s still an unprecedented feat.&lt;/p&gt;
+
+&lt;h3 id=&quot;core-algorithm-cracked&quot;&gt;Core Algorithm Cracked&lt;/h3&gt;
+&lt;p&gt;We got one major win, successfully writing MCCFR-p, the algorithm which computes a so-called blueprint strategy. We started by reading up on the more basic CFR algorithm (this &lt;a href=&quot;http://modelai.gettysburg.edu/2013/cfr/cfr.pdf&quot;&gt;paper&lt;/a&gt; specifically), and writing a basic implementation for Khun poker, a toy version of poker. We were then able to translate this to the more sophisticated algorithm on a bigger poker game.&lt;/p&gt;
+
+&lt;h3 id=&quot;simulator-and-acpc-server&quot;&gt;Simulator and ACPC server&lt;/h3&gt;
+&lt;p&gt;The last stretch saw algorithmic challenges almost wholly replaced by engineering ones. We had to finalize the poker simulator, so a) we could demo the game and b) to simulate valid moves while pre-training the strategies. We wrote rules for Leduc poker which reduced the game size to something trainable on our puny machines (but still larger than Kuhn poker), but introduced its own difficulties because it’s a lesser known ruleset, and we had trouble validating it. Finally we needed to implement gameplay with other bots via an ACPC server. Luckily we found a Python wrapper and plugged it in.&lt;/p&gt;
+
+&lt;h2 id=&quot;takeaways&quot;&gt;Takeaways&lt;/h2&gt;
+&lt;p&gt;I at least was completely burnt out by the end, and just when we were getting a hang of things we put a bow on it and never touched it again. I highly doubt it was helpful to researchers, as we had hoped. The message “This is a work in progress” sits on the readme like a dead “open” sign on a dilapidated storefront. It’s all kind of a regret of mine! Still I have to remember this was my first class with a final project, and I learned an incredible amount in a short period of time. It was also my first attempt at reading through the literature of a certain field and trying to implement something in it from scratch. The repo is &lt;a href=&quot;https://github.com/michalp21/coms4995-finalproj&quot;&gt;here&lt;/a&gt; for the curious.&lt;/p&gt;
+
+&lt;p&gt;The research world doesn’t slow down. Noam Brown has continued putting out excellent work, such as &lt;a href=&quot;https://www.cs.cmu.edu/~noamb/papers/19-Science-Superhuman.pdf&quot;&gt;Pluribus&lt;/a&gt; for multiplayer poker, and &lt;a href=&quot;https://arxiv.org/abs/2007.13544&quot;&gt;ReBeL&lt;/a&gt;, which utilizes deep reinforcement learning. Someone seems to be working on an &lt;a href=&quot;https://github.com/fedden/poker_ai&quot;&gt;open-source&lt;/a&gt; implementation of Pluribus, and an official repo exists for ReBeL implemented on a different game called &lt;a href=&quot;https://github.com/facebookresearch/rebel&quot;&gt;Liar’s Dice&lt;/a&gt;. I’m excited to see what the future holds for poker AIs!&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:forgot&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Unfortunately I forgot a lot of the details, and looking at it now, our code isn’t a paragon of best practices. &lt;a href=&quot;#fnref:forgot&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:same&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Same applies to all versions of AlphaGo by the way. &lt;a href=&quot;#fnref:same&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="project" /><category term="game" /><category term="poker" /><category term="reinforcement-learning" /><summary type="html">I’m writing posts on my old projects. In this post, I’ll introduce my final project for one of my classes in junior year, a simplified implementation of a state-of-the-art poker AI.</summary></entry><entry><title type="html">Project Reupload #1: Wisp</title><link href="/project/2021/07/19/wisp.html" rel="alternate" type="text/html" title="Project Reupload #1: Wisp" /><published>2021-07-19T00:00:00-05:00</published><updated>2021-07-19T00:00:00-05:00</updated><id>/project/2021/07/19/wisp</id><content type="html" xml:base="/project/2021/07/19/wisp.html">&lt;blockquote&gt;
+  &lt;p&gt;I’m writing posts on my old projects. In this post, I talk about a game I made with Henry G. for Ludum Dare 40. I also talk about my old game dev experiences.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;before-the-actual-project-i-will-tell-you-about-my-previous-life-as-an-aspiring-game-dev-deal-with-it&quot;&gt;Before The Actual Project I Will Tell You About My Previous Life As an Aspiring Game Dev, Deal With It&lt;/h2&gt;
+
+&lt;p&gt;Prior to discovering AI, I guess I could say game dev was my first choice of career. I made my first game back in high school with GameMaker. In college I ran through enough Unity tutorials to make an (unpublished) Android puzzle game. I vaguely recall some back-and-forth with Zynga about a summer internship, but withdrew my application.&lt;/p&gt;
+
+&lt;p&gt;I decided to start a new project with a larger scope. Down the line I met Henry at gamedev club and even convinced him to help me out somehow. Unfortunately we weren’t making much meaningful progress because I kept adding features and underestimating the ballooning scope of the project. I had started with a basic multiplayer pirate-themed game with attack-defense gameplay like Clash of Clans – a big task already! Then I thought, why not add a two-phased battle? How about custom attacks for each troop with MOBA-style cooldowns? Maybe clans? (Why was I such a Supercell fanboy?)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/pirates.png&quot; alt=&quot;pirates&quot; /&gt;
+&lt;em&gt;Flat Boats at Dusk, 2017. Acrylic on canvas.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I also got stuck on details. I wanted deployed troops to avoid colliding, and I came across a paper about &lt;a href=&quot;https://gamma.cs.unc.edu/RVO/icra2008.pdf&quot;&gt;reciprocal velocity obstacles&lt;/a&gt; (the first research paper I ever read of my own volition, to my knowledge). I decided to code it in C# right in Unity, even though Henry later found a library which implemented it efficiently. We didn’t even need such strict collision avoidance; a proximity-based repelling force would have sufficed.&lt;/p&gt;
+
+&lt;p&gt;It wasn’t getting anywhere, and in fact it never did get anywhere. In light of all this, Henry eventually suggested we try doing Ludum Dare, a competition to build a game from scratch over a single weekend. I can’t speak for him, but I at least saw the opportunity to walk away with a finished game.&lt;/p&gt;
+
+&lt;h2 id=&quot;ludum-dare-40&quot;&gt;Ludum Dare 40&lt;/h2&gt;
+
+&lt;p&gt;Every Ludum Dare has a theme, and for 2017 it was: &lt;strong&gt;The more you have, the worse it is&lt;/strong&gt;. After some brainstorming, we decided on a &lt;a href=&quot;https://en.wikipedia.org/wiki/Roguelike&quot;&gt;rogue-like&lt;/a&gt; game. Rogue-likes are a specific subgenre of role-playing games, and a key commonality is procedurally generated dungeons, yet another feature I secretly wanted to add to my pirate game.&lt;/p&gt;
+
+&lt;p&gt;It was sort of an interesting problem. We had parameters for room count, room size, and hall size. We built the rooms randomly, then connected them with a minimum spanning tree, and added a few extra halls based on another connectivity parameter. We used Unity Tilemap to implement the actual grid.&lt;/p&gt;
+
+&lt;p&gt;None of that was relevant to the theme of course. We stuffed the entire theme into a lighting buddy orbiting the player, called a wisp. The player could make the wisp brighter to see more of the dungeon, but the monsters would become more aggressive. It was pretty hard – I don’t even think we gave the player a weapon. We scattered healing potions around the map, but they gave some light too, making the monsters more aggressive in the vicinity.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/wisp1.png&quot; alt=&quot;wisp1&quot; /&gt;
+&lt;em&gt;Some in-game screenshots&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;We didn’t win anything, but I think some guy on YouTube played a bunch of submissions and said some slightly positive things about ours. I wish I could find it!&lt;/p&gt;
+
+&lt;h2 id=&quot;takeaways&quot;&gt;Takeaways&lt;/h2&gt;
+
+&lt;p&gt;It struck me late in the weekend that I went in with the explicit purpose of &lt;em&gt;finishing&lt;/em&gt; a game, yet I still found a way to muddle around with a completely unnecessary feature. Ludum Dare taught me to value the MVP over whatever new idea or silly intellectual problem catches my fancy, something I hadn’t figured out in over a year of game dev on the side.&lt;/p&gt;
+
+&lt;p&gt;I stopped working on any games after that. The semester of Ludum Dare 40, I took a Machine Learning class, which kickstarted my interest in AI. My game dev phase was far from a waste though. I didn’t use C# again, but experience with an extra language is never bad. I used Unity for several future projects, and the interface alone carries over to tons of different programs. And though it’s a bit difficult to articulate, there is a way of thinking like a game designer that I’ll always carry with me.&lt;/p&gt;</content><author><name>Michal Porubcin</name></author><category term="project" /><category term="game" /><category term="gamedev" /><category term="unity" /><summary type="html">I’m writing posts on my old projects. In this post, I talk about a game I made with Henry G. for Ludum Dare 40. I also talk about my old game dev experiences.</summary></entry><entry><title type="html">New Site!</title><link href="/article/2021/07/16/hello-world.html" rel="alternate" type="text/html" title="New Site!" /><published>2021-07-16T00:00:00-05:00</published><updated>2021-07-16T00:00:00-05:00</updated><id>/article/2021/07/16/hello-world</id><content type="html" xml:base="/article/2021/07/16/hello-world.html">&lt;blockquote&gt;
   &lt;p&gt;Hello, world! Beep boop.&lt;/p&gt;
 
   &lt;p&gt;This is my first post on my fresh new blog. The real introduction is &lt;a href=&quot;/about.html&quot;&gt;here&lt;/a&gt;; in this post I will just be commenting on my old site.&lt;/p&gt;
@@ -13,7 +763,7 @@
 &lt;p&gt;&lt;img src=&quot;/assets/images/mostly-js.png&quot; alt=&quot;mostly-js&quot; /&gt;
 &lt;em&gt;would you like a side of HTML with your JavaScript?&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Okay so I used Bootstrap, mostly on a friend’s recomendation, and because of the easy grids. I guess I didn’t believe in CDNs either?&lt;/p&gt;
+&lt;p&gt;Okay okay so I used Bootstrap, mostly on a friend’s recomendation, and because of “responsiveness.” I guess I didn’t believe in CDNs either?&lt;/p&gt;
 
 &lt;p&gt;Believe it or not I had some custom JavaScript in there too. Well, JQuery. Same difference.&lt;/p&gt;
 
@@ -44,22 +794,26 @@
 &lt;p&gt;The top of my site is a bland greeting, but hey the background was cool. It’s just the pixelate&amp;gt;crystallize filter in Photoshop over an angle gradient.&lt;/p&gt;
 
 &lt;blockquote class=&quot;callout&quot;&gt;
-	&lt;span class=&quot;callout-icon&quot;&gt;😐&lt;/span&gt;
-	&lt;p&gt;The author is about to go on a tangent just to demo LaTeX and footnotes on his site.&lt;/p&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;😐&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;The author is about to go on a tangent just to demo LaTeX and footnotes on his site.&lt;/div&gt;
+  &lt;/div&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;the-crystallize-filter&quot;&gt;The Crystallize Filter&lt;/h2&gt;
 
-&lt;p&gt;That got me thinking, how does the crystallize filter actually work? Until we get them Adobe leaks our best starting point probably has something to do with Voronoi diagrams. I found a decent intro &lt;a href=&quot;https://elrnv.com/blog/weighted-lloyds-method-for-voronoi-tesselation/&quot;&gt;here&lt;/a&gt;. Considering a 2D diagram, define Voronoi sites as a set of \(n\) random points: \(\mathcal{P} = \{\vec{x}_i\}_{i=1}^n\), where \(\vec{x}_i \in \mathbb{R}^2\). Define the Voronoi tessellation generated by \(\mathcal{P}\) as the set of Voronoi regions \(\mathcal{V} = \{ V_i \}\), where for each point \(i\):&lt;/p&gt;
+&lt;p&gt;That got me thinking, how does the crystallize filter actually work? Until we get those Adobe leaks our best starting point probably has something to do with Voronoi diagrams. I found a decent intro &lt;a href=&quot;https://elrnv.com/blog/weighted-lloyds-method-for-voronoi-tesselation/&quot;&gt;here&lt;/a&gt;. Considering a 2D diagram, define Voronoi sites as a set of \(n\) random points: \(\mathcal{P} = \{\vec{x}_i\}_{i=1}^n\), where \(\vec{x}_i \in \mathbb{R}^2\). Define the Voronoi tessellation generated by \(\mathcal{P}\) as the set of Voronoi regions \(\mathcal{V} = \{ V_i \}\), where for each point \(i\):&lt;/p&gt;
 
 \[V_i = \left\{ \vec{x} \in \mathbb{R}^2 \mathrel{}:\mathrel{} \|\vec{x} - \vec{x}_i\| &amp;lt; \|\vec{x} - \vec{x}_j\|,\ \, \forall j\not=i \right\}.\]
 
 &lt;p&gt;Here’s an example Voronoi diagram.&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/voronoi.png&quot; alt=&quot;voronoi&quot; /&gt;
-&lt;em&gt;Sites are the visible black dots. Regions are the colored polygons. Colors are for aesthetic purposes only&lt;/em&gt;&lt;/p&gt;
+*Sites are the visible black dots. Regions are the colored polygons. Notice the uneven cell shapes.”&lt;/p&gt;
 
-&lt;p&gt;Basically each region is a polygonal cell where all points inside are closer to its corresponding site than any other site. Unfortunately some of the cells can look stretched out so we want to make them more homogenous. We can use something called Lloyd’s algorithm to spread the sites out more evenly, and make the regions more uniform. Define the centroid of a Voronoi region as:&lt;/p&gt;
+&lt;p&gt;Each region is a polygonal cell where all points inside are closer to its corresponding site than any other site. Unfortunately some of the cells can look stretched out so we want to make them more homogenous. We can use something called &lt;a href=&quot;https://en.wikipedia.org/wiki/Lloyd%27s_algorithm&quot;&gt;Lloyd’s algorithm&lt;/a&gt; to spread the sites out more evenly, and make the regions more uniform. Define the centroid of a Voronoi region as:&lt;/p&gt;
 
 \[C_i = \frac{1}{A_i} \iint_{V_i} \vec{x}_i\, d\vec{x}\]
 

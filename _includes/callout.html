@@ -1,4 +1,14 @@
 <blockquote class="callout">
-	<span class="callout-icon">😐</span>
-	<p>{{ include.content }}</p>
+  <div class="flexy">
+    {% if include.icon == "neutral" %}
+      <div class="callout-icon">😐</div>
+    {% elsif include.icon == "eyeroll" %}
+      <div class="callout-icon">🙄</div>
+    {% elsif include.icon == "browraise" %}
+      <div class="callout-icon">🤨</div>
+    {% else %}
+      <div class="callout-icon">{{ include.icon }}</div>
+    {% endif %}
+    <div class="callout-text">{{ include.content }}</div>
+  </div>
 </blockquote>

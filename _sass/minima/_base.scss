@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-  margin-bottom: $spacing-unit / 2;
+  margin-bottom: $spacing-unit / 1.8;
 }
 
 hr {
@@ -72,7 +72,7 @@ img {
   margin: 20px auto;
 }
 
-img + em {
+img + em, table + p em {
   color: $grey-color;
   display: block;
   text-align: center;
@@ -159,7 +159,8 @@ blockquote {
   background-color: lighten($grey-color, 43%);
   border-left: 4px solid $brand-color-light;
   padding: 10px 25px;
-  margin: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   line-height: 1.4;
   // @include relative-font-size(1.125)
   @include relative-font-size(1);
@@ -227,6 +228,25 @@ pre {
 // Why are there two wrappers ffs
 .page-content .wrapper  {
   padding-bottom: 20px;
+}
+
+.page-navigation {
+  // font-size: 90%;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+
+  a {
+    display: block;
+    overflow: hidden;
+    width: 50%;
+    float: left;
+    // margin: 1em 0;
+  }
+
+  .next {
+    text-align: right;
+  }
 }
 
 
@@ -302,8 +322,10 @@ pre {
  * Tables
  */
 table {
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: $spacing-unit;
-  width: 100%;
+  // width: 100%;
   text-align: $table-text-align;
   color: $table-text-color;
   border-collapse: collapse;
