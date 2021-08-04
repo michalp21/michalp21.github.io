@@ -69,9 +69,12 @@ layout: default
     {%- endif -%}
   </div>
 
-  {%- if site.disqus.shortname -%}
+  <div id="s9comments"></div>
+  <script defer src="https://social9.com/comments/js/commento.js"></script>
+
+  <!-- {%- if site.disqus.shortname -%}
     {%- include disqus_comments.html -%}
-  {%- endif -%}
+  {%- endif -%} -->
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
