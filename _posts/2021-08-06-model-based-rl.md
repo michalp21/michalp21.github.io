@@ -114,11 +114,8 @@ Now I'm going to pretend like my definitions inform my classification of existin
 [^generative]: Supervised learning has a somewhat parallel distinction between generative and discriminative models that I kind of want to write a post about.
 [^dynamic]: So "dynamic" in dynamic programming has nothing to do with wham bam presto forte after all. See [this answer][prestoforte] on StackOverflow.
 
-[extensive]: https://papers.nips.cc/paper/2019/file/1b742ae215adf18b75449c6e272fd92d-Paper.pdf
-[survey]: https://www.ijcai.org/proceedings/2018/0666.pdf
 [mbrl]: /assets/images/mbrl.png
 [dynaq]: /assets/images/dynaq.png
 [prestoforte]: https://cstheory.stackexchange.com/a/5643
-[mbpg]: https://www.aaai.org/Papers/ICML/2003/ICML03-101.pdf
 
 https://www.ijcai.org/proceedings/2018/0666.pdf
