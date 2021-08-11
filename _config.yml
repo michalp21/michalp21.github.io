@@ -18,22 +18,28 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Xn - CS/AI blog
+title: Xn
 author: Michal Porubcin
 description: >- # this means to ignore newlines until "baseurl:"
-  Semi-processed thoughts.
+  Personal Site.
 baseurl: "" # the subpath of your site, e.g. /blog
 # url: "/blog" # the base hostname & protocol for your site, e.g. http://example.com
 destination: docs
-
 excerpt_separator: <!--more-->
 paginate: 10
+disqus:
+  shortname: michalp21-github-io
+scholar:
+  style: _bibliography/ieee-custom.csl
+  # style: _bibliography/springer-lecture-notes-in-computer-science.csl
+  bibliography_template: bibitem
 
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-paginate
   - jekyll-archives
+  - jekyll-scholar
 kramdown:
   auto_ids: true
   syntax_highlighter: rouge

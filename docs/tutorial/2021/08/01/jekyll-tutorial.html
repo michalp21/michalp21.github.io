@@ -4,22 +4,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/assets/css/main.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Jekyll Blog Tutorial (+ Lots of Features) | Xn - CS/AI blog</title>
+<title>Jekyll Blog Tutorial (+ Lots of Features) | Xn</title>
 <meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Jekyll Blog Tutorial (+ Lots of Features)" />
 <meta name="author" content="Michal Porubcin" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Here are the notes and external tutorials I used and gathered while creating this blog! Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!" />
-<meta property="og:description" content="Here are the notes and external tutorials I used and gathered while creating this blog! Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!" />
-<meta property="og:site_name" content="Xn - CS/AI blog" />
+<meta name="description" content="Here are the notes and external tutorials I used and gathered while creating this blog. Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!" />
+<meta property="og:description" content="Here are the notes and external tutorials I used and gathered while creating this blog. Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!" />
+<meta property="og:site_name" content="Xn" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-08-01T00:00:00-05:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Jekyll Blog Tutorial (+ Lots of Features)" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","datePublished":"2021-08-01T00:00:00-05:00","description":"Here are the notes and external tutorials I used and gathered while creating this blog! Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!","url":"/tutorial/2021/08/01/jekyll-tutorial.html","mainEntityOfPage":{"@type":"WebPage","@id":"/tutorial/2021/08/01/jekyll-tutorial.html"},"author":{"@type":"Person","name":"Michal Porubcin"},"headline":"Jekyll Blog Tutorial (+ Lots of Features)","dateModified":"2021-08-01T00:00:00-05:00","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","datePublished":"2021-08-01T00:00:00-05:00","description":"Here are the notes and external tutorials I used and gathered while creating this blog. Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!","url":"/tutorial/2021/08/01/jekyll-tutorial.html","mainEntityOfPage":{"@type":"WebPage","@id":"/tutorial/2021/08/01/jekyll-tutorial.html"},"author":{"@type":"Person","name":"Michal Porubcin"},"headline":"Jekyll Blog Tutorial (+ Lots of Features)","dateModified":"2021-08-01T00:00:00-05:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Xn - CS/AI blog" /><!-- Favicon -->
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Xn" /><!-- Favicon -->
   <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
 
   <!-- MathJax for LaTeX -->
@@ -30,7 +30,7 @@
 <body><header class="site-header">
   <div class="wrapper-logo">
     <div class="logo">
-      <!-- <a class="site-title" href="/">Xn - CS/AI blog</a> -->
+      <!-- <a class="site-title" href="/">Xn</a> -->
       <a href="/">
         <img src="/assets/images/logo.png" />
       </a>
@@ -77,7 +77,7 @@
 
   <div class="post-content" itemprop="articleBody">
     <blockquote>
-  <p>Here are the notes and external tutorials I used and gathered while creating this blog! Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!</p>
+  <p>Here are the notes and external tutorials I used and gathered while creating this blog. Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!</p>
 </blockquote>
 
 <!--more-->
@@ -99,6 +99,7 @@
   <li><a href="#other-features" id="markdown-toc-other-features">Other Features</a>    <ul>
       <li><a href="#callouts" id="markdown-toc-callouts">Callouts</a></li>
       <li><a href="#code" id="markdown-toc-code">Code</a></li>
+      <li><a href="#comments-disqus" id="markdown-toc-comments-disqus">Comments (Disqus)</a></li>
       <li><a href="#excerpts" id="markdown-toc-excerpts">Excerpts</a></li>
       <li><a href="#fonts" id="markdown-toc-fonts">Fonts</a></li>
       <li><a href="#footnotes" id="markdown-toc-footnotes">Footnotes</a></li>
@@ -107,12 +108,12 @@
       <li><a href="#latex" id="markdown-toc-latex">LaTeX</a></li>
       <li><a href="#links" id="markdown-toc-links">Links</a></li>
       <li><a href="#pagination" id="markdown-toc-pagination">Pagination</a></li>
+      <li><a href="#references" id="markdown-toc-references">References</a></li>
       <li><a href="#table-of-contents" id="markdown-toc-table-of-contents">Table of Contents</a></li>
       <li><a href="#tags" id="markdown-toc-tags">Tags</a></li>
-      <li><a href="#reference-bibtex" id="markdown-toc-reference-bibtex">Reference (Bibtex)</a></li>
     </ul>
   </li>
-  <li><a href="#publishing-the-site" id="markdown-toc-publishing-the-site">Publishing the Site!</a></li>
+  <li><a href="#publishing-the-site" id="markdown-toc-publishing-the-site">Publishing the Site</a></li>
   <li><a href="#misc-troubleshooting" id="markdown-toc-misc-troubleshooting">Misc. Troubleshooting</a>    <ul>
       <li><a href="#changes-not-visible" id="markdown-toc-changes-not-visible">Changes not visible</a></li>
       <li><a href="#404-error" id="markdown-toc-404-error">404 Error</a></li>
@@ -128,13 +129,13 @@
 <h3 id="prerequisites">Prerequisites</h3>
 <ul>
   <li><strong>Tech</strong>: Intel macOS Big Sur<sup id="fnref:forthis" role="doc-noteref"><a href="#fn:forthis" class="footnote" rel="footnote">1</a></sup></li>
-  <li><strong>Skills</strong>: terminal (command prompt) competency</li>
+  <li><strong>Skills</strong>: terminal (command prompt) and git competency, basic HTML knowledge</li>
 </ul>
 
 <h2 id="jekyll-overview">Jekyll Overview</h2>
 <p>What is Jekyll? This <a href="https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll">page</a> is a quick intro. Maybe read through it once.</p>
 
-<p>I’ll still try to convey the allure of Jekyll (to me anyways). With Jekyll, I can scaffold my blog once using reusable templates, and reduce repeated content creation, like blog posts, to simple markdown files. Jekyll gives you a static site, so you don’t have to worry about backends and databases and all this over-engineering, and you can host it on GitHub for free.</p>
+<p>I’ll still try to convey the appeal of Jekyll (to me anyways). With Jekyll, I can scaffold my blog once using reusable templates, and reduce repeated content creation, like blog posts, to simple markdown files. Jekyll gives you a static site, so you don’t have to worry about backends and databases and all this over-engineering, and you can host it on GitHub for free.</p>
 
 <h2 id="setup">Setup</h2>
 
@@ -148,7 +149,7 @@
 
 <p>To host the site locally, run <code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code>. If successful, you should be able to go to <a href="http://localhost:4000/"></a><a href="http://localhost:4000">http://localhost:4000</a> in the browser and view the default Jekyll blog.</p>
 
-<p>When we’re ready to deploy, run <code class="language-plaintext highlighter-rouge">bundler exec jekyll build</code> to generate the site files. This is called <em>building</em> the site (wow!) and I will refer to it as such from here on – I will not say building in the colloquial sense of just creating the blog.</p>
+<p>When we’re ready to deploy, run <code class="language-plaintext highlighter-rouge">bundler exec jekyll build</code> to generate the site files. This is called <em>building</em> the site (wow!) and I will refer to it as such from here on – I will not use building to mean the colloquial sense of just creating the blog.</p>
 
 <blockquote class="callout">
   <div class="flexy">
@@ -235,11 +236,9 @@ Thank you for your time.
 
 <h2 id="themes">Themes</h2>
 
-<p>Returning to themes, while they aren’t necessary I highly recommend at least using one as a base, especially if you’re not super savvy with styling. To do so, copy the files from the minima repo to your repository.</p>
+<p>Returning to themes, while they aren’t necessary I highly recommend at least using one as a base, especially if you’re not super savvy with styling. Themes can also bundle together some nice features on top of a custom look and feel, like search and archiving.</p>
 
-<p>To customize the styling, you need to write custom CSS/Sass. <a href="https://jekyllrb.com/docs/step-by-step/07-assets/">This tutorial</a> should get you started. You should do your styling in the Sass files under _sass.</p>
-
-<p>You can also use a theme as-is. See <a href="https://jekyllrb.com/docs/themes/">here</a> for more details, and places to find themes. Note that a gem-based theme may be incompatible with GitHub Pages. Copying files directly into your repo doesn’t have this limitation.</p>
+<p>To use a theme as-is, see <a href="https://jekyllrb.com/docs/themes/">this guide</a>. Note that a gem-based theme may be incompatible with GitHub Pages. To build on a custom theme, copy the files from the theme’s repo to your repository. To customize the styling, you need to write custom CSS/Sass. <a href="https://jekyllrb.com/docs/step-by-step/07-assets/">This tutorial</a> should get you started. You should do your styling in the Sass files under _sass.</p>
 
 <h2 id="kramdown">Kramdown</h2>
 
@@ -303,13 +302,35 @@ Thank you for your time.
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>I tweaked things like padding and font size until it looked good.</p>
+<p>I tweaked things like padding and font size until it looked good. Note: markdown processing won’t work inside callouts.</p>
 
 <h3 id="code">Code</h3>
 
 <p>Syntax highlighting is provided in minima. Just copy the <code class="language-plaintext highlighter-rouge">.highlight</code> section from <code class="language-plaintext highlighter-rouge">_sass/minima/skins/classic.scss</code> .</p>
 
 <p>When typing code, use spaces instead of tabs, or else the indent length on the site will be too large (in my opinion). In my Markdown editor, there is an option to put four spaces automatically when I hit tab.</p>
+
+<h3 id="comments-disqus">Comments (Disqus)</h3>
+
+<p>Comments would be pretty nice right? The problem is they clash with the whole static-site thing. Number one concern: where are the comments stored? You have two options:</p>
+<ul>
+  <li>host your own comments</li>
+  <li>let someone do it for you.</li>
+</ul>
+
+<p>The first option is a pain and sort of nullifies some of Jekyll’s more appealing features, like free hosting on GitHub. Now think of what actually goes into a comment system. Do users make an account to post? Can they edit and delete comments? What about threads, sorting, mentions, reactions, email notifications, and moderation?</p>
+
+<p>What? Disqus does all that? For <em>free</em>? In spite of a handful of blogposts critical of ad-ridden, tracker-obsessed, privacy-trampling Disqus, that seductive string of features pulled me to the dark side. Plus there’s no free, cloud-hosted alternatives as far as I know (I tried something called Social9 but it’s clearly still in the works).</p>
+
+<p>Just follow steps 1 and 2 of <a href="https://jreel.github.io/setting-up-disqus-comments-on-jekyll/">this tutorial</a>. If you used the minima theme as a base like I did, then you should already have Disqus boilerplate code. Otherwise finish the tutorial. Note that you won’t be able to see the comments when testing locally.</p>
+
+<p>We’re not done yet. We can turn off some ads in the Disqus dashboard. See the images:</p>
+
+<p><img src="/assets/images/adsettings.png" alt="adsettings" /></p>
+
+<p><img src="/assets/images/advancedsettings.png" alt="advancedsettings" /></p>
+
+<p>We can also lazy load the comments in order to avoid slow loading of the main content. Instead, the comments are loaded when the user is close to the bottom of the page. Check out <a href="https://usefulangle.com/post/251/disqus-comments-improve-page-load-speed">this tutorial</a>.</p>
 
 <h3 id="excerpts">Excerpts</h3>
 
@@ -441,6 +462,13 @@ Thank you for your time.
 
 <p>The “reference style link” text should be replaced by your own text.</p>
 
+<p>An <strong>internal link</strong>, or a link to another post on your site, looks like this:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">link text</span><span class="p">](</span><span class="sx">{{</span> site.baseurl }}{% post_url 2021-07-19-post %})
+</code></pre></div></div>
+
+<p>What comes after <code class="language-plaintext highlighter-rouge">post_url</code>  is the name of the post file.</p>
+
 <h3 id="pagination">Pagination</h3>
 
 <p>Pagination is supported. Modify the Gemfile like so:</p>
@@ -492,6 +520,10 @@ paginate: 10
 
 <p>There is a more sophisticated pagination package <a href="https://github.com/sverrirs/jekyll-paginate-v2">here</a>, but it is not supported by GitHub Pages. I decided I didn’t need it.</p>
 
+<h3 id="references">References</h3>
+
+<p>I moved the full references tutorial to a <a href="/tutorial/2021/08/06/bibtex-jekyll.html">separate post</a>.</p>
+
 <h3 id="table-of-contents">Table of Contents</h3>
 <p>Plop this in your markdown.</p>
 
@@ -535,28 +567,15 @@ layout: default
 
 <p>Similar things can be done for categories and archives.</p>
 
-<h3 id="reference-bibtex">Reference (Bibtex)</h3>
+<h2 id="publishing-the-site">Publishing the Site</h2>
 
-<p><a href="https://github.com/inukshuk/jekyll-scholar"></a><a href="https://github.com/inukshuk/jekyll-scholar">https://github.com/inukshuk/jekyll-scholar</a> (I might expand on this)</p>
+<p>Done? Time to publish! Remember we used custom plugins, so we can’t push to GitHub and let it build our site for us. Now at this stage people will say you need to build the site yourself, then move it to another branch called gh-pages, then push that to GitHub Pages, and since it is <em>such</em> a burden, they will then promote their GitHub Actions and Travis CIs.</p>
 
-<h2 id="publishing-the-site">Publishing the Site!</h2>
+<p>Here’s what you do. Check you are on master or main branch (I haven’t checked if any arbitrary branch will work). Wrap up your changes and git commits. Now add <code class="language-plaintext highlighter-rouge">destination: docs</code> to _config.yml to change the destination of the static site generated by Jekyll from _site to docs. Now run <code class="language-plaintext highlighter-rouge">bundler exec jekyll build</code> to build the site. Also in terminal, run <code class="language-plaintext highlighter-rouge">touch .nojekyll</code> . This is a file which tells GitHub not to run Jekyll on your files because you already did that. Now commit .nojekyll and docs, and push to GitHub. Finally, in GitHub, go to Settings &gt; Pages &gt; Source and change the root folder to docs. There may be some benefit to using separate branches instead of a docs folder in the same branch, but it’s just a personal site so I doubt it matters.</p>
 
-<p>Done? Time to publish! Remember we used custom plugins, so we can’t push to GitHub and let it build our site for us. Now at this stage many will say you need to build the site yourself, then move it to another branch called gh-pages, then push that to GitHub Pages, and since it is <em>such</em> a burden, they will then promote their GitHub Actions and Travis CIs. I don’t know if that was all necessary in the past but it’s definitely not necessary now.</p>
+<p>From now on, just build before pushing.<sup id="fnref:tried" role="doc-noteref"><a href="#fn:tried" class="footnote" rel="footnote">2</a></sup></p>
 
-<p>Here’s what you do. Check you are on master or main branch (I haven’t checked if any arbitrary branch will work). Wrap up your changes and git commits. Now add <code class="language-plaintext highlighter-rouge">destination: docs</code> to _config.yml to change the destination of the static site generated by Jekyll from _site to docs. Now run <code class="language-plaintext highlighter-rouge">bundler exec jekyll build</code> to build the site. Also in terminal, run <code class="language-plaintext highlighter-rouge">touch .nojekyll</code> . This is a file which tells GitHub not to run Jekyll on your files because you already did that. Now commit .nojekyll and docs, and push to GitHub. Finally, in GitHub, go to Settings &gt; Pages &gt; Source and change the root folder to docs.</p>
-
-<p>From now on, just build before pushing.</p>
-
-<blockquote class="callout">
-  <div class="flexy">
-    
-      <div class="callout-icon">😐</div>
-    
-    <div class="callout-text">I tested this with a main branch and a user site. I haven't tried other branches, or project or organization sites. It seems the only acceptable folders are . (root) and ./docs</div>
-  </div>
-</blockquote>
-
-<p>Assuming you are making a user site and you have not set a baseurl in _config.yml, you should be able to go to username.github.io and view your blog!<sup id="fnref:otherwise" role="doc-noteref"><a href="#fn:otherwise" class="footnote" rel="footnote">2</a></sup> Congratulations!</p>
+<p>Assuming you are making a user site and you have not set a baseurl in _config.yml, you should be able to go to username.github.io and view your blog!<sup id="fnref:otherwise" role="doc-noteref"><a href="#fn:otherwise" class="footnote" rel="footnote">3</a></sup> Congratulations!</p>
 
 <h2 id="misc-troubleshooting">Misc. Troubleshooting</h2>
 
@@ -568,7 +587,7 @@ layout: default
   <li>If changes were made to _config.yaml, the site has to be relaunched.</li>
   <li>If changes were made to styling, make sure it is being imported all the way through to assets/css/main.css.</li>
   <li>Your styling code could just be wrong.</li>
-  <li>You think you’re editing/replacing one file but you’re changing another one. Or you think you’re refreshing the page you edited but you’re not.</li>
+  <li>You think you’re editing/replacing one file but you’re changing another one. Or you think you’re refreshing the post you edited but you’re not. Or you think you’re refreshing the local testing site but you’re refreshing the production site.</li>
 </ul>
 
 <h3 id="404-error">404 Error</h3>
@@ -588,12 +607,24 @@ layout: default
     <li id="fn:forthis" role="doc-endnote">
       <p>These are what I used so I can say with some confidence that you too can get a working solution with them. Alternatives may also work though. <a href="#fnref:forthis" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
+    <li id="fn:tried" role="doc-endnote">
+      <p>I tested this with a main branch and a user site. I haven’t tried other branches, or project or organization sites. It seems the only acceptable folders are . (root) and ./docs. <a href="#fnref:tried" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
     <li id="fn:otherwise" role="doc-endnote">
       <p>Otherwise it’s not so hard to figure out your URL. Google about GitHub Pages if you need more help there. <a href="#fnref:otherwise" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
+  </div>
+
+  <div class="post-bibliography">
+    
+
+
+<div class="post-bibliography">
+  <ol class="bibliography"></ol>
+</div>
   </div>
 
   <div class="post-tags">
@@ -614,11 +645,7 @@ layout: default
         </span>
   </div>
 
-  <div class="page-navigation"><a class="prev" href="/project/2021/07/21/sensor.html">&larr; Project Reupload #3: VI sensor</a></div>
-
-  <!---->
-
-  <a class="u-url" href="/tutorial/2021/08/01/jekyll-tutorial.html" hidden></a>
+  <div class="page-navigation"><a class="prev" href="/project/2021/07/21/sensor.html">&larr; Project Reupload #3: VI-sensor</a><a class="next" href="/tutorial/2021/08/06/bibtex-jekyll.html">BibTeX For Jekyll Using jekyll-scholar &rarr;</a></div><a class="u-url" href="/tutorial/2021/08/01/jekyll-tutorial.html" hidden></a>
 </article>
 
       </div>

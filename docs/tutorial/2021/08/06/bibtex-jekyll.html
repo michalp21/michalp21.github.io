@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/main.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>BibTeX For Jekyll Using jekyll-scholar | Xn</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="BibTeX For Jekyll Using jekyll-scholar" />
+<meta name="author" content="Michal Porubcin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I made a long Jekyll tutorial covering lots of different features, but the references mini-tutorial became not-so-mini so I moved it to its own post." />
+<meta property="og:description" content="I made a long Jekyll tutorial covering lots of different features, but the references mini-tutorial became not-so-mini so I moved it to its own post." />
+<meta property="og:site_name" content="Xn" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-06T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="BibTeX For Jekyll Using jekyll-scholar" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","datePublished":"2021-08-06T00:00:00-05:00","description":"I made a long Jekyll tutorial covering lots of different features, but the references mini-tutorial became not-so-mini so I moved it to its own post.","url":"/tutorial/2021/08/06/bibtex-jekyll.html","mainEntityOfPage":{"@type":"WebPage","@id":"/tutorial/2021/08/06/bibtex-jekyll.html"},"author":{"@type":"Person","name":"Michal Porubcin"},"headline":"BibTeX For Jekyll Using jekyll-scholar","dateModified":"2021-08-06T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Xn" /><!-- Favicon -->
+  <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
+
+  <!-- MathJax for LaTeX -->
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body><header class="site-header">
+  <div class="wrapper-logo">
+    <div class="logo">
+      <!-- <a class="site-title" href="/">Xn</a> -->
+      <a href="/">
+        <img src="/assets/images/logo.png" />
+      </a>
+    </div>
+  </div>
+  <div class="wrapper">
+    <nav class="site-nav">
+      <a class="page-link" href="/"> Home</a>
+      <a class="page-link" href="/category/project/"> Projects</a>
+      <a class="page-link" href="/categories.html"> Categories</a>
+      <a class="page-link" href="/tags.html"> Tags</a>
+      <a class="page-link" href="/archive.html"> Archive</a>
+      <a class="page-link" href="/about.html"> About</a>
+    </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">BibTeX For Jekyll Using jekyll-scholar</h1>
+    <p class="post-meta">
+      <time datetime="2021-08-06T00:00:00-05:00" itemprop="datePublished">
+        
+        Aug 6, 2021
+      </time>
+
+      <!---->
+
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        by <span itemprop="name">Michal Porubcin</span>
+      </span>
+
+      <span class="post-categories">
+        <span>
+              
+              <a class="post-category" href="/category/tutorial/">tutorial&nbsp;</a>
+            </span>
+      </span>
+
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <blockquote>
+  <p>I made a long Jekyll tutorial covering lots of different features, but the references mini-tutorial became not-so-mini so I moved it to its own post.</p>
+</blockquote>
+
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#referencescitations-in-jekyll" id="markdown-toc-referencescitations-in-jekyll">References/Citations in Jekyll</a></li>
+  <li><a href="#bibtex" id="markdown-toc-bibtex">BibTeX</a></li>
+  <li><a href="#basics" id="markdown-toc-basics">Basics</a></li>
+  <li><a href="#custom-citation-style" id="markdown-toc-custom-citation-style">Custom Citation Style</a></li>
+  <li><a href="#link-to-resource" id="markdown-toc-link-to-resource">Link To Resource</a></li>
+  <li><a href="#adding-to-post-layout" id="markdown-toc-adding-to-post-layout">Adding To Post Layout</a></li>
+  <li><a href="#unresolved-issues" id="markdown-toc-unresolved-issues">Unresolved Issues</a></li>
+</ul>
+
+<h2 id="referencescitations-in-jekyll">References/Citations in Jekyll</h2>
+
+<p>Say you want to add references on your page. Instead of generating them outside of jekyll and copying them to the bottom of your post, or worse, typing them out by hand, you can let a package called jekyll-scholar take care of it all within jekyll.</p>
+
+<h2 id="bibtex">BibTeX</h2>
+
+<p><a href="http://www.bibtex.org/">BibTeX</a> is “a tool and a file format which are used to describe and process lists of references, mostly in conjunction with LaTeX documents.” A BibTeX entry looks something like this:</p>
+
+<div class="language-bib highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">@book</span><span class="p">{</span><span class="nl">Sutton1998</span><span class="p">,</span>
+  <span class="na">added-at</span> <span class="p">=</span> <span class="s">{2019-07-13T10:11:53.000+0200}</span><span class="p">,</span>
+  <span class="na">author</span> <span class="p">=</span> <span class="s">{Sutton, Richard S. and Barto, Andrew G.}</span><span class="p">,</span>
+  <span class="na">biburl</span> <span class="p">=</span> <span class="s">{https://www.bibsonomy.org/bibtex/2f46601cf8b13d39d1378af0d79438b12/lanteunis}</span><span class="p">,</span>
+  <span class="na">edition</span> <span class="p">=</span> <span class="s">{Second}</span><span class="p">,</span>
+  <span class="na">interhash</span> <span class="p">=</span> <span class="s">{ac6b144aaec1819919a2fba9f705c852}</span><span class="p">,</span>
+  <span class="na">intrahash</span> <span class="p">=</span> <span class="s">{f46601cf8b13d39d1378af0d79438b12}</span><span class="p">,</span>
+  <span class="na">publisher</span> <span class="p">=</span> <span class="s">{The MIT Press}</span><span class="p">,</span>
+  <span class="na">timestamp</span> <span class="p">=</span> <span class="s">{2019-07-13T10:11:53.000+0200}</span><span class="p">,</span>
+  <span class="na">title</span> <span class="p">=</span> <span class="s">{Reinforcement Learning: An Introduction}</span><span class="p">,</span>
+  <span class="na">url</span> <span class="p">=</span> <span class="s">{http://incompleteideas.net/book/the-book-2nd.html}</span><span class="p">,</span>
+  <span class="na">year</span> <span class="p">=</span> <span class="s">{2018}</span><span class="p">,</span>
+  <span class="na">link</span> <span class="p">=</span> <span class="s">{http://incompleteideas.net/book/RLbook2020.pdf}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>You don’t usually have to worry about constructing these. The entry comes all in one piece wherever the article is published so you can easily copy/paste it. You can still modify it; I added <code class="language-plaintext highlighter-rouge">link</code> to point to a pdf version of the book.</p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">😐</div>
+    
+    <div class="callout-text">If you get a bunch of warnings with the message 'Warning: Empty 'slug' generated for ''.' in the terminal, then it's probably due to empty items in a bibtex entry. See this issue: https://github.com/jekyll/jekyll/issues/7881. Try not to have entries that look like {} or ''.</div>
+  </div>
+</blockquote>
+
+<h2 id="basics">Basics</h2>
+
+<p>Add it to the Gemfile and run <code class="language-plaintext highlighter-rouge">bundle install</code></p>
+<pre><code class="language-gemfile">group :jekyll_plugins do
+  gem "jekyll-scholar"
+</code></pre>
+
+<p>Add it to _config.yml to use it:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">plugins</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">jekyll-scholar</span>
+</code></pre></div></div>
+
+<p>Restart the server and it should be ready to go.</p>
+
+<p>Jekyll-scholar allows you to generate references and citations from bibtex files, much like in a LaTeX environment. It’s pretty customizable, and the <a href="https://github.com/inukshuk/jekyll-scholar">repo’s readme</a> has good documentation (for once). The basics are:</p>
+<ul>
+  <li>Keep all your references in _bibliography/references.bib</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">{% bibliography %}</code> wherever you want to list your references (in the post layout for example).</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">{% cite bibliography-entry %}</code> whenever you want to cite a specific entry, replacing bibliography-entry with the entry id. Unfortunately it may have to go in the Markdown of your post.</li>
+</ul>
+
+<h2 id="custom-citation-style">Custom Citation Style</h2>
+
+<p>Some things to consider when you’re customizing your references. The tag <code class="language-plaintext highlighter-rouge">{{reference}}</code> gives the core reference element. The plugin will always output an ordered list, and customization will modify each list item inclusive of the <code class="language-plaintext highlighter-rouge">{{reference}}</code>, but the format of the actual reference element is determined by a cls file. The <a href="https://github.com/citation-style-language/styles">csl repo</a> has a list of presets to choose from. For example, I like the <a href="https://libguides.murdoch.edu.au/IEEE/home">IEEE</a> style better than APA, so I swapped it by adding this to \config.yml:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">scholar</span><span class="pi">:</span>
+  <span class="na">style</span><span class="pi">:</span> <span class="s">ieee</span>
+</code></pre></div></div>
+
+<p>The value of the style parameter is just a style from the csl repo without the .csl file extension.</p>
+
+<p>I ran into some problems though. First, IEEE is a numbered style, so the csl file would generate a number redundant with the number in the HTML list.</p>
+
+<p><img src="/assets/images/ref-redundant.png" alt="ref-redundant" /></p>
+
+<p>I found a solution buried in <a href="https://martinopilia.com/posts/2020/02/22/migration.html">here</a>. First, copy ieee.csl from the csl repo into _bibliography/ieee_custom.csl and customize it. It looks pretty hefty but here’s the gist of the structure:</p>
+<ul>
+  <li>a bunch of macros</li>
+  <li>a citation block</li>
+  <li>and a bibliography block</li>
+</ul>
+
+<p>Down in the bibliography block, comment out the citation number:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;bibliography</span> <span class="na">entry-spacing=</span><span class="s">"0"</span> <span class="na">second-field-align=</span><span class="s">"flush"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;layout</span> <span class="na">suffix=</span><span class="s">"."</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- Citation Number --&gt;</span>
+    <span class="c">&lt;!-- &lt;text variable="citation-number" prefix="[" suffix="] "/&gt; --&gt;</span>
+    <span class="c">&lt;!-- Author(s) --&gt;</span>
+    <span class="nt">&lt;text</span> <span class="na">macro=</span><span class="s">"author"</span> <span class="na">suffix=</span><span class="s">", "</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>Point to the new csl file in _config.yml:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">scholar</span><span class="pi">:</span>
+  <span class="na">style</span><span class="pi">:</span> <span class="s">_/bibliography/ieee_custom.csl</span>
+</code></pre></div></div>
+
+<p>Now edit the CSS of the numerals generated by jekyll-scholar, to satisfy the IEEE style:</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">ol</span><span class="nc">.bibliography</span> <span class="p">{</span>
+  <span class="nl">counter-reset</span><span class="p">:</span> <span class="n">item</span>
+<span class="p">}</span>
+
+<span class="nt">ol</span><span class="nc">.bibliography</span> <span class="nt">li</span> <span class="p">{</span>
+  <span class="nl">list-style-type</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">ol</span><span class="nc">.bibliography</span> <span class="nt">li</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="nl">content</span><span class="p">:</span> <span class="s1">"["</span> <span class="n">counter</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="s1">"] "</span><span class="p">;</span>
+  <span class="nl">counter-increment</span><span class="p">:</span> <span class="n">item</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">text-align</span><span class="p">:</span> <span class="nb">right</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">4em</span><span class="p">;</span>
+  <span class="nl">margin-left</span><span class="p">:</span> <span class="m">-4.4em</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/ref-fixed.png" alt="ref-fixed" />
+<em>That does the trick.</em></p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">😐</div>
+    
+    <div class="callout-text">Warning: edits to the csl file seem to require restarting the jekyll server.</div>
+  </div>
+</blockquote>
+
+<h2 id="link-to-resource">Link To Resource</h2>
+
+<p>I also wanted to make the csl file add an HTML link around the title pointing to the resource (like the url for a pdf of a research paper), as long as the reference had a link field in the bibtex (references.bib). Unfortunately the solutions I found looked pretty hacky so I settled for putting the link outside the csl-generated reference. To do this, just modify the list element using a <a href="https://github.com/inukshuk/jekyll-scholar#bibliography-template">bibliography template</a> at _layouts/bibitem.html.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;span&gt;</span>{{reference}}<span class="nt">&lt;/span&gt;</span>
+{% if entry.link %} 
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ entry.link }}"</span><span class="nt">&gt;</span>[link]<span class="nt">&lt;/a&gt;</span>
+{% endif %}
+</code></pre></div></div>
+
+<p>Add it to the config:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">scholar</span><span class="pi">:</span>
+  <span class="s">...</span>
+  <span class="s">bibliography_template</span><span class="pi">:</span> <span class="s">bibitem</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/ref-link.png" alt="ref-link" /></p>
+
+<h2 id="adding-to-post-layout">Adding To Post Layout</h2>
+
+<p>One last thing I wanted was the ability to put the references in the post layout so a) I could place it below the footnotes and b) I wouldn’t have to manually add it in every post. The first step is to put <code class="language-plaintext highlighter-rouge">{% bibliography --cited %}</code> in the post template, to show only elements of the bibliography you have cited on the page. Unfortunately if you have a header like <code class="language-plaintext highlighter-rouge">&lt;h2&gt;References&lt;/h2&gt;</code>, then it will show up even if there are no citations in the post. Here’s my solution:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% capture count %}{% bibliography_count --cited %}{% endcapture %}
+{% assign count = count | plus: 0 %}
+{% if count &gt; 0 %}
+<span class="nt">&lt;h2&gt;</span>References<span class="nt">&lt;/h2&gt;</span>
+{% endif %}
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"post-bibliography"</span><span class="nt">&gt;</span>
+{% bibliography --cited %}
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>The first line gets a string representing the number of references cited on the page and stores it in <code class="language-plaintext highlighter-rouge">count</code>. It gets converted to a number in the second line, and used in the third to show the header only if there are one or more references cited on the page.</p>
+
+<h2 id="unresolved-issues">Unresolved Issues</h2>
+
+<p>When I cited a reference using a BibTeX key with two periods, the citation wouldn’t render. That is, something like <code class="language-plaintext highlighter-rouge">{% cite 10.55553304652.3304675 %}</code> turned into “(missing reference)”. For now I just change the key in the BibTeX entry to something without two periods.</p>
+
+
+  </div>
+
+  <div class="post-bibliography">
+    
+
+
+<div class="post-bibliography">
+  <ol class="bibliography"></ol>
+</div>
+  </div>
+
+  <div class="post-tags">
+    Tags:&nbsp; 
+    <span>
+      <!-- 
+        
+        <a class="post-tag" href="/tag/bibtex"><nobr>bibtex</nobr>&nbsp;</a>
+      
+        
+        <a class="post-tag" href="/tag/jekyll"><nobr>jekyll</nobr>&nbsp;</a>
+       -->
+          
+          <a href="/tag/bibtex/">bibtex&nbsp;</a>
+        
+          
+          <a href="/tag/jekyll/">jekyll&nbsp;</a>
+        </span>
+  </div>
+
+  <div class="page-navigation"><a class="prev" href="/tutorial/2021/08/01/jekyll-tutorial.html">&larr; Jekyll Blog Tutorial (+ Lots of Features)</a><a class="next" href="/article/2021/08/06/model-based-rl.html">What Isn't Model-Based RL? &rarr;</a></div><a class="u-url" href="/tutorial/2021/08/06/bibtex-jekyll.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer">
+  2021 &copy; by Michal Porubcin. All Rights Reserved. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>. View on <a href="https://github.com/michalp21/michalp21.github.io" target="_blank">Github</a>.
+
+  <p>
+    <a href="/feed.xml" target="_blank">
+      <img src="/assets/images/logo_rss.png" />
+    </a>
+    <a href="https://github.com/michalp21" target="_blank">
+      <img src="/assets/images/logo_github.png" />
+    </a>
+  </p>
+
+</footer></body>
+
+</html>

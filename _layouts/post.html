@@ -42,6 +42,10 @@ layout: default
     {{ content }}
   </div>
 
+  <div class="post-bibliography">
+    {% include bibliography.html %}
+  </div>
+
   <div class="post-tags">
     Tags:&nbsp; 
     <span>
@@ -69,9 +73,9 @@ layout: default
     {%- endif -%}
   </div>
 
-  <!-- {%- if site.disqus.shortname -%}
+  {%- if site.disqus.shortname -%}
     {%- include disqus_comments.html -%}
-  {%- endif -%} -->
+  {%- endif -%}
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>

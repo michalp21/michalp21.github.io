@@ -1,0 +1,8 @@
+{% capture count %}{% bibliography_count --cited %}{% endcapture %}
+{% assign count = count | plus: 0 %}
+{% if count > 0 %}
+  <h2>References</h2>
+{% endif %}
+<div class="post-bibliography">
+  {% bibliography --cited %}
+</div>

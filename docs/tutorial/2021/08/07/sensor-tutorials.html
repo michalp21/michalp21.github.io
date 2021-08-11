@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/main.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>VI-sensor Project: Accompanying Tutorials | Xn</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="VI-sensor Project: Accompanying Tutorials" />
+<meta name="author" content="Michal Porubcin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Here’s the tutorials I put together for my VI-sensor project. I wrote them for myself several years ago so they were pretty minimal. I tried to flesh them out a bit more so maybe they can still be useful to others." />
+<meta property="og:description" content="Here’s the tutorials I put together for my VI-sensor project. I wrote them for myself several years ago so they were pretty minimal. I tried to flesh them out a bit more so maybe they can still be useful to others." />
+<meta property="og:site_name" content="Xn" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-07T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="VI-sensor Project: Accompanying Tutorials" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","datePublished":"2021-08-07T00:00:00-05:00","description":"Here’s the tutorials I put together for my VI-sensor project. I wrote them for myself several years ago so they were pretty minimal. I tried to flesh them out a bit more so maybe they can still be useful to others.","url":"/tutorial/2021/08/07/sensor-tutorials.html","mainEntityOfPage":{"@type":"WebPage","@id":"/tutorial/2021/08/07/sensor-tutorials.html"},"author":{"@type":"Person","name":"Michal Porubcin"},"headline":"VI-sensor Project: Accompanying Tutorials","dateModified":"2021-08-07T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Xn" /><!-- Favicon -->
+  <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
+
+  <!-- MathJax for LaTeX -->
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body><header class="site-header">
+  <div class="wrapper-logo">
+    <div class="logo">
+      <!-- <a class="site-title" href="/">Xn</a> -->
+      <a href="/">
+        <img src="/assets/images/logo.png" />
+      </a>
+    </div>
+  </div>
+  <div class="wrapper">
+    <nav class="site-nav">
+      <a class="page-link" href="/"> Home</a>
+      <a class="page-link" href="/category/project/"> Projects</a>
+      <a class="page-link" href="/categories.html"> Categories</a>
+      <a class="page-link" href="/tags.html"> Tags</a>
+      <a class="page-link" href="/archive.html"> Archive</a>
+      <a class="page-link" href="/about.html"> About</a>
+    </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">VI-sensor Project: Accompanying Tutorials</h1>
+    <p class="post-meta">
+      <time datetime="2021-08-07T00:00:00-05:00" itemprop="datePublished">
+        
+        Aug 7, 2021
+      </time>
+
+      <!---->
+
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        by <span itemprop="name">Michal Porubcin</span>
+      </span>
+
+      <span class="post-categories">
+        <span>
+              
+              <a class="post-category" href="/category/tutorial/">tutorial&nbsp;</a>
+            </span>
+      </span>
+
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <blockquote>
+  <p>Here’s the tutorials I put together for my VI-sensor project. I wrote them for myself several years ago so they were pretty minimal. I tried to flesh them out a bit more so maybe they can still be useful to others.</p>
+</blockquote>
+
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#summary" id="markdown-toc-summary">Summary</a>    <ul>
+      <li><a href="#prerequisites" id="markdown-toc-prerequisites">Prerequisites</a></li>
+      <li><a href="#directory-tree" id="markdown-toc-directory-tree">Directory Tree</a></li>
+    </ul>
+  </li>
+  <li><a href="#imu-guide" id="markdown-toc-imu-guide">IMU Guide</a></li>
+  <li><a href="#generic-usb-camera-guide" id="markdown-toc-generic-usb-camera-guide">Generic USB Camera Guide*</a>    <ul>
+      <li><a href="#requirements" id="markdown-toc-requirements">Requirements</a></li>
+      <li><a href="#steps" id="markdown-toc-steps">Steps</a></li>
+    </ul>
+  </li>
+  <li><a href="#flir-camera-guide-flycap-sdk--ros-driver" id="markdown-toc-flir-camera-guide-flycap-sdk--ros-driver">FLIR Camera Guide (flycap sdk &amp; ros driver)</a>    <ul>
+      <li><a href="#background-info" id="markdown-toc-background-info">Background Info</a></li>
+      <li><a href="#install" id="markdown-toc-install">Install</a></li>
+      <li><a href="#running" id="markdown-toc-running">Running</a></li>
+    </ul>
+  </li>
+  <li><a href="#camera-calibration-given-photo-collection" id="markdown-toc-camera-calibration-given-photo-collection">Camera Calibration Given Photo Collection*</a></li>
+  <li><a href="#wires" id="markdown-toc-wires">Wires</a></li>
+  <li><a href="#triggering-camera-from-imu" id="markdown-toc-triggering-camera-from-imu">Triggering Camera From IMU</a>    <ul>
+      <li><a href="#flycap" id="markdown-toc-flycap">Flycap</a></li>
+      <li><a href="#imu-serial" id="markdown-toc-imu-serial">IMU Serial</a></li>
+      <li><a href="#imu-ros" id="markdown-toc-imu-ros">IMU ROS</a></li>
+      <li><a href="#camera-ros-receive-trigger" id="markdown-toc-camera-ros-receive-trigger">Camera ROS (Receive Trigger)</a></li>
+      <li><a href="#camera-ros-publish-image" id="markdown-toc-camera-ros-publish-image">Camera ROS (Publish Image)</a></li>
+      <li><a href="#wrap-up" id="markdown-toc-wrap-up">Wrap Up</a></li>
+    </ul>
+  </li>
+  <li><a href="#camera-calibration-with-kalibr" id="markdown-toc-camera-calibration-with-kalibr">Camera Calibration with Kalibr</a>    <ul>
+      <li><a href="#record-rosbag" id="markdown-toc-record-rosbag">Record rosbag</a></li>
+      <li><a href="#calibrate-cameras" id="markdown-toc-calibrate-cameras">Calibrate Cameras</a></li>
+      <li><a href="#calibrate-cameraimu" id="markdown-toc-calibrate-cameraimu">Calibrate Camera+IMU</a></li>
+      <li><a href="#using-in-maplab" id="markdown-toc-using-in-maplab">Using In Maplab</a></li>
+    </ul>
+  </li>
+  <li><a href="#rovioli--maplab" id="markdown-toc-rovioli--maplab">ROVIOLI + maplab</a>    <ul>
+      <li><a href="#background" id="markdown-toc-background">Background</a></li>
+      <li><a href="#build-map" id="markdown-toc-build-map">Build Map</a></li>
+      <li><a href="#refine-calibration" id="markdown-toc-refine-calibration">Refine Calibration</a></li>
+      <li><a href="#visualization" id="markdown-toc-visualization">Visualization</a></li>
+      <li><a href="#relocalization" id="markdown-toc-relocalization">Relocalization</a></li>
+    </ul>
+  </li>
+  <li><a href="#point-cloud-and-mesh-visualization" id="markdown-toc-point-cloud-and-mesh-visualization">Point cloud and mesh visualization*</a></li>
+  <li><a href="#some-fixes-for-dynamic-reconfigure-service" id="markdown-toc-some-fixes-for-dynamic-reconfigure-service">Some Fixes For Dynamic Reconfigure Service</a></li>
+  <li><a href="#pose-and-image-to-unity" id="markdown-toc-pose-and-image-to-unity">Pose and Image to Unity</a></li>
+</ul>
+
+<h2 id="summary">Summary</h2>
+<p>While making the <a href="/project/2021/07/21/sensor.html">VI-sensor</a>, I ran through lots of different tutorials and tried lots of things, and I wrote down some of the steps so I wouldn’t get lost later. They actually saved me a couple times when I had to start over one time. Several years later, even though some things have been obsoleted, maybe these refurbished tutorials will be helpful to someone starting on similar hardware or software.</p>
+
+<p>As I experimented a lot, I didn’t end up using all the tutorials for the final VI-sensor. The ones that were not necessary are marked with an asterisk. The tutorials are in a rough order. Some previous tutorials may need to be completed before starting a later one.</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+  <li><strong>Tech</strong>: A computer generally speaking, specific requirements mentioned in sub tutorials below.</li>
+  <li><strong>Skills</strong>: terminal (command prompt), light C++/Python/general programming, ROS, basic knowledge of hardware and software (what is an IMU for, what is Arduino).</li>
+</ul>
+
+<p>Though I had some exposure to all the above, I strengthened a lot of skills, especially ROS, as I went along. I would say the core prereqs are some terminal and programming familiarity.</p>
+
+<h3 id="directory-tree">Directory Tree</h3>
+
+<p>There are tons of files and workspaces all over the place. I didn’t organize things that well, but for reference here’s the hierarchy I had, with the home directory (~/) as root. Bolded files are important. It might help to check back here if I’m referring to some errant launch or config file.</p>
+<ul>
+  <li>Arduino/Razor_AHRS/</li>
+  <li>catkin_ws/src/
+    <ul>
+      <li>pointgrey_camera_driver/pointgrey_camera_driver/
+        <ul>
+          <li>launch/<strong>camera.launch</strong></li>
+          <li>src/</li>
+        </ul>
+      </li>
+      <li>razor_imu_9dof/
+        <ul>
+          <li>config/<strong>my_razor.yaml</strong></li>
+          <li>launch/<strong>razor-pub.launch</strong></li>
+          <li>nodes/</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>kalibr_ws/</li>
+  <li>maplab_ws/src/maplab/applications/rovioli/
+    <ul>
+      <li>scripts/<strong>my_run_rovioli</strong></li>
+      <li>share/
+        <ul>
+          <li><strong>my_imu-sigmas-rovio.yaml</strong></li>
+          <li><strong>my_imu-sparkfun.yaml</strong></li>
+          <li><strong>my_ncamera.yaml</strong></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="imu-guide">IMU Guide</h2>
+<p>I used the <a href="https://learn.sparkfun.com/tutorials/9dof-razor-imu-m0-hookup-guide/all">9dof Razor IMU</a> from Sparkfun, which has been discontinued :( Specific version is M0 14001. Mostly follow the guide at the <a href="http://wiki.ros.org/razor_imu_9dof#Software_Installation">ROS wiki</a>, but with modifications which I’ll list below:</p>
+<ul>
+  <li>Before everything:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">$ sudo adduser &lt;username&gt; dialout</code></li>
+      <li>logout, log back in</li>
+    </ul>
+  </li>
+  <li>On step 3, no breakout is required for this version of the board. Just a USB cable.</li>
+  <li>For step 4, I used Used Arduino 1.8.6 (latest available at the time)</li>
+  <li>I think I did step 4.1.1 instead of 4.1.2. I had to build from source.</li>
+  <li>On step 4.2, follow above tutorial until opening Razor_AHRS in Arduino. Go to the <a href="sfe.io/t567">Sparkfun tutorial</a> and follow from “Installing the 9DoF Razor Arduino Core” until the end of “Select the Board and Serial Port.” Also, using the link at the beginning of the following section, download Sparkfun MPU-9250 DMP Library and install it (add it as Arduino library). Finally, upload code to the board. (Note: do NOT <code class="language-plaintext highlighter-rouge">include</code> the library in the code. Adding the library into Arduino IDE is enough.). Return to ROS wiki tutorial (skip the rest of 4.2).</li>
+  <li>Edit the USER SETUP AREA in Razor_AHRS.ino, in the ~/Arduino directory! (NOT ~/catkin_ws)</li>
+  <li>On step 4.3: Create config file (in ~/catkin_ws), rename the port in my_razor.yaml to whatever the port is called in Arduino IDE (eg /dev/ttyACM0)</li>
+  <li>Step 6.2 will run a visualization demo. Prior to running the given command, run <code class="language-plaintext highlighter-rouge">$ source ~/catkin_ws/devel/setup.bash</code></li>
+  <li>On step 7.1.2, don’t adjust the gyro (all ~0)</li>
+  <li>I only did hard iron correction in 7.1.3, using the Arduino serial monitor (then in my_razor.yaml, setting calibration_magn_use_extended parameter to false). Add changes to Razor_AHRS. These values must also be placed in the my_razor.yaml file in the catkin workspace and sourced. The razor-launch-and-display.launch (and possibly other launch files in the launch directory) all take my_razor.yaml as a parameter, overriding the values we wrote in Arduino and flashed onto the IMU board (yes, dumb).</li>
+</ul>
+
+<p>That should be the end of the ros wiki tutorial. The polling rate is probably still low, so go back in Razor_AHRS.ino, and change <code class="language-plaintext highlighter-rouge">OUTPUT__DATA_INTERVAL</code> to 10 (to increase the rate to 100 Hz), and change the <code class="language-plaintext highlighter-rouge">read_sensors</code> function as follows:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="kt">uint32_t</span> <span class="n">lastDisplayMs</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">read_sensors</span><span class="p">()</span> <span class="p">{</span>
+<span class="cp">#if HW__VERSION_CODE == 14001
+</span>    <span class="kt">uint32_t</span> <span class="n">currMs</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">currMs</span> <span class="o">&gt;</span> <span class="n">lastDisplayMs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">lastDisplayMs</span> <span class="o">=</span> <span class="n">currMs</span><span class="p">;</span>
+        <span class="n">loop_imu</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="c1">//...rest of function omitted</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Reflash, and now if you launch razor-pub.launch, then in another terminal window run <code class="language-plaintext highlighter-rouge">$ rostopic hz imu</code>, you will see average rate: 100 Hz!</p>
+
+<p>Extra notes:</p>
+<ul>
+  <li>Edit+flash the Razor_AHRS.ino file from the Arduino directory, NOT the Razor_AHRS.ino file in the catkin workspace! (Note from 2021: I’m not sure why this is necessary…) However, the my_razor.yaml is configured in the catkin workspace and sourced.</li>
+  <li>The “Using the MPU-9250 DMP Arduino Library” section of the <a href="sfe.io/t567">tutorial</a> is useful for understanding some of the Arduino code, particularly Sensors.ino</li>
+</ul>
+
+<p>Here’s a sketch of the important sections of the razor_9dof code:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>main()
+    read_sensors()
+        Sensors.loop_imu() //get data
+        hardware trigger //every 33ms
+    else if (output_mode == OUTPUT_MODE_ANGLES_AG_SENSORS)
+        Sensors.output_both_angles_and_sensors_text() //Logging to serial
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="generic-usb-camera-guide">Generic USB Camera Guide*</h2>
+<p>The first camera I tried was a GoPro camera. I thought it would at least be a step up from a webcam, but I was wrong. My VI-sensor was just the IMU taped on top of the GoPro…it did not work for several reasons:</p>
+<ul>
+  <li>not global shutter</li>
+  <li>resolution was too large making the algorithm run too slowly</li>
+  <li>IMU would wobble around making calibration useless</li>
+</ul>
+
+<p>But I’ll leave this tutorial here anyways.</p>
+
+<h3 id="requirements">Requirements</h3>
+<p>The GoPro requires extra hocus pocus like an external capture card. It’s possible to just use a webcam.</p>
+<ul>
+  <li>GoPro 2018
+    <ul>
+      <li>double ended type-A USB 3.0 cable</li>
+      <li>HDMI to micro HDMI cable</li>
+      <li>HDMI to USB converter/capture card (high end / low latency) (USB 3.0 allows for 1080p 60fps I think?)</li>
+    </ul>
+  </li>
+  <li>Or just a webcam</li>
+</ul>
+
+<h3 id="steps">Steps</h3>
+<p>Turn on the GoPro. Set to 1080p and 30fps. Plug in the hdmi cable &lt;-&gt; capture card &lt;-&gt; usb cable &lt;-&gt; laptop usb port. The gopro screen should go black.</p>
+
+<p>Run <code class="language-plaintext highlighter-rouge">$ sudo apt-get install ros-kinetic-usb-cam</code></p>
+
+<p>Create folder(s) called usb_camera/launch in your catkin workspace (just to have a place to put the usb_cam-related launch files). Create a launch file with the usbcam and optionally an image display to view the live video on the computer. The value for the video_device param can be found with the following terminal commands:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install v4l-utils
+$ v4l2-ctl --list-devices
+</code></pre></div></div>
+
+<p>Note: v4l-utils may already be installed</p>
+
+<p>Note: The GoPro may automatically shut off (another reason why a GoPro was a bad idea) so turn it back on as necessary.</p>
+
+<p>Now run <code class="language-plaintext highlighter-rouge">$ roslaunch &lt;/path/to/usb_launchfile&gt;</code>. Boom done.</p>
+
+<p>Notes:</p>
+<ul>
+  <li>USB C cable must be disconnected from GoPro</li>
+  <li>If image is glitched somehow, more often than not it’s one of the wired connections. Usually just jiggle the cables a bit.</li>
+</ul>
+
+<p>Run <code class="language-plaintext highlighter-rouge">$ rostopic hz &lt;cam topic&gt;</code> in a separate terminal and notice that the fps is low. This is likely due to autoexposure. I tried several settings:</p>
+<ol>
+  <li>Autoexposure on (default)</li>
+  <li>Turn off autoexposure on GoPro</li>
+  <li>Turn off autoexposure on GoPro and in launch file</li>
+</ol>
+
+<p>In terms of fps: 3 &gt; 2 &gt; 1. To achieve (2) or (3), set add new autoexposure param and set to false in launch file. Also use image_raw not image_compressed.</p>
+
+<hr />
+
+<h2 id="flir-camera-guide-flycap-sdk--ros-driver">FLIR Camera Guide (flycap sdk &amp; ros driver)</h2>
+<p>I used a Firefly MV monochrome global shutter USB2.0 camera from FLIR (Point Grey). I’m pretty sure it’s been discontinued and it’s probably for the best. I think the closest thing FLIR offers now is the <a href="https://www.flir.com/products/firefly-s/">FireFly S</a>.</p>
+
+<p>This guide uses FlyCapture2 sdk for FLIR Firewire and USB2 cams! For USB3, GigE, and 10GigE cams, use Spinnaker sdk and the <a href="https://github.com/ros-drivers/flir_camera_driver">ros driver</a> instead. I will refer to this URL as FDP (flir downloads page): www.ptgrey.com/support/downloads/</p>
+
+<p>I used Firefly MV monochrome, amd64, Ubuntu 16 (FLIR does not offer flycap sdk for Ubuntu 14 and below)</p>
+
+<h3 id="background-info">Background Info</h3>
+<p>Go to the <a href="https://github.com/ros-drivers/pointgrey_camera_driver">point grey camera ros drivers</a>
+Navigate to pointgrey_camera_driver/cmake/download_flycap</p>
+
+<p>Find something like below:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">'x86_64'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">'current'</span><span class="p">:</span> <span class="p">(</span>
+        <span class="s">'https://www.ptgrey.com/support/downloads/10767/'</span><span class="p">,</span> <span class="p">(</span>
+            <span class="s">'flycapture2-2.11.3.121-amd64/libflycapture-2.11.3.121_amd64.deb'</span><span class="p">,</span>
+            <span class="s">'flycapture2-2.11.3.121-amd64/libflycapture-2.11.3.121_amd64-dev.deb'</span><span class="p">),</span>
+        <span class="s">'usr/lib/libflycapture.so.2.11.3.121'</span><span class="p">),</span>
+</code></pre></div></div>
+
+<p>As you can see, the flycap sdk version used is flycapture2-2.11.3.121. However, in this very version, FFMV/FMVU cameras cannot start!! (according to release notes; available on FDP) This bug is fixed in 2.11.3-164 and above.</p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">😐</div>
+    
+    <div class="callout-text">Looking at the repo in 2021, it's possible they fixed this with commit e27f3a0.</div>
+  </div>
+</blockquote>
+
+<h3 id="install">Install</h3>
+
+<p>Go to FDP. Download latest sdk: 2.13.3-31 for me. Follow instructions in README.txt to install.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd ~/catkin_ws/src
+$ git clone https://github.com/ros-drivers/pointgrey_camera_driver
+</code></pre></div></div>
+<p>Open pointgrey_camera_driver/cmake/download_flycap and find the same block as above. Edit like so:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">'x86_64'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">'current'</span><span class="p">:</span> <span class="p">(</span>
+        <span class="s">'https://www.ptgrey.com/support/downloads/AAAAA/'</span><span class="p">,</span> <span class="p">(</span>
+            <span class="s">'flycapture2-BBBBB-amd64/libflycapture-BBBBB_amd64.deb'</span><span class="p">,</span>
+            <span class="s">'flycapture2-BBBBB-amd64/libflycapture-BBBBB_amd64-dev.deb'</span><span class="p">),</span>
+        <span class="s">'usr/lib/libflycapture.so.BBBBB'</span><span class="p">),</span>
+</code></pre></div></div>
+
+<p>Where AAAAA is the link to the file on the FDP (go to FDP hover over sdk link, right click, copy link address), and BBBBB is version number. So mine looks like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">'x86_64'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">'current'</span><span class="p">:</span> <span class="p">(</span>
+        <span class="s">'https://www.ptgrey.com/support/downloads/11176/'</span><span class="p">,</span> <span class="p">(</span>
+            <span class="s">'flycapture2-2.13.3.31-amd64/libflycapture-2.13.3.31_amd64.deb'</span><span class="p">,</span>
+            <span class="s">'flycapture2-2.13.3.31-amd64/libflycapture-2.13.3.31_amd64-dev.deb'</span><span class="p">),</span>
+        <span class="s">'usr/lib/libflycapture.so.2.13.3.31'</span><span class="p">),</span>
+</code></pre></div></div>
+
+<p>Run:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd ~/catkin_ws
+$ catkin_make
+</code></pre></div></div>
+
+<p>Due to the version bs, you cannot just <code class="language-plaintext highlighter-rouge">$ sudo apt-get install ros-kinetic-ptgrey-camera-drivers</code>; you must build from (modified) source.</p>
+
+<p>If you mess up, run the uninstall script located in the sdk folder downloaded from FDP, and remove the ros package (depending whether you built from source or downloaded binary: either remove cloned repo and <code class="language-plaintext highlighter-rouge">catkin clean</code>, OR <code class="language-plaintext highlighter-rouge">$ sudo apt-get remove ros-kinetic-blabla</code> and maybe deal with orphaned packages).</p>
+
+<h3 id="running">Running</h3>
+
+<p>Tada! Now plug in the camera and type:
+<code class="language-plaintext highlighter-rouge">$ flycap</code></p>
+
+<p>Select your camera and press ok to view a video feed! Press the gear icon to adjust imaging settings. Changing settings in ROS instead of Flycap can be done with dynamic reconfigure; see tutorial for that further down. Some settings in dynamic reconfigure, however, seem to be bugged (afaik)! See the comment at the end of the dynamic reconfigure tutorial.</p>
+
+<p>BIG NOTE: If you are already publishing on camera/image_raw, then you will not see a video feed if you open flycap as well. However, changing the settings from flycap will still take effect.</p>
+
+<p>Note: To view with img_view, use <code class="language-plaintext highlighter-rouge">$ rosrun image_view image_view image:=camera/image_raw</code>. I recall this not working before but now it does and I’m accepting it.</p>
+
+<p>Note: I cannot get this to work with kalibr validator.</p>
+
+<hr />
+
+<h2 id="camera-calibration-given-photo-collection">Camera Calibration Given Photo Collection*</h2>
+<p>Before finding kalibr I think I used this method to calibrate my camera.</p>
+
+<p>Mostly follow <a href="https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_calib3d/py_calibration/py_calibration.html#calibration">this guide</a></p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">😐</div>
+    
+    <div class="callout-text">That link is dead. This should be the same guide: https://docs.opencv.org/4.5.2/dc/dbb/tutorial_py_calibration.html</div>
+  </div>
+</blockquote>
+
+<p>Print a 9x6 checkerboard pattern on any size paper (Letter/A4/etc works). Paste/tape paper flatly onto a flat surface. (emphasis on flat)</p>
+
+<p>Here’s the code to get calibration params.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="c1"># import pdb; pdb.set_trace()
+</span>
+<span class="c1">#Protip: python reprojection_error.py &gt; error.txt
+#Explanation: https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_calib3d/py_calibration/py_calibration.html#calibration
+</span>
+<span class="n">PATH</span> <span class="o">=</span> <span class="s">"/Users/user/Documents/Prog/temp/"</span>
+
+<span class="c1">#For displaying large images
+</span><span class="n">cv2</span><span class="p">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">"output"</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">WINDOW_NORMAL</span><span class="p">)</span>
+
+<span class="c1"># termination criteria
+</span><span class="n">criteria</span> <span class="o">=</span> <span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">TERM_CRITERIA_EPS</span> <span class="o">+</span> <span class="n">cv2</span><span class="p">.</span><span class="n">TERM_CRITERIA_MAX_ITER</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
+
+<span class="c1"># prepare object points, like (0,0,0), (1,0,0), (2,0,0) ....,(6,5,0)
+</span><span class="n">objp</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="o">*</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">objp</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">].</span><span class="n">T</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Arrays to store object points and image points from all the images.
+</span><span class="n">objpoints</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># 3d point in real world space
+</span><span class="n">imgpoints</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># 2d points in image plane.
+</span>
+<span class="n">images</span> <span class="o">=</span> <span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="s">'*.JPG'</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Reading %d images from %s"</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">),</span> <span class="n">PATH</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">PATH</span> <span class="o">+</span> <span class="n">fname</span><span class="p">)</span>
+    <span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+
+    <span class="c1"># Find the chess board corners
+</span>    <span class="n">ret</span><span class="p">,</span> <span class="n">corners</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">findChessboardCorners</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+
+    <span class="c1"># If found, add object points, image points (after refining them)
+</span>    <span class="k">if</span> <span class="n">ret</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">objpoints</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">objp</span><span class="p">)</span>
+
+        <span class="n">corners2</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cornerSubPix</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span><span class="n">corners</span><span class="p">,(</span><span class="mi">11</span><span class="p">,</span><span class="mi">11</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">criteria</span><span class="p">)</span>
+        <span class="n">imgpoints</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">corners2</span><span class="p">)</span>
+
+        <span class="c1"># Draw and display the corners
+</span>        <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">drawChessboardCorners</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">corners2</span><span class="p">,</span><span class="n">ret</span><span class="p">)</span>
+
+        <span class="n">imS</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">720</span><span class="p">,</span> <span class="mi">480</span><span class="p">))</span>
+        <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">"img"</span><span class="p">,</span> <span class="n">imS</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+
+<span class="n">ret</span><span class="p">,</span> <span class="n">mtx</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">rvecs</span><span class="p">,</span> <span class="n">tvecs</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">calibrateCamera</span><span class="p">(</span><span class="n">objpoints</span><span class="p">,</span> <span class="n">imgpoints</span><span class="p">,</span> <span class="n">gray</span><span class="p">.</span><span class="n">shape</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="bp">None</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Projection (Intrinsic)"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mtx</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Distortion (Extrinsic)"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">PATH</span> <span class="o">+</span> <span class="s">"GOPR0003.JPG"</span><span class="p">)</span>
+<span class="n">h</span><span class="p">,</span>  <span class="n">w</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">newcameramtx</span><span class="p">,</span> <span class="n">roi</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">getOptimalNewCameraMatrix</span><span class="p">(</span><span class="n">mtx</span><span class="p">,</span><span class="n">dist</span><span class="p">,(</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">),</span><span class="mi">1</span><span class="p">,(</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">))</span>
+
+<span class="c1"># undistort
+</span><span class="n">dst</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">undistort</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">mtx</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">newcameramtx</span><span class="p">)</span>
+
+<span class="c1"># crop the image
+</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">h</span> <span class="o">=</span> <span class="n">roi</span>
+<span class="n">dst</span> <span class="o">=</span> <span class="n">dst</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">]</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">PATH</span> <span class="o">+</span> <span class="s">'calibresult.png'</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+
+<span class="n">tot_error</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">objpoints</span><span class="p">)):</span>
+    <span class="n">imgpoints2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">projectPoints</span><span class="p">(</span><span class="n">objpoints</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rvecs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tvecs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mtx</span><span class="p">,</span> <span class="n">dist</span><span class="p">)</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">imgpoints</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">imgpoints2</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">NORM_L2</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">imgpoints2</span><span class="p">)</span>
+    <span class="n">tot_error</span> <span class="o">+=</span> <span class="n">error</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"mean reprojection error: "</span><span class="p">,</span> <span class="n">tot_error</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">objpoints</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Changes from the code in the tutorial:</p>
+<ul>
+  <li>Code assumes (9,6) pattern (from link above).</li>
+  <li>Prints relevant matrices and error</li>
+  <li>Fixes reprojection error calculation</li>
+  <li>Better image display for very large images (exceeding screen size)</li>
+</ul>
+
+<p>It should output a calibresult.jpg, which is one undistorted image (the image name must be specified in code).</p>
+
+<p>Add calibration results to my_config.yaml.</p>
+
+<hr />
+
+<h2 id="wires">Wires</h2>
+
+<p>In order to set up the triggering, we need to stably mount the camera and IMU and connect them. I 3D-printed a holder which I included in the middle of the <a href="/project/2021/07/21/sensor.html">project summary</a>. The design is weird because I had other plans for it and also because, well, that’s the best I could come up with. The correct wiring can be found on appropriate data sheets.</p>
+
+<hr />
+
+<h2 id="triggering-camera-from-imu">Triggering Camera From IMU</h2>
+
+<p>The most important tutorial! Fun fact I couldn’t find this one so I looked back at the old code (which I had luckily) and whipped up a 2021 version just for this post. There may be errors or omissions though.</p>
+
+<p>I basically worked off another tutorial which I’ll call <a href="https://grauonline.de/wordpress/?page_id=1951">grau</a>. There are two important differences. First, I swapped the bluefox2 library with the pointgrey library, just because I used a different camera. My IMU was different as well, incorporating Arduino onboard, so I didn’t need mpu6050_serial_to_imu. Those two differences require me to explain the steps separately from grau, unlike the IMU tutorial, but I still recommend his tutorial for background information.</p>
+
+<p>Here are the main steps:</p>
+<ul>
+  <li>Before everything, use Flycap to set parameters on camera</li>
+  <li>Output trigger data from IMU to serial</li>
+  <li>Publish IMU and trigger data over ROS</li>
+  <li>Receive trigger messages with pointgrey camera driver</li>
+  <li>Send images over ROS</li>
+</ul>
+
+<p>ROS is the bridge between the IMU, camera, and the PC. Trigger data is only used to sync the IMU and camera. At the end, the PC should see synced IMU and camera messages over ROS, which will be fed into the SLAM algorithm.</p>
+
+<h3 id="flycap">Flycap</h3>
+
+<p>Follow the Flycap tutorial above. In the Flycap GUI, there should be settings for enabling trigger and disabling autoexposure.</p>
+
+<h3 id="imu-serial">IMU Serial</h3>
+
+<p>Assuming the camera and imu are wired together, first revisit Arduino/Razor_AHRS/Razor_AHRS.ino from the IMU tutorial above, and include camera triggering every 33ms. Note that the camera has a minimum triggering frequency. See the data sheet for details.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">lastDisplayMs</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">triggerMs</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">triggerCounter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">read_sensors</span><span class="p">()</span> <span class="p">{</span>
+<span class="cp">#if HW__VERSION_CODE == 14001
+</span>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">currMs</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">currMs</span> <span class="o">&gt;</span> <span class="n">lastDisplayMs</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">lastDisplayMs</span> <span class="o">=</span> <span class="n">currMs</span><span class="p">;</span>
+    <span class="n">loop_imu</span><span class="p">();</span>
+    <span class="c1">//raise 33 for lower fps</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">currMs</span> <span class="o">-</span> <span class="n">triggerMs</span> <span class="o">&gt;</span> <span class="mi">33</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+      <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+      <span class="n">triggerCounter</span><span class="o">++</span><span class="p">;</span>
+      <span class="n">triggerMs</span> <span class="o">=</span> <span class="n">currMs</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="cp">#else
+</span>  <span class="n">Read_Gyro</span><span class="p">();</span> <span class="c1">// Read gyroscope</span>
+  <span class="n">Read_Accel</span><span class="p">();</span> <span class="c1">// Read accelerometer</span>
+  <span class="n">Read_Magn</span><span class="p">();</span> <span class="c1">// Read magnetometer</span>
+<span class="cp">#endif // HW__VERSION_CODE
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>Add the following to Arduino/Razor_AHRS/Output.ino <em>at the end</em> of <code class="language-plaintext highlighter-rouge">output_both_angles_and_sensors_text()</code>, in order to log necessary trigger data.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">LOG_PORT</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">triggerCounter</span><span class="p">);</span> <span class="n">LOG_PORT</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">","</span><span class="p">);</span>
+<span class="n">LOG_PORT</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">triggerMs</span><span class="p">);</span> <span class="n">LOG_PORT</span><span class="p">.</span><span class="n">println</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Remember if you change the Arduino code you have to reflash the IMU.</p>
+
+<h3 id="imu-ros">IMU ROS</h3>
+
+<p>In razor_imu_9dof/nodes/imu_node.py, publish <a href="http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/TimeReference.html">TimeReference</a> messages. This replaces the mpu6050_serial_to_imu from grau.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// after init_node()</span>
+<span class="n">pub_trigger</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="err">'</span><span class="n">imu</span><span class="o">/</span><span class="n">trigger_time</span><span class="err">'</span><span class="p">,</span> <span class="n">TimeReference</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">imuMsg</span> <span class="o">=</span> <span class="n">Imu</span><span class="p">()</span>
+<span class="n">triggerMsg</span> <span class="o">=</span> <span class="n">TimeReference</span><span class="p">()</span>
+
+<span class="p">...</span>
+
+<span class="c1">/// in the while loop</span>
+<span class="n">triggerCounter</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">triggerCounter</span> <span class="o">&gt;</span> <span class="n">lastTriggerCounter</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">triggerMsg</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">triggerCounter</span>
+    <span class="n">triggerMsg</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span><span class="o">%</span><span class="mi">1000</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">triggerMsg</span><span class="p">.</span><span class="n">time_ref</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">pub_trigger</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">triggerMsg</span><span class="p">)</span>
+
+    <span class="n">lastTriggerCounter</span> <span class="o">=</span> <span class="n">triggerCounter</span>
+</code></pre></div></div>
+
+<p>The serial output is read line by line with <code class="language-plaintext highlighter-rouge">line = ser.readline()</code>, and split by comma into <code class="language-plaintext highlighter-rouge">words</code>. <code class="language-plaintext highlighter-rouge">words[9]</code>, is <code class="language-plaintext highlighter-rouge">triggerCounter</code> and <code class="language-plaintext highlighter-rouge">words[10]</code>, is <code class="language-plaintext highlighter-rouge">triggerMs</code>.</p>
+
+<h3 id="camera-ros-receive-trigger">Camera ROS (Receive Trigger)</h3>
+
+<p>Add a ring buffer to pointgrey_camera_driver/pointgrey_camera_driver/src/nodelet.cpp. The idea is if the write head is running laps around the read head then it’s out of sync.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">callback</span><span class="p">(</span><span class="k">const</span> <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">TimeReference</span><span class="o">::</span><span class="n">ConstPtr</span> <span class="o">&amp;</span><span class="n">time_ref</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//if ( (time_ref-&gt;header.seq &amp; 63) == 0){</span>
+  <span class="c1">//  ROS_WARN("recv triggertime seq %10u", time_ref-&gt;header.seq);</span>
+  <span class="c1">//}</span>
+  <span class="c1">//  ros::Duration(0.001).sleep();</span>
+  <span class="n">TriggerPacket_t</span> <span class="n">pkt</span><span class="p">;</span>
+  <span class="n">pkt</span><span class="p">.</span><span class="n">triggerTime</span> <span class="o">=</span> <span class="n">time_ref</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="p">;</span>
+  <span class="n">pkt</span><span class="p">.</span><span class="n">triggerCounter</span> <span class="o">=</span> <span class="n">time_ref</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">seq</span><span class="p">;</span>
+  <span class="n">fifoWrite</span><span class="p">(</span><span class="n">pkt</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">fifoWrite</span><span class="p">(</span><span class="n">TriggerPacket_t</span> <span class="n">pkt</span><span class="p">){</span>
+  <span class="n">fifo</span><span class="p">[</span><span class="n">fifoWritePos</span><span class="p">]</span><span class="o">=</span><span class="n">pkt</span><span class="p">;</span>
+  <span class="n">fifoWritePos</span> <span class="o">=</span> <span class="p">(</span><span class="n">fifoWritePos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">FIFO_SIZE</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">fifoWritePos</span> <span class="o">==</span> <span class="n">fifoReadPos</span><span class="p">){</span>
+    <span class="n">ROS_WARN</span><span class="p">(</span><span class="s">"FIFO overflow!"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">fifoRead</span><span class="p">(</span><span class="n">TriggerPacket_t</span> <span class="o">&amp;</span><span class="n">pkt</span><span class="p">){</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">fifoReadPos</span> <span class="o">==</span> <span class="n">fifoWritePos</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="n">pkt</span> <span class="o">=</span> <span class="n">fifo</span><span class="p">[</span><span class="n">fifoReadPos</span><span class="p">];</span>
+  <span class="n">fifoReadPos</span> <span class="o">=</span> <span class="p">(</span><span class="n">fifoReadPos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">FIFO_SIZE</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">fifoLook</span><span class="p">(</span><span class="n">TriggerPacket_t</span> <span class="o">&amp;</span><span class="n">pkt</span><span class="p">){</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">fifoReadPos</span> <span class="o">==</span> <span class="n">fifoWritePos</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="n">pkt</span> <span class="o">=</span> <span class="n">fifo</span><span class="p">[</span><span class="n">fifoReadPos</span><span class="p">];</span>
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="camera-ros-publish-image">Camera ROS (Publish Image)</h3>
+
+<p>Move down to the try block of the <code class="language-plaintext highlighter-rouge">STARTED</code> case and create a new case to handle the camera triggering mode. Now the camera will only take and publish frames when it receives the trigger signal. Code again heavily from grau.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// this case already existed -- no triggering</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">triggerMode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Publish the full message</span>
+  <span class="n">pub_</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="n">wfov_image</span><span class="p">);</span>
+
+  <span class="c1">// Publish the message using standard image transport</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">it_pub_</span><span class="p">.</span><span class="n">getNumSubscribers</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">ImagePtr</span> <span class="n">image</span><span class="p">(</span><span class="k">new</span> <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">Image</span><span class="p">(</span><span class="n">wfov_image</span><span class="o">-&gt;</span><span class="n">image</span><span class="p">));</span>
+    <span class="n">it_pub_</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ci_</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// new case for triggering</span>
+<span class="k">else</span> <span class="p">{</span>
+  <span class="c1">// wait for new trigger packet to receive</span>
+  <span class="n">TriggerPacket_t</span> <span class="n">pkt</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">fifoLook</span><span class="p">(</span><span class="n">pkt</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ros::Duration(0.001).sleep();</span>
+  <span class="p">}</span>
+
+  <span class="c1">// a new video frame was captured - check if we need to skip it if one trigger packet was lost</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">pkt</span><span class="p">.</span><span class="n">triggerCounter</span> <span class="o">==</span> <span class="n">nextTriggerCounter</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fifoRead</span><span class="p">(</span><span class="n">pkt</span><span class="p">);</span>
+    <span class="c1">// uint shutter = pg_.getShutter();</span>
+    <span class="k">const</span> <span class="n">ros</span><span class="o">::</span><span class="n">Duration</span> <span class="n">expose_duration</span> <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">Duration</span><span class="p">(</span><span class="n">SHUTTER</span> <span class="o">*</span> <span class="mf">1e-6</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">wfov_image</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">pkt</span><span class="p">.</span><span class="n">triggerTime</span> <span class="o">+</span> <span class="n">expose_duration</span><span class="p">;</span>
+    <span class="n">ci_</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">wfov_image</span><span class="o">-&gt;</span><span class="n">image</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="p">;</span>
+    <span class="n">wfov_image</span><span class="o">-&gt;</span><span class="n">info</span> <span class="o">=</span> <span class="o">*</span><span class="n">ci_</span><span class="p">;</span>
+
+    <span class="c1">// Publish the full message</span>
+    <span class="n">pub_</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="n">wfov_image</span><span class="p">);</span>
+
+    <span class="c1">// Publish the message using standard image transport</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">it_pub_</span><span class="p">.</span><span class="n">getNumSubscribers</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">ImagePtr</span> <span class="n">image</span><span class="p">(</span><span class="k">new</span> <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">Image</span><span class="p">(</span><span class="n">wfov_image</span><span class="o">-&gt;</span><span class="n">image</span><span class="p">));</span>
+      <span class="n">it_pub_</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ci_</span><span class="p">);</span>
+    <span class="p">}</span>
+
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">//ros::Duration(0.001).sleep();</span>
+    <span class="n">outOfSyncCounter</span><span class="o">++</span><span class="p">;</span>      
+    <span class="k">if</span> <span class="p">((</span><span class="n">outOfSyncCounter</span> <span class="o">%</span> <span class="mi">100</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+      <span class="c1">//ROS_WARN("trigger not in sync (seq expected %10u, got %10u)!", nextTriggerCounter, pkt.triggerCounter);  </span>
+      <span class="n">NODELET_WARN</span><span class="p">(</span><span class="s">"trigger not in sync (%d)!"</span><span class="p">,</span> <span class="n">outOfSyncCounter</span><span class="p">);</span>   
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">nextTriggerCounter</span><span class="o">++</span><span class="p">;</span>
+  <span class="c1">// ros::spin();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="wrap-up">Wrap Up</h3>
+
+<p>To run, launch the camera and IMU in separate terminals. There may have been a need to start one before the other but I forgot.</p>
+
+<hr />
+
+<h2 id="camera-calibration-with-kalibr">Camera Calibration with Kalibr</h2>
+<p>Kalibr can calibrate cameras, as well as imu-camera interaction. I can’t remember for sure if it requires imu-camera synchronization…</p>
+
+<p>Build from source! The other option has limited capabilities.</p>
+
+<p>Some commands (e.g. kalibr_camera_validator) fail (infuriatingly) on Ubuntu 16. They must be run on Ubuntu 14. This is an obstacle for validating with FLIR firefly camera.</p>
+
+<p>Follow the youtube tutorial on the <a href="https://github.com/ethz-asl/kalibr/wiki">wiki</a>. You have to calibrate imu parameters outside of Kalibr before doing imu-camera calibration.</p>
+
+<h3 id="record-rosbag">Record rosbag</h3>
+<ul>
+  <li>Plug in imu and camera</li>
+  <li>Source the kalibr workspace</li>
+  <li>Run razor_9dof_imu/launch/razor-pub.launch and pointgrey_camera_driver/launch/camera.launch in separate windows</li>
+  <li>In another window, run <code class="language-plaintext highlighter-rouge">$ rosbag record -O output.bag camera/image_raw imu</code>.</li>
+  <li>Follow instructions in video to correctly move cam+imu for good calibration. Run for ~60 seconds.</li>
+</ul>
+
+<p>To review the rosbag, close the imu and image streams, and run the 2 lines in different terminals:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ roscore
+$ rosbag play output.bag
+</code></pre></div></div>
+
+<p>The video can then be viewed with img_view.</p>
+
+<h3 id="calibrate-cameras">Calibrate Cameras</h3>
+
+<p>First, calibrate camera(s):
+<code class="language-plaintext highlighter-rouge">$ kalibr_calibrate_cameras --models pinhole-radtan --topics camera/image_raw --bag output.bag --target april_6x6_80cm.yaml</code></p>
+
+<p>For more info on the <code class="language-plaintext highlighter-rouge">--models</code> flag see <a href="https://github.com/ethz-asl/kalibr/wiki/supported-models">supported models</a>. The format is the camera model abbreviated name and distortion model abbreviated name separated by a dash (e.g. pinhole-radtan). Topic must NOT have preceding slash for whatever reason (e.g. imu not /imu). Target is recommended to be some kind of april grid, since it’s more robust.</p>
+
+<h3 id="calibrate-cameraimu">Calibrate Camera+IMU</h3>
+
+<p>Then get camera+imu calibration:
+<code class="language-plaintext highlighter-rouge">$ kalibr_calibrate_imu_camera --cam camchain-output.yaml --imu imu.yaml --bag output.bag --target april_6x6_80cm.yaml</code></p>
+
+<p>Cam flag is output of kalibr_calibrate_cameras. Imu must be calibrated externally and imu.yaml must be filled in appropriately.</p>
+
+<h3 id="using-in-maplab">Using In Maplab</h3>
+
+<p>To convert kalibr yaml to maplab yaml (ncamera_calibration file), use the following command:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ kalibr_maplab_config --to-ncamera \
+--label cam_name \
+--cam camchain-imucam-output.yaml
+</code></pre></div></div>
+
+<p>Label flag is arbitrary. Cam flag is the result of cam-imu calibration (output of kalibr_calibrate_imu_camera command).</p>
+
+<hr />
+
+<h2 id="rovioli--maplab">ROVIOLI + maplab</h2>
+
+<h3 id="background">Background</h3>
+<p>I’m using the maplab framework. ROVIO exists as a separate repository if desired. See <a href="https://github.com/ethz-asl/maplab">maplab github</a>, <a href="https://github.com/ethz-asl/maplab/wiki">maplab wiki</a>, and <a href="https://github.com/ethz-asl/maplab/wiki/Installation-Ubuntu">install instructions</a>.</p>
+
+<p>Maplab is a VI mapping framework, which supports operations such as map merging, visual-inertial batch optimization, and loop closure. ROVIOLI, which is based on an estimator called ROVIO, is a VI mapping front end for maplab, with added maplab modules for map building and localization. maplab can just be used with ROVIOLI as a ready-to-go (and quite good) VI mapping/localization system, but other estimators can be integrated as well.</p>
+
+<h3 id="build-map">Build Map</h3>
+
+<p>You need three calibration files (see <a href="https://github.com/ethz-asl/maplab/wiki/Sensor-Calibration-Format">wiki</a>). Put calibration files into maplab/applications/rovioli/share.</p>
+
+<p>Be sure to convert kalibr output to maplab cam format (see <a href="https://github.com/ethz-asl/maplab/wiki/Initial-sensor-calibration-with-Kalibr">wiki</a>, or the last note in the previous section).</p>
+
+<p>Follow <a href="https://github.com/ethz-asl/maplab/wiki/Running-ROVIOLI-in-VIO-mode">this tutorial</a> to build a map from a rosbag or rostopic. Instead of a launch file we use a bash script to run everything. Some examples are in <a href="https://github.com/ethz-asl/maplab/tree/master/applications/rovioli/scripts">maplab/applications/rovioli/scripts</a>.</p>
+
+<h3 id="refine-calibration">Refine Calibration</h3>
+
+<p>You can optionally refine the calibration, only after obtaining a decent map (see <a href="https://github.com/ethz-asl/maplab/wiki/sensor-calibration-refinement">wiki</a>).</p>
+
+<h3 id="visualization">Visualization</h3>
+
+<p>To visualize with rviz, download <a href="https://github.com/ethz-asl/maplab/blob/pre_release_public/july-2018/applications/rovioli/share/rviz-rovioli.rviz">this rviz config</a>. Then run <code class="language-plaintext highlighter-rouge">$ rosrun rviz rviz -d rviz-rovioli.rviz</code>. Of course, you will need to set all the appropriate visualization flags in the rovioli launch script. Examples of these can be found in the same link above, for building a map from rosbag/rostopic. An overview of viz rostopics can be found <a href="https://github.com/ethz-asl/maplab/wiki/Map-visualization">here</a>.</p>
+
+<p>In standalone ROVIO, some core parameters could be set at compile time with flags, but in ROVIOLI, these ROVIO parameters unfortunately require editing the code directly.</p>
+
+<h3 id="relocalization">Relocalization</h3>
+
+<p>Something to note about the map built by ROVIOLI. In ROVIO, the mapping part of SLAM is achieved with photometric features (visualized as green rectangles), whose count must be carefully managed. While these features are robust for local state estimation, they are not efficient for building maps suitable for loop closure, state estimation, etc., so in ROVIOLI, a separate module is run in parallel to grab landmarks better suited for these tasks. These are finalized at shutdown, meaning mapping is not done in real time, and online localization from this map is impossible.</p>
+
+<p>The map will be saved to the location specified with <code class="language-plaintext highlighter-rouge">--save_map_folder</code>.</p>
+
+<p>This map should be optimized for use in relocalization. There are two ways to do this:</p>
+<ul>
+  <li>launch script flag: <code class="language-plaintext highlighter-rouge">--optimize_map_to_localization_map</code></li>
+  <li><a href="https://github.com/ethz-asl/maplab/wiki/Preparing-a-single-session-map">maplab commands</a></li>
+</ul>
+
+<p>A smaller “summary map” can be generated from this, using this command: <code class="language-plaintext highlighter-rouge">$ generate_summary_map_and_save_to_disk --summary_map_save_path path/to/save/localization/summary/map</code></p>
+
+<p>The next time you run ROVIOLI with relocalization, use the <code class="language-plaintext highlighter-rouge">--vio_localization_map_folder</code> flag.</p>
+
+<p>Basic map manipulation can be done in the <a href="https://github.com/ethz-asl/maplab/wiki/Console-map-management">maplab console</a>.</p>
+
+<hr />
+
+<h2 id="point-cloud-and-mesh-visualization">Point cloud and mesh visualization*</h2>
+
+<p>no rviz, thank you</p>
+
+<p>pcd viz:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install pcl-tools
+$ pcl_viewer &lt;pointcloud.pcd&gt;
+</code></pre></div></div>
+
+<p>mesh viz:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install meshlab
+$ meshlab
+</code></pre></div></div>
+
+<p>open obj file in meshlab gui</p>
+
+<hr />
+
+<h2 id="some-fixes-for-dynamic-reconfigure-service">Some Fixes For Dynamic Reconfigure Service</h2>
+<p>Assuming everything is setup in the code, run the node, then run <code class="language-plaintext highlighter-rouge">$ rosrun rqt_reconfigure rqt_reconfigure</code></p>
+
+<p>Specific to the pointgrey_camera_driver, the default params are set in pointgrey_camera_driver/cfg/PointGrey.cfg</p>
+
+<p>Some parameters in the config seem to be bugged (afaik). So far I have found this true for frame rate and brightness. So go in PointGreyCamera.cpp, into <code class="language-plaintext highlighter-rouge">setNewConfiguration()</code>, and comment out the relevant calls to <code class="language-plaintext highlighter-rouge">setProperty()</code>.</p>
+
+<p>To update the config (and of course, if you make changes to the driver files, e.g. PointGreyCamera.cpp), you must recompile them, i.e. rerun <code class="language-plaintext highlighter-rouge">catkin_make</code>.</p>
+
+<hr />
+
+<h2 id="pose-and-image-to-unity">Pose and Image to Unity</h2>
+
+<p>I’m sorry to disappoint, but I can’t seem to find the tutorial or the code for this part. All I have are the last couple of entries in my dev notes.</p>
+
+<blockquote>
+  <p>–/–/– Decided ros sharp was overkill because all of the URDF stuff. Opted for ROSBridgeLib, which is just client implementation for Unity of all (most) ros messsages. It sucks and no working tutorial provided, and no active development, and simple data values are behind accessors, and everything has to be static?!?!?! Switch back to ros sharp, but have “Duplicate Assembly” errors, even after restarting in new project. Discovered I was dumb and copied the wrong folder. Unity client successfully connects to rosbridgeserver, but images are not updated in Unity.</p>
+
+  <p>–/–/– Discovered first 12 pixels in image data were bogus; turns out it is embedded info from camera. So no problem with ros side. On Unity side, texture and pose weren’t being updated because turns out can’t do stuff with textures outside render thread (ros sharp creates new thread). So moved rendering to IEnumerator and used UnityMainThreadDispatcher. Also, using LoadImage() on compressed image rostopic is muuuuch slower than LoadRawTextureData() on regular image topic. Result is image stream shows! Some opacity issue. Deep profile helps a ton. Position works! Rotation works! Turns out need to create new Position and Rotation and assign, rather than editing the values directly (?). At least for pose, could maybe get away with less frequent position updates + smoothing/lerping.</p>
+</blockquote>
+
+  </div>
+
+  <div class="post-bibliography">
+    
+
+
+<div class="post-bibliography">
+  <ol class="bibliography"></ol>
+</div>
+  </div>
+
+  <div class="post-tags">
+    Tags:&nbsp; 
+    <span>
+      <!-- 
+        
+        <a class="post-tag" href="/tag/vio"><nobr>vio</nobr>&nbsp;</a>
+      
+        
+        <a class="post-tag" href="/tag/slam"><nobr>slam</nobr>&nbsp;</a>
+      
+        
+        <a class="post-tag" href="/tag/sensor"><nobr>sensor</nobr>&nbsp;</a>
+       -->
+          
+          <a href="/tag/vio/">vio&nbsp;</a>
+        
+          
+          <a href="/tag/slam/">slam&nbsp;</a>
+        
+          
+          <a href="/tag/sensor/">sensor&nbsp;</a>
+        </span>
+  </div>
+
+  <div class="page-navigation"><a class="prev" href="/article/2021/08/06/model-based-rl.html">&larr; What Isn't Model-Based RL?</a></div><a class="u-url" href="/tutorial/2021/08/07/sensor-tutorials.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer">
+  2021 &copy; by Michal Porubcin. All Rights Reserved. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>. View on <a href="https://github.com/michalp21/michalp21.github.io" target="_blank">Github</a>.
+
+  <p>
+    <a href="/feed.xml" target="_blank">
+      <img src="/assets/images/logo_rss.png" />
+    </a>
+    <a href="https://github.com/michalp21" target="_blank">
+      <img src="/assets/images/logo_github.png" />
+    </a>
+  </p>
+
+</footer></body>
+
+</html>

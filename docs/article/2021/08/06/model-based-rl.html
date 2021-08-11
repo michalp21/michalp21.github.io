@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/main.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>What Isn’t Model-Based RL? | Xn</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="What Isn’t Model-Based RL?" />
+<meta name="author" content="Michal Porubcin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Having only encountered model-free RL, I had a hard time pinning down what made a model-based RL algorithm for some reason, and here is my shot at the difference. This is not exactly a tutorial or anything, just an attempt to clear up some confusions I had with various terms. I try not to be too prescriptive." />
+<meta property="og:description" content="Having only encountered model-free RL, I had a hard time pinning down what made a model-based RL algorithm for some reason, and here is my shot at the difference. This is not exactly a tutorial or anything, just an attempt to clear up some confusions I had with various terms. I try not to be too prescriptive." />
+<meta property="og:site_name" content="Xn" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-06T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="What Isn’t Model-Based RL?" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","datePublished":"2021-08-06T00:00:00-05:00","description":"Having only encountered model-free RL, I had a hard time pinning down what made a model-based RL algorithm for some reason, and here is my shot at the difference. This is not exactly a tutorial or anything, just an attempt to clear up some confusions I had with various terms. I try not to be too prescriptive.","url":"/article/2021/08/06/model-based-rl.html","mainEntityOfPage":{"@type":"WebPage","@id":"/article/2021/08/06/model-based-rl.html"},"author":{"@type":"Person","name":"Michal Porubcin"},"headline":"What Isn’t Model-Based RL?","dateModified":"2021-08-06T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Xn" /><!-- Favicon -->
+  <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
+
+  <!-- MathJax for LaTeX -->
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body><header class="site-header">
+  <div class="wrapper-logo">
+    <div class="logo">
+      <!-- <a class="site-title" href="/">Xn</a> -->
+      <a href="/">
+        <img src="/assets/images/logo.png" />
+      </a>
+    </div>
+  </div>
+  <div class="wrapper">
+    <nav class="site-nav">
+      <a class="page-link" href="/"> Home</a>
+      <a class="page-link" href="/category/project/"> Projects</a>
+      <a class="page-link" href="/categories.html"> Categories</a>
+      <a class="page-link" href="/tags.html"> Tags</a>
+      <a class="page-link" href="/archive.html"> Archive</a>
+      <a class="page-link" href="/about.html"> About</a>
+    </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">What Isn&#39;t Model-Based RL?</h1>
+    <p class="post-meta">
+      <time datetime="2021-08-06T00:00:00-05:00" itemprop="datePublished">
+        
+        Aug 6, 2021
+      </time>
+
+      <!---->
+
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        by <span itemprop="name">Michal Porubcin</span>
+      </span>
+
+      <span class="post-categories">
+        <span>
+              
+              <a class="post-category" href="/category/article/">article&nbsp;</a>
+            </span>
+      </span>
+
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <blockquote>
+  <p>Having only encountered model-free RL, I had a hard time pinning down what made a model-based RL algorithm for some reason, and here is my shot at the difference. This is not exactly a tutorial or anything, just an attempt to clear up some confusions I had with various terms. I try not to be too prescriptive.</p>
+</blockquote>
+
+<!--more-->
+
+<h2 id="lets-start-with-what-it-is">Let’s Start With What It Is</h2>
+
+<p>We start with an environment that can be represented as an MDP. Our goal is to find the optimal policy of an agent in this MDP.</p>
+
+<p>The <strong>dynamics</strong> of an MDP are the state transitions and rewards. A <strong>model</strong> is just some representation of the dynamics. Knowing the dynamics is equivalent to having a model.</p>
+
+<p>Sutton and Barto <a class="citation" href="#Sutton1998">[1]</a> confirms this:</p>
+<blockquote>
+  <p>By a model of the environment we mean anything that an agent can use to predict how the environment will respond to its actions.</p>
+</blockquote>
+
+<p>There are two types of a models:</p>
+<ul>
+  <li><strong>Distribution model</strong>: gives probabilities of all transition events as the full distribution \(p(r,s'\vert s,a)\).</li>
+  <li><strong>Sampling model</strong>: provides transition samples, i.e. a reward \(r\) and next state \(s'\), given state \(s\) and action \(a\).</li>
+</ul>
+
+<p>The model may or may not be learned by the agent. Unlike the dynamics which are inherent in the MDP, the model is an aspect of the agent or algorithm, and is totally optional.<sup id="fnref:complete" role="doc-noteref"><a href="#fn:complete" class="footnote" rel="footnote">1</a></sup></p>
+
+<p>If we have (and use) a model, then it becomes a <strong>planning</strong> problem. If we don’t have a model, then we have a <strong>learning</strong> problem.</p>
+
+<p>We can see the same definition in Sutton and Barto:</p>
+<blockquote>
+  <p>The heart of both learning and planning methods is the estimation of value functions by backing-up update operations. The difference is that whereas planning uses simulated experience generated by a model, learning methods use real experience generated by the environment <a class="citation" href="#Sutton1998">[1]</a>.</p>
+</blockquote>
+
+<p>They emphasize the usage of simulated vs real experience. Models are clearly simulators, as the experiences they generate are not from the real world dynamics themselves, i.e. real life.</p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">🤨</div>
+    
+    <div class="callout-text">Then if model == planning, and no model == learning, what the heck is model-based reinforcement learning?</div>
+  </div>
+</blockquote>
+
+<p>In model-based reinforcement learning (RL), we have to <strong>learn</strong> a model from <strong>real experience</strong>, and use it to <strong>plan</strong> the optimal policy from <strong>simulated experience</strong>. It quite simply smashes planning and learning together.</p>
+
+<p><img src="/assets/images/mbrl.png" alt="mbrl" />
+<em>Source: David Silver <a class="citation" href="#silver2015">[2]</a></em></p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">🤨</div>
+    
+    <div class="callout-text">Why not model-free reinforcement planning?</div>
+  </div>
+</blockquote>
+
+<p>Probably just a quirk of history. Check out section 1.7 of <a class="citation" href="#Sutton1998">[1]</a>! Nowadays, “reinforcement” in RL probably serves to separate it from supervised learning as a learning paradigm, and the addition of “model-based” identifies a class of RL that incorporates planning.<sup id="fnref:rp" role="doc-noteref"><a href="#fn:rp" class="footnote" rel="footnote">2</a></sup></p>
+
+<h2 id="sanity-check">Sanity Check</h2>
+<p>First some simpler conclusions:</p>
+<ol>
+  <li>Model-based is <em>not</em> the same as model-based RL. Out of the four classes of model-based methods in <a href="https://bair.berkeley.edu/blog/2019/12/12/mbpo/">this blog post</a>, only the last two seem to be model-based RL.<sup id="fnref:familiar" role="doc-noteref"><a href="#fn:familiar" class="footnote" rel="footnote">3</a></sup></li>
+  <li>The kind of model we have (distribution or sampling) is separate from knowledge of the dynamics, and in fact assumes we <em>do</em> know the dynamics.</li>
+  <li>If we know the dynamics, then there is no room for learning. On the other hand, if we refuse to know anything about the dynamics, there is no room for a model. For this reason, we could say <em>model-based</em> RL is an attempt to <em>learn the dynamics</em>, in addition to learning the optimal policy.</li>
+  <li>RL in general is <em>not</em> distinguished by the goal of learning the dynamics.</li>
+</ol>
+
+<h2 id="what-it-isnt">What It Isn’t</h2>
+<h3 id="other-senses-of-model">Other Senses of Model</h3>
+<p>Since I brought up supervised learning, I ought to clarify an unfortunate overlap in terminology. “Model” as described above is <em>not</em> the same as a supervised machine learning “model,” which rather refers to the output of a machine learning algorithm, without (necessarily) any connection to dynamics. The term “function approximator” is used to avoid confusion when supervised learning models are used in RL algorithms, for example in Deep Q-Learning.</p>
+
+<p>Yet another possible usage is a description of the MDP as a “model” of the environment. The assumption of an environment represented as an MDP characterizes the class of algorithms we consider in the first place, and therefore anticipates the model-based/model-free distinction in RL.</p>
+
+<h3 id="value-functions">Value Functions</h3>
+<p>Both model-based and model-free RL may estimate value functions, which are not models. They influence how new experience is obtained, but value functions represent expected cumulative returns instead of the dynamics.</p>
+
+<p>A model could still be necessary, due to our goal of finding the optimal policy. An RL algorithm could learn model-free all the way up to outputting a state-value function \(v\). Strictly speaking, to finish the problem, a model (such as four-argument \(p\)) is still required to extract the policy (if the situation allows it).</p>
+
+\[\pi^*(s) = \text{argmax}_a \sum_{r,s'}p(r,s'\vert s,a)(r + \gamma v^*(s'))\]
+
+<p>The action-value function \(q\) does not have this problem:</p>
+
+\[\pi^*(s) = \text{argmax}_a q^*(s,a)\]
+
+<h3 id="other-senses-of-simulator">Other Senses of Simulator</h3>
+<p>The colloquial definition of a simulator from Merriam-Webster is:</p>
+<blockquote>
+  <p>a device that enables the operator to reproduce or represent under test conditions phenomena likely to occur in actual performance</p>
+</blockquote>
+
+<p>Confusion is likely to arise due to the two senses of the word “simulator”: one as programs or devices, like physics simulators and flight simulators, and the other as models of an MDP’s dynamics. I’ll just go ahead and claim <em>all simulators in the first sense are also simulators in the second sense</em>. Is a simulation program not a handcrafted model of the real world? Then within a simulator, there is technically no learning involved, as all examples are simulated and the simulator itself is not learned. If we want to keep thinking of it as RL, we could instead learn a policy within the simulator <em>for</em> the simulator, and just cross our fingers that it transfers well to the real world.</p>
+
+<p>Is that really a good reason to call something model-based? Is A3C done in a physics engine all of a sudden a planning algorithm? Well, A3C could work on real-world data <em>in principle</em> so maybe that’s a good enough reason to continue to call it a model-free RL algorithm, absent any context. Then I think it would be permissible to say A3C can be used for planning or model-free RL depending how it’s used.</p>
+
+<p>Yet another source of confusion is the fact that some “simulated” environments are actually the target environment – no finger-crossing needed. When we’re training an AI to learn Go, we aren’t interested in learning to move the physical pieces on a physical board. All we care about is mastering the mathematical formulation of the game. All gameplay occuring in a Go simulator should therefore be considered real experience for our particular setup. Maybe we could instead use “virtual” to desribe these situations, as it’s different enough from the word “simulated” while still capturing the non-reality of the domain of interest.</p>
+
+<h3 id="data-storage-and-reuse">Data Storage and Reuse</h3>
+<p>An isolated experience \((s, a, r, s')\), encountered, used once, and discarded by the agent, <em>does not count</em> as a model. That should be obvious: if any interaction with the environment whatsoever counted as a model, then all RL would be model-based. Temporarily storing several experiences or even whole episodes before calculating returns, like in Monte Carlo methods, is not much different.</p>
+
+<p>Inching closer to model-based methods, we have experience replay (ER), which stores experiences in a buffer, and samples from them later, either individually or in mini-batches, randomly or with a heuristic priority. The experiences are potentially used <em>multiple times</em> before being deleted to make room for new ones. The reuse of experience constitutes a sort of data augmentation, which is really what a model does during simulation. Unfortunately, we can’t query it at arbitrary states unless they are present in the buffer, which means we can’t use the buffer to run trajectories forward or backward <a class="citation" href="#Pan9780999241127">[3]</a>.</p>
+
+<p>Are those essential for a model? Vanilla Dyna-Q <a class="citation" href="#Sutton1998">[1]</a> is supposedly model-based, yet it only samples randomly from previous experiences.</p>
+
+<p><img src="/assets/images/dynaq.png" alt="dynaq" />
+<em>Just looks like ER to me.</em></p>
+
+<p>Meanwhile, <a class="citation" href="#NEURIPS2019_1b742ae2">[4]</a> seems to think it’s a salient distinction:</p>
+<blockquote>
+  <p>On the other hand, a replay memory is less flexible than a model, since we cannot query it at arbitrary states that are not present in the replay memory.</p>
+</blockquote>
+
+<p>They go on to use Dyna-Q as an example of model-based RL, <em>but</em> use a multi-layer perceptron (or more importantly, a parametric function approximator, in opposition to nonparametric ER) to model transitions, terminations, and rewards, allowing it to sample unseen states. Of course they do that, but then their definition of planning is so loose that it includes ER again <a class="citation" href="#NEURIPS2019_1b742ae2">[4]</a>:</p>
+<blockquote>
+  <p>any algorithm that uses additional computation to improve its predictions or behaviour without consuming additional data.</p>
+</blockquote>
+
+<p>There are bound to be more examples I haven’t seen that straddle the boundary between temporary storage and model, so I won’t really offer my opinion here.</p>
+
+<blockquote class="callout">
+  <div class="flexy">
+    
+      <div class="callout-icon">🤨</div>
+    
+    <div class="callout-text">I don't care about your opinion. Is ER a model?</div>
+  </div>
+</blockquote>
+
+<p>Based on my extensive survey of two papers, I’ll conclude that the literature overall separates ER from models, though with much hedging.</p>
+
+<h2 id="examples">Examples</h2>
+
+<p>Now I’m going to pretend like my definitions inform my classification of existing RL algorithms, and not the other way around. Summarizing:</p>
+<ul>
+  <li>DP methods use models, and are not RL. The dynamics are explicitly used to calculate an optimal policy.<sup id="fnref:dynamic" role="doc-noteref"><a href="#fn:dynamic" class="footnote" rel="footnote">4</a></sup></li>
+  <li>MC, TD, and policy gradient methods are model-free RL assuming Q functions are used instead of V functions. Dynamics not required.</li>
+  <li>MCTS uses a model for the rollout phase, but it’s not learned, so it’s a planning algorithm (the use of a virtual target environment like a Go program doesn’t change this).</li>
+  <li>Deep Q-Learning is model-free RL, since we decided ER isn’t a model.</li>
+  <li>Dyna-Q is model-based RL. Because “model” is written in the pseudocode.</li>
+</ul>
+
+<p>https://www.ijcai.org/proceedings/2018/0666.pdf</p>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:complete" role="doc-endnote">
+      <p>Barto+Sutton use the game of blackjack as an example to distinguish a distribution model (full dynamics) from some other “complete knowledge”: “Although we have complete knowledge of the environment in this task, it would not be easy to apply DP methods to compute the value function. DP methods require the distribution of next events—in particular, they require the environments dynamics as given by the four-argument function \(p\)—and it is not easy to determine this for blackjack. For example, suppose the player’s sum is 14 and he chooses to stick. What is his probability of terminating with a reward of +1 as a function of the dealer’s showing card?” To be honest I’m still not sure what “complete knowledge of the environment” refers to. Maybe it refers to fully observable state, which is true of blackjack, and allows us to use an MDP. Maybe he’s saying the rules can be used as a sampling model but not a distribution model. Or it could be a game theory term I’m unfamiliar with. <a href="#fnref:complete" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:rp" role="doc-endnote">
+      <p>Then unless there are other major planning paradigms, the term “reinforcement planning” is not so useful anymore. <a href="#fnref:rp" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:familiar" role="doc-endnote">
+      <p>I’m not familiar with value-equivalence prediction though so I could be wrong. <a href="#fnref:familiar" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:dynamic" role="doc-endnote">
+      <p>So “dynamic” in dynamic programming has nothing to do with wham bam presto forte after all. See <a href="https://cstheory.stackexchange.com/a/5643">this answer</a> on StackOverflow. <a href="#fnref:dynamic" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div>
+
+  <div class="post-bibliography">
+    
+
+
+  <h2>References</h2>
+
+<div class="post-bibliography">
+  <ol class="bibliography"><li><span><span id="Sutton1998">R. S. Sutton and A. G. Barto, <i>Reinforcement Learning: An Introduction</i>, Second. The MIT Press, 2018.</span></span>
+ 
+<a href="http://incompleteideas.net/book/RLbook2020.pdf">[link]</a>
+</li>
+<li><span><span id="silver2015">D. Silver, “Lectures on 
+Reinforcement Learning.” 2015.</span></span>
+ 
+<a href="https://www.davidsilver.uk/teaching/">[link]</a>
+</li>
+<li><span><span id="Pan9780999241127">Y. Pan, M. Zaheer, A. White, A. Patterson, and M. White, “Organizing Experience: A Deeper Look at Replay Mechanisms for Sample-Based Planning in Continuous State Domains,” in <i>Proceedings of the 27th International Joint Conference on Artificial Intelligence</i>, 2018, pp. 4794–4800.</span></span>
+ 
+<a href="https://arxiv.org/pdf/1806.04624.pdf">[link]</a>
+</li>
+<li><span><span id="NEURIPS2019_1b742ae2">H. P. van Hasselt, M. Hessel, and J. Aslanides, “When to use parametric models in reinforcement learning?,” in <i>Advances in Neural Information Processing Systems</i>, 2019, vol. 32.</span></span>
+ 
+<a href="https://proceedings.neurips.cc/paper/2019/file/1b742ae215adf18b75449c6e272fd92d-Paper.pdf">[link]</a>
+</li></ol>
+</div>
+  </div>
+
+  <div class="post-tags">
+    Tags:&nbsp; 
+    <span>
+      <!-- 
+        
+        <a class="post-tag" href="/tag/reinforcement-learning"><nobr>reinforcement-learning</nobr>&nbsp;</a>
+      
+        
+        <a class="post-tag" href="/tag/model"><nobr>model</nobr>&nbsp;</a>
+       -->
+          
+          <a href="/tag/reinforcement-learning/">reinforcement-learning&nbsp;</a>
+        
+          
+          <a href="/tag/model/">model&nbsp;</a>
+        </span>
+  </div>
+
+  <div class="page-navigation"><a class="prev" href="/tutorial/2021/08/06/bibtex-jekyll.html">&larr; BibTeX For Jekyll Using jekyll-scholar</a><a class="next" href="/tutorial/2021/08/07/sensor-tutorials.html">VI-sensor Project: Accompanying Tutorials &rarr;</a></div><a class="u-url" href="/article/2021/08/06/model-based-rl.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer">
+  2021 &copy; by Michal Porubcin. All Rights Reserved. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>. View on <a href="https://github.com/michalp21/michalp21.github.io" target="_blank">Github</a>.
+
+  <p>
+    <a href="/feed.xml" target="_blank">
+      <img src="/assets/images/logo_rss.png" />
+    </a>
+    <a href="https://github.com/michalp21" target="_blank">
+      <img src="/assets/images/logo_github.png" />
+    </a>
+  </p>
+
+</footer></body>
+
+</html>

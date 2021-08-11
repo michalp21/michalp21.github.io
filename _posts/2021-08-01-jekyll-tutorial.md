@@ -5,7 +5,7 @@ categories: tutorial
 tags: blog jekyll
 ---
 
-> Here are the notes and external tutorials I used and gathered while creating this blog! Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!
+> Here are the notes and external tutorials I used and gathered while creating this blog. Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!
 
 <!--more-->
 
@@ -17,12 +17,12 @@ I built this blog with Jekyll, and this is a compilation of tutorials I used, al
 
 ### Prerequisites
 - **Tech**: Intel macOS Big Sur[^forthis]
-- **Skills**: terminal (command prompt) competency
+- **Skills**: terminal (command prompt) and git competency, basic HTML knowledge
 
 ## Jekyll Overview
 What is Jekyll? This [page](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll) is a quick intro. Maybe read through it once.
 
-I'll still try to convey the allure of Jekyll (to me anyways). With Jekyll, I can scaffold my blog once using reusable templates, and reduce repeated content creation, like blog posts, to simple markdown files. Jekyll gives you a static site, so you don't have to worry about backends and databases and all this over-engineering, and you can host it on GitHub for free.
+I'll still try to convey the appeal of Jekyll (to me anyways). With Jekyll, I can scaffold my blog once using reusable templates, and reduce repeated content creation, like blog posts, to simple markdown files. Jekyll gives you a static site, so you don't have to worry about backends and databases and all this over-engineering, and you can host it on GitHub for free.
 
 ## Setup
 
@@ -36,7 +36,7 @@ Basically, run `bundle install` now, and later whenever you change the Gemfile.
 
 To host the site locally, run `bundle exec jekyll serve`. If successful, you should be able to go to [](http://localhost:4000/)[http://localhost:4000](http://localhost:4000) in the browser and view the default Jekyll blog.
 
-When we're ready to deploy, run `bundler exec jekyll build` to generate the site files. This is called _building_ the site (wow!) and I will refer to it as such from here on – I will not say building in the colloquial sense of just creating the blog.
+When we're ready to deploy, run `bundler exec jekyll build` to generate the site files. This is called _building_ the site (wow!) and I will refer to it as such from here on – I will not use building to mean the colloquial sense of just creating the blog.
 
 {% include callout.html content="The following do the same thing: 'bundle' 'bundler' 'bundle install' 'bundle i'." icon="neutral"%}
 
@@ -108,11 +108,9 @@ Generally, keep base templates in \_layouts, and reusable components in \_includ
 
 ## Themes
 
-Returning to themes, while they aren't necessary I highly recommend at least using one as a base, especially if you're not super savvy with styling. To do so, copy the files from the minima repo to your repository.
+Returning to themes, while they aren't necessary I highly recommend at least using one as a base, especially if you're not super savvy with styling. Themes can also bundle together some nice features on top of a custom look and feel, like search and archiving.
 
-To customize the styling, you need to write custom CSS/Sass. [This tutorial](https://jekyllrb.com/docs/step-by-step/07-assets/) should get you started. You should do your styling in the Sass files under \_sass.
-
-You can also use a theme as-is. See [here](https://jekyllrb.com/docs/themes/) for more details, and places to find themes. Note that a gem-based theme may be incompatible with GitHub Pages. Copying files directly into your repo doesn't have this limitation.
+To use a theme as-is, see [this guide](https://jekyllrb.com/docs/themes/). Note that a gem-based theme may be incompatible with GitHub Pages. To build on a custom theme, copy the files from the theme's repo to your repository. To customize the styling, you need to write custom CSS/Sass. [This tutorial](https://jekyllrb.com/docs/step-by-step/07-assets/) should get you started. You should do your styling in the Sass files under \_sass.
 
 ## Kramdown
 
@@ -183,13 +181,33 @@ Add more emojis as desired. In a scss file, style it something like so:
 }
 ```
 
-I tweaked things like padding and font size until it looked good.
+I tweaked things like padding and font size until it looked good. Note: markdown processing won't work inside callouts.
 
 ### Code
 
 Syntax highlighting is provided in minima. Just copy the `.highlight` section from `_sass/minima/skins/classic.scss` .
 
 When typing code, use spaces instead of tabs, or else the indent length on the site will be too large (in my opinion). In my Markdown editor, there is an option to put four spaces automatically when I hit tab.
+
+### Comments (Disqus)
+
+Comments would be pretty nice right? The problem is they clash with the whole static-site thing. Number one concern: where are the comments stored? You have two options:
+- host your own comments
+- let someone do it for you.
+
+The first option is a pain and sort of nullifies some of Jekyll's more appealing features, like free hosting on GitHub. Now think of what actually goes into a comment system. Do users make an account to post? Can they edit and delete comments? What about threads, sorting, mentions, reactions, email notifications, and moderation?
+
+What? Disqus does all that? For *free*? In spite of a handful of blogposts critical of ad-ridden, tracker-obsessed, privacy-trampling Disqus, that seductive string of features pulled me to the dark side. Plus there's no free, cloud-hosted alternatives as far as I know (I tried something called Social9 but it's clearly still in the works).
+
+Just follow steps 1 and 2 of [this tutorial](https://jreel.github.io/setting-up-disqus-comments-on-jekyll/). If you used the minima theme as a base like I did, then you should already have Disqus boilerplate code. Otherwise finish the tutorial. Note that you won't be able to see the comments when testing locally.
+
+We're not done yet. We can turn off some ads in the Disqus dashboard. See the images:
+
+![adsettings]
+
+![advancedsettings]
+
+We can also lazy load the comments in order to avoid slow loading of the main content. Instead, the comments are loaded when the user is close to the bottom of the page. Check out [this tutorial](https://usefulangle.com/post/251/disqus-comments-improve-page-load-speed).
 
 ### Excerpts
 
@@ -313,6 +331,16 @@ You can also separate the path from the rest like so:
 
 The "reference style link" text should be replaced by your own text.
 
+An **internal link**, or a link to another post on your site, looks like this:
+
+{%raw%}
+```markdown
+[link text]({{ site.baseurl }}{% post_url 2021-07-19-post %})
+```
+{%endraw%}
+
+What comes after `post_url`  is the name of the post file.
+
 ### Pagination
 
 Pagination is supported. Modify the Gemfile like so:
@@ -369,6 +397,10 @@ Now to implement the pagination in the site files. jekyll-paginate only works on
 
 There is a more sophisticated pagination package [here](https://github.com/sverrirs/jekyll-paginate-v2), but it is not supported by GitHub Pages. I decided I didn't need it.
 
+### References
+
+I moved the full references tutorial to a [separate post]({{ site.baseurl }}{% post_url 2021-08-06-bibtex-jekyll %}).
+
 ### Table of Contents
 Plop this in your markdown.
 
@@ -418,19 +450,13 @@ layout: default
 
 Similar things can be done for categories and archives.
 
-### Reference (Bibtex)
+## Publishing the Site
 
-[](https://github.com/inukshuk/jekyll-scholar)[https://github.com/inukshuk/jekyll-scholar](https://github.com/inukshuk/jekyll-scholar) (I might expand on this)
+Done? Time to publish! Remember we used custom plugins, so we can't push to GitHub and let it build our site for us. Now at this stage people will say you need to build the site yourself, then move it to another branch called gh-pages, then push that to GitHub Pages, and since it is _such_ a burden, they will then promote their GitHub Actions and Travis CIs.
 
-## Publishing the Site!
+Here's what you do. Check you are on master or main branch (I haven't checked if any arbitrary branch will work). Wrap up your changes and git commits. Now add `destination: docs` to \_config.yml to change the destination of the static site generated by Jekyll from \_site to docs. Now run `bundler exec jekyll build` to build the site. Also in terminal, run `touch .nojekyll` . This is a file which tells GitHub not to run Jekyll on your files because you already did that. Now commit .nojekyll and docs, and push to GitHub. Finally, in GitHub, go to Settings > Pages > Source and change the root folder to docs. There may be some benefit to using separate branches instead of a docs folder in the same branch, but it's just a personal site so I doubt it matters.
 
-Done? Time to publish! Remember we used custom plugins, so we can't push to GitHub and let it build our site for us. Now at this stage many will say you need to build the site yourself, then move it to another branch called gh-pages, then push that to GitHub Pages, and since it is _such_ a burden, they will then promote their GitHub Actions and Travis CIs. I don't know if that was all necessary in the past but it's definitely not necessary now.
-
-Here's what you do. Check you are on master or main branch (I haven't checked if any arbitrary branch will work). Wrap up your changes and git commits. Now add `destination: docs` to \_config.yml to change the destination of the static site generated by Jekyll from \_site to docs. Now run `bundler exec jekyll build` to build the site. Also in terminal, run `touch .nojekyll` . This is a file which tells GitHub not to run Jekyll on your files because you already did that. Now commit .nojekyll and docs, and push to GitHub. Finally, in GitHub, go to Settings > Pages > Source and change the root folder to docs.
-
-From now on, just build before pushing.
-
-{% include callout.html content="I tested this with a main branch and a user site. I haven't tried other branches, or project or organization sites. It seems the only acceptable folders are . (root) and ./docs" icon="neutral"%}
+From now on, just build before pushing.[^tried]
 
 Assuming you are making a user site and you have not set a baseurl in \_config.yml, you should be able to go to username.github.io and view your blog![^otherwise] Congratulations!
 
@@ -443,7 +469,7 @@ This class of issues is fixed by having at least a double digit IQ.
 - If changes were made to \_config.yaml, the site has to be relaunched.
 - If changes were made to styling, make sure it is being imported all the way through to assets/css/main.css.
 - Your styling code could just be wrong.
-- You think you're editing/replacing one file but you're changing another one. Or you think you're refreshing the page you edited but you're not.
+- You think you're editing/replacing one file but you're changing another one. Or you think you're refreshing the post you edited but you're not. Or you think you're refreshing the local testing site but you're refreshing the production site.
 
 ### 404 Error
 
@@ -458,6 +484,9 @@ I remember having to delete the Gemfile.lock file to get my gems to install one 
 Firefox messed me up with the fonts at least, but browser compatibility could come into play with other things too. Try different browsers. This applies mostly to display oddities.
 
 [^forthis]: These are what I used so I can say with some confidence that you too can get a working solution with them. Alternatives may also work though.
+[^tried]: I tested this with a main branch and a user site. I haven't tried other branches, or project or organization sites. It seems the only acceptable folders are . (root) and ./docs.
 [^otherwise]: Otherwise it's not so hard to figure out your URL. Google about GitHub Pages if you need more help there.
 
+[adsettings]: /assets/images/adsettings.png
+[advancedsettings]: /assets/images/advancedsettings.png
 [sidebar]: /assets/images/font.png

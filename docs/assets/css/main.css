@@ -129,13 +129,13 @@ body { font: 400 18px/1.65 "Petrona", "Cormorant Garamond", "Times New Roman", s
 /** Set `margin-bottom` to maintain vertical rhythm */
 h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure, .highlight { margin-bottom: 16.6666666667px; }
 
-hr { margin-top: 30px; margin-bottom: 30px; }
+hr { margin-top: 30px; margin-bottom: 30px; color: #ccf3de; border-radius: 5px; }
 
 /** `main` element */
 main { display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */ }
 
 /** Images */
-img { max-width: 100%; vertical-align: middle; margin: 10px auto; text-align: center; display: block; margin: 20px auto; }
+img { max-width: 100%; vertical-align: middle; text-align: center; display: block; margin: 25px auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
 
 img + em, table + p em { color: #828282; display: block; text-align: center; font-size: 15.75px; }
 
@@ -185,6 +185,8 @@ pre > code { border: 0; padding-right: 0; padding-left: 0; }
 
 /** Divider line, top and bottom  */
 .wrapper-logo { max-width: calc(800px - (30px)); margin-right: auto; margin-left: auto; border-bottom: 1px solid #e8e8e8; }
+
+.wrapper-logo img { box-shadow: none; }
 
 .page-content .wrapper { padding-bottom: 20px; }
 
@@ -261,7 +263,7 @@ table td { border: 1px solid #e8e8e8; }
 
 .site-footer p { margin: 5px auto; width: 70px; }
 
-.site-footer img { width: 26px; height: 26px; margin: 0 4px; display: block; float: left; }
+.site-footer img { width: 26px; height: 26px; margin: 0 4px; display: block; float: left; box-shadow: none; }
 
 .footer-heading { font-size: 20.25px; margin-bottom: 15px; }
 
@@ -327,6 +329,10 @@ table td { border: 1px solid #e8e8e8; }
 
 .post-content h6 { font-size: 19.125px; }
 
+.post-bibliography h2 { font-size: 31.5px; }
+
+@media screen and (min-width: 800px) { .post-bibliography h2 { font-size: 36px; } }
+
 .post-tags { padding-bottom: 10px; }
 
 .post-categories { padding-left: 5px; }
@@ -356,8 +362,6 @@ a.post-category { padding: 2px 5px; background-color: #7adfa7; border-radius: 5p
 
 .footnotes { padding-top: 10px; border-top: 1px solid #e8e8e8; font-size: 15.75px; }
 
-.footnotes::before { display: block; font-size: 23.4px; font-style: bold; content: "Footnotes"; }
-
 .footnotes p { margin-bottom: 5px; }
 
 .callout { padding-left: 12px; border-color: #828282; }
@@ -367,6 +371,14 @@ a.post-category { padding: 2px 5px; background-color: #7adfa7; border-radius: 5p
 .callout-icon { width: 32px; flex-shrink: 0; font-size: 21.6px; }
 
 .callout-text { padding-top: 2px; flex-grow: 1; }
+
+#disqus_thread { min-height: 100px; }
+
+ol.bibliography { counter-reset: item; }
+
+ol.bibliography li { list-style-type: none; }
+
+ol.bibliography li:before { content: "[" counter(item) "] "; counter-increment: item; position: absolute; text-align: right; width: 4em; margin-left: -4.4em; }
 
 .task-list { list-style-type: none; }
 

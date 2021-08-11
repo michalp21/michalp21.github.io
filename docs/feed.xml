@@ -1,5 +1,1067 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-08-03T23:59:04-05:00</updated><id>/feed.xml</id><title type="html">Xn - CS/AI blog</title><subtitle>Semi-processed thoughts.</subtitle><author><name>Michal Porubcin</name></author><entry><title type="html">Jekyll Blog Tutorial (+ Lots of Features)</title><link href="/tutorial/2021/08/01/jekyll-tutorial.html" rel="alternate" type="text/html" title="Jekyll Blog Tutorial (+ Lots of Features)" /><published>2021-08-01T00:00:00-05:00</published><updated>2021-08-01T00:00:00-05:00</updated><id>/tutorial/2021/08/01/jekyll-tutorial</id><content type="html" xml:base="/tutorial/2021/08/01/jekyll-tutorial.html">&lt;blockquote&gt;
-  &lt;p&gt;Here are the notes and external tutorials I used and gathered while creating this blog! Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-08-11T11:04:16-05:00</updated><id>/feed.xml</id><title type="html">Xn</title><subtitle>Personal Site.</subtitle><author><name>Michal Porubcin</name></author><entry><title type="html">VI-sensor Project: Accompanying Tutorials</title><link href="/tutorial/2021/08/07/sensor-tutorials.html" rel="alternate" type="text/html" title="VI-sensor Project: Accompanying Tutorials" /><published>2021-08-07T00:00:00-05:00</published><updated>2021-08-07T00:00:00-05:00</updated><id>/tutorial/2021/08/07/sensor-tutorials</id><content type="html" xml:base="/tutorial/2021/08/07/sensor-tutorials.html">&lt;blockquote&gt;
+  &lt;p&gt;Here’s the tutorials I put together for my VI-sensor project. I wrote them for myself several years ago so they were pretty minimal. I tried to flesh them out a bit more so maybe they can still be useful to others.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#summary&quot; id=&quot;markdown-toc-summary&quot;&gt;Summary&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#prerequisites&quot; id=&quot;markdown-toc-prerequisites&quot;&gt;Prerequisites&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#directory-tree&quot; id=&quot;markdown-toc-directory-tree&quot;&gt;Directory Tree&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#imu-guide&quot; id=&quot;markdown-toc-imu-guide&quot;&gt;IMU Guide&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#generic-usb-camera-guide&quot; id=&quot;markdown-toc-generic-usb-camera-guide&quot;&gt;Generic USB Camera Guide*&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#requirements&quot; id=&quot;markdown-toc-requirements&quot;&gt;Requirements&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#steps&quot; id=&quot;markdown-toc-steps&quot;&gt;Steps&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#flir-camera-guide-flycap-sdk--ros-driver&quot; id=&quot;markdown-toc-flir-camera-guide-flycap-sdk--ros-driver&quot;&gt;FLIR Camera Guide (flycap sdk &amp;amp; ros driver)&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#background-info&quot; id=&quot;markdown-toc-background-info&quot;&gt;Background Info&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#install&quot; id=&quot;markdown-toc-install&quot;&gt;Install&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#running&quot; id=&quot;markdown-toc-running&quot;&gt;Running&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#camera-calibration-given-photo-collection&quot; id=&quot;markdown-toc-camera-calibration-given-photo-collection&quot;&gt;Camera Calibration Given Photo Collection*&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#wires&quot; id=&quot;markdown-toc-wires&quot;&gt;Wires&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#triggering-camera-from-imu&quot; id=&quot;markdown-toc-triggering-camera-from-imu&quot;&gt;Triggering Camera From IMU&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#flycap&quot; id=&quot;markdown-toc-flycap&quot;&gt;Flycap&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#imu-serial&quot; id=&quot;markdown-toc-imu-serial&quot;&gt;IMU Serial&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#imu-ros&quot; id=&quot;markdown-toc-imu-ros&quot;&gt;IMU ROS&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#camera-ros-receive-trigger&quot; id=&quot;markdown-toc-camera-ros-receive-trigger&quot;&gt;Camera ROS (Receive Trigger)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#camera-ros-publish-image&quot; id=&quot;markdown-toc-camera-ros-publish-image&quot;&gt;Camera ROS (Publish Image)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#wrap-up&quot; id=&quot;markdown-toc-wrap-up&quot;&gt;Wrap Up&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#camera-calibration-with-kalibr&quot; id=&quot;markdown-toc-camera-calibration-with-kalibr&quot;&gt;Camera Calibration with Kalibr&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#record-rosbag&quot; id=&quot;markdown-toc-record-rosbag&quot;&gt;Record rosbag&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#calibrate-cameras&quot; id=&quot;markdown-toc-calibrate-cameras&quot;&gt;Calibrate Cameras&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#calibrate-cameraimu&quot; id=&quot;markdown-toc-calibrate-cameraimu&quot;&gt;Calibrate Camera+IMU&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#using-in-maplab&quot; id=&quot;markdown-toc-using-in-maplab&quot;&gt;Using In Maplab&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#rovioli--maplab&quot; id=&quot;markdown-toc-rovioli--maplab&quot;&gt;ROVIOLI + maplab&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#background&quot; id=&quot;markdown-toc-background&quot;&gt;Background&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#build-map&quot; id=&quot;markdown-toc-build-map&quot;&gt;Build Map&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#refine-calibration&quot; id=&quot;markdown-toc-refine-calibration&quot;&gt;Refine Calibration&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#visualization&quot; id=&quot;markdown-toc-visualization&quot;&gt;Visualization&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#relocalization&quot; id=&quot;markdown-toc-relocalization&quot;&gt;Relocalization&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#point-cloud-and-mesh-visualization&quot; id=&quot;markdown-toc-point-cloud-and-mesh-visualization&quot;&gt;Point cloud and mesh visualization*&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#some-fixes-for-dynamic-reconfigure-service&quot; id=&quot;markdown-toc-some-fixes-for-dynamic-reconfigure-service&quot;&gt;Some Fixes For Dynamic Reconfigure Service&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#pose-and-image-to-unity&quot; id=&quot;markdown-toc-pose-and-image-to-unity&quot;&gt;Pose and Image to Unity&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;While making the &lt;a href=&quot;/project/2021/07/21/sensor.html&quot;&gt;VI-sensor&lt;/a&gt;, I ran through lots of different tutorials and tried lots of things, and I wrote down some of the steps so I wouldn’t get lost later. They actually saved me a couple times when I had to start over one time. Several years later, even though some things have been obsoleted, maybe these refurbished tutorials will be helpful to someone starting on similar hardware or software.&lt;/p&gt;
+
+&lt;p&gt;As I experimented a lot, I didn’t end up using all the tutorials for the final VI-sensor. The ones that were not necessary are marked with an asterisk. The tutorials are in a rough order. Some previous tutorials may need to be completed before starting a later one.&lt;/p&gt;
+
+&lt;h3 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Tech&lt;/strong&gt;: A computer generally speaking, specific requirements mentioned in sub tutorials below.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Skills&lt;/strong&gt;: terminal (command prompt), light C++/Python/general programming, ROS, basic knowledge of hardware and software (what is an IMU for, what is Arduino).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Though I had some exposure to all the above, I strengthened a lot of skills, especially ROS, as I went along. I would say the core prereqs are some terminal and programming familiarity.&lt;/p&gt;
+
+&lt;h3 id=&quot;directory-tree&quot;&gt;Directory Tree&lt;/h3&gt;
+
+&lt;p&gt;There are tons of files and workspaces all over the place. I didn’t organize things that well, but for reference here’s the hierarchy I had, with the home directory (~/) as root. Bolded files are important. It might help to check back here if I’m referring to some errant launch or config file.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Arduino/Razor_AHRS/&lt;/li&gt;
+  &lt;li&gt;catkin_ws/src/
+    &lt;ul&gt;
+      &lt;li&gt;pointgrey_camera_driver/pointgrey_camera_driver/
+        &lt;ul&gt;
+          &lt;li&gt;launch/&lt;strong&gt;camera.launch&lt;/strong&gt;&lt;/li&gt;
+          &lt;li&gt;src/&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;razor_imu_9dof/
+        &lt;ul&gt;
+          &lt;li&gt;config/&lt;strong&gt;my_razor.yaml&lt;/strong&gt;&lt;/li&gt;
+          &lt;li&gt;launch/&lt;strong&gt;razor-pub.launch&lt;/strong&gt;&lt;/li&gt;
+          &lt;li&gt;nodes/&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;kalibr_ws/&lt;/li&gt;
+  &lt;li&gt;maplab_ws/src/maplab/applications/rovioli/
+    &lt;ul&gt;
+      &lt;li&gt;scripts/&lt;strong&gt;my_run_rovioli&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;share/
+        &lt;ul&gt;
+          &lt;li&gt;&lt;strong&gt;my_imu-sigmas-rovio.yaml&lt;/strong&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;strong&gt;my_imu-sparkfun.yaml&lt;/strong&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;strong&gt;my_ncamera.yaml&lt;/strong&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;imu-guide&quot;&gt;IMU Guide&lt;/h2&gt;
+&lt;p&gt;I used the &lt;a href=&quot;https://learn.sparkfun.com/tutorials/9dof-razor-imu-m0-hookup-guide/all&quot;&gt;9dof Razor IMU&lt;/a&gt; from Sparkfun, which has been discontinued :( Specific version is M0 14001. Mostly follow the guide at the &lt;a href=&quot;http://wiki.ros.org/razor_imu_9dof#Software_Installation&quot;&gt;ROS wiki&lt;/a&gt;, but with modifications which I’ll list below:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Before everything:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ sudo adduser &amp;lt;username&amp;gt; dialout&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;logout, log back in&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;On step 3, no breakout is required for this version of the board. Just a USB cable.&lt;/li&gt;
+  &lt;li&gt;For step 4, I used Used Arduino 1.8.6 (latest available at the time)&lt;/li&gt;
+  &lt;li&gt;I think I did step 4.1.1 instead of 4.1.2. I had to build from source.&lt;/li&gt;
+  &lt;li&gt;On step 4.2, follow above tutorial until opening Razor_AHRS in Arduino. Go to the &lt;a href=&quot;sfe.io/t567&quot;&gt;Sparkfun tutorial&lt;/a&gt; and follow from “Installing the 9DoF Razor Arduino Core” until the end of “Select the Board and Serial Port.” Also, using the link at the beginning of the following section, download Sparkfun MPU-9250 DMP Library and install it (add it as Arduino library). Finally, upload code to the board. (Note: do NOT &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;include&lt;/code&gt; the library in the code. Adding the library into Arduino IDE is enough.). Return to ROS wiki tutorial (skip the rest of 4.2).&lt;/li&gt;
+  &lt;li&gt;Edit the USER SETUP AREA in Razor_AHRS.ino, in the ~/Arduino directory! (NOT ~/catkin_ws)&lt;/li&gt;
+  &lt;li&gt;On step 4.3: Create config file (in ~/catkin_ws), rename the port in my_razor.yaml to whatever the port is called in Arduino IDE (eg /dev/ttyACM0)&lt;/li&gt;
+  &lt;li&gt;Step 6.2 will run a visualization demo. Prior to running the given command, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ source ~/catkin_ws/devel/setup.bash&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;On step 7.1.2, don’t adjust the gyro (all ~0)&lt;/li&gt;
+  &lt;li&gt;I only did hard iron correction in 7.1.3, using the Arduino serial monitor (then in my_razor.yaml, setting calibration_magn_use_extended parameter to false). Add changes to Razor_AHRS. These values must also be placed in the my_razor.yaml file in the catkin workspace and sourced. The razor-launch-and-display.launch (and possibly other launch files in the launch directory) all take my_razor.yaml as a parameter, overriding the values we wrote in Arduino and flashed onto the IMU board (yes, dumb).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That should be the end of the ros wiki tutorial. The polling rate is probably still low, so go back in Razor_AHRS.ino, and change &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OUTPUT__DATA_INTERVAL&lt;/code&gt; to 10 (to increase the rate to 100 Hz), and change the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;read_sensors&lt;/code&gt; function as follows:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint32_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastDisplayMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;read_sensors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#if HW__VERSION_CODE == 14001
+&lt;/span&gt;    &lt;span class=&quot;kt&quot;&gt;uint32_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;millis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;currMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastDisplayMs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lastDisplayMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currMs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;loop_imu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//...rest of function omitted&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Reflash, and now if you launch razor-pub.launch, then in another terminal window run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ rostopic hz imu&lt;/code&gt;, you will see average rate: 100 Hz!&lt;/p&gt;
+
+&lt;p&gt;Extra notes:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Edit+flash the Razor_AHRS.ino file from the Arduino directory, NOT the Razor_AHRS.ino file in the catkin workspace! (Note from 2021: I’m not sure why this is necessary…) However, the my_razor.yaml is configured in the catkin workspace and sourced.&lt;/li&gt;
+  &lt;li&gt;The “Using the MPU-9250 DMP Arduino Library” section of the &lt;a href=&quot;sfe.io/t567&quot;&gt;tutorial&lt;/a&gt; is useful for understanding some of the Arduino code, particularly Sensors.ino&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here’s a sketch of the important sections of the razor_9dof code:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;main()
+    read_sensors()
+        Sensors.loop_imu() //get data
+        hardware trigger //every 33ms
+    else if (output_mode == OUTPUT_MODE_ANGLES_AG_SENSORS)
+        Sensors.output_both_angles_and_sensors_text() //Logging to serial
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;generic-usb-camera-guide&quot;&gt;Generic USB Camera Guide*&lt;/h2&gt;
+&lt;p&gt;The first camera I tried was a GoPro camera. I thought it would at least be a step up from a webcam, but I was wrong. My VI-sensor was just the IMU taped on top of the GoPro…it did not work for several reasons:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;not global shutter&lt;/li&gt;
+  &lt;li&gt;resolution was too large making the algorithm run too slowly&lt;/li&gt;
+  &lt;li&gt;IMU would wobble around making calibration useless&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But I’ll leave this tutorial here anyways.&lt;/p&gt;
+
+&lt;h3 id=&quot;requirements&quot;&gt;Requirements&lt;/h3&gt;
+&lt;p&gt;The GoPro requires extra hocus pocus like an external capture card. It’s possible to just use a webcam.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;GoPro 2018
+    &lt;ul&gt;
+      &lt;li&gt;double ended type-A USB 3.0 cable&lt;/li&gt;
+      &lt;li&gt;HDMI to micro HDMI cable&lt;/li&gt;
+      &lt;li&gt;HDMI to USB converter/capture card (high end / low latency) (USB 3.0 allows for 1080p 60fps I think?)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Or just a webcam&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;steps&quot;&gt;Steps&lt;/h3&gt;
+&lt;p&gt;Turn on the GoPro. Set to 1080p and 30fps. Plug in the hdmi cable &amp;lt;-&amp;gt; capture card &amp;lt;-&amp;gt; usb cable &amp;lt;-&amp;gt; laptop usb port. The gopro screen should go black.&lt;/p&gt;
+
+&lt;p&gt;Run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ sudo apt-get install ros-kinetic-usb-cam&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Create folder(s) called usb_camera/launch in your catkin workspace (just to have a place to put the usb_cam-related launch files). Create a launch file with the usbcam and optionally an image display to view the live video on the computer. The value for the video_device param can be found with the following terminal commands:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get install v4l-utils
+$ v4l2-ctl --list-devices
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note: v4l-utils may already be installed&lt;/p&gt;
+
+&lt;p&gt;Note: The GoPro may automatically shut off (another reason why a GoPro was a bad idea) so turn it back on as necessary.&lt;/p&gt;
+
+&lt;p&gt;Now run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ roslaunch &amp;lt;/path/to/usb_launchfile&amp;gt;&lt;/code&gt;. Boom done.&lt;/p&gt;
+
+&lt;p&gt;Notes:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;USB C cable must be disconnected from GoPro&lt;/li&gt;
+  &lt;li&gt;If image is glitched somehow, more often than not it’s one of the wired connections. Usually just jiggle the cables a bit.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ rostopic hz &amp;lt;cam topic&amp;gt;&lt;/code&gt; in a separate terminal and notice that the fps is low. This is likely due to autoexposure. I tried several settings:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Autoexposure on (default)&lt;/li&gt;
+  &lt;li&gt;Turn off autoexposure on GoPro&lt;/li&gt;
+  &lt;li&gt;Turn off autoexposure on GoPro and in launch file&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In terms of fps: 3 &amp;gt; 2 &amp;gt; 1. To achieve (2) or (3), set add new autoexposure param and set to false in launch file. Also use image_raw not image_compressed.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;flir-camera-guide-flycap-sdk--ros-driver&quot;&gt;FLIR Camera Guide (flycap sdk &amp;amp; ros driver)&lt;/h2&gt;
+&lt;p&gt;I used a Firefly MV monochrome global shutter USB2.0 camera from FLIR (Point Grey). I’m pretty sure it’s been discontinued and it’s probably for the best. I think the closest thing FLIR offers now is the &lt;a href=&quot;https://www.flir.com/products/firefly-s/&quot;&gt;FireFly S&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This guide uses FlyCapture2 sdk for FLIR Firewire and USB2 cams! For USB3, GigE, and 10GigE cams, use Spinnaker sdk and the &lt;a href=&quot;https://github.com/ros-drivers/flir_camera_driver&quot;&gt;ros driver&lt;/a&gt; instead. I will refer to this URL as FDP (flir downloads page): www.ptgrey.com/support/downloads/&lt;/p&gt;
+
+&lt;p&gt;I used Firefly MV monochrome, amd64, Ubuntu 16 (FLIR does not offer flycap sdk for Ubuntu 14 and below)&lt;/p&gt;
+
+&lt;h3 id=&quot;background-info&quot;&gt;Background Info&lt;/h3&gt;
+&lt;p&gt;Go to the &lt;a href=&quot;https://github.com/ros-drivers/pointgrey_camera_driver&quot;&gt;point grey camera ros drivers&lt;/a&gt;
+Navigate to pointgrey_camera_driver/cmake/download_flycap&lt;/p&gt;
+
+&lt;p&gt;Find something like below:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;'x86_64'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;'current'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'https://www.ptgrey.com/support/downloads/10767/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;'flycapture2-2.11.3.121-amd64/libflycapture-2.11.3.121_amd64.deb'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;'flycapture2-2.11.3.121-amd64/libflycapture-2.11.3.121_amd64-dev.deb'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'usr/lib/libflycapture.so.2.11.3.121'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As you can see, the flycap sdk version used is flycapture2-2.11.3.121. However, in this very version, FFMV/FMVU cameras cannot start!! (according to release notes; available on FDP) This bug is fixed in 2.11.3-164 and above.&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;😐&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;Looking at the repo in 2021, it's possible they fixed this with commit e27f3a0.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;install&quot;&gt;Install&lt;/h3&gt;
+
+&lt;p&gt;Go to FDP. Download latest sdk: 2.13.3-31 for me. Follow instructions in README.txt to install.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd ~/catkin_ws/src
+$ git clone https://github.com/ros-drivers/pointgrey_camera_driver
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Open pointgrey_camera_driver/cmake/download_flycap and find the same block as above. Edit like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;'x86_64'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;'current'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'https://www.ptgrey.com/support/downloads/AAAAA/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;'flycapture2-BBBBB-amd64/libflycapture-BBBBB_amd64.deb'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;'flycapture2-BBBBB-amd64/libflycapture-BBBBB_amd64-dev.deb'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'usr/lib/libflycapture.so.BBBBB'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Where AAAAA is the link to the file on the FDP (go to FDP hover over sdk link, right click, copy link address), and BBBBB is version number. So mine looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;'x86_64'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;'current'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'https://www.ptgrey.com/support/downloads/11176/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;'flycapture2-2.13.3.31-amd64/libflycapture-2.13.3.31_amd64.deb'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;'flycapture2-2.13.3.31-amd64/libflycapture-2.13.3.31_amd64-dev.deb'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'usr/lib/libflycapture.so.2.13.3.31'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Run:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd ~/catkin_ws
+$ catkin_make
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Due to the version bs, you cannot just &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ sudo apt-get install ros-kinetic-ptgrey-camera-drivers&lt;/code&gt;; you must build from (modified) source.&lt;/p&gt;
+
+&lt;p&gt;If you mess up, run the uninstall script located in the sdk folder downloaded from FDP, and remove the ros package (depending whether you built from source or downloaded binary: either remove cloned repo and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;catkin clean&lt;/code&gt;, OR &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ sudo apt-get remove ros-kinetic-blabla&lt;/code&gt; and maybe deal with orphaned packages).&lt;/p&gt;
+
+&lt;h3 id=&quot;running&quot;&gt;Running&lt;/h3&gt;
+
+&lt;p&gt;Tada! Now plug in the camera and type:
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ flycap&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Select your camera and press ok to view a video feed! Press the gear icon to adjust imaging settings. Changing settings in ROS instead of Flycap can be done with dynamic reconfigure; see tutorial for that further down. Some settings in dynamic reconfigure, however, seem to be bugged (afaik)! See the comment at the end of the dynamic reconfigure tutorial.&lt;/p&gt;
+
+&lt;p&gt;BIG NOTE: If you are already publishing on camera/image_raw, then you will not see a video feed if you open flycap as well. However, changing the settings from flycap will still take effect.&lt;/p&gt;
+
+&lt;p&gt;Note: To view with img_view, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ rosrun image_view image_view image:=camera/image_raw&lt;/code&gt;. I recall this not working before but now it does and I’m accepting it.&lt;/p&gt;
+
+&lt;p&gt;Note: I cannot get this to work with kalibr validator.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;camera-calibration-given-photo-collection&quot;&gt;Camera Calibration Given Photo Collection*&lt;/h2&gt;
+&lt;p&gt;Before finding kalibr I think I used this method to calibrate my camera.&lt;/p&gt;
+
+&lt;p&gt;Mostly follow &lt;a href=&quot;https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_calib3d/py_calibration/py_calibration.html#calibration&quot;&gt;this guide&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;😐&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;That link is dead. This should be the same guide: https://docs.opencv.org/4.5.2/dc/dbb/tutorial_py_calibration.html&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Print a 9x6 checkerboard pattern on any size paper (Letter/A4/etc works). Paste/tape paper flatly onto a flat surface. (emphasis on flat)&lt;/p&gt;
+
+&lt;p&gt;Here’s the code to get calibration params.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;cv2&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;glob&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# import pdb; pdb.set_trace()
+&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#Protip: python reprojection_error.py &amp;gt; error.txt
+#Explanation: https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_calib3d/py_calibration/py_calibration.html#calibration
+&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;PATH&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/Users/user/Documents/Prog/temp/&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;#For displaying large images
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;namedWindow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;output&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WINDOW_NORMAL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# termination criteria
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;criteria&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TERM_CRITERIA_EPS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TERM_CRITERIA_MAX_ITER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.001&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# prepare object points, like (0,0,0), (1,0,0), (2,0,0) ....,(6,5,0)
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;objp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;float32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;objp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mgrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reshape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Arrays to store object points and image points from all the images.
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;objpoints&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 3d point in real world space
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imgpoints&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 2d points in image plane.
+&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;images&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;glob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;glob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'*.JPG'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Reading %d images from %s&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;images&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;images&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PATH&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;gray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cvtColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;COLOR_BGR2GRAY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# Find the chess board corners
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;corners&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;findChessboardCorners&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# If found, add object points, image points (after refining them)
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;objpoints&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;objp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;corners2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cornerSubPix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;corners&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;criteria&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;imgpoints&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;corners2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Draw and display the corners
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drawChessboardCorners&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;corners2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;imS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;720&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;480&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imshow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;img&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;waitKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;destroyAllWindows&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mtx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rvecs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tvecs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;calibrateCamera&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;objpoints&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imgpoints&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[::&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Projection (Intrinsic)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mtx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Distortion (Extrinsic)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PATH&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;GOPR0003.JPG&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;newcameramtx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;roi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getOptimalNewCameraMatrix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mtx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# undistort
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dst&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;undistort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mtx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newcameramtx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# crop the image
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;roi&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;dst&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imwrite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PATH&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'calibresult.png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;tot_error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;objpoints&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;imgpoints2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;projectPoints&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;objpoints&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rvecs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tvecs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mtx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;norm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imgpoints&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imgpoints2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cv2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NORM_L2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imgpoints2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;tot_error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mean reprojection error: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tot_error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;objpoints&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Changes from the code in the tutorial:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Code assumes (9,6) pattern (from link above).&lt;/li&gt;
+  &lt;li&gt;Prints relevant matrices and error&lt;/li&gt;
+  &lt;li&gt;Fixes reprojection error calculation&lt;/li&gt;
+  &lt;li&gt;Better image display for very large images (exceeding screen size)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It should output a calibresult.jpg, which is one undistorted image (the image name must be specified in code).&lt;/p&gt;
+
+&lt;p&gt;Add calibration results to my_config.yaml.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;wires&quot;&gt;Wires&lt;/h2&gt;
+
+&lt;p&gt;In order to set up the triggering, we need to stably mount the camera and IMU and connect them. I 3D-printed a holder which I included in the middle of the &lt;a href=&quot;/project/2021/07/21/sensor.html&quot;&gt;project summary&lt;/a&gt;. The design is weird because I had other plans for it and also because, well, that’s the best I could come up with. The correct wiring can be found on appropriate data sheets.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;triggering-camera-from-imu&quot;&gt;Triggering Camera From IMU&lt;/h2&gt;
+
+&lt;p&gt;The most important tutorial! Fun fact I couldn’t find this one so I looked back at the old code (which I had luckily) and whipped up a 2021 version just for this post. There may be errors or omissions though.&lt;/p&gt;
+
+&lt;p&gt;I basically worked off another tutorial which I’ll call &lt;a href=&quot;https://grauonline.de/wordpress/?page_id=1951&quot;&gt;grau&lt;/a&gt;. There are two important differences. First, I swapped the bluefox2 library with the pointgrey library, just because I used a different camera. My IMU was different as well, incorporating Arduino onboard, so I didn’t need mpu6050_serial_to_imu. Those two differences require me to explain the steps separately from grau, unlike the IMU tutorial, but I still recommend his tutorial for background information.&lt;/p&gt;
+
+&lt;p&gt;Here are the main steps:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Before everything, use Flycap to set parameters on camera&lt;/li&gt;
+  &lt;li&gt;Output trigger data from IMU to serial&lt;/li&gt;
+  &lt;li&gt;Publish IMU and trigger data over ROS&lt;/li&gt;
+  &lt;li&gt;Receive trigger messages with pointgrey camera driver&lt;/li&gt;
+  &lt;li&gt;Send images over ROS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ROS is the bridge between the IMU, camera, and the PC. Trigger data is only used to sync the IMU and camera. At the end, the PC should see synced IMU and camera messages over ROS, which will be fed into the SLAM algorithm.&lt;/p&gt;
+
+&lt;h3 id=&quot;flycap&quot;&gt;Flycap&lt;/h3&gt;
+
+&lt;p&gt;Follow the Flycap tutorial above. In the Flycap GUI, there should be settings for enabling trigger and disabling autoexposure.&lt;/p&gt;
+
+&lt;h3 id=&quot;imu-serial&quot;&gt;IMU Serial&lt;/h3&gt;
+
+&lt;p&gt;Assuming the camera and imu are wired together, first revisit Arduino/Razor_AHRS/Razor_AHRS.ino from the IMU tutorial above, and include camera triggering every 33ms. Note that the camera has a minimum triggering frequency. See the data sheet for details.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastDisplayMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;triggerMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;triggerCounter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;read_sensors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#if HW__VERSION_CODE == 14001
+&lt;/span&gt;  &lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;millis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;currMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastDisplayMs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;lastDisplayMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currMs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;loop_imu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//raise 33 for lower fps&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;currMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;triggerMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;33&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;digitalWrite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOW&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;digitalWrite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HIGH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;triggerCounter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;triggerMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currMs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#else
+&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;Read_Gyro&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Read gyroscope&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Read_Accel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Read accelerometer&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Read_Magn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Read magnetometer&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#endif // HW__VERSION_CODE
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add the following to Arduino/Razor_AHRS/Output.ino &lt;em&gt;at the end&lt;/em&gt; of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;output_both_angles_and_sensors_text()&lt;/code&gt;, in order to log necessary trigger data.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;LOG_PORT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;triggerCounter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOG_PORT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;,&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;LOG_PORT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;triggerMs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOG_PORT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Remember if you change the Arduino code you have to reflash the IMU.&lt;/p&gt;
+
+&lt;h3 id=&quot;imu-ros&quot;&gt;IMU ROS&lt;/h3&gt;
+
+&lt;p&gt;In razor_imu_9dof/nodes/imu_node.py, publish &lt;a href=&quot;http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/TimeReference.html&quot;&gt;TimeReference&lt;/a&gt; messages. This replaces the mpu6050_serial_to_imu from grau.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;/// after init_node()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pub_trigger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rospy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Publisher&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;trigger_time&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TimeReference&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;imuMsg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Imu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;triggerMsg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TimeReference&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;/// in the while loop&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;triggerCounter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;triggerCounter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastTriggerCounter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;triggerMsg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;triggerCounter&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;triggerMsg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stamp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rospy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;triggerMsg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time_ref&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rospy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pub_trigger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;publish&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;triggerMsg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;lastTriggerCounter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;triggerCounter&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The serial output is read line by line with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;line = ser.readline()&lt;/code&gt;, and split by comma into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;words&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;words[9]&lt;/code&gt;, is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;triggerCounter&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;words[10]&lt;/code&gt;, is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;triggerMs&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;camera-ros-receive-trigger&quot;&gt;Camera ROS (Receive Trigger)&lt;/h3&gt;
+
+&lt;p&gt;Add a ring buffer to pointgrey_camera_driver/pointgrey_camera_driver/src/nodelet.cpp. The idea is if the write head is running laps around the read head then it’s out of sync.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sensor_msgs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TimeReference&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ConstPtr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time_ref&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;//if ( (time_ref-&amp;gt;header.seq &amp;amp; 63) == 0){&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;//  ROS_WARN(&quot;recv triggertime seq %10u&quot;, time_ref-&amp;gt;header.seq);&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;//}&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;//  ros::Duration(0.001).sleep();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;TriggerPacket_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;triggerTime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time_ref&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stamp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;triggerCounter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time_ref&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;fifoWrite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fifoWrite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TriggerPacket_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;fifo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fifoWritePos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;fifoWritePos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fifoWritePos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FIFO_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fifoWritePos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fifoReadPos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ROS_WARN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;FIFO overflow!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fifoRead&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TriggerPacket_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fifoReadPos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fifoWritePos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fifo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fifoReadPos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;fifoReadPos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fifoReadPos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FIFO_SIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fifoLook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TriggerPacket_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fifoReadPos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fifoWritePos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fifo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fifoReadPos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;camera-ros-publish-image&quot;&gt;Camera ROS (Publish Image)&lt;/h3&gt;
+
+&lt;p&gt;Move down to the try block of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;STARTED&lt;/code&gt; case and create a new case to handle the camera triggering mode. Now the camera will only take and publish frames when it receives the trigger signal. Code again heavily from grau.&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;/// this case already existed -- no triggering&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;triggerMode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Publish the full message&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pub_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;publish&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wfov_image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// Publish the message using standard image transport&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;it_pub_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getNumSubscribers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sensor_msgs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ImagePtr&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sensor_msgs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wfov_image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;it_pub_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;publish&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ci_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;/// new case for triggering&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// wait for new trigger packet to receive&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;TriggerPacket_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fifoLook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ros::Duration(0.001).sleep();&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// a new video frame was captured - check if we need to skip it if one trigger packet was lost&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;triggerCounter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextTriggerCounter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;fifoRead&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// uint shutter = pg_.getShutter();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ros&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Duration&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expose_duration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ros&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Duration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SHUTTER&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1e-6&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;wfov_image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stamp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;triggerTime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expose_duration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ci_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stamp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wfov_image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stamp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;wfov_image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;info&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ci_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Publish the full message&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pub_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;publish&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wfov_image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Publish the message using standard image transport&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;it_pub_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getNumSubscribers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;sensor_msgs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ImagePtr&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sensor_msgs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wfov_image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;it_pub_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;publish&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ci_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//ros::Duration(0.001).sleep();&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;outOfSyncCounter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;      
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;outOfSyncCounter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;//ROS_WARN(&quot;trigger not in sync (seq expected %10u, got %10u)!&quot;, nextTriggerCounter, pkt.triggerCounter);  &lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;NODELET_WARN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;trigger not in sync (%d)!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;outOfSyncCounter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;   
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;nextTriggerCounter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// ros::spin();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;wrap-up&quot;&gt;Wrap Up&lt;/h3&gt;
+
+&lt;p&gt;To run, launch the camera and IMU in separate terminals. There may have been a need to start one before the other but I forgot.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;camera-calibration-with-kalibr&quot;&gt;Camera Calibration with Kalibr&lt;/h2&gt;
+&lt;p&gt;Kalibr can calibrate cameras, as well as imu-camera interaction. I can’t remember for sure if it requires imu-camera synchronization…&lt;/p&gt;
+
+&lt;p&gt;Build from source! The other option has limited capabilities.&lt;/p&gt;
+
+&lt;p&gt;Some commands (e.g. kalibr_camera_validator) fail (infuriatingly) on Ubuntu 16. They must be run on Ubuntu 14. This is an obstacle for validating with FLIR firefly camera.&lt;/p&gt;
+
+&lt;p&gt;Follow the youtube tutorial on the &lt;a href=&quot;https://github.com/ethz-asl/kalibr/wiki&quot;&gt;wiki&lt;/a&gt;. You have to calibrate imu parameters outside of Kalibr before doing imu-camera calibration.&lt;/p&gt;
+
+&lt;h3 id=&quot;record-rosbag&quot;&gt;Record rosbag&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Plug in imu and camera&lt;/li&gt;
+  &lt;li&gt;Source the kalibr workspace&lt;/li&gt;
+  &lt;li&gt;Run razor_9dof_imu/launch/razor-pub.launch and pointgrey_camera_driver/launch/camera.launch in separate windows&lt;/li&gt;
+  &lt;li&gt;In another window, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ rosbag record -O output.bag camera/image_raw imu&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Follow instructions in video to correctly move cam+imu for good calibration. Run for ~60 seconds.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To review the rosbag, close the imu and image streams, and run the 2 lines in different terminals:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ roscore
+$ rosbag play output.bag
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The video can then be viewed with img_view.&lt;/p&gt;
+
+&lt;h3 id=&quot;calibrate-cameras&quot;&gt;Calibrate Cameras&lt;/h3&gt;
+
+&lt;p&gt;First, calibrate camera(s):
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ kalibr_calibrate_cameras --models pinhole-radtan --topics camera/image_raw --bag output.bag --target april_6x6_80cm.yaml&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;For more info on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--models&lt;/code&gt; flag see &lt;a href=&quot;https://github.com/ethz-asl/kalibr/wiki/supported-models&quot;&gt;supported models&lt;/a&gt;. The format is the camera model abbreviated name and distortion model abbreviated name separated by a dash (e.g. pinhole-radtan). Topic must NOT have preceding slash for whatever reason (e.g. imu not /imu). Target is recommended to be some kind of april grid, since it’s more robust.&lt;/p&gt;
+
+&lt;h3 id=&quot;calibrate-cameraimu&quot;&gt;Calibrate Camera+IMU&lt;/h3&gt;
+
+&lt;p&gt;Then get camera+imu calibration:
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ kalibr_calibrate_imu_camera --cam camchain-output.yaml --imu imu.yaml --bag output.bag --target april_6x6_80cm.yaml&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Cam flag is output of kalibr_calibrate_cameras. Imu must be calibrated externally and imu.yaml must be filled in appropriately.&lt;/p&gt;
+
+&lt;h3 id=&quot;using-in-maplab&quot;&gt;Using In Maplab&lt;/h3&gt;
+
+&lt;p&gt;To convert kalibr yaml to maplab yaml (ncamera_calibration file), use the following command:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ kalibr_maplab_config --to-ncamera \
+--label cam_name \
+--cam camchain-imucam-output.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Label flag is arbitrary. Cam flag is the result of cam-imu calibration (output of kalibr_calibrate_imu_camera command).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;rovioli--maplab&quot;&gt;ROVIOLI + maplab&lt;/h2&gt;
+
+&lt;h3 id=&quot;background&quot;&gt;Background&lt;/h3&gt;
+&lt;p&gt;I’m using the maplab framework. ROVIO exists as a separate repository if desired. See &lt;a href=&quot;https://github.com/ethz-asl/maplab&quot;&gt;maplab github&lt;/a&gt;, &lt;a href=&quot;https://github.com/ethz-asl/maplab/wiki&quot;&gt;maplab wiki&lt;/a&gt;, and &lt;a href=&quot;https://github.com/ethz-asl/maplab/wiki/Installation-Ubuntu&quot;&gt;install instructions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Maplab is a VI mapping framework, which supports operations such as map merging, visual-inertial batch optimization, and loop closure. ROVIOLI, which is based on an estimator called ROVIO, is a VI mapping front end for maplab, with added maplab modules for map building and localization. maplab can just be used with ROVIOLI as a ready-to-go (and quite good) VI mapping/localization system, but other estimators can be integrated as well.&lt;/p&gt;
+
+&lt;h3 id=&quot;build-map&quot;&gt;Build Map&lt;/h3&gt;
+
+&lt;p&gt;You need three calibration files (see &lt;a href=&quot;https://github.com/ethz-asl/maplab/wiki/Sensor-Calibration-Format&quot;&gt;wiki&lt;/a&gt;). Put calibration files into maplab/applications/rovioli/share.&lt;/p&gt;
+
+&lt;p&gt;Be sure to convert kalibr output to maplab cam format (see &lt;a href=&quot;https://github.com/ethz-asl/maplab/wiki/Initial-sensor-calibration-with-Kalibr&quot;&gt;wiki&lt;/a&gt;, or the last note in the previous section).&lt;/p&gt;
+
+&lt;p&gt;Follow &lt;a href=&quot;https://github.com/ethz-asl/maplab/wiki/Running-ROVIOLI-in-VIO-mode&quot;&gt;this tutorial&lt;/a&gt; to build a map from a rosbag or rostopic. Instead of a launch file we use a bash script to run everything. Some examples are in &lt;a href=&quot;https://github.com/ethz-asl/maplab/tree/master/applications/rovioli/scripts&quot;&gt;maplab/applications/rovioli/scripts&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;refine-calibration&quot;&gt;Refine Calibration&lt;/h3&gt;
+
+&lt;p&gt;You can optionally refine the calibration, only after obtaining a decent map (see &lt;a href=&quot;https://github.com/ethz-asl/maplab/wiki/sensor-calibration-refinement&quot;&gt;wiki&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h3 id=&quot;visualization&quot;&gt;Visualization&lt;/h3&gt;
+
+&lt;p&gt;To visualize with rviz, download &lt;a href=&quot;https://github.com/ethz-asl/maplab/blob/pre_release_public/july-2018/applications/rovioli/share/rviz-rovioli.rviz&quot;&gt;this rviz config&lt;/a&gt;. Then run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ rosrun rviz rviz -d rviz-rovioli.rviz&lt;/code&gt;. Of course, you will need to set all the appropriate visualization flags in the rovioli launch script. Examples of these can be found in the same link above, for building a map from rosbag/rostopic. An overview of viz rostopics can be found &lt;a href=&quot;https://github.com/ethz-asl/maplab/wiki/Map-visualization&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In standalone ROVIO, some core parameters could be set at compile time with flags, but in ROVIOLI, these ROVIO parameters unfortunately require editing the code directly.&lt;/p&gt;
+
+&lt;h3 id=&quot;relocalization&quot;&gt;Relocalization&lt;/h3&gt;
+
+&lt;p&gt;Something to note about the map built by ROVIOLI. In ROVIO, the mapping part of SLAM is achieved with photometric features (visualized as green rectangles), whose count must be carefully managed. While these features are robust for local state estimation, they are not efficient for building maps suitable for loop closure, state estimation, etc., so in ROVIOLI, a separate module is run in parallel to grab landmarks better suited for these tasks. These are finalized at shutdown, meaning mapping is not done in real time, and online localization from this map is impossible.&lt;/p&gt;
+
+&lt;p&gt;The map will be saved to the location specified with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--save_map_folder&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This map should be optimized for use in relocalization. There are two ways to do this:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;launch script flag: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--optimize_map_to_localization_map&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/ethz-asl/maplab/wiki/Preparing-a-single-session-map&quot;&gt;maplab commands&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A smaller “summary map” can be generated from this, using this command: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ generate_summary_map_and_save_to_disk --summary_map_save_path path/to/save/localization/summary/map&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The next time you run ROVIOLI with relocalization, use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--vio_localization_map_folder&lt;/code&gt; flag.&lt;/p&gt;
+
+&lt;p&gt;Basic map manipulation can be done in the &lt;a href=&quot;https://github.com/ethz-asl/maplab/wiki/Console-map-management&quot;&gt;maplab console&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;point-cloud-and-mesh-visualization&quot;&gt;Point cloud and mesh visualization*&lt;/h2&gt;
+
+&lt;p&gt;no rviz, thank you&lt;/p&gt;
+
+&lt;p&gt;pcd viz:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt install pcl-tools
+$ pcl_viewer &amp;lt;pointcloud.pcd&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;mesh viz:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get install meshlab
+$ meshlab
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;open obj file in meshlab gui&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;some-fixes-for-dynamic-reconfigure-service&quot;&gt;Some Fixes For Dynamic Reconfigure Service&lt;/h2&gt;
+&lt;p&gt;Assuming everything is setup in the code, run the node, then run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ rosrun rqt_reconfigure rqt_reconfigure&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Specific to the pointgrey_camera_driver, the default params are set in pointgrey_camera_driver/cfg/PointGrey.cfg&lt;/p&gt;
+
+&lt;p&gt;Some parameters in the config seem to be bugged (afaik). So far I have found this true for frame rate and brightness. So go in PointGreyCamera.cpp, into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setNewConfiguration()&lt;/code&gt;, and comment out the relevant calls to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setProperty()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To update the config (and of course, if you make changes to the driver files, e.g. PointGreyCamera.cpp), you must recompile them, i.e. rerun &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;catkin_make&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;pose-and-image-to-unity&quot;&gt;Pose and Image to Unity&lt;/h2&gt;
+
+&lt;p&gt;I’m sorry to disappoint, but I can’t seem to find the tutorial or the code for this part. All I have are the last couple of entries in my dev notes.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;–/–/– Decided ros sharp was overkill because all of the URDF stuff. Opted for ROSBridgeLib, which is just client implementation for Unity of all (most) ros messsages. It sucks and no working tutorial provided, and no active development, and simple data values are behind accessors, and everything has to be static?!?!?! Switch back to ros sharp, but have “Duplicate Assembly” errors, even after restarting in new project. Discovered I was dumb and copied the wrong folder. Unity client successfully connects to rosbridgeserver, but images are not updated in Unity.&lt;/p&gt;
+
+  &lt;p&gt;–/–/– Discovered first 12 pixels in image data were bogus; turns out it is embedded info from camera. So no problem with ros side. On Unity side, texture and pose weren’t being updated because turns out can’t do stuff with textures outside render thread (ros sharp creates new thread). So moved rendering to IEnumerator and used UnityMainThreadDispatcher. Also, using LoadImage() on compressed image rostopic is muuuuch slower than LoadRawTextureData() on regular image topic. Result is image stream shows! Some opacity issue. Deep profile helps a ton. Position works! Rotation works! Turns out need to create new Position and Rotation and assign, rather than editing the values directly (?). At least for pose, could maybe get away with less frequent position updates + smoothing/lerping.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Michal Porubcin</name></author><category term="tutorial" /><category term="vio" /><category term="slam" /><category term="sensor" /><summary type="html">Here’s the tutorials I put together for my VI-sensor project. I wrote them for myself several years ago so they were pretty minimal. I tried to flesh them out a bit more so maybe they can still be useful to others.</summary></entry><entry><title type="html">What Isn’t Model-Based RL?</title><link href="/article/2021/08/06/model-based-rl.html" rel="alternate" type="text/html" title="What Isn’t Model-Based RL?" /><published>2021-08-06T00:00:00-05:00</published><updated>2021-08-06T00:00:00-05:00</updated><id>/article/2021/08/06/model-based-rl</id><content type="html" xml:base="/article/2021/08/06/model-based-rl.html">&lt;blockquote&gt;
+  &lt;p&gt;Having only encountered model-free RL, I had a hard time pinning down what made a model-based RL algorithm for some reason, and here is my shot at the difference. This is not exactly a tutorial or anything, just an attempt to clear up some confusions I had with various terms. I try not to be too prescriptive.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;lets-start-with-what-it-is&quot;&gt;Let’s Start With What It Is&lt;/h2&gt;
+
+&lt;p&gt;We start with an environment that can be represented as an MDP. Our goal is to find the optimal policy of an agent in this MDP.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;dynamics&lt;/strong&gt; of an MDP are the state transitions and rewards. A &lt;strong&gt;model&lt;/strong&gt; is just some representation of the dynamics. Knowing the dynamics is equivalent to having a model.&lt;/p&gt;
+
+&lt;p&gt;Sutton and Barto &lt;a class=&quot;citation&quot; href=&quot;#Sutton1998&quot;&gt;[1]&lt;/a&gt; confirms this:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;By a model of the environment we mean anything that an agent can use to predict how the environment will respond to its actions.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;There are two types of a models:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Distribution model&lt;/strong&gt;: gives probabilities of all transition events as the full distribution \(p(r,s'\vert s,a)\).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Sampling model&lt;/strong&gt;: provides transition samples, i.e. a reward \(r\) and next state \(s'\), given state \(s\) and action \(a\).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The model may or may not be learned by the agent. Unlike the dynamics which are inherent in the MDP, the model is an aspect of the agent or algorithm, and is totally optional.&lt;sup id=&quot;fnref:complete&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:complete&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;If we have (and use) a model, then it becomes a &lt;strong&gt;planning&lt;/strong&gt; problem. If we don’t have a model, then we have a &lt;strong&gt;learning&lt;/strong&gt; problem.&lt;/p&gt;
+
+&lt;p&gt;We can see the same definition in Sutton and Barto:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;The heart of both learning and planning methods is the estimation of value functions by backing-up update operations. The difference is that whereas planning uses simulated experience generated by a model, learning methods use real experience generated by the environment &lt;a class=&quot;citation&quot; href=&quot;#Sutton1998&quot;&gt;[1]&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;They emphasize the usage of simulated vs real experience. Models are clearly simulators, as the experiences they generate are not from the real world dynamics themselves, i.e. real life.&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;🤨&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;Then if model == planning, and no model == learning, what the heck is model-based reinforcement learning?&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In model-based reinforcement learning (RL), we have to &lt;strong&gt;learn&lt;/strong&gt; a model from &lt;strong&gt;real experience&lt;/strong&gt;, and use it to &lt;strong&gt;plan&lt;/strong&gt; the optimal policy from &lt;strong&gt;simulated experience&lt;/strong&gt;. It quite simply smashes planning and learning together.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/mbrl.png&quot; alt=&quot;mbrl&quot; /&gt;
+&lt;em&gt;Source: David Silver &lt;a class=&quot;citation&quot; href=&quot;#silver2015&quot;&gt;[2]&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;🤨&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;Why not model-free reinforcement planning?&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Probably just a quirk of history. Check out section 1.7 of &lt;a class=&quot;citation&quot; href=&quot;#Sutton1998&quot;&gt;[1]&lt;/a&gt;! Nowadays, “reinforcement” in RL probably serves to separate it from supervised learning as a learning paradigm, and the addition of “model-based” identifies a class of RL that incorporates planning.&lt;sup id=&quot;fnref:rp&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:rp&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;sanity-check&quot;&gt;Sanity Check&lt;/h2&gt;
+&lt;p&gt;First some simpler conclusions:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Model-based is &lt;em&gt;not&lt;/em&gt; the same as model-based RL. Out of the four classes of model-based methods in &lt;a href=&quot;https://bair.berkeley.edu/blog/2019/12/12/mbpo/&quot;&gt;this blog post&lt;/a&gt;, only the last two seem to be model-based RL.&lt;sup id=&quot;fnref:familiar&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:familiar&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  &lt;li&gt;The kind of model we have (distribution or sampling) is separate from knowledge of the dynamics, and in fact assumes we &lt;em&gt;do&lt;/em&gt; know the dynamics.&lt;/li&gt;
+  &lt;li&gt;If we know the dynamics, then there is no room for learning. On the other hand, if we refuse to know anything about the dynamics, there is no room for a model. For this reason, we could say &lt;em&gt;model-based&lt;/em&gt; RL is an attempt to &lt;em&gt;learn the dynamics&lt;/em&gt;, in addition to learning the optimal policy.&lt;/li&gt;
+  &lt;li&gt;RL in general is &lt;em&gt;not&lt;/em&gt; distinguished by the goal of learning the dynamics.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;what-it-isnt&quot;&gt;What It Isn’t&lt;/h2&gt;
+&lt;h3 id=&quot;other-senses-of-model&quot;&gt;Other Senses of Model&lt;/h3&gt;
+&lt;p&gt;Since I brought up supervised learning, I ought to clarify an unfortunate overlap in terminology. “Model” as described above is &lt;em&gt;not&lt;/em&gt; the same as a supervised machine learning “model,” which rather refers to the output of a machine learning algorithm, without (necessarily) any connection to dynamics. The term “function approximator” is used to avoid confusion when supervised learning models are used in RL algorithms, for example in Deep Q-Learning.&lt;/p&gt;
+
+&lt;p&gt;Yet another possible usage is a description of the MDP as a “model” of the environment. The assumption of an environment represented as an MDP characterizes the class of algorithms we consider in the first place, and therefore anticipates the model-based/model-free distinction in RL.&lt;/p&gt;
+
+&lt;h3 id=&quot;value-functions&quot;&gt;Value Functions&lt;/h3&gt;
+&lt;p&gt;Both model-based and model-free RL may estimate value functions, which are not models. They influence how new experience is obtained, but value functions represent expected cumulative returns instead of the dynamics.&lt;/p&gt;
+
+&lt;p&gt;A model could still be necessary, due to our goal of finding the optimal policy. An RL algorithm could learn model-free all the way up to outputting a state-value function \(v\). Strictly speaking, to finish the problem, a model (such as four-argument \(p\)) is still required to extract the policy (if the situation allows it).&lt;/p&gt;
+
+\[\pi^*(s) = \text{argmax}_a \sum_{r,s'}p(r,s'\vert s,a)(r + \gamma v^*(s'))\]
+
+&lt;p&gt;The action-value function \(q\) does not have this problem:&lt;/p&gt;
+
+\[\pi^*(s) = \text{argmax}_a q^*(s,a)\]
+
+&lt;h3 id=&quot;other-senses-of-simulator&quot;&gt;Other Senses of Simulator&lt;/h3&gt;
+&lt;p&gt;The colloquial definition of a simulator from Merriam-Webster is:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;a device that enables the operator to reproduce or represent under test conditions phenomena likely to occur in actual performance&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Confusion is likely to arise due to the two senses of the word “simulator”: one as programs or devices, like physics simulators and flight simulators, and the other as models of an MDP’s dynamics. I’ll just go ahead and claim &lt;em&gt;all simulators in the first sense are also simulators in the second sense&lt;/em&gt;. Is a simulation program not a handcrafted model of the real world? Then within a simulator, there is technically no learning involved, as all examples are simulated and the simulator itself is not learned. If we want to keep thinking of it as RL, we could instead learn a policy within the simulator &lt;em&gt;for&lt;/em&gt; the simulator, and just cross our fingers that it transfers well to the real world.&lt;/p&gt;
+
+&lt;p&gt;Is that really a good reason to call something model-based? Is A3C done in a physics engine all of a sudden a planning algorithm? Well, A3C could work on real-world data &lt;em&gt;in principle&lt;/em&gt; so maybe that’s a good enough reason to continue to call it a model-free RL algorithm, absent any context. Then I think it would be permissible to say A3C can be used for planning or model-free RL depending how it’s used.&lt;/p&gt;
+
+&lt;p&gt;Yet another source of confusion is the fact that some “simulated” environments are actually the target environment – no finger-crossing needed. When we’re training an AI to learn Go, we aren’t interested in learning to move the physical pieces on a physical board. All we care about is mastering the mathematical formulation of the game. All gameplay occuring in a Go simulator should therefore be considered real experience for our particular setup. Maybe we could instead use “virtual” to desribe these situations, as it’s different enough from the word “simulated” while still capturing the non-reality of the domain of interest.&lt;/p&gt;
+
+&lt;h3 id=&quot;data-storage-and-reuse&quot;&gt;Data Storage and Reuse&lt;/h3&gt;
+&lt;p&gt;An isolated experience \((s, a, r, s')\), encountered, used once, and discarded by the agent, &lt;em&gt;does not count&lt;/em&gt; as a model. That should be obvious: if any interaction with the environment whatsoever counted as a model, then all RL would be model-based. Temporarily storing several experiences or even whole episodes before calculating returns, like in Monte Carlo methods, is not much different.&lt;/p&gt;
+
+&lt;p&gt;Inching closer to model-based methods, we have experience replay (ER), which stores experiences in a buffer, and samples from them later, either individually or in mini-batches, randomly or with a heuristic priority. The experiences are potentially used &lt;em&gt;multiple times&lt;/em&gt; before being deleted to make room for new ones. The reuse of experience constitutes a sort of data augmentation, which is really what a model does during simulation. Unfortunately, we can’t query it at arbitrary states unless they are present in the buffer, which means we can’t use the buffer to run trajectories forward or backward &lt;a class=&quot;citation&quot; href=&quot;#Pan9780999241127&quot;&gt;[3]&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Are those essential for a model? Vanilla Dyna-Q &lt;a class=&quot;citation&quot; href=&quot;#Sutton1998&quot;&gt;[1]&lt;/a&gt; is supposedly model-based, yet it only samples randomly from previous experiences.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/dynaq.png&quot; alt=&quot;dynaq&quot; /&gt;
+&lt;em&gt;Just looks like ER to me.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Meanwhile, &lt;a class=&quot;citation&quot; href=&quot;#NEURIPS2019_1b742ae2&quot;&gt;[4]&lt;/a&gt; seems to think it’s a salient distinction:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;On the other hand, a replay memory is less flexible than a model, since we cannot query it at arbitrary states that are not present in the replay memory.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;They go on to use Dyna-Q as an example of model-based RL, &lt;em&gt;but&lt;/em&gt; use a multi-layer perceptron (or more importantly, a parametric function approximator, in opposition to nonparametric ER) to model transitions, terminations, and rewards, allowing it to sample unseen states. Of course they do that, but then their definition of planning is so loose that it includes ER again &lt;a class=&quot;citation&quot; href=&quot;#NEURIPS2019_1b742ae2&quot;&gt;[4]&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;any algorithm that uses additional computation to improve its predictions or behaviour without consuming additional data.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;There are bound to be more examples I haven’t seen that straddle the boundary between temporary storage and model, so I won’t really offer my opinion here.&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;🤨&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;I don't care about your opinion. Is ER a model?&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Based on my extensive survey of two papers, I’ll conclude that the literature overall separates ER from models, though with much hedging.&lt;/p&gt;
+
+&lt;h2 id=&quot;examples&quot;&gt;Examples&lt;/h2&gt;
+
+&lt;p&gt;Now I’m going to pretend like my definitions inform my classification of existing RL algorithms, and not the other way around. Summarizing:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;DP methods use models, and are not RL. The dynamics are explicitly used to calculate an optimal policy.&lt;sup id=&quot;fnref:dynamic&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:dynamic&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  &lt;li&gt;MC, TD, and policy gradient methods are model-free RL assuming Q functions are used instead of V functions. Dynamics not required.&lt;/li&gt;
+  &lt;li&gt;MCTS uses a model for the rollout phase, but it’s not learned, so it’s a planning algorithm (the use of a virtual target environment like a Go program doesn’t change this).&lt;/li&gt;
+  &lt;li&gt;Deep Q-Learning is model-free RL, since we decided ER isn’t a model.&lt;/li&gt;
+  &lt;li&gt;Dyna-Q is model-based RL. Because “model” is written in the pseudocode.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;https://www.ijcai.org/proceedings/2018/0666.pdf&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:complete&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Barto+Sutton use the game of blackjack as an example to distinguish a distribution model (full dynamics) from some other “complete knowledge”: “Although we have complete knowledge of the environment in this task, it would not be easy to apply DP methods to compute the value function. DP methods require the distribution of next events—in particular, they require the environments dynamics as given by the four-argument function \(p\)—and it is not easy to determine this for blackjack. For example, suppose the player’s sum is 14 and he chooses to stick. What is his probability of terminating with a reward of +1 as a function of the dealer’s showing card?” To be honest I’m still not sure what “complete knowledge of the environment” refers to. Maybe it refers to fully observable state, which is true of blackjack, and allows us to use an MDP. Maybe he’s saying the rules can be used as a sampling model but not a distribution model. Or it could be a game theory term I’m unfamiliar with. &lt;a href=&quot;#fnref:complete&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:rp&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Then unless there are other major planning paradigms, the term “reinforcement planning” is not so useful anymore. &lt;a href=&quot;#fnref:rp&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:familiar&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;I’m not familiar with value-equivalence prediction though so I could be wrong. &lt;a href=&quot;#fnref:familiar&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:dynamic&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;So “dynamic” in dynamic programming has nothing to do with wham bam presto forte after all. See &lt;a href=&quot;https://cstheory.stackexchange.com/a/5643&quot;&gt;this answer&lt;/a&gt; on StackOverflow. &lt;a href=&quot;#fnref:dynamic&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="article" /><category term="reinforcement-learning" /><category term="model" /><summary type="html">Having only encountered model-free RL, I had a hard time pinning down what made a model-based RL algorithm for some reason, and here is my shot at the difference. This is not exactly a tutorial or anything, just an attempt to clear up some confusions I had with various terms. I try not to be too prescriptive.</summary></entry><entry><title type="html">BibTeX For Jekyll Using jekyll-scholar</title><link href="/tutorial/2021/08/06/bibtex-jekyll.html" rel="alternate" type="text/html" title="BibTeX For Jekyll Using jekyll-scholar" /><published>2021-08-06T00:00:00-05:00</published><updated>2021-08-06T00:00:00-05:00</updated><id>/tutorial/2021/08/06/bibtex-jekyll</id><content type="html" xml:base="/tutorial/2021/08/06/bibtex-jekyll.html">&lt;blockquote&gt;
+  &lt;p&gt;I made a long Jekyll tutorial covering lots of different features, but the references mini-tutorial became not-so-mini so I moved it to its own post.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#referencescitations-in-jekyll&quot; id=&quot;markdown-toc-referencescitations-in-jekyll&quot;&gt;References/Citations in Jekyll&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#bibtex&quot; id=&quot;markdown-toc-bibtex&quot;&gt;BibTeX&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#basics&quot; id=&quot;markdown-toc-basics&quot;&gt;Basics&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#custom-citation-style&quot; id=&quot;markdown-toc-custom-citation-style&quot;&gt;Custom Citation Style&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#link-to-resource&quot; id=&quot;markdown-toc-link-to-resource&quot;&gt;Link To Resource&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#adding-to-post-layout&quot; id=&quot;markdown-toc-adding-to-post-layout&quot;&gt;Adding To Post Layout&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#unresolved-issues&quot; id=&quot;markdown-toc-unresolved-issues&quot;&gt;Unresolved Issues&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;referencescitations-in-jekyll&quot;&gt;References/Citations in Jekyll&lt;/h2&gt;
+
+&lt;p&gt;Say you want to add references on your page. Instead of generating them outside of jekyll and copying them to the bottom of your post, or worse, typing them out by hand, you can let a package called jekyll-scholar take care of it all within jekyll.&lt;/p&gt;
+
+&lt;h2 id=&quot;bibtex&quot;&gt;BibTeX&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.bibtex.org/&quot;&gt;BibTeX&lt;/a&gt; is “a tool and a file format which are used to describe and process lists of references, mostly in conjunction with LaTeX documents.” A BibTeX entry looks something like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-bib highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;@book&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;Sutton1998&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;added-at&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;{2019-07-13T10:11:53.000+0200}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;author&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;{Sutton, Richard S. and Barto, Andrew G.}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;biburl&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;{https://www.bibsonomy.org/bibtex/2f46601cf8b13d39d1378af0d79438b12/lanteunis}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;edition&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;{Second}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;interhash&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;{ac6b144aaec1819919a2fba9f705c852}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;intrahash&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;{f46601cf8b13d39d1378af0d79438b12}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;publisher&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;{The MIT Press}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;timestamp&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;{2019-07-13T10:11:53.000+0200}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;{Reinforcement Learning: An Introduction}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;{http://incompleteideas.net/book/the-book-2nd.html}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;year&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;{2018}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;{http://incompleteideas.net/book/RLbook2020.pdf}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You don’t usually have to worry about constructing these. The entry comes all in one piece wherever the article is published so you can easily copy/paste it. You can still modify it; I added &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;link&lt;/code&gt; to point to a pdf version of the book.&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;😐&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;If you get a bunch of warnings with the message 'Warning: Empty 'slug' generated for ''.' in the terminal, then it's probably due to empty items in a bibtex entry. See this issue: https://github.com/jekyll/jekyll/issues/7881. Try not to have entries that look like {} or ''.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;basics&quot;&gt;Basics&lt;/h2&gt;
+
+&lt;p&gt;Add it to the Gemfile and run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle install&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-gemfile&quot;&gt;group :jekyll_plugins do
+  gem &quot;jekyll-scholar&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add it to _config.yml to use it:&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jekyll-scholar&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Restart the server and it should be ready to go.&lt;/p&gt;
+
+&lt;p&gt;Jekyll-scholar allows you to generate references and citations from bibtex files, much like in a LaTeX environment. It’s pretty customizable, and the &lt;a href=&quot;https://github.com/inukshuk/jekyll-scholar&quot;&gt;repo’s readme&lt;/a&gt; has good documentation (for once). The basics are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Keep all your references in _bibliography/references.bib&lt;/li&gt;
+  &lt;li&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{% bibliography %}&lt;/code&gt; wherever you want to list your references (in the post layout for example).&lt;/li&gt;
+  &lt;li&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{% cite bibliography-entry %}&lt;/code&gt; whenever you want to cite a specific entry, replacing bibliography-entry with the entry id. Unfortunately it may have to go in the Markdown of your post.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;custom-citation-style&quot;&gt;Custom Citation Style&lt;/h2&gt;
+
+&lt;p&gt;Some things to consider when you’re customizing your references. The tag &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{{reference}}&lt;/code&gt; gives the core reference element. The plugin will always output an ordered list, and customization will modify each list item inclusive of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{{reference}}&lt;/code&gt;, but the format of the actual reference element is determined by a cls file. The &lt;a href=&quot;https://github.com/citation-style-language/styles&quot;&gt;csl repo&lt;/a&gt; has a list of presets to choose from. For example, I like the &lt;a href=&quot;https://libguides.murdoch.edu.au/IEEE/home&quot;&gt;IEEE&lt;/a&gt; style better than APA, so I swapped it by adding this to \config.yml:&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;scholar&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ieee&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The value of the style parameter is just a style from the csl repo without the .csl file extension.&lt;/p&gt;
+
+&lt;p&gt;I ran into some problems though. First, IEEE is a numbered style, so the csl file would generate a number redundant with the number in the HTML list.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/ref-redundant.png&quot; alt=&quot;ref-redundant&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I found a solution buried in &lt;a href=&quot;https://martinopilia.com/posts/2020/02/22/migration.html&quot;&gt;here&lt;/a&gt;. First, copy ieee.csl from the csl repo into _bibliography/ieee_custom.csl and customize it. It looks pretty hefty but here’s the gist of the structure:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;a bunch of macros&lt;/li&gt;
+  &lt;li&gt;a citation block&lt;/li&gt;
+  &lt;li&gt;and a bibliography block&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Down in the bibliography block, comment out the citation number:&lt;/p&gt;
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;bibliography&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;entry-spacing=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;second-field-align=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;flush&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;layout&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;suffix=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Citation Number --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- &amp;lt;text variable=&quot;citation-number&quot; prefix=&quot;[&quot; suffix=&quot;] &quot;/&amp;gt; --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Author(s) --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;text&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;macro=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;author&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;suffix=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;, &quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Point to the new csl file in _config.yml:&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;scholar&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;_/bibliography/ieee_custom.csl&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now edit the CSS of the numerals generated by jekyll-scholar, to satisfy the IEEE style:&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;ol&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.bibliography&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;counter-reset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;ol&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.bibliography&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;list-style-type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;ol&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.bibliography&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;[&quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;] &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;counter-increment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;text-align&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;margin-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-4.4em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/ref-fixed.png&quot; alt=&quot;ref-fixed&quot; /&gt;
+&lt;em&gt;That does the trick.&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote class=&quot;callout&quot;&gt;
+  &lt;div class=&quot;flexy&quot;&gt;
+    
+      &lt;div class=&quot;callout-icon&quot;&gt;😐&lt;/div&gt;
+    
+    &lt;div class=&quot;callout-text&quot;&gt;Warning: edits to the csl file seem to require restarting the jekyll server.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;link-to-resource&quot;&gt;Link To Resource&lt;/h2&gt;
+
+&lt;p&gt;I also wanted to make the csl file add an HTML link around the title pointing to the resource (like the url for a pdf of a research paper), as long as the reference had a link field in the bibtex (references.bib). Unfortunately the solutions I found looked pretty hacky so I settled for putting the link outside the csl-generated reference. To do this, just modify the list element using a &lt;a href=&quot;https://github.com/inukshuk/jekyll-scholar#bibliography-template&quot;&gt;bibliography template&lt;/a&gt; at _layouts/bibitem.html.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;{{reference}}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+{% if entry.link %} 
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ entry.link }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;[link]&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+{% endif %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add it to the config:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;scholar&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;...&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;bibliography_template&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bibitem&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/ref-link.png&quot; alt=&quot;ref-link&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;adding-to-post-layout&quot;&gt;Adding To Post Layout&lt;/h2&gt;
+
+&lt;p&gt;One last thing I wanted was the ability to put the references in the post layout so a) I could place it below the footnotes and b) I wouldn’t have to manually add it in every post. The first step is to put &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{% bibliography --cited %}&lt;/code&gt; in the post template, to show only elements of the bibliography you have cited on the page. Unfortunately if you have a header like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;h2&amp;gt;References&amp;lt;/h2&amp;gt;&lt;/code&gt;, then it will show up even if there are no citations in the post. Here’s my solution:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{% capture count %}{% bibliography_count --cited %}{% endcapture %}
+{% assign count = count | plus: 0 %}
+{% if count &amp;gt; 0 %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;References&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+{% endif %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-bibliography&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+{% bibliography --cited %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The first line gets a string representing the number of references cited on the page and stores it in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;count&lt;/code&gt;. It gets converted to a number in the second line, and used in the third to show the header only if there are one or more references cited on the page.&lt;/p&gt;
+
+&lt;h2 id=&quot;unresolved-issues&quot;&gt;Unresolved Issues&lt;/h2&gt;
+
+&lt;p&gt;When I cited a reference using a BibTeX key with two periods, the citation wouldn’t render. That is, something like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{% cite 10.55553304652.3304675 %}&lt;/code&gt; turned into “(missing reference)”. For now I just change the key in the BibTeX entry to something without two periods.&lt;/p&gt;</content><author><name>Michal Porubcin</name></author><category term="tutorial" /><category term="bibtex" /><category term="jekyll" /><summary type="html">I made a long Jekyll tutorial covering lots of different features, but the references mini-tutorial became not-so-mini so I moved it to its own post.</summary></entry><entry><title type="html">Jekyll Blog Tutorial (+ Lots of Features)</title><link href="/tutorial/2021/08/01/jekyll-tutorial.html" rel="alternate" type="text/html" title="Jekyll Blog Tutorial (+ Lots of Features)" /><published>2021-08-01T00:00:00-05:00</published><updated>2021-08-01T00:00:00-05:00</updated><id>/tutorial/2021/08/01/jekyll-tutorial</id><content type="html" xml:base="/tutorial/2021/08/01/jekyll-tutorial.html">&lt;blockquote&gt;
+  &lt;p&gt;Here are the notes and external tutorials I used and gathered while creating this blog. Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;!--more--&gt;
@@ -21,6 +1083,7 @@
   &lt;li&gt;&lt;a href=&quot;#other-features&quot; id=&quot;markdown-toc-other-features&quot;&gt;Other Features&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#callouts&quot; id=&quot;markdown-toc-callouts&quot;&gt;Callouts&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#code&quot; id=&quot;markdown-toc-code&quot;&gt;Code&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#comments-disqus&quot; id=&quot;markdown-toc-comments-disqus&quot;&gt;Comments (Disqus)&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#excerpts&quot; id=&quot;markdown-toc-excerpts&quot;&gt;Excerpts&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#fonts&quot; id=&quot;markdown-toc-fonts&quot;&gt;Fonts&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#footnotes&quot; id=&quot;markdown-toc-footnotes&quot;&gt;Footnotes&lt;/a&gt;&lt;/li&gt;
@@ -29,12 +1092,12 @@
       &lt;li&gt;&lt;a href=&quot;#latex&quot; id=&quot;markdown-toc-latex&quot;&gt;LaTeX&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#links&quot; id=&quot;markdown-toc-links&quot;&gt;Links&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#pagination&quot; id=&quot;markdown-toc-pagination&quot;&gt;Pagination&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#references&quot; id=&quot;markdown-toc-references&quot;&gt;References&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#table-of-contents&quot; id=&quot;markdown-toc-table-of-contents&quot;&gt;Table of Contents&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#tags&quot; id=&quot;markdown-toc-tags&quot;&gt;Tags&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#reference-bibtex&quot; id=&quot;markdown-toc-reference-bibtex&quot;&gt;Reference (Bibtex)&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#publishing-the-site&quot; id=&quot;markdown-toc-publishing-the-site&quot;&gt;Publishing the Site!&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#publishing-the-site&quot; id=&quot;markdown-toc-publishing-the-site&quot;&gt;Publishing the Site&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#misc-troubleshooting&quot; id=&quot;markdown-toc-misc-troubleshooting&quot;&gt;Misc. Troubleshooting&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#changes-not-visible&quot; id=&quot;markdown-toc-changes-not-visible&quot;&gt;Changes not visible&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#404-error&quot; id=&quot;markdown-toc-404-error&quot;&gt;404 Error&lt;/a&gt;&lt;/li&gt;
@@ -50,13 +1113,13 @@
 &lt;h3 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;Tech&lt;/strong&gt;: Intel macOS Big Sur&lt;sup id=&quot;fnref:forthis&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:forthis&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Skills&lt;/strong&gt;: terminal (command prompt) competency&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Skills&lt;/strong&gt;: terminal (command prompt) and git competency, basic HTML knowledge&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;jekyll-overview&quot;&gt;Jekyll Overview&lt;/h2&gt;
 &lt;p&gt;What is Jekyll? This &lt;a href=&quot;https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll&quot;&gt;page&lt;/a&gt; is a quick intro. Maybe read through it once.&lt;/p&gt;
 
-&lt;p&gt;I’ll still try to convey the allure of Jekyll (to me anyways). With Jekyll, I can scaffold my blog once using reusable templates, and reduce repeated content creation, like blog posts, to simple markdown files. Jekyll gives you a static site, so you don’t have to worry about backends and databases and all this over-engineering, and you can host it on GitHub for free.&lt;/p&gt;
+&lt;p&gt;I’ll still try to convey the appeal of Jekyll (to me anyways). With Jekyll, I can scaffold my blog once using reusable templates, and reduce repeated content creation, like blog posts, to simple markdown files. Jekyll gives you a static site, so you don’t have to worry about backends and databases and all this over-engineering, and you can host it on GitHub for free.&lt;/p&gt;
 
 &lt;h2 id=&quot;setup&quot;&gt;Setup&lt;/h2&gt;
 
@@ -70,7 +1133,7 @@
 
 &lt;p&gt;To host the site locally, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. If successful, you should be able to go to &lt;a href=&quot;http://localhost:4000/&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://localhost:4000&quot;&gt;http://localhost:4000&lt;/a&gt; in the browser and view the default Jekyll blog.&lt;/p&gt;
 
-&lt;p&gt;When we’re ready to deploy, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundler exec jekyll build&lt;/code&gt; to generate the site files. This is called &lt;em&gt;building&lt;/em&gt; the site (wow!) and I will refer to it as such from here on – I will not say building in the colloquial sense of just creating the blog.&lt;/p&gt;
+&lt;p&gt;When we’re ready to deploy, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundler exec jekyll build&lt;/code&gt; to generate the site files. This is called &lt;em&gt;building&lt;/em&gt; the site (wow!) and I will refer to it as such from here on – I will not use building to mean the colloquial sense of just creating the blog.&lt;/p&gt;
 
 &lt;blockquote class=&quot;callout&quot;&gt;
   &lt;div class=&quot;flexy&quot;&gt;
@@ -157,11 +1220,9 @@ Thank you for your time.
 
 &lt;h2 id=&quot;themes&quot;&gt;Themes&lt;/h2&gt;
 
-&lt;p&gt;Returning to themes, while they aren’t necessary I highly recommend at least using one as a base, especially if you’re not super savvy with styling. To do so, copy the files from the minima repo to your repository.&lt;/p&gt;
+&lt;p&gt;Returning to themes, while they aren’t necessary I highly recommend at least using one as a base, especially if you’re not super savvy with styling. Themes can also bundle together some nice features on top of a custom look and feel, like search and archiving.&lt;/p&gt;
 
-&lt;p&gt;To customize the styling, you need to write custom CSS/Sass. &lt;a href=&quot;https://jekyllrb.com/docs/step-by-step/07-assets/&quot;&gt;This tutorial&lt;/a&gt; should get you started. You should do your styling in the Sass files under _sass.&lt;/p&gt;
-
-&lt;p&gt;You can also use a theme as-is. See &lt;a href=&quot;https://jekyllrb.com/docs/themes/&quot;&gt;here&lt;/a&gt; for more details, and places to find themes. Note that a gem-based theme may be incompatible with GitHub Pages. Copying files directly into your repo doesn’t have this limitation.&lt;/p&gt;
+&lt;p&gt;To use a theme as-is, see &lt;a href=&quot;https://jekyllrb.com/docs/themes/&quot;&gt;this guide&lt;/a&gt;. Note that a gem-based theme may be incompatible with GitHub Pages. To build on a custom theme, copy the files from the theme’s repo to your repository. To customize the styling, you need to write custom CSS/Sass. &lt;a href=&quot;https://jekyllrb.com/docs/step-by-step/07-assets/&quot;&gt;This tutorial&lt;/a&gt; should get you started. You should do your styling in the Sass files under _sass.&lt;/p&gt;
 
 &lt;h2 id=&quot;kramdown&quot;&gt;Kramdown&lt;/h2&gt;
 
@@ -225,13 +1286,35 @@ Thank you for your time.
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;I tweaked things like padding and font size until it looked good.&lt;/p&gt;
+&lt;p&gt;I tweaked things like padding and font size until it looked good. Note: markdown processing won’t work inside callouts.&lt;/p&gt;
 
 &lt;h3 id=&quot;code&quot;&gt;Code&lt;/h3&gt;
 
 &lt;p&gt;Syntax highlighting is provided in minima. Just copy the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.highlight&lt;/code&gt; section from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/minima/skins/classic.scss&lt;/code&gt; .&lt;/p&gt;
 
 &lt;p&gt;When typing code, use spaces instead of tabs, or else the indent length on the site will be too large (in my opinion). In my Markdown editor, there is an option to put four spaces automatically when I hit tab.&lt;/p&gt;
+
+&lt;h3 id=&quot;comments-disqus&quot;&gt;Comments (Disqus)&lt;/h3&gt;
+
+&lt;p&gt;Comments would be pretty nice right? The problem is they clash with the whole static-site thing. Number one concern: where are the comments stored? You have two options:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;host your own comments&lt;/li&gt;
+  &lt;li&gt;let someone do it for you.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The first option is a pain and sort of nullifies some of Jekyll’s more appealing features, like free hosting on GitHub. Now think of what actually goes into a comment system. Do users make an account to post? Can they edit and delete comments? What about threads, sorting, mentions, reactions, email notifications, and moderation?&lt;/p&gt;
+
+&lt;p&gt;What? Disqus does all that? For &lt;em&gt;free&lt;/em&gt;? In spite of a handful of blogposts critical of ad-ridden, tracker-obsessed, privacy-trampling Disqus, that seductive string of features pulled me to the dark side. Plus there’s no free, cloud-hosted alternatives as far as I know (I tried something called Social9 but it’s clearly still in the works).&lt;/p&gt;
+
+&lt;p&gt;Just follow steps 1 and 2 of &lt;a href=&quot;https://jreel.github.io/setting-up-disqus-comments-on-jekyll/&quot;&gt;this tutorial&lt;/a&gt;. If you used the minima theme as a base like I did, then you should already have Disqus boilerplate code. Otherwise finish the tutorial. Note that you won’t be able to see the comments when testing locally.&lt;/p&gt;
+
+&lt;p&gt;We’re not done yet. We can turn off some ads in the Disqus dashboard. See the images:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/adsettings.png&quot; alt=&quot;adsettings&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/advancedsettings.png&quot; alt=&quot;advancedsettings&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can also lazy load the comments in order to avoid slow loading of the main content. Instead, the comments are loaded when the user is close to the bottom of the page. Check out &lt;a href=&quot;https://usefulangle.com/post/251/disqus-comments-improve-page-load-speed&quot;&gt;this tutorial&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;excerpts&quot;&gt;Excerpts&lt;/h3&gt;
 
@@ -363,6 +1446,13 @@ Thank you for your time.
 
 &lt;p&gt;The “reference style link” text should be replaced by your own text.&lt;/p&gt;
 
+&lt;p&gt;An &lt;strong&gt;internal link&lt;/strong&gt;, or a link to another post on your site, looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;link text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;{{&lt;/span&gt; site.baseurl }}{% post_url 2021-07-19-post %})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;What comes after &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post_url&lt;/code&gt;  is the name of the post file.&lt;/p&gt;
+
 &lt;h3 id=&quot;pagination&quot;&gt;Pagination&lt;/h3&gt;
 
 &lt;p&gt;Pagination is supported. Modify the Gemfile like so:&lt;/p&gt;
@@ -414,6 +1504,10 @@ paginate: 10
 
 &lt;p&gt;There is a more sophisticated pagination package &lt;a href=&quot;https://github.com/sverrirs/jekyll-paginate-v2&quot;&gt;here&lt;/a&gt;, but it is not supported by GitHub Pages. I decided I didn’t need it.&lt;/p&gt;
 
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+
+&lt;p&gt;I moved the full references tutorial to a &lt;a href=&quot;/tutorial/2021/08/06/bibtex-jekyll.html&quot;&gt;separate post&lt;/a&gt;.&lt;/p&gt;
+
 &lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
 &lt;p&gt;Plop this in your markdown.&lt;/p&gt;
 
@@ -457,28 +1551,15 @@ layout: default
 
 &lt;p&gt;Similar things can be done for categories and archives.&lt;/p&gt;
 
-&lt;h3 id=&quot;reference-bibtex&quot;&gt;Reference (Bibtex)&lt;/h3&gt;
+&lt;h2 id=&quot;publishing-the-site&quot;&gt;Publishing the Site&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/inukshuk/jekyll-scholar&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/inukshuk/jekyll-scholar&quot;&gt;https://github.com/inukshuk/jekyll-scholar&lt;/a&gt; (I might expand on this)&lt;/p&gt;
+&lt;p&gt;Done? Time to publish! Remember we used custom plugins, so we can’t push to GitHub and let it build our site for us. Now at this stage people will say you need to build the site yourself, then move it to another branch called gh-pages, then push that to GitHub Pages, and since it is &lt;em&gt;such&lt;/em&gt; a burden, they will then promote their GitHub Actions and Travis CIs.&lt;/p&gt;
 
-&lt;h2 id=&quot;publishing-the-site&quot;&gt;Publishing the Site!&lt;/h2&gt;
+&lt;p&gt;Here’s what you do. Check you are on master or main branch (I haven’t checked if any arbitrary branch will work). Wrap up your changes and git commits. Now add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;destination: docs&lt;/code&gt; to _config.yml to change the destination of the static site generated by Jekyll from _site to docs. Now run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundler exec jekyll build&lt;/code&gt; to build the site. Also in terminal, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;touch .nojekyll&lt;/code&gt; . This is a file which tells GitHub not to run Jekyll on your files because you already did that. Now commit .nojekyll and docs, and push to GitHub. Finally, in GitHub, go to Settings &amp;gt; Pages &amp;gt; Source and change the root folder to docs. There may be some benefit to using separate branches instead of a docs folder in the same branch, but it’s just a personal site so I doubt it matters.&lt;/p&gt;
 
-&lt;p&gt;Done? Time to publish! Remember we used custom plugins, so we can’t push to GitHub and let it build our site for us. Now at this stage many will say you need to build the site yourself, then move it to another branch called gh-pages, then push that to GitHub Pages, and since it is &lt;em&gt;such&lt;/em&gt; a burden, they will then promote their GitHub Actions and Travis CIs. I don’t know if that was all necessary in the past but it’s definitely not necessary now.&lt;/p&gt;
+&lt;p&gt;From now on, just build before pushing.&lt;sup id=&quot;fnref:tried&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:tried&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;p&gt;Here’s what you do. Check you are on master or main branch (I haven’t checked if any arbitrary branch will work). Wrap up your changes and git commits. Now add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;destination: docs&lt;/code&gt; to _config.yml to change the destination of the static site generated by Jekyll from _site to docs. Now run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundler exec jekyll build&lt;/code&gt; to build the site. Also in terminal, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;touch .nojekyll&lt;/code&gt; . This is a file which tells GitHub not to run Jekyll on your files because you already did that. Now commit .nojekyll and docs, and push to GitHub. Finally, in GitHub, go to Settings &amp;gt; Pages &amp;gt; Source and change the root folder to docs.&lt;/p&gt;
-
-&lt;p&gt;From now on, just build before pushing.&lt;/p&gt;
-
-&lt;blockquote class=&quot;callout&quot;&gt;
-  &lt;div class=&quot;flexy&quot;&gt;
-    
-      &lt;div class=&quot;callout-icon&quot;&gt;😐&lt;/div&gt;
-    
-    &lt;div class=&quot;callout-text&quot;&gt;I tested this with a main branch and a user site. I haven't tried other branches, or project or organization sites. It seems the only acceptable folders are . (root) and ./docs&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Assuming you are making a user site and you have not set a baseurl in _config.yml, you should be able to go to username.github.io and view your blog!&lt;sup id=&quot;fnref:otherwise&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:otherwise&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; Congratulations!&lt;/p&gt;
+&lt;p&gt;Assuming you are making a user site and you have not set a baseurl in _config.yml, you should be able to go to username.github.io and view your blog!&lt;sup id=&quot;fnref:otherwise&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:otherwise&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; Congratulations!&lt;/p&gt;
 
 &lt;h2 id=&quot;misc-troubleshooting&quot;&gt;Misc. Troubleshooting&lt;/h2&gt;
 
@@ -490,7 +1571,7 @@ layout: default
   &lt;li&gt;If changes were made to _config.yaml, the site has to be relaunched.&lt;/li&gt;
   &lt;li&gt;If changes were made to styling, make sure it is being imported all the way through to assets/css/main.css.&lt;/li&gt;
   &lt;li&gt;Your styling code could just be wrong.&lt;/li&gt;
-  &lt;li&gt;You think you’re editing/replacing one file but you’re changing another one. Or you think you’re refreshing the page you edited but you’re not.&lt;/li&gt;
+  &lt;li&gt;You think you’re editing/replacing one file but you’re changing another one. Or you think you’re refreshing the post you edited but you’re not. Or you think you’re refreshing the local testing site but you’re refreshing the production site.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;404-error&quot;&gt;404 Error&lt;/h3&gt;
@@ -510,11 +1591,14 @@ layout: default
     &lt;li id=&quot;fn:forthis&quot; role=&quot;doc-endnote&quot;&gt;
       &lt;p&gt;These are what I used so I can say with some confidence that you too can get a working solution with them. Alternatives may also work though. &lt;a href=&quot;#fnref:forthis&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
+    &lt;li id=&quot;fn:tried&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;I tested this with a main branch and a user site. I haven’t tried other branches, or project or organization sites. It seems the only acceptable folders are . (root) and ./docs. &lt;a href=&quot;#fnref:tried&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
     &lt;li id=&quot;fn:otherwise&quot; role=&quot;doc-endnote&quot;&gt;
       &lt;p&gt;Otherwise it’s not so hard to figure out your URL. Google about GitHub Pages if you need more help there. &lt;a href=&quot;#fnref:otherwise&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="tutorial" /><category term="blog" /><category term="jekyll" /><summary type="html">Here are the notes and external tutorials I used and gathered while creating this blog! Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!</summary></entry><entry><title type="html">Project Reupload #3: VI sensor</title><link href="/project/2021/07/21/sensor.html" rel="alternate" type="text/html" title="Project Reupload #3: VI sensor" /><published>2021-07-21T00:00:00-05:00</published><updated>2021-07-21T00:00:00-05:00</updated><id>/project/2021/07/21/sensor</id><content type="html" xml:base="/project/2021/07/21/sensor.html">&lt;blockquote&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="tutorial" /><category term="blog" /><category term="jekyll" /><summary type="html">Here are the notes and external tutorials I used and gathered while creating this blog. Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!</summary></entry><entry><title type="html">Project Reupload #3: VI-sensor</title><link href="/project/2021/07/21/sensor.html" rel="alternate" type="text/html" title="Project Reupload #3: VI-sensor" /><published>2021-07-21T00:00:00-05:00</published><updated>2021-07-21T00:00:00-05:00</updated><id>/project/2021/07/21/sensor</id><content type="html" xml:base="/project/2021/07/21/sensor.html">&lt;blockquote&gt;
   &lt;p&gt;I’m writing posts on my old projects. Here I will introduce one of my most ambitious projects, the creation of a visual-inertial sensor for use with SLAM.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -620,9 +1704,11 @@ layout: default
 
 &lt;p&gt;As usual, I ran into issues with project scope. Unlike my &lt;a href=&quot;/project/2021/07/19/wisp.html&quot;&gt;Wisp&lt;/a&gt; project, I &lt;em&gt;never&lt;/em&gt; added features, but instead the true scale of the project was completely hidden from me since I lacked experience with the field (even worse than the &lt;a href=&quot;/project/2021/07/20/poker-ai.html&quot;&gt;poker project&lt;/a&gt;). I thought okay the state-of-the-art is in SLAM so I’ll do that! When I realized how complicated everything was, I ended up using an off-the-shelf SLAM in order to reach the MVP. There’s nothing wrong with using a prebuilt package, but I could have chosen from a more lightweight family of algorithms like VIO, which would have lowered requirements on both the sensor components and computer. Additionally, I was unable to debug it when things went awry. I actually started with a completely different SLAM algorithm called VINS-MONO, but had to ditch it because I simply couldn’t get it to run.&lt;/p&gt;
 
-&lt;p&gt;My number one priority after building the sensor was to dive more deeply into SLAM and related algorithms. Still, basic knowledge of the sensor and how it fits into the whole pose estimation pipeline is invaluable. I was exposed to tons of concepts about cameras, lenses, and basic photography that I find fascinating even now. Most of all I dove into the completely new fields of robotics and computer vision and came out with something to show for it. Without a doubt, this was one of my favorite projects.&lt;/p&gt;
+&lt;p&gt;My number one priority after building the sensor was to dive more deeply into SLAM and related algorithms. Still, basic knowledge of the sensor and how it fits into the whole pose estimation pipeline is invaluable. I was exposed to tons of concepts about cameras, lenses, and basic photography that I find fascinating even now. Most of all I dove into the completely new fields of robotics and computer vision and came out with something to show for it. Without a doubt, one of my favorite projects.&lt;/p&gt;
 
 &lt;p&gt;I will release specific tutorials I put together during the project.&lt;/p&gt;
+
+&lt;p&gt;[Update 2021-08-08]: Tutorials &lt;a href=&quot;/tutorial/2021/08/07/sensor-tutorials.html&quot;&gt;uploaded&lt;/a&gt;!&lt;/p&gt;
 
 &lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
   &lt;ol&gt;
@@ -636,7 +1722,7 @@ layout: default
       &lt;p&gt;Not sponsored I promise. &lt;a href=&quot;#fnref:sponsor&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="project" /><category term="vio" /><category term="slam" /><category term="computer-vision" /><category term="rovio" /><category term="hardware" /><summary type="html">I’m writing posts on my old projects. Here I will introduce one of my most ambitious projects, the creation of a visual-inertial sensor for use with SLAM.</summary></entry><entry><title type="html">Project Reupload #2: Poker AI</title><link href="/project/2021/07/20/poker-ai.html" rel="alternate" type="text/html" title="Project Reupload #2: Poker AI" /><published>2021-07-20T00:00:00-05:00</published><updated>2021-07-20T00:00:00-05:00</updated><id>/project/2021/07/20/poker-ai</id><content type="html" xml:base="/project/2021/07/20/poker-ai.html">&lt;blockquote&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="project" /><category term="vio" /><category term="slam" /><category term="computer-vision" /><category term="hardware" /><category term="sensor" /><summary type="html">I’m writing posts on my old projects. Here I will introduce one of my most ambitious projects, the creation of a visual-inertial sensor for use with SLAM.</summary></entry><entry><title type="html">Project Reupload #2: Poker AI</title><link href="/project/2021/07/20/poker-ai.html" rel="alternate" type="text/html" title="Project Reupload #2: Poker AI" /><published>2021-07-20T00:00:00-05:00</published><updated>2021-07-20T00:00:00-05:00</updated><id>/project/2021/07/20/poker-ai</id><content type="html" xml:base="/project/2021/07/20/poker-ai.html">&lt;blockquote&gt;
   &lt;p&gt;I’m writing posts on my old projects. In this post, I’ll introduce my final project for one of my classes in junior year, a simplified implementation of a state-of-the-art poker AI.&lt;/p&gt;
 &lt;/blockquote&gt;
 
