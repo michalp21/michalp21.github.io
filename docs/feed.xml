@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-08-11T17:11:59-05:00</updated><id>/feed.xml</id><title type="html">Xn</title><subtitle>Personal Site.</subtitle><author><name>Michal Porubcin</name></author><entry><title type="html">VI-sensor Project: Accompanying Tutorials</title><link href="/tutorial/2021/08/07/sensor-tutorials.html" rel="alternate" type="text/html" title="VI-sensor Project: Accompanying Tutorials" /><published>2021-08-07T00:00:00-05:00</published><updated>2021-08-07T00:00:00-05:00</updated><id>/tutorial/2021/08/07/sensor-tutorials</id><content type="html" xml:base="/tutorial/2021/08/07/sensor-tutorials.html">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-08-11T17:24:28-05:00</updated><id>/feed.xml</id><title type="html">Xn</title><subtitle>Personal Site.</subtitle><author><name>Michal Porubcin</name></author><entry><title type="html">VI-sensor Project: Accompanying Tutorials</title><link href="/tutorial/2021/08/07/sensor-tutorials.html" rel="alternate" type="text/html" title="VI-sensor Project: Accompanying Tutorials" /><published>2021-08-07T00:00:00-05:00</published><updated>2021-08-07T00:00:00-05:00</updated><id>/tutorial/2021/08/07/sensor-tutorials</id><content type="html" xml:base="/tutorial/2021/08/07/sensor-tutorials.html">&lt;blockquote&gt;
   &lt;p&gt;Here’s the tutorials I put together for my VI-sensor project. I wrote them for myself several years ago so they were pretty minimal. I tried to flesh them out a bit more so maybe they can still be useful to others.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -870,7 +870,6 @@ $ meshlab
   &lt;li&gt;Dyna-Q is model-based RL. Because “model” is written in the pseudocode.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;https://www.ijcai.org/proceedings/2018/0666.pdf&lt;/p&gt;
 &lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:complete&quot; role=&quot;doc-endnote&quot;&gt;

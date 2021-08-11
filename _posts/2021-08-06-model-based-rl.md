@@ -117,5 +117,3 @@ Now I'm going to pretend like my definitions inform my classification of existin
 [mbrl]: /assets/images/mbrl.png
 [dynaq]: /assets/images/dynaq.png
 [prestoforte]: https://cstheory.stackexchange.com/a/5643
-
-https://www.ijcai.org/proceedings/2018/0666.pdf

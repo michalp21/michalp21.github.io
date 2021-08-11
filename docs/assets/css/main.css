@@ -329,6 +329,8 @@ table td { border: 1px solid #e8e8e8; }
 
 .post-content h6 { font-size: 19.125px; }
 
+.post-bibliography { margin-bottom: 15px; }
+
 .post-bibliography h2 { font-size: 31.5px; }
 
 @media screen and (min-width: 800px) { .post-bibliography h2 { font-size: 36px; } }
