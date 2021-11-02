@@ -58,7 +58,7 @@ I took it upon myself to come up with a new version of Q3 that discourages menta
 > Q4: In TWO SECONDS tell me how high a stack of one trillion papers would be.
 
 ## Inverse Case
-Fine, now we have linear and exponential versions of the paper-stacking riddle we are about equally bad at answering. We can't think exponentially or linearly, it seems, or maybe we just can't think at all?
+Fine, now we have linear and exponential versions of the paper-stacking riddle we are about equally bad at answering. Now what?
 
 The previous questions, and especially the first two, were too focused on dumbfounding you with the final answer, warping your perfectly normal inability to perform fast, accurate mental math into some shocking moral about our poor linear minds. There's no reason to construct the question in such a way that the final paper stack reaches three quarters of the distance from the Earth to the sun, other than to a) make absolutely certain you will get the answer incorrect so that b) whichever smart guy asks it can take pleasure in correcting you.
 
@@ -76,7 +76,7 @@ You might say, "that's a lot of words just to admit that the puzzle is useful af
 - We can't intuit even linear approximations if they're literally astronomical.
 - We are perfectly capable of thinking exponentially. It just takes some practice.
 
-Alright I'm done attacking a silly puzzle. Off to more productive things.
+Alright I'm done criticizing a silly puzzle. Off to more productive things.
 
 ## Appendix
 Easy Python code to test out the folds yourself:

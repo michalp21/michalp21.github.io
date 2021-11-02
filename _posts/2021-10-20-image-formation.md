@@ -56,7 +56,7 @@ The same image mentions the three well-known modes of perspective, supposedly ba
 
 ![4thvp.png]{: width="300"}
 
-Actually, any pair of parallel lines will converge to a point, so there are technically infinite vanishing points. The reason we usually only consider three modes of perspective is the tendency to picture "blocky" shapes, like buildings; for more info see [[Vanishing Points]].
+Actually, any pair of parallel lines will converge to a point, so there are technically infinite vanishing points. The reason we usually only consider three modes of perspective is the tendency to picture "blocky" shapes, like buildings.
 
 ## Perspective Distortion
 
@@ -132,8 +132,6 @@ To get a good intuition about the formula, here is a [good website](https://ophy
 - when you move the object to $$f$$
 - when you move the object between $$f$$ and $$0$$.
 
-For more info, check out [[Optics]].
-
 # Camera Anatomy
 
 Equipped with an intuition about light and lens, we can now learn how an image is captured. Though a camera has many components, we will cover three basic ones: the **lens**, **shutter**, and **sensor**.
@@ -186,7 +184,7 @@ Shutters can be classified in several ways:
 
 Note: a leaf shutter looks kind of like an aperture but it's not the same!
 
-Leaf shutters are quiet and relatively slow, while focal-plane shutters are loud and fast, and can cause vibrations during the shot. Electronic shutters can be even faster than focal-plane shutters, without any noise or vibrations. Rolling shutters are pretty common on consumer cameras, while global shutters are mostly limited to small resolutions or high-end cameras. Finally, rolling shutters are susceptible to **rolling shutter distortion**, also called the "jello effect". For more info see [[Shutters]].
+Leaf shutters are quiet and relatively slow, while focal-plane shutters are loud and fast, and can cause vibrations during the shot. Electronic shutters can be even faster than focal-plane shutters, without any noise or vibrations. Rolling shutters are pretty common on consumer cameras, while global shutters are mostly limited to small resolutions or high-end cameras. Finally, rolling shutters are susceptible to **rolling shutter distortion**, also called the "jello effect".
 
 ## Sensors
 
@@ -220,8 +218,6 @@ In summary, the three independent, distinguishing features of a sensor are:
 - resolution
 - pixel size
 
-For more info, see [[Digital Photographic Sensors]]
-
 # Types of Photographic Cameras
 
 Here is a collection of different kinds of cameras used for taking still pictures, presented in roughly chronological order by the time they were created. We will see how the components from the previous section can be combined.
@@ -242,7 +238,7 @@ View cameras use a leaf shutter, located in the middle of the lens.
 
 The basic SLR design is shared by most modern cameras.
 
-Here it's easier to see that the lens (not labeled) is really a complex assembly of lenses, with an aperture in the middle. Instead of viewing the image on a glass pane, we now have a viewfinder. The light normally passes through the lens, bounces off a mirror, passes through a [[Pentaprism]] or pentamirror above (not labeled), and exits the viewfinder. Finally, notice how the shutter is located right in front of the film, rather than inside the lens.
+Here it's easier to see that the lens (not labeled) is really a complex assembly of lenses, with an aperture in the middle. Instead of viewing the image on a glass pane, we now have a viewfinder. The light normally passes through the lens, bounces off a mirror, passes through a pentaprism or pentamirror above (not labeled), and exits the viewfinder. Finally, notice how the shutter is located right in front of the film, rather than inside the lens.
 
 When a picture is taken, the mirror flips up, allowing light to pass to the shutter, and the shutter opens briefly, exposing the film. Finally the shutter closes and the mirror flips back down. The mirror movement makes SLRs louder than other types of cameras.
 
@@ -399,8 +395,6 @@ The shutter speed or exposure time $$T$$, measured in fractions of a second, is 
 Humans can hand-hold down to 1/60. There is sometimes an additional mode called bulb (often symbolized as B), which allows one to keep the shutter open manually as long as desired.
 
 The shutter speed abstracts away many details about the shutter itself. In particular, it applies to mechanical and electronic shutters.
-
-[[Shutters]]
 
 ### Common Stops
 
