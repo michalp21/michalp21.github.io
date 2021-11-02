@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-11-02T09:40:04-05:00</updated><id>/feed.xml</id><title type="html">Xn</title><subtitle>Personal Site</subtitle><author><name>Michal Porubcin</name></author><entry><title type="html">Digital Photography Notes - Optics</title><link href="/note/2021/11/01/optics.html" rel="alternate" type="text/html" title="Digital Photography Notes - Optics" /><published>2021-11-01T00:00:00-05:00</published><updated>2021-11-01T00:00:00-05:00</updated><id>/note/2021/11/01/optics</id><content type="html" xml:base="/note/2021/11/01/optics.html">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-11-02T10:14:13-05:00</updated><id>/feed.xml</id><title type="html">Xn</title><subtitle>Personal Site</subtitle><author><name>Michal Porubcin</name></author><entry><title type="html">Digital Photography Notes - Optics</title><link href="/note/2021/11/01/optics.html" rel="alternate" type="text/html" title="Digital Photography Notes - Optics" /><published>2021-11-01T00:00:00-05:00</published><updated>2021-11-01T00:00:00-05:00</updated><id>/note/2021/11/01/optics</id><content type="html" xml:base="/note/2021/11/01/optics.html">&lt;blockquote&gt;
   &lt;p&gt;This note is based on lectures 3 and 4 of Levoy’s Digital Photography. It covers basic geometric optics starting with refraction, and ends with aberrations and other lens effects. These lectures are more math-heavy to begin with, and on top of that I tried to round out the proofs. Luckily it’s nothing advanced.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -1064,7 +1064,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/4thvp.png&quot; alt=&quot;4thvp.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Actually, any pair of parallel lines will converge to a point, so there are technically infinite vanishing points. The reason we usually only consider three modes of perspective is the tendency to picture “blocky” shapes, like buildings; for more info see [[Vanishing Points]].&lt;/p&gt;
+&lt;p&gt;Actually, any pair of parallel lines will converge to a point, so there are technically infinite vanishing points. The reason we usually only consider three modes of perspective is the tendency to picture “blocky” shapes, like buildings.&lt;/p&gt;
 
 &lt;h2 id=&quot;perspective-distortion&quot;&gt;Perspective Distortion&lt;/h2&gt;
 
@@ -1144,8 +1144,6 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
   &lt;li&gt;when you move the object between \(f\) and \(0\).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;For more info, check out [[Optics]].&lt;/p&gt;
-
 &lt;h1 id=&quot;camera-anatomy&quot;&gt;Camera Anatomy&lt;/h1&gt;
 
 &lt;p&gt;Equipped with an intuition about light and lens, we can now learn how an image is captured. Though a camera has many components, we will cover three basic ones: the &lt;strong&gt;lens&lt;/strong&gt;, &lt;strong&gt;shutter&lt;/strong&gt;, and &lt;strong&gt;sensor&lt;/strong&gt;.&lt;/p&gt;
@@ -1213,7 +1211,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;Note: a leaf shutter looks kind of like an aperture but it’s not the same!&lt;/p&gt;
 
-&lt;p&gt;Leaf shutters are quiet and relatively slow, while focal-plane shutters are loud and fast, and can cause vibrations during the shot. Electronic shutters can be even faster than focal-plane shutters, without any noise or vibrations. Rolling shutters are pretty common on consumer cameras, while global shutters are mostly limited to small resolutions or high-end cameras. Finally, rolling shutters are susceptible to &lt;strong&gt;rolling shutter distortion&lt;/strong&gt;, also called the “jello effect”. For more info see [[Shutters]].&lt;/p&gt;
+&lt;p&gt;Leaf shutters are quiet and relatively slow, while focal-plane shutters are loud and fast, and can cause vibrations during the shot. Electronic shutters can be even faster than focal-plane shutters, without any noise or vibrations. Rolling shutters are pretty common on consumer cameras, while global shutters are mostly limited to small resolutions or high-end cameras. Finally, rolling shutters are susceptible to &lt;strong&gt;rolling shutter distortion&lt;/strong&gt;, also called the “jello effect”.&lt;/p&gt;
 
 &lt;h2 id=&quot;sensors&quot;&gt;Sensors&lt;/h2&gt;
 
@@ -1251,8 +1249,6 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
   &lt;li&gt;pixel size&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;For more info, see [[Digital Photographic Sensors]]&lt;/p&gt;
-
 &lt;h1 id=&quot;types-of-photographic-cameras&quot;&gt;Types of Photographic Cameras&lt;/h1&gt;
 
 &lt;p&gt;Here is a collection of different kinds of cameras used for taking still pictures, presented in roughly chronological order by the time they were created. We will see how the components from the previous section can be combined.&lt;/p&gt;
@@ -1273,7 +1269,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;The basic SLR design is shared by most modern cameras.&lt;/p&gt;
 
-&lt;p&gt;Here it’s easier to see that the lens (not labeled) is really a complex assembly of lenses, with an aperture in the middle. Instead of viewing the image on a glass pane, we now have a viewfinder. The light normally passes through the lens, bounces off a mirror, passes through a [[Pentaprism]] or pentamirror above (not labeled), and exits the viewfinder. Finally, notice how the shutter is located right in front of the film, rather than inside the lens.&lt;/p&gt;
+&lt;p&gt;Here it’s easier to see that the lens (not labeled) is really a complex assembly of lenses, with an aperture in the middle. Instead of viewing the image on a glass pane, we now have a viewfinder. The light normally passes through the lens, bounces off a mirror, passes through a pentaprism or pentamirror above (not labeled), and exits the viewfinder. Finally, notice how the shutter is located right in front of the film, rather than inside the lens.&lt;/p&gt;
 
 &lt;p&gt;When a picture is taken, the mirror flips up, allowing light to pass to the shutter, and the shutter opens briefly, exposing the film. Finally the shutter closes and the mirror flips back down. The mirror movement makes SLRs louder than other types of cameras.&lt;/p&gt;
 
@@ -1444,8 +1440,6 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 &lt;p&gt;Humans can hand-hold down to 1/60. There is sometimes an additional mode called bulb (often symbolized as B), which allows one to keep the shutter open manually as long as desired.&lt;/p&gt;
 
 &lt;p&gt;The shutter speed abstracts away many details about the shutter itself. In particular, it applies to mechanical and electronic shutters.&lt;/p&gt;
-
-&lt;p&gt;[[Shutters]]&lt;/p&gt;
 
 &lt;h3 id=&quot;common-stops&quot;&gt;Common Stops&lt;/h3&gt;
 
@@ -1664,7 +1658,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;inverse-case&quot;&gt;Inverse Case&lt;/h2&gt;
-&lt;p&gt;Fine, now we have linear and exponential versions of the paper-stacking riddle we are about equally bad at answering. We can’t think exponentially or linearly, it seems, or maybe we just can’t think at all?&lt;/p&gt;
+&lt;p&gt;Fine, now we have linear and exponential versions of the paper-stacking riddle we are about equally bad at answering. Now what?&lt;/p&gt;
 
 &lt;p&gt;The previous questions, and especially the first two, were too focused on dumbfounding you with the final answer, warping your perfectly normal inability to perform fast, accurate mental math into some shocking moral about our poor linear minds. There’s no reason to construct the question in such a way that the final paper stack reaches three quarters of the distance from the Earth to the sun, other than to a) make absolutely certain you will get the answer incorrect so that b) whichever smart guy asks it can take pleasure in correcting you.&lt;/p&gt;
 
@@ -1686,7 +1680,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
   &lt;li&gt;We are perfectly capable of thinking exponentially. It just takes some practice.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Alright I’m done attacking a silly puzzle. Off to more productive things.&lt;/p&gt;
+&lt;p&gt;Alright I’m done criticizing a silly puzzle. Off to more productive things.&lt;/p&gt;
 
 &lt;h2 id=&quot;appendix&quot;&gt;Appendix&lt;/h2&gt;
 &lt;p&gt;Easy Python code to test out the folds yourself:&lt;/p&gt;
