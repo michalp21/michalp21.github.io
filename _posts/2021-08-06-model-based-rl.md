@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "What Isn't Model-Based RL?"
+title: "What Isn't Model-Based Reinforcement Learning?"
 categories: article
 tags: reinforcement-learning model
 disclaimers: ianae
@@ -52,7 +52,7 @@ First some simpler conclusions:
 
 ## What It Isn't
 ### Other Senses of Model
-Since I brought up supervised learning, I ought to clarify an unfortunate overlap in terminology. "Model" as described above is *not* the same as a supervised machine learning "model," which rather refers to the output of a machine learning algorithm, without (necessarily) any connection to dynamics. The term "function approximator" is used to avoid confusion when supervised learning models are used in RL algorithms, for example in Deep Q-Learning.
+Since I brought up supervised learning, I ought to clarify an unfortunate overlap in terminology. "Model" as described above is *not* the same as a supervised machine learning "model," which rather refers to the output of a machine learning algorithm, without (necessarily) any connection to dynamics. The term "function approximator" is used instead to avoid confusion when we're dealing with RL algorithms, for example in Deep Q-Learning.
  
  Yet another possible usage is a description of the MDP as a "model" of the environment. The assumption of an environment represented as an MDP characterizes the class of algorithms we consider in the first place, and therefore anticipates the model-based/model-free distinction in RL.
  

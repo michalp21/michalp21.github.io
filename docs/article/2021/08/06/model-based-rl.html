@@ -4,9 +4,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/assets/css/main.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>What Isn’t Model-Based RL? | Xn</title>
+<title>What Isn’t Model-Based Reinforcement Learning? | Xn</title>
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="What Isn’t Model-Based RL?" />
+<meta property="og:title" content="What Isn’t Model-Based Reinforcement Learning?" />
 <meta name="author" content="Michal Porubcin" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Having only encountered model-free RL, I had a hard time pinning down what made a model-based RL algorithm for some reason, and here is my shot at the difference. This is not exactly a tutorial or anything, just an attempt to clear up some confusions I had with various terms. I try not to be too prescriptive." />
@@ -15,9 +15,9 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-08-06T00:00:00-05:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="What Isn’t Model-Based RL?" />
+<meta property="twitter:title" content="What Isn’t Model-Based Reinforcement Learning?" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","datePublished":"2021-08-06T00:00:00-05:00","description":"Having only encountered model-free RL, I had a hard time pinning down what made a model-based RL algorithm for some reason, and here is my shot at the difference. This is not exactly a tutorial or anything, just an attempt to clear up some confusions I had with various terms. I try not to be too prescriptive.","url":"/article/2021/08/06/model-based-rl.html","mainEntityOfPage":{"@type":"WebPage","@id":"/article/2021/08/06/model-based-rl.html"},"author":{"@type":"Person","name":"Michal Porubcin"},"headline":"What Isn’t Model-Based RL?","dateModified":"2021-08-06T00:00:00-05:00","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","datePublished":"2021-08-06T00:00:00-05:00","description":"Having only encountered model-free RL, I had a hard time pinning down what made a model-based RL algorithm for some reason, and here is my shot at the difference. This is not exactly a tutorial or anything, just an attempt to clear up some confusions I had with various terms. I try not to be too prescriptive.","url":"/article/2021/08/06/model-based-rl.html","mainEntityOfPage":{"@type":"WebPage","@id":"/article/2021/08/06/model-based-rl.html"},"author":{"@type":"Person","name":"Michal Porubcin"},"headline":"What Isn’t Model-Based Reinforcement Learning?","dateModified":"2021-08-06T00:00:00-05:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Xn" /><!-- Favicon -->
   <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
@@ -28,7 +28,7 @@
   </script>
 </head>
 <body><header class="site-header">
-  <div class="wrapper-logo">
+  <div class="site-header-logo">
     <div class="logo">
       <!-- <a class="site-title" href="/">Xn</a> -->
       <a href="/">
@@ -36,7 +36,7 @@
       </a>
     </div>
   </div>
-  <div class="wrapper">
+  <div class="site-header-nav">
     <nav class="site-nav">
       <a class="page-link" href="/"> Home</a>
       <a class="page-link" href="/category/project/"> Projects</a>
@@ -52,7 +52,7 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">What Isn&#39;t Model-Based RL?</h1>
+    <h1 class="post-title" itemprop="name headline">What Isn&#39;t Model-Based Reinforcement Learning?</h1>
     <p class="post-meta">
       <time datetime="2021-08-06T00:00:00-05:00" itemprop="datePublished">
         
@@ -146,7 +146,7 @@
 
 <h2 id="what-it-isnt">What It Isn’t</h2>
 <h3 id="other-senses-of-model">Other Senses of Model</h3>
-<p>Since I brought up supervised learning, I ought to clarify an unfortunate overlap in terminology. “Model” as described above is <em>not</em> the same as a supervised machine learning “model,” which rather refers to the output of a machine learning algorithm, without (necessarily) any connection to dynamics. The term “function approximator” is used to avoid confusion when supervised learning models are used in RL algorithms, for example in Deep Q-Learning.</p>
+<p>Since I brought up supervised learning, I ought to clarify an unfortunate overlap in terminology. “Model” as described above is <em>not</em> the same as a supervised machine learning “model,” which rather refers to the output of a machine learning algorithm, without (necessarily) any connection to dynamics. The term “function approximator” is used instead to avoid confusion when we’re dealing with RL algorithms, for example in Deep Q-Learning.</p>
 
 <p>Yet another possible usage is a description of the MDP as a “model” of the environment. The assumption of an environment represented as an MDP characterizes the class of algorithms we consider in the first place, and therefore anticipates the model-based/model-free distinction in RL.</p>
 
@@ -281,9 +281,7 @@ Reinforcement Learning.” 2015.</span></span>
         </span>
   </div>
 
-  <div class="page-navigation"><a class="prev" href="/tutorial/2021/08/06/bibtex-jekyll.html">&larr; BibTeX For Jekyll Using jekyll-scholar</a><a class="next" href="/tutorial/2021/08/07/sensor-tutorials.html">VI-sensor Project: Accompanying Tutorials &rarr;</a></div>
-
-  <div class="asdfas"></div>  <div id="disqus_thread"></div>
+  <div class="page-navigation"><a class="prev" href="/tutorial/2021/08/06/bibtex-jekyll.html">&larr; BibTeX For Jekyll Using jekyll-scholar</a><a class="next" href="/tutorial/2021/08/07/sensor-tutorials.html">VI-sensor Project: Accompanying Tutorials &rarr;</a></div>  <div id="disqus_thread"></div>
   <script>
     // var disqus_config = function () {
     //   this.page.url = '/article/2021/08/06/model-based-rl.html';
@@ -299,9 +297,7 @@ Reinforcement Learning.” 2015.</span></span>
     })();
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-<div class="sssdds"></div>
-
-  <a class="u-url" href="/article/2021/08/06/model-based-rl.html" hidden></a>
+<a class="u-url" href="/article/2021/08/06/model-based-rl.html" hidden></a>
 </article>
 
       </div>

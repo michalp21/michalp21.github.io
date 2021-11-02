@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/main.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Folding Paper | Xn</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Folding Paper" />
+<meta name="author" content="Michal Porubcin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I argue that the so-called folding paper puzzle fails to say anything about our ability to comprehend exponential growth." />
+<meta property="og:description" content="I argue that the so-called folding paper puzzle fails to say anything about our ability to comprehend exponential growth." />
+<meta property="og:site_name" content="Xn" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-02T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Folding Paper" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","datePublished":"2021-10-02T00:00:00-05:00","description":"I argue that the so-called folding paper puzzle fails to say anything about our ability to comprehend exponential growth.","url":"/article/2021/10/02/folding-paper.html","mainEntityOfPage":{"@type":"WebPage","@id":"/article/2021/10/02/folding-paper.html"},"author":{"@type":"Person","name":"Michal Porubcin"},"headline":"Folding Paper","dateModified":"2021-10-02T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Xn" /><!-- Favicon -->
+  <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
+
+  <!-- MathJax for LaTeX -->
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body><header class="site-header">
+  <div class="site-header-logo">
+    <div class="logo">
+      <!-- <a class="site-title" href="/">Xn</a> -->
+      <a href="/">
+        <img src="/assets/images/logo.png" />
+      </a>
+    </div>
+  </div>
+  <div class="site-header-nav">
+    <nav class="site-nav">
+      <a class="page-link" href="/"> Home</a>
+      <a class="page-link" href="/category/project/"> Projects</a>
+      <a class="page-link" href="/categories.html"> Categories</a>
+      <a class="page-link" href="/tags.html"> Tags</a>
+      <a class="page-link" href="/archive.html"> Archive</a>
+      <a class="page-link" href="/about.html"> About</a>
+    </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Folding Paper</h1>
+    <p class="post-meta">
+      <time datetime="2021-10-02T00:00:00-05:00" itemprop="datePublished">
+        
+        Oct 2, 2021
+      </time>
+
+      <!---->
+
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        by <span itemprop="name">Michal Porubcin</span>
+      </span>
+
+      <span class="post-categories">
+        <span>
+              
+              <a class="post-category" href="/category/article/">article&nbsp;</a>
+            </span>
+      </span>
+
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <blockquote>
+  <p>I argue that the so-called folding paper puzzle fails to say anything about our ability to comprehend exponential growth.</p>
+</blockquote>
+
+<!--more-->
+
+<h2 id="setup">Setup</h2>
+<p>A common illustration of exponential growth begins with a piece of paper:</p>
+
+<blockquote>
+  <p>Q1: If you fold a piece of paper 50 times, how tall would it be?</p>
+</blockquote>
+
+<p>You might guess a few feet, but if you do the math, the result is pretty surprising. Assuming a sheet of paper is .1 mm thick, then \(.0000001*2^{50} = 112589990.684 \text{km}\) which is about three-quarters the distance from the earth to the sun. Wow!</p>
+
+<p>Is it really true that humans are incapable of thinking about exponents? Are we forever doomed to linear thinking? Here’s my thoughts as to why it’s a bit overblown.</p>
+
+<h2 id="folding-bad">Folding Bad</h2>
+<p>First, semantics.</p>
+
+<p>Assuming a US Letter size sheet, aka “printer paper,” the dimensions are standardized at 8.5 x 11 in, or 215.9 x 279.4 mm. The only reputable source I could find for thickness was this random <a href="https://files.support.epson.com/docid/cpd4/cpd43251/source/printers/source/specifications/reference/scp800/spex_paper_printer_scp800.html">Epson support page</a>, claiming roughly .1 mm. People have experience folding a piece of paper in half, let’s say at most five times, and assuming a typical folding pattern<sup id="fnref:fold" role="doc-noteref"><a href="#fn:fold" class="footnote" rel="footnote">1</a></sup>, the final dimensions of the folded paper are 53.975 x 34.925 x 3.2 mm. While the thickness is noticeably larger than before, we can see the width and length are still over ten times as large as the thickness.</p>
+
+<p>The truth is, the paper is already difficult to fold. After a couple more folds, the paper cannot be folded without tearing at the crease. At eight folds, the thickness has already surpassed both width and height (13.49375 x 17.4625 x 25.6 mm). We started by creasing a flat object, but soon we’re slicing a paper tower on the vertical axis and stacking the halves on top of each other.<sup id="fnref:decay" role="doc-noteref"><a href="#fn:decay" class="footnote" rel="footnote">2</a></sup></p>
+
+<p>Some potential problems:</p>
+<ul>
+  <li>The concept of folding only works for thin objects! If we were to fold something with any thickness, then we would rarely think to fold it along its longest dimension.</li>
+  <li>It might not occur to someone that they are <em>doubling</em> the thickness every fold, which is key to understanding the problem, even without reference to exponents.</li>
+</ul>
+
+<p>It’s just a bad example. Here’s a better question:</p>
+
+<blockquote>
+  <p>Q2: What is the height of a stack of paper after doubling it 50 times?</p>
+</blockquote>
+
+<p>Turns out, people will also give a hopelessly incorrect answer for stacking. What gives?</p>
+
+<h2 id="linear-case">Linear Case</h2>
+<p>Maybe it would help to look at a question with the same answer, but removing any exponentiation.</p>
+
+<blockquote>
+  <p>Q3: How high would a stack of one trillion papers be?</p>
+</blockquote>
+
+<p>In general, for any exponential question where the stack is doubled \(n\) times, we can ask a linear question about a stack of \(2^n\) papers.</p>
+
+<p>Some of the people I asked this question gave a wide range of estimates, ranging from the height of a skyscraper or Mt. Everest – still massive underestimates. These people can imagine the thickness of a single sheet, but seem to be using their gut, instead of running any kind of calculations, to extend this knowledge to the height of a large stack.</p>
+
+<p>Some clever people will make much better guesses for Q3 than Q2. Let’s call a <strong>ballpark answer</strong> one that’s the around the correct order of magnitude. The trick is, a ballpark answer doesn’t require hardly any calculation besides keeping track of zeros (powers of 10). A trillion has 12 zeros, and the thickness of paper has -1 zero in millimeters. Just add the zeros. In contrast, most people cannot exponentiate in their head without repeated multiplication, and there doesn’t seem to be a quick way to get the number of digits in the final answer (i.e. get a ballpark answer), without using the log function (which just takes us back to square one, since we lack a way to quickly calculate log).</p>
+
+<p>So with a little thinking, we can easily solve a linear problem, but not the exponential problem. Humans are linear monkeys confirmed?</p>
+
+<h2 id="ban-arithmetic">Ban Arithmetic</h2>
+<p>Not so fast! The ease with which we can mentally calculate the correct number of digits in Q3 relies on reasonably-sized inputs. Let’s say we had a different linear question where we needed to multiply a number with 8962 digits by another number with 3899 digits. Summing the zeros is no longer trivial (not with my mental math abilities anyway). It would probably still be harder to mentally exponentiate enough times to arrive at the same answer. Soon we start considering efficient exponentiation algorithms, encodings etc…</p>
+
+<p>All that goes against the spirit of the question. It would be a bit disappointing if the phrase “humans are not exponential, but linear, thinkers” boils down to “humans can’t exponentiate in their heads, but they can add zeros, sometimes.” I don’t think anyone can argue that exponentiation is a more complex operation than multiplication or addition. The question is supposed to reveal some structure in our intuition, not elementary observations about math, otherwise we wouldn’t be talking about the heights of paper towers at all.</p>
+
+<p>I took it upon myself to come up with a new version of Q3 that discourages mental arithmetic:</p>
+
+<blockquote>
+  <p>Q4: In TWO SECONDS tell me how high a stack of one trillion papers would be.</p>
+</blockquote>
+
+<h2 id="inverse-case">Inverse Case</h2>
+<p>Fine, now we have linear and exponential versions of the paper-stacking riddle we are about equally bad at answering. We can’t think exponentially or linearly, it seems, or maybe we just can’t think at all?</p>
+
+<p>The previous questions, and especially the first two, were too focused on dumbfounding you with the final answer, warping your perfectly normal inability to perform fast, accurate mental math into some shocking moral about our poor linear minds. There’s no reason to construct the question in such a way that the final paper stack reaches three quarters of the distance from the Earth to the sun, other than to a) make absolutely certain you will get the answer incorrect so that b) whichever smart guy asks it can take pleasure in correcting you.</p>
+
+<p>I present a much more modest version (disclaimer 1: it’s not mine; disclaimer 2: there’s no paper in this one):</p>
+
+<blockquote>
+  <p>Q5: Imagine a lake, with a lily pad population which doubles every day. Say it takes 50 days for the lily pad to cover a lake. On what day is half the lake covered?</p>
+</blockquote>
+
+<p>Some might guess around 30 days. In fact, no guessing or math is necessary. The lake is half-covered on the 49th day. Duh.</p>
+
+<p>Q5 avoids asking us to project fifty iterations into the future, so it’s not setting us up for failure.<sup id="fnref:simplest" role="doc-noteref"><a href="#fn:simplest" class="footnote" rel="footnote">3</a></sup> Instead of showing us that we <em>don’t</em> tend to think exponentially and leaving it at that, it gives us a simple, alternative perspective so we <em>can</em>: <strong>most of the gains are stuffed at the end</strong>! In the case of daily doubling, <em>half</em> the value of <em>any</em> given day was obtained within one day.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>You might say, “that’s a lot of words just to admit that the puzzle is useful after all.” Listen, I didn’t say it was useless, just overblown. It isn’t necessarilly stated that we <em>can’t</em> think exponentially, but it’s always said with a shrug and a sigh, like some eternal truth. Even worse, we arrive at that conclusion through some paper-folding puzzle, when in reality there’s several things going on:</p>
+<ul>
+  <li>Exponentiation is inherently more complicated than multiplication and addition.</li>
+  <li>We can’t intuit even linear approximations if they’re literally astronomical.</li>
+  <li>We are perfectly capable of thinking exponentially. It just takes some practice.</li>
+</ul>
+
+<p>Alright I’m done attacking a silly puzzle. Off to more productive things.</p>
+
+<h2 id="appendix">Appendix</h2>
+<p>Easy Python code to test out the folds yourself:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">paper</span> <span class="o">=</span> <span class="p">[</span><span class="mf">215.9</span><span class="p">,</span> <span class="mf">279.4</span><span class="p">,</span> <span class="p">.</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># US Letter dimensions in mm
+</span><span class="n">folds</span> <span class="o">=</span> <span class="mi">50</span>                 <span class="c1"># change to desired number of folds
+</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">folds</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">paper</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">paper</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">paper</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/=</span> <span class="mi">2</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">paper</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/=</span> <span class="mi">2</span>
+    <span class="n">paper</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">paper</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:fold" role="doc-endnote">
+      <p>I assume folds parallel to the shortest of width \(w\) and height \(h\). If \(w&lt;h&lt;2w\) like US Letter sheets, then folds will always alternate along width and height. <a href="#fnref:fold" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:decay" role="doc-endnote">
+      <p>And just for fun, the width and height experience exponential decay: \(215.9*.5^{25}=.00000643\text{mm}\) and \(279.4*.5^{25}=.00000833\text{mm}\), both ending up close to the diameter of a DNA strand. <a href="#fnref:decay" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:simplest" role="doc-endnote">
+      <p>It’s the simplest too, and can technically be solved without even understanding exponentiation. In most cases though, people will visualize the growth of the lillies, leading them to think in some way about it. <a href="#fnref:simplest" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div>
+
+  <div class="post-bibliography">
+    
+
+
+<div class="post-bibliography">
+  <ol class="bibliography"></ol>
+</div>
+  </div>
+
+  <div class="post-tags">
+    Tags:&nbsp; 
+    <span>
+      <!-- 
+        
+        <a class="post-tag" href="/tag/exponential-growth"><nobr>exponential-growth</nobr>&nbsp;</a>
+       -->
+          
+          <a href="/tag/exponential-growth/">exponential-growth&nbsp;</a>
+        </span>
+  </div>
+
+  <div class="page-navigation"><a class="prev" href="/tutorial/2021/08/07/sensor-tutorials.html">&larr; VI-sensor Project: Accompanying Tutorials</a><a class="next" href="/note/2021/10/20/image-formation.html">Digital Photography Notes - Image Formation &rarr;</a></div>  <div id="disqus_thread"></div>
+  <script>
+    // var disqus_config = function () {
+    //   this.page.url = '/article/2021/10/02/folding-paper.html';
+    //   this.page.identifier = '/article/2021/10/02/folding-paper.html';
+    // };
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://michalp21-github-io.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/article/2021/10/02/folding-paper.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer">
+  2021 &copy; by Michal Porubcin. All Rights Reserved. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>. View on <a href="https://github.com/michalp21/michalp21.github.io" target="_blank">Github</a>.
+
+  <p>
+    <a href="/feed.xml" target="_blank">
+      <img src="/assets/images/logo_rss.png" />
+    </a>
+    <a href="https://github.com/michalp21" target="_blank">
+      <img src="/assets/images/logo_github.png" />
+    </a>
+  </p>
+
+</footer></body>
+
+</html>

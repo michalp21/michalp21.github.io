@@ -63,7 +63,7 @@ Here's an example Voronoi diagram.[^1]
 [^1]: Image credit: Wikipedia
 
 ![voronoi]
-*Sites are the visible black dots. Regions are the colored polygons. Notice the uneven cell shapes."
+*Sites are the visible black dots. Regions are the colored polygons. Notice the uneven cell shapes.*
 
 Each region is a polygonal cell where all points inside are closer to its corresponding site than any other site. Unfortunately some of the cells can look stretched out so we want to make them more homogenous. We can use something called [Lloyd's algorithm][lloyd] to spread the sites out more evenly, and make the regions more uniform. Define the centroid of a Voronoi region as:
 

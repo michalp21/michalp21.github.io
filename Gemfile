@@ -22,6 +22,7 @@ group :jekyll_plugins do
   gem "jekyll-paginate"
   gem "jekyll-archives"
   gem "jekyll-scholar"
+  # gem "jemoji"
 # gem 'jekyll-paginate-v2', github: 'sverrirs/jekyll-paginate-v2'
 end
 

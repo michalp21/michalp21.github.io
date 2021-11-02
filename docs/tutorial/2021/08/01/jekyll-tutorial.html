@@ -28,7 +28,7 @@
   </script>
 </head>
 <body><header class="site-header">
-  <div class="wrapper-logo">
+  <div class="site-header-logo">
     <div class="logo">
       <!-- <a class="site-title" href="/">Xn</a> -->
       <a href="/">
@@ -36,7 +36,7 @@
       </a>
     </div>
   </div>
-  <div class="wrapper">
+  <div class="site-header-nav">
     <nav class="site-nav">
       <a class="page-link" href="/"> Home</a>
       <a class="page-link" href="/category/project/"> Projects</a>
@@ -326,11 +326,9 @@ Thank you for your time.
 
 <p>We’re not done yet. We can turn off some ads in the Disqus dashboard. See the images:</p>
 
-<p><img src="/assets/images/adsettings.png" alt="adsettings" /></p>
+<p><img src="/assets/images/jekyll-tutorial/adsettings.png" alt="adsettings.png" width="600" /></p>
 
-<p><img src="/assets/images/advancedsettings.png" alt="advancedsettings" /></p>
-
-<p>We can also lazy load the comments in order to avoid slow loading of the main content. Instead, the comments are loaded when the user is close to the bottom of the page. Check out <a href="https://usefulangle.com/post/251/disqus-comments-improve-page-load-speed">this tutorial</a>.</p>
+<p><img src="/assets/images/jekyll-tutorial/advancedsettings.png" alt="advancedsettings.png" width="600" /></p>
 
 <h3 id="excerpts">Excerpts</h3>
 
@@ -362,10 +360,10 @@ Thank you for your time.
 
 <p>Go to <a href="https://fonts.google.com/">Google Fonts</a>, find a nice font family, select the desired styles (or create your own if it’s a variable font), (optionally at this stage, click the icon in the top right to open a sidebar, if it doesn’t happen automatically), from the sidebar select “@import”, copy the text INSIDE the style tags, and paste it in one of the scss files in _sass. Here’s a picture of the sidebar:</p>
 
-<p><img src="/assets/images/font.png" alt="sidebar" />
+<p><img src="/assets/images/jekyll-tutorial/font.png" alt="font.png" width="250" />
 <em>I dare you to use this font on your site.</em></p>
 
-<p>Last step is to actually use it. For example, if we’re following closely to the minima styling files, we might see <code class="language-plaintext highlighter-rouge">$base-font-family: "Your Old Font", "Helvetica Neue", "Times New Roman", serif !default;</code>. Replace the first option with the name of the font family we just imported.</p>
+<p>Last step is to actually use it. For example, if we’re following closely to the minima styling files, we might see <code class="language-plaintext highlighter-rouge">$$base-font-family: "Your Old Font", "Helvetica Neue", "Times New Roman", serif !default;</code>. Replace the first option with the name of the font family we just imported.</p>
 
 <blockquote class="callout">
   <div class="flexy">
@@ -379,15 +377,15 @@ Thank you for your time.
 <h3 id="footnotes">Footnotes</h3>
 <p>Footnotes are supported by Kramdown! See this <a href="https://stackoverflow.com/a/48250535">SO answer</a> for how to use them and about compatibility.</p>
 
-<p>Now, if you want to have a title above your footnotes, use this:</p>
+<p>To write multi-line footnotes, indent the paragraphs after the first one. This allows you to add LaTeX math blocks in the footnotes, in addition to inline math.</p>
+
+<p>Although I ended up not using a footnotes title, here’s how I did it when I had one:</p>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.footnotes</span><span class="nd">::before</span> <span class="p">{</span>
   <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
   <span class="nl">content</span><span class="p">:</span> <span class="s1">"Footnotes:"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
-
-<p>I think a footnotes title will be helpful if I end up having a references section in the same article, but I might change my mind.</p>
 
 <h3 id="images">Images</h3>
 
@@ -403,11 +401,24 @@ Thank you for your time.
 <span class="p">[</span><span class="ss">alt_text</span><span class="p">]:</span> <span class="sx">/assets/images/image.png</span>
 </code></pre></div></div>
 
-<p>Use <strong>absolute</strong> links (full path from project root) when inserting an image in markdown.</p>
+<p>It didn’t work for me without the first forward slash in the link (before “assets”).</p>
+
+<p>To fix the size of the image, add some CSS:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">alt_text</span><span class="p">](</span><span class="sx">/assets/images/image.png</span><span class="p">)</span>{: width="500"}
+
+OR
+
+![alt_text]{: width="500"}
+...
+<span class="p">[</span><span class="ss">alt_text</span><span class="p">]:</span> <span class="sx">/assets/images/image.png</span>
+</code></pre></div></div>
+
+<p>You can also add a CSS class instead, and style it separately.</p>
 
 <h3 id="image-captions">Image Captions</h3>
 
-<p>Want to have image captions but don’t want to pollute your markdown files with specialized Liquid syntax? You’ve come to the right place : )</p>
+<p>Want to have image captions but don’t want to pollute your markdown files with specialized Liquid syntax? You’ve come to the right place :)</p>
 
 <p>Use this in markdown:</p>
 
@@ -467,7 +478,7 @@ Thank you for your time.
 <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">link text</span><span class="p">](</span><span class="sx">{{</span> site.baseurl }}{% post_url 2021-07-19-post %})
 </code></pre></div></div>
 
-<p>What comes after <code class="language-plaintext highlighter-rouge">post_url</code>  is the name of the post file.</p>
+<p>What comes after <code class="language-plaintext highlighter-rouge">post_url</code>  is the name of the post file, without the file extension (typically <code class="language-plaintext highlighter-rouge">.md</code>).</p>
 
 <h3 id="pagination">Pagination</h3>
 
@@ -594,6 +605,8 @@ layout: default
 
 <p>Annoying and frequent mistake: even if the code is automatically reloaded upon changes, if you just refresh your page you may reload a dead link so check the URL.</p>
 
+<p>Another possibility is that title has changed. If so go back to <code class="language-plaintext highlighter-rouge">localhost:4000</code>, <em>reload</em>, and navigate to the desired page. This happened to me on Safari.</p>
+
 <h3 id="bundle-install-fails">Bundle Install Fails</h3>
 
 <p>I remember having to delete the Gemfile.lock file to get my gems to install one time. I think it’s no big deal if you’re working solo but I’m not that knowledgeable about it so take it with a grain of salt.</p>
@@ -645,9 +658,7 @@ layout: default
         </span>
   </div>
 
-  <div class="page-navigation"><a class="prev" href="/project/2021/07/21/sensor.html">&larr; Project Reupload #3: VI-sensor</a><a class="next" href="/tutorial/2021/08/06/bibtex-jekyll.html">BibTeX For Jekyll Using jekyll-scholar &rarr;</a></div>
-
-  <div class="asdfas"></div>  <div id="disqus_thread"></div>
+  <div class="page-navigation"><a class="prev" href="/project/2021/07/21/sensor.html">&larr; Project Reupload #3: VI-sensor</a><a class="next" href="/tutorial/2021/08/06/bibtex-jekyll.html">BibTeX For Jekyll Using jekyll-scholar &rarr;</a></div>  <div id="disqus_thread"></div>
   <script>
     // var disqus_config = function () {
     //   this.page.url = '/tutorial/2021/08/01/jekyll-tutorial.html';
@@ -663,9 +674,7 @@ layout: default
     })();
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-<div class="sssdds"></div>
-
-  <a class="u-url" href="/tutorial/2021/08/01/jekyll-tutorial.html" hidden></a>
+<a class="u-url" href="/tutorial/2021/08/01/jekyll-tutorial.html" hidden></a>
 </article>
 
       </div>

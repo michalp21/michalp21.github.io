@@ -21,7 +21,7 @@
 title: Xn
 author: Michal Porubcin
 description: >- # this means to ignore newlines until "baseurl:"
-  Personal Site.
+  Personal Site
 baseurl: "" # the subpath of your site, e.g. /blog
 # url: "/blog" # the base hostname & protocol for your site, e.g. http://example.com
 destination: docs
@@ -41,6 +41,7 @@ plugins:
   - jekyll-paginate
   - jekyll-archives
   - jekyll-scholar
+  # - jemoji
 kramdown:
   auto_ids: true
   syntax_highlighter: rouge

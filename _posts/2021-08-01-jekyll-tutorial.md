@@ -122,6 +122,34 @@ The remaining features are optional so I'll list them alphabetically.
 
 ### Callouts
 
+{% comment %}
+\[UPDATE\]: I now use the jemoji package for emojis (see below), which simplifies things considerably. If you want full GitHub Pages compatibility though, skip this.
+
+This is \_includes/callout.html:
+
+{%raw%}
+```markdown
+<blockquote class="callout">
+  <div class="flexy">
+    <div class="callout-icon">{{ include.icon }}</div>
+    <div class="callout-text">{{ include.content }}</div>
+  </div>
+</blockquote>
+```
+{%endraw%}
+
+And here's a new CSS rule, in addition to the original CSS:
+
+```css
+img.emoji {
+  box-shadow: none;
+  margin: 0;
+}
+```
+
+---
+{% endcomment %}
+
 I'm calling a callout any blockquote with an emoji to the side. I like the way Notion does it so I'm copying their look.
 
 Unlike the clever solution with image captions (scroll down), I couldn't find a way to make callouts without using Liquid syntax in the markdown. It's not a big deal but if the markdown file is used for something else, then the Liquid probably won't be supported.
@@ -203,11 +231,9 @@ Just follow steps 1 and 2 of [this tutorial](https://jreel.github.io/setting-up-
 
 We're not done yet. We can turn off some ads in the Disqus dashboard. See the images:
 
-![adsettings]
+![adsettings.png]{: width="600"}
 
-![advancedsettings]
-
-We can also lazy load the comments in order to avoid slow loading of the main content. Instead, the comments are loaded when the user is close to the bottom of the page. Check out [this tutorial](https://usefulangle.com/post/251/disqus-comments-improve-page-load-speed).
+![advancedsettings.png]{: width="600"}
 
 ### Excerpts
 
@@ -230,17 +256,19 @@ Clarification on terms:
 
 Go to [Google Fonts](https://fonts.google.com/), find a nice font family, select the desired styles (or create your own if it's a variable font), (optionally at this stage, click the icon in the top right to open a sidebar, if it doesn't happen automatically), from the sidebar select "@import", copy the text INSIDE the style tags, and paste it in one of the scss files in \_sass. Here's a picture of the sidebar:
 
-![sidebar]
+![font.png]{: width="250"}
 *I dare you to use this font on your site.*
 
-Last step is to actually use it. For example, if we're following closely to the minima styling files, we might see `$base-font-family: "Your Old Font", "Helvetica Neue", "Times New Roman", serif !default;`. Replace the first option with the name of the font family we just imported.
+Last step is to actually use it. For example, if we're following closely to the minima styling files, we might see `$$base-font-family: "Your Old Font", "Helvetica Neue", "Times New Roman", serif !default;`. Replace the first option with the name of the font family we just imported.
 
 {% include callout.html content="Some fonts will break LaTeX. See the LaTeX section." icon="neutral"%}
 
 ### Footnotes
 Footnotes are supported by Kramdown! See this [SO answer](https://stackoverflow.com/a/48250535) for how to use them and about compatibility.
 
-Now, if you want to have a title above your footnotes, use this:
+To write multi-line footnotes, indent the paragraphs after the first one. This allows you to add LaTeX math blocks in the footnotes, in addition to inline math.
+
+Although I ended up not using a footnotes title, here's how I did it when I had one:
 
 ```css
 .footnotes::before {
@@ -248,8 +276,6 @@ Now, if you want to have a title above your footnotes, use this:
   content: "Footnotes:";
 }
 ```
-
-I think a footnotes title will be helpful if I end up having a references section in the same article, but I might change my mind.
 
 ### Images
 
@@ -267,11 +293,25 @@ You can also separate the path from the rest like so:
 [alt_text]: /assets/images/image.png
 ```
 
-Use **absolute** links (full path from project root) when inserting an image in markdown.
+It didn't work for me without the first forward slash in the link (before "assets").
+
+To fix the size of the image, add some CSS:
+
+```markdown
+![alt_text](/assets/images/image.png){: width="500"}
+
+OR
+
+![alt_text]{: width="500"}
+...
+[alt_text]: /assets/images/image.png
+```
+
+You can also add a CSS class instead, and style it separately.
 
 ### Image Captions
 
-Want to have image captions but don't want to pollute your markdown files with specialized Liquid syntax? You've come to the right place : )
+Want to have image captions but don't want to pollute your markdown files with specialized Liquid syntax? You've come to the right place :)
 
 Use this in markdown:
 
@@ -339,7 +379,7 @@ An **internal link**, or a link to another post on your site, looks like this:
 ```
 {%endraw%}
 
-What comes after `post_url`  is the name of the post file.
+What comes after `post_url`  is the name of the post file, without the file extension (typically `.md`).
 
 ### Pagination
 
@@ -475,6 +515,8 @@ This class of issues is fixed by having at least a double digit IQ.
 
 Annoying and frequent mistake: even if the code is automatically reloaded upon changes, if you just refresh your page you may reload a dead link so check the URL.
 
+Another possibility is that title has changed. If so go back to `localhost:4000`, *reload*, and navigate to the desired page. This happened to me on Safari.
+
 ### Bundle Install Fails
 
 I remember having to delete the Gemfile.lock file to get my gems to install one time. I think it's no big deal if you're working solo but I'm not that knowledgeable about it so take it with a grain of salt.
@@ -487,6 +529,6 @@ Firefox messed me up with the fonts at least, but browser compatibility could co
 [^tried]: I tested this with a main branch and a user site. I haven't tried other branches, or project or organization sites. It seems the only acceptable folders are . (root) and ./docs.
 [^otherwise]: Otherwise it's not so hard to figure out your URL. Google about GitHub Pages if you need more help there.
 
-[adsettings]: /assets/images/adsettings.png
-[advancedsettings]: /assets/images/advancedsettings.png
-[sidebar]: /assets/images/font.png
+[adsettings.png]: /assets/images/jekyll-tutorial/adsettings.png
+[advancedsettings.png]: /assets/images/jekyll-tutorial/advancedsettings.png
+[font.png]: /assets/images/jekyll-tutorial/font.png

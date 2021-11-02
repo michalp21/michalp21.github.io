@@ -98,7 +98,7 @@
     // float: right;
     margin-left: auto;
     margin-right: auto;
-    width: 61%;
+    // width: 61%;
     border: none;
     background-color: inherit;
 
@@ -263,7 +263,8 @@
 
 .post-link {
   display: block;
-  @include relative-font-size(1.5);
+  @include relative-font-size(1.8);
+  letter-spacing: -1px;
   font-weight: 700;
   color: #000000;
 
@@ -275,10 +276,10 @@
 }
 
 .other-pages {
-    // margin-top: $spacing-unit * 0.5;
-    h1 {
-      font-family: $base-font-family;
-    }
+  // margin-top: $spacing-unit * 0.5;
+  blockquote {
+    font-family: $base-font-family;
+  }
 }
 
 
@@ -290,13 +291,13 @@
 }
 
 .post-title {
-  @include relative-font-size(2.3);
-  // letter-spacing: -2px;
+  @include relative-font-size(2.5);
+  letter-spacing: -1px;
   line-height: 1.15;
   // margin-bottom: $spacing-unit/5;
 
   @media screen and (min-width: $on-large) {
-    @include relative-font-size(2.3);
+    @include relative-font-size(2.5);
   }
 }
 
@@ -309,11 +310,16 @@
   h1, h2, h3 { margin-top: $spacing-unit }
   h4, h5, h6 { margin-top: $spacing-unit }
 
-  // Don't use h1 because it's not resized along with the
-  // rest of the headers!
+  h1 {
+    @include relative-font-size(2.2);
+
+    @media screen and (min-width: $on-large) {
+      @include relative-font-size(2.4);
+    }
+  }
 
   h2 {
-    @include relative-font-size(1.75);
+    @include relative-font-size(1.85);
 
     @media screen and (min-width: $on-large) {
       @include relative-font-size(2);
@@ -435,9 +441,15 @@ a.post-category {
 //   content: "Footnotes";
 // }
 
+.footnotes {
+  margin-top: 30px;
+}
+
 .footnotes p {
   margin-bottom: 5px;
 }
+
+///// CALLOUT /////
 
 //override blockquote left border color and padding
 .callout {
@@ -452,16 +464,24 @@ a.post-category {
 
 //icon, fixed width, left flex item
 .callout-icon {
-  width: 32px;
+  width: 30px;
   flex-shrink: 0;
-  font-size: $base-font-size * 1.2;
+  font-size: $base-font-size * 1.4;
+}
+
+//fixes for the jemoji
+img.emoji {
+  box-shadow: none;
+  margin: 0;
 }
 
 //text, remaining width, right flex item
 .callout-text {
-  padding-top: 2px;
+  margin-top: 3px;
   flex-grow: 1;
 }
+
+///// END CALLOUT /////
 
 #disqus_thread {
   min-height: 100px;

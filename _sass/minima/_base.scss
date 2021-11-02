@@ -61,6 +61,10 @@ main {
 }
 
 
+strong {
+  font-weight: 700;
+}
+
 
 /**
  * Images
@@ -123,6 +127,7 @@ li {
  */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
+  font-family: $alt-font-family;
 }
 
 
@@ -219,7 +224,7 @@ pre {
 /**
  * Divider line, top and bottom 
  */
-.wrapper-logo {
+.site-header-logo {
   max-width: calc(#{$content-width} - (#{$spacing-unit}));
   margin-right: auto;
   margin-left: auto;
@@ -227,8 +232,23 @@ pre {
   @extend %clearfix;
 }
 
-.wrapper-logo img {
+.site-header-logo img {
   box-shadow: none;
+}
+
+.site-header-nav {
+  max-width: calc(#{$content-width} - (#{$spacing-unit}));
+  display: flex;
+  justify-content: center;
+  // padding-right: $spacing-unit / 2;
+  // padding-left: $spacing-unit / 2;
+  @extend %clearfix;
+
+  @media screen and (min-width: $on-large) {
+    max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
+    // padding-right: $spacing-unit;
+    // padding-left: $spacing-unit;
+  }
 }
 
 // Why are there two wrappers ffs

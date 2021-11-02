@@ -1,4 +1,1722 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-08-11T17:24:28-05:00</updated><id>/feed.xml</id><title type="html">Xn</title><subtitle>Personal Site.</subtitle><author><name>Michal Porubcin</name></author><entry><title type="html">VI-sensor Project: Accompanying Tutorials</title><link href="/tutorial/2021/08/07/sensor-tutorials.html" rel="alternate" type="text/html" title="VI-sensor Project: Accompanying Tutorials" /><published>2021-08-07T00:00:00-05:00</published><updated>2021-08-07T00:00:00-05:00</updated><id>/tutorial/2021/08/07/sensor-tutorials</id><content type="html" xml:base="/tutorial/2021/08/07/sensor-tutorials.html">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-11-02T09:40:04-05:00</updated><id>/feed.xml</id><title type="html">Xn</title><subtitle>Personal Site</subtitle><author><name>Michal Porubcin</name></author><entry><title type="html">Digital Photography Notes - Optics</title><link href="/note/2021/11/01/optics.html" rel="alternate" type="text/html" title="Digital Photography Notes - Optics" /><published>2021-11-01T00:00:00-05:00</published><updated>2021-11-01T00:00:00-05:00</updated><id>/note/2021/11/01/optics</id><content type="html" xml:base="/note/2021/11/01/optics.html">&lt;blockquote&gt;
+  &lt;p&gt;This note is based on lectures 3 and 4 of Levoy’s Digital Photography. It covers basic geometric optics starting with refraction, and ends with aberrations and other lens effects. These lectures are more math-heavy to begin with, and on top of that I tried to round out the proofs. Luckily it’s nothing advanced.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#physical-vs-geometrical-optics&quot; id=&quot;markdown-toc-physical-vs-geometrical-optics&quot;&gt;Physical vs Geometrical Optics&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#refraction&quot; id=&quot;markdown-toc-refraction&quot;&gt;Refraction&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#lens-shapes&quot; id=&quot;markdown-toc-lens-shapes&quot;&gt;Lens Shapes&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#gaussian-lens-formula&quot; id=&quot;markdown-toc-gaussian-lens-formula&quot;&gt;Gaussian Lens Formula&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#simple-derivation&quot; id=&quot;markdown-toc-simple-derivation&quot;&gt;Simple Derivation&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#paraxial-approximation&quot; id=&quot;markdown-toc-paraxial-approximation&quot;&gt;Paraxial Approximation&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#uses-for-the-gaussian-lens-formula&quot; id=&quot;markdown-toc-uses-for-the-gaussian-lens-formula&quot;&gt;Uses For The Gaussian Lens Formula&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#changing-object-distance-revisited&quot; id=&quot;markdown-toc-changing-object-distance-revisited&quot;&gt;Changing Object Distance (Revisited)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#virtual-images-and-objects&quot; id=&quot;markdown-toc-virtual-images-and-objects&quot;&gt;Virtual Images and Objects&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#concave-lenses&quot; id=&quot;markdown-toc-concave-lenses&quot;&gt;Concave Lenses&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#power-of-a-lens&quot; id=&quot;markdown-toc-power-of-a-lens&quot;&gt;Power of a Lens&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#magnification&quot; id=&quot;markdown-toc-magnification&quot;&gt;Magnification&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#hardware-for-magnification&quot; id=&quot;markdown-toc-hardware-for-magnification&quot;&gt;Hardware For Magnification&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#3d-perspective-transform&quot; id=&quot;markdown-toc-3d-perspective-transform&quot;&gt;3D Perspective Transform&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#depth-of-field&quot; id=&quot;markdown-toc-depth-of-field&quot;&gt;Depth of Field&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#derivation&quot; id=&quot;markdown-toc-derivation&quot;&gt;Derivation&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#hyperfocal-distance&quot; id=&quot;markdown-toc-hyperfocal-distance&quot;&gt;Hyperfocal distance&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#macro-depth-of-field&quot; id=&quot;markdown-toc-macro-depth-of-field&quot;&gt;Macro Depth of Field&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#other-derivations&quot; id=&quot;markdown-toc-other-derivations&quot;&gt;Other Derivations&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#depth-of-field-in-practice&quot; id=&quot;markdown-toc-depth-of-field-in-practice&quot;&gt;Depth of Field In Practice&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#basic-relationships&quot; id=&quot;markdown-toc-basic-relationships&quot;&gt;Basic Relationships&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#dolly-zoom&quot; id=&quot;markdown-toc-dolly-zoom&quot;&gt;Dolly Zoom&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#sensor-size&quot; id=&quot;markdown-toc-sensor-size&quot;&gt;Sensor Size&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#circle-of-confusion&quot; id=&quot;markdown-toc-circle-of-confusion&quot;&gt;Circle of Confusion&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#bokeh&quot; id=&quot;markdown-toc-bokeh&quot;&gt;Bokeh&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#seeing-through-occlusions&quot; id=&quot;markdown-toc-seeing-through-occlusions&quot;&gt;Seeing Through Occlusions&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#lens-aberrations&quot; id=&quot;markdown-toc-lens-aberrations&quot;&gt;Lens Aberrations&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#chromatic-aberrations&quot; id=&quot;markdown-toc-chromatic-aberrations&quot;&gt;Chromatic Aberrations&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#spherical-aberrations&quot; id=&quot;markdown-toc-spherical-aberrations&quot;&gt;Spherical Aberrations&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#coma&quot; id=&quot;markdown-toc-coma&quot;&gt;Coma&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#astigmatism&quot; id=&quot;markdown-toc-astigmatism&quot;&gt;Astigmatism&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#field-curvature&quot; id=&quot;markdown-toc-field-curvature&quot;&gt;Field Curvature&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#distortion&quot; id=&quot;markdown-toc-distortion&quot;&gt;Distortion&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#not-perspective&quot; id=&quot;markdown-toc-not-perspective&quot;&gt;NOT Perspective&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#other-lens-artifacts&quot; id=&quot;markdown-toc-other-lens-artifacts&quot;&gt;Other Lens Artifacts&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#veiling-glare&quot; id=&quot;markdown-toc-veiling-glare&quot;&gt;Veiling Glare&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#lens-flare&quot; id=&quot;markdown-toc-lens-flare&quot;&gt;Lens Flare&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vignetting&quot; id=&quot;markdown-toc-vignetting&quot;&gt;Vignetting&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#diffraction&quot; id=&quot;markdown-toc-diffraction&quot;&gt;Diffraction&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#lens-systems&quot; id=&quot;markdown-toc-lens-systems&quot;&gt;Lens Systems&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#telephoto&quot; id=&quot;markdown-toc-telephoto&quot;&gt;Telephoto&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#zoom&quot; id=&quot;markdown-toc-zoom&quot;&gt;Zoom&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#lens-design&quot; id=&quot;markdown-toc-lens-design&quot;&gt;Lens Design&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#examples&quot; id=&quot;markdown-toc-examples&quot;&gt;Examples&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#eyeglasses-i&quot; id=&quot;markdown-toc-eyeglasses-i&quot;&gt;Eyeglasses I&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#macro-lenses&quot; id=&quot;markdown-toc-macro-lenses&quot;&gt;Macro Lenses&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#close-up-filters&quot; id=&quot;markdown-toc-close-up-filters&quot;&gt;Close-Up Filters&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#eyeglasses-ii&quot; id=&quot;markdown-toc-eyeglasses-ii&quot;&gt;Eyeglasses II&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#chromatic-aberrations-for-humans&quot; id=&quot;markdown-toc-chromatic-aberrations-for-humans&quot;&gt;Chromatic Aberrations For Humans&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#unresolved-questions&quot; id=&quot;markdown-toc-unresolved-questions&quot;&gt;Unresolved Questions&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#paraxial-approximation-1&quot; id=&quot;markdown-toc-paraxial-approximation-1&quot;&gt;Paraxial Approximation&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#frustrum-shape&quot; id=&quot;markdown-toc-frustrum-shape&quot;&gt;Frustrum Shape&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#chromatic-aberrations-1&quot; id=&quot;markdown-toc-chromatic-aberrations-1&quot;&gt;Chromatic Aberrations&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#aberrations-in-general&quot; id=&quot;markdown-toc-aberrations-in-general&quot;&gt;Aberrations In General&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;physical-vs-geometrical-optics&quot;&gt;Physical vs Geometrical Optics&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/optics2kinds.png&quot; alt=&quot;optics2kinds.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Optics, the study of light, is typically divided into two branches:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;geometrical optics&lt;/strong&gt; characterizes light primarily as rays&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;physical optics&lt;/strong&gt;, or wave optics, characterizes light as a wave, with light rays drawn perpendicular to the wave&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That said, waves do give some nice intuition even in the first regime. The main difference is that geometrical optics &lt;em&gt;doesn’t&lt;/em&gt; account for the effects of diffraction and interference. It’s a useful approximation when the light’s wavelength is much smaller than the objects it interacts with.&lt;/p&gt;
+
+&lt;h1 id=&quot;refraction&quot;&gt;Refraction&lt;/h1&gt;
+
+&lt;p&gt;Snell’s Law explains what happens to light when it passes between two transparent substances.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/snellslaw.png&quot; alt=&quot;snellslaw.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The image above shows two mediums meeting at an &lt;strong&gt;interface&lt;/strong&gt;. In the left subimage, the waves of light approach the interface at an angle of \(\theta_i\) above the horizontal, with speed \(v_i\), and recedes at angle \(\theta_t\) below the horizontal, with speed \(v_t\). In other words, the speed and direction of the light has changed.&lt;/p&gt;
+
+&lt;p&gt;Here’s an intuitive explanation. Knowing that the velocity of light decreases in the second medium, the waves travel less distance over time, so they’re closer together. Now, notice how the incoming waves line up with the exiting waves at the interface: no lines are lost and no lines are created from thin air. For this property to hold, the waves must exit at a smaller angle.&lt;/p&gt;
+
+&lt;p&gt;We can instead look at the light rays, shown in the right subimage. Due to perpendicularity, we get equivalent angles \(\theta_i,\theta_t\) with respect to the vertical, or &lt;strong&gt;normal&lt;/strong&gt;. We get a few equalities:&lt;/p&gt;
+
+\[\frac{x_i}{x_t} = \frac{\sin\theta_i}{\sin\theta_t} = \frac{v_i}{v_t}=\frac{n_t}{n_i}\]
+
+&lt;p&gt;The first equality is from trigonometry, the second is from proportionality of \(x\) and \(v\), and the third is from defining the &lt;strong&gt;index of refraction&lt;/strong&gt;&lt;sup id=&quot;fnref:cropfactor&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:cropfactor&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; or refractive index as:&lt;/p&gt;
+
+\[n_r=\frac{\text{speed of light in vacuum}}{\text{speed of light in medium r}}\]
+
+&lt;p&gt;From the equations above we get the usual formulation of &lt;strong&gt;Snell’s Law&lt;/strong&gt;:&lt;/p&gt;
+
+\[n_1\sin\theta_1 = n_2\sin\theta_2\]
+
+&lt;p&gt;And wrapping up the example above, we notice a few things:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;light travels &lt;em&gt;more slowly&lt;/em&gt; and bends &lt;em&gt;closer to the normal&lt;/em&gt; through substances with &lt;em&gt;higher refractive indices&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;light does not refract when hitting the interface perpendicularly&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Some common indices of refraction:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;air: ~1.0&lt;/li&gt;
+  &lt;li&gt;water: 1.33&lt;/li&gt;
+  &lt;li&gt;glass: 1.5 - 1.8&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/mirage1.jpg&quot; alt=&quot;mirage1.jpg&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Refractive indices change with temperature. For example, hot air has a lower refractive index than cool air. This is the source of some &lt;strong&gt;mirages&lt;/strong&gt;, like the commonly seen “wet road” phenomenon.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/mirage2.png&quot; alt=&quot;mirage2.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In a bit more detail: in places with a gradient of hot air up high to cool air on the ground, some faraway light rays moving partially downward will bend away from the normal, flattening out and even curving upward! When they reach your eyes, it will seem like they originated from a point below the ground.&lt;/p&gt;
+
+&lt;h1 id=&quot;lens-shapes&quot;&gt;Lens Shapes&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/refractionlens.png&quot; alt=&quot;refractionlens.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When passing through a lens, light refracts twice:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;it bends closer to the normal when entering the lens&lt;/li&gt;
+  &lt;li&gt;it bends away from the normal when exiting the lens&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Light hitting the lens perpendicularly does not bend. The only place the light hits perpendicularly when entering &lt;em&gt;and&lt;/em&gt; exiting the lens is on the &lt;strong&gt;principal or optical axis&lt;/strong&gt; (\(\overline{C_2C_1}\) above).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/twocircles.png&quot; alt=&quot;twocircles.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The two sides of a lens can be characterized by the radii of their respective circles (spheres in 3D). If they intersect, they form a &lt;strong&gt;convex lens&lt;/strong&gt;, otherwise, they form a &lt;strong&gt;concave lens&lt;/strong&gt;. They are also called &lt;strong&gt;positive&lt;/strong&gt; and &lt;strong&gt;negative&lt;/strong&gt; lenses, respectively.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/convexconcave.png&quot; alt=&quot;convexconcave.png&quot; width=&quot;200&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Lenses come in many shapes. Following convention, the radius is negative on the right half of a circle, and positive for the left half.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/convexconcave1.png&quot; alt=&quot;convexconcave1.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Assuming light rays move left to right, if the rays meet at a point to the right of the lens, they produce a &lt;strong&gt;real image&lt;/strong&gt;. If they diverge after the lens, the rays can be traced backwards, converging to a &lt;strong&gt;virtual image&lt;/strong&gt; on the left side.&lt;/p&gt;
+
+&lt;p&gt;Likewise, if the rays originate from a point to the left of the lens, we have a &lt;strong&gt;real object&lt;/strong&gt;. If they come from a divergent source, they can be traced forward, meeting on the right side, forming a &lt;strong&gt;virtual object&lt;/strong&gt; (not pictured).&lt;/p&gt;
+
+&lt;p&gt;Parallel rays are on the border of convergent and divergent. We treat them as real, rather than virtual, points at infinity.&lt;/p&gt;
+
+&lt;h1 id=&quot;gaussian-lens-formula&quot;&gt;Gaussian Lens Formula&lt;/h1&gt;
+
+&lt;h2 id=&quot;simple-derivation&quot;&gt;Simple Derivation&lt;/h2&gt;
+
+&lt;p&gt;From now on let’s assume our object is in focus, so we don’t have to keep saying object/image &lt;em&gt;focus&lt;/em&gt; distance. There’s a pretty simple relationship between the object distance, the image distance, and the focal length that will help clarify all the virtual object/image business. In this derivation we make some pretty broad assumptions, in particular, that all parallel points pass through the focal point \(f\). We also use a convex lens for illustration, but the derivation works fine for concave lenses too.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/gaussray1.png&quot; alt=&quot;gaussray1.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using similar triangles, we get:&lt;/p&gt;
+
+\[\begin{align*}
+\frac{\vert y_i \vert}{y_o} &amp;amp;= \frac{s_i}{s_o}\\
+\frac{\vert y_i \vert}{y_o} &amp;amp;= \frac{s_i-f}{f}\\
+\end{align*}\]
+
+&lt;p&gt;Equating and rearranging, we get the &lt;strong&gt;Gaussian lens formula&lt;/strong&gt;:&lt;/p&gt;
+
+\[\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f}\]
+
+&lt;h2 id=&quot;paraxial-approximation&quot;&gt;Paraxial Approximation&lt;/h2&gt;
+
+&lt;p&gt;Note: I made some changes to the material on the slides.&lt;sup id=&quot;fnref:change&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:change&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; Levoy justifiably marks this section as optional.&lt;/p&gt;
+
+&lt;p&gt;Here’s a longer derivation of the Gaussian lens formula from more fundamental premises. Again we use a convex lens but it works for concave too.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/paraxial.png&quot; alt=&quot;paraxial.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Above we show a light ray shining from an object point \(O\), hitting a spherical surface with radius \(r_1\) (not labeled above), and landing on the image point \(P\). We use the &lt;strong&gt;paraxial approximation&lt;/strong&gt;, which assumes \(e\approx 0\), or that the incident ray on the lens is nearly horizontal. As a result, we get several simplifications via trigonometry:&lt;/p&gt;
+
+\[\begin{align*}
+\sin u &amp;amp;= h/l \approx u \text{ (for } u \text{ in radians)}\\ 
+\cos u &amp;amp;= z/l \approx 1\\
+\tan u &amp;amp;\approx \sin u \approx u
+\end{align*}\]
+
+&lt;p&gt;This is called &lt;strong&gt;first-order optics&lt;/strong&gt;, because we can get the same approximations from the first-degree Taylor polynomial of \(\sin u\) and \(\cos u\) centered at zero. Just to illustrate, the Taylor series expansions around zero are:&lt;/p&gt;
+
+\[\begin{align*}
+\sin\phi = \phi - \frac{\phi^3}{3!} + \frac{\phi^5}{5!} - \frac{\phi^7}{7!} + \ldots\\
+\cos\phi = 1 - \frac{\phi^2}{2!} + \frac{\phi^4}{4!} - \frac{\phi^6}{6!} + \ldots
+\end{align*}\]
+
+&lt;p&gt;And we just use the first term to approximate each function.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/paraxial1.png&quot; alt=&quot;paraxial1.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Recall Snell’s Law states \(n\sin \theta = n'\sin \theta'\). The paraxial approximation is:&lt;/p&gt;
+
+\[n\theta \approx n'\theta'\]
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/paraxial2.png&quot; alt=&quot;paraxial2.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We want an equation relating \(z_1'\) with \(z_1\). What follows is a bunch of elementary math. By geometry:&lt;/p&gt;
+
+\[\begin{align*}
+\theta&amp;amp;=u+a\\
+\theta'&amp;amp;=a-u'\\
+\end{align*}\]
+
+&lt;p&gt;We use that to expand our Snell’s Law approximation:&lt;/p&gt;
+
+\[n(u+a) \approx n'(a-u')\]
+
+&lt;p&gt;Then from trigonometry we can say:&lt;/p&gt;
+
+\[\begin{align*}
+a \approx \sin(a) &amp;amp;= \frac{h}{r_1}\\[1em]
+u \approx \tan(u) &amp;amp;= \frac{h}{z_1}\\[1em]
+u' \approx \tan(u') &amp;amp;= \frac{h}{z_1'}\\
+\end{align*}\]
+
+&lt;p&gt;We use those to manipulate our Snell’s Law approximation some more:&lt;/p&gt;
+
+\[\begin{align*}
+n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}-\frac{h}{z_1'}\right)\\
+\Rightarrow \frac{n}{z_1}+\frac{n'}{z_1'} &amp;amp;\approx \frac{n'-n}{r_1}\\
+\end{align*}\]
+
+&lt;p&gt;Notice how \(h\) has canceled out. No matter where a ray originating from \(O\) lands on the lens (no matter what height \(h\)), it will always hit \(P\). We have shown that there isn’t spherical aberration under the assumptions we made.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/paraxiala.png&quot; alt=&quot;paraxiala.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We calculated light going from air to glass, but we also need to do glass back to air. Let the right side of the lens be a spherical surface of radius \(r_2\) (not labeled). After refracting once on the left side, the ray will hit refract on the right side, and finally land on \(Q\).&lt;/p&gt;
+
+&lt;p&gt;We basically redo the calculations with new object and image points. The new image point is \(Q\), but what is the new object point? Well, the incident ray for the right side is just the transmitted ray from the left side, which intersects the optical axis at \(P\). So the image from the left interface becomes a &lt;em&gt;virtual&lt;/em&gt; object at the right interface. For this reason, we let the distance from the right side of the lens to \(P\) be negative. The resulting equation is:&lt;/p&gt;
+
+\[-\frac{n'}{z_2}+\frac{n}{z_2'} \approx \frac{n-n'}{r_2}\]
+
+&lt;p&gt;Summing the equations for the left and right sides, we get&lt;/p&gt;
+
+\[\begin{align*}
+\frac{n}{z_1}+\frac{n}{z_2'} &amp;amp;\approx (n'-n)\left(\frac{1}{r_1}-\frac{1}{r_2} \right) + \frac{n'}{z_2}-\frac{n'}{z_1'}\\
+\Rightarrow \frac{n}{z_1}+\frac{n}{z_2'} &amp;amp;\approx (n'-n)\left(\frac{1}{r_1}-\frac{1}{r_2} \right) + \frac{n'd}{(z_1'-d)z_1'}
+\end{align*}\]
+
+&lt;p&gt;Where the second line uses \(\vert -z_2\vert = \vert z_1'\vert - d\) to simplify the right terms.&lt;/p&gt;
+
+&lt;p&gt;Let’s use some nicer variables to represent the distances of the object and image to the left and right side of the lens, respectively: \(s_o = z_1\) and \(s_i = z_2'\). As \(d\rightarrow 0\), called the &lt;strong&gt;thin lens approximation&lt;/strong&gt;, the right term approaches zero, and we obtain the &lt;strong&gt;lens maker’s formula&lt;/strong&gt;:&lt;/p&gt;
+
+\[\frac{1}{s_o} + \frac{1}{s_i} = (n' - 1)\left(\frac{1}{r_1} - \frac{1}{r_2}\right) \tag{3}\]
+
+&lt;p&gt;Note: we set \(n=1\), the refractive index of air.&lt;/p&gt;
+
+&lt;p&gt;If we move the object \(s_0\) to infinity, the image distance \(s_i\) approaches the focal length \(f\), so we can say:&lt;/p&gt;
+
+\[\frac{1}{f} = (n' - 1)\left(\frac{1}{r_1} - \frac{1}{r_2}\right) \tag{4}\]
+
+&lt;p&gt;Equating with the previous equation, we obtain the Gaussian lens formula:&lt;/p&gt;
+
+\[\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f} \tag{5}\]
+
+&lt;p&gt;An interactive applet can be found &lt;a href=&quot;https://sites.google.com/site/marclevoylectures/applets/gaussian-lens-formula&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;uses-for-the-gaussian-lens-formula&quot;&gt;Uses For The Gaussian Lens Formula&lt;/h1&gt;
+
+&lt;p&gt;The Gaussian lens formula serves the basis for the rest of this note, and much more. Here’s a few important uses.&lt;/p&gt;
+
+&lt;h2 id=&quot;changing-object-distance-revisited&quot;&gt;Changing Object Distance (Revisited)&lt;/h2&gt;
+
+&lt;p&gt;What can the Gaussian lens formula do for us?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/changefocus.png&quot; alt=&quot;changefocus.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It basically dictates what happens in the image above. Again, it models the interactions of object distance, image distance, and focal length, &lt;em&gt;when the object is in focus&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;If the sensor is at the focal point, then \(s_i=f\), and the object is focused at infinity (top drawing in the picture above).&lt;/p&gt;
+
+&lt;p&gt;We can also have \(s_o=s_i=2f\) (third drawing):&lt;/p&gt;
+
+\[\frac{1}{2f} + \frac{1}{2f} = \frac{1}{f}\]
+
+&lt;p&gt;giving us 1:1 imaging, which means the scene and image scales are the same. For example, a 36 mm wide object will fill a 36 mm wide sensor.&lt;sup id=&quot;fnref:size&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:size&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;Similar to the first drawing, if \(s_o=f\) then \(s_i=\infty\) (not pictured), meaning we physically can’t focus on objects closer to the lens than \(f\).&lt;/p&gt;
+
+&lt;h2 id=&quot;virtual-images-and-objects&quot;&gt;Virtual Images and Objects&lt;/h2&gt;
+
+&lt;p&gt;What if the object distance is less than the focal length? Say \(s_o=\frac{f}{2}\). Then:&lt;/p&gt;
+
+\[\frac{2}{f} + \frac{1}{s_i} = \frac{1}{f}\]
+
+&lt;p&gt;so \(s_i=-f\).&lt;/p&gt;
+
+&lt;p&gt;In general:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;if \(0&amp;lt;s_o&amp;lt;f\), then \(s_i&amp;lt;0\)&lt;/li&gt;
+  &lt;li&gt;if \(0&amp;lt;s_i&amp;lt;f\), then \(s_o&amp;lt;0\)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;By convention, real objects lie to the left of the lens while real images lie to the right, and both have positive distances. Negative distances, then, correspond with &lt;em&gt;virtual&lt;/em&gt; objects and images.&lt;/p&gt;
+
+&lt;h2 id=&quot;concave-lenses&quot;&gt;Concave Lenses&lt;/h2&gt;
+
+&lt;p&gt;So far we assumed we were working with a convex lens. By convention, convex lenses have positive focal length, while concave lenses have negative focal length. Concave lenses actually behave much nicer, creating a virtual image at any object distance. For example, let \(s_o=2\) and \(f=-1\).&lt;/p&gt;
+
+\[\frac{1}{2} + \frac{1}{s_i} = -1\]
+
+&lt;p&gt;Then \(s_i=-\frac{2}{3}\).&lt;/p&gt;
+
+&lt;p&gt;From the Gaussian lens formula, we can see that if \(s_o&amp;gt;0\) (as it must be for a real object) and \(f&amp;lt;0\), then it must be the case that \(s_i&amp;lt;0\) and \(\vert s_i\vert&amp;lt;s_o\).&lt;/p&gt;
+
+&lt;h2 id=&quot;power-of-a-lens&quot;&gt;Power of a Lens&lt;/h2&gt;
+
+&lt;p&gt;How can we compare the strengths of different lenses? Let’s define the &lt;strong&gt;power&lt;/strong&gt; \(P\) of a lens as:&lt;/p&gt;
+
+\[P=\frac{1}{f}\]
+
+&lt;p&gt;where the units are 1/meters, or &lt;strong&gt;diopters&lt;/strong&gt;. Due to the convention from the previous section, convex lenses have positive diopters while concave lenses have negative diopters.&lt;/p&gt;
+
+&lt;p&gt;If we combine two lenses, we can just add their diopters. The two equations are equivalent:&lt;/p&gt;
+
+\[\begin{align*}
+    \frac{1}{f_{tot}} &amp;amp;= \frac{1}{f_1} + \frac{1}{f_2}\\[1em]
+    P_{tot} &amp;amp;= P_1 + P_2
+\end{align*}\]
+
+&lt;h2 id=&quot;magnification&quot;&gt;Magnification&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/gaussray1.png&quot; alt=&quot;gaussray1.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;By similar triangles, magnification can be determined from the image and object distances:&lt;/p&gt;
+
+\[M \triangleq \frac{y_i}{y_o} = -\frac{s_i}{s_o} = -\frac{f}{s_o-f}\]
+
+&lt;p&gt;The triangle symbolizes equality by definition. The negative sign is just due to differing conventions; the heights have opposite signs depending whether they’re above or below the optical axis, unlike the object and image distances if neither is virtual.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Clarification&lt;/strong&gt;: Most people, including Levoy later in the slides, seem to ignore the sign on magnification, effectively taking \(\vert M \vert\). From now on, I’m dropping the sign too.&lt;/p&gt;
+
+&lt;h3 id=&quot;hardware-for-magnification&quot;&gt;Hardware For Magnification&lt;/h3&gt;
+
+&lt;p&gt;Gathered from &lt;a href=&quot;https://www.cambridgeincolour.com/tutorials/macro-extension-tubes-closeup.htm&quot;&gt;this site&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Extension tubes&lt;/strong&gt;: devices fitted between the camera body and the lens, which increase magnification by increasing effective image distance.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Measured in mm.&lt;/li&gt;
+  &lt;li&gt;They have no optics, but allow electronics to pass through. They can be stacked.&lt;/li&gt;
+  &lt;li&gt;They raise the effective f-number, reducing the amount of light.&lt;/li&gt;
+  &lt;li&gt;They’re better for wide-angle lenses.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Close-up filters/lenses&lt;/strong&gt;: a special lens screwed onto the front of the actual lens, increasing magnfication by &lt;em&gt;decreasing&lt;/em&gt; effective focal length.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Measured in diopters.&lt;/li&gt;
+  &lt;li&gt;Optical elements may reduce image quality.&lt;/li&gt;
+  &lt;li&gt;They’re better for telephoto lenses.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Teleconverters&lt;/strong&gt;: like extension tubes, but with optics. They increase magnification by &lt;em&gt;increasing&lt;/em&gt; effective focal length.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Measured by magnification multiplier (e.g. 1.4x)&lt;/li&gt;
+  &lt;li&gt;Optical elements may reduce image quality.&lt;/li&gt;
+  &lt;li&gt;They raise the effective f-number, reducing the amount of light.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Macro Lenses&lt;/strong&gt;: the best and most expensive option for close-up photography.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Measured in \(M\).&lt;/li&gt;
+  &lt;li&gt;Corrects for aberrations.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Clarification&lt;/strong&gt;: Alright, you have to be wondering: how can close-up filters and teleconverters achieve the same thing in different ways? I’m not 100\% certain but here’s my thinking. Teleconverters work like telephoto lens elements, where a combination of lens elements can achieve the same focal length and object distance at a reduced image distance; see the Telephoto section below. Since the teleconverter is screwed in between the existing lens and the camera, the image distance doesn’t decrease, leading to an increase in the effective focal length.&lt;/p&gt;
+
+&lt;p&gt;Close-up filters allow you to (drum roll) get close-up to the object, i.e. reduce object distance, by &lt;em&gt;lowering&lt;/em&gt; focal length; see the example at the end of this note called Close-Up Filters. Based on the last expression for magnification, we can see that focal length and object distance aren’t related linearly, and I presume in close-up situations, the object distance has a stronger effect on the magnification than the focal length.&lt;/p&gt;
+
+&lt;p&gt;In other words:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;close-up filter: \(f\downarrow\quad s_o\Downarrow\quad s_i – \quad M\uparrow\)&lt;/li&gt;
+  &lt;li&gt;teleconverter: \(f\uparrow\quad s_o – \quad s_i – \quad M\uparrow\)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;3d-perspective-transform&quot;&gt;3D Perspective Transform&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/frustrum.png&quot; alt=&quot;frustrum.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A lens transforms a 3D object into a 3D image, and the sensor extracts a 2D slice of that image. We can think of this as an extension of the transform going directly from 3D to 2D from [[Image Formation]].&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Clarification&lt;/strong&gt;: How is that different from a pinhole camera? Recall that a pinhole camera performs a projective transformation. We previously showed one object and its image on one sensor.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/frustrum2d.png&quot; alt=&quot;frustrum2d.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here’s two objects and two sensors. A pinhole camera has infinite depth of field, so any placement of the sensor will capture both objects in focus (and in fact, the entirety of the visible scene).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/frustrum2d_lens.png&quot; alt=&quot;frustrum2d_lens.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Replacing the pinhole with a lens, the sensor at any position will still capture both objects. The difference is that only one plane in the object space will be in focus for any given plane in image space (see the blurred arrows). For any square in object space, we get a trapezoid of the &lt;em&gt;corresponding focused objects&lt;/em&gt; in image space, a bijective transformation. Moving from the 2D visualization to 3D, the square and trapezoid become a cube and pyramidal frustrum, as shown in Levoy’s drawing. The latter converges to the focal point, &lt;em&gt;not&lt;/em&gt; the optical center of the lens, and no such transformation exists for the pinhole camera.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/perspectivetransform.png&quot; alt=&quot;perspectivetransform.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The other point Levoy makes is that a linear change in object distance is accompanied by a &lt;em&gt;nonlinear&lt;/em&gt; change in image distance, evident from Gauss’ lens formula, and illustrated by the grid lines in the image above. Note that the warped grid in image space &lt;em&gt;doesn’t&lt;/em&gt; represent a 3D view of a plane sticking out of the page, but a trapezoid on the same plane as everything else in the diagram. The image comes from an &lt;a href=&quot;https://sites.google.com/site/marclevoylectures/applets/operation-of-a-thin-lens&quot;&gt;interactive applet&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;depth-of-field&quot;&gt;Depth of Field&lt;/h1&gt;
+
+&lt;h2 id=&quot;derivation&quot;&gt;Derivation&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/dofformula1.png&quot; alt=&quot;dofformula1.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In [[Image Formation]] we gave a simplified presentation of the circle of confusion using symmetric cones. Now we use a more accurate diagram. The vertical line to the right of the lens signifies the &lt;strong&gt;circle of confusion&lt;/strong&gt;, the in-focus image plane is the vertical line to the right of the lens, the area of acceptable focus is shaded red, and the width of this area is called the &lt;strong&gt;depth of focus&lt;/strong&gt;. We define the &lt;strong&gt;conjugate of the circle of confusion&lt;/strong&gt; and the &lt;strong&gt;depth of field&lt;/strong&gt; similarly, to the left of the lens. It’s clear that the depth of field is asymmetrical around the in-focus object plane. In addition, the circle of confusion is usually smaller than its conjugate, which we can see from its formula; since usually \(0&amp;lt;M&amp;lt;1\), then usually \(\frac{C}{M}&amp;gt;C\).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/dofformula2.png&quot; alt=&quot;dofformula2.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let \(U=s_o\), just for convention’s sake. We assume the object distance (focal distance) is much larger than the focal length, or \(U\gg f\), or equivalently \(f\approx s_i\).&lt;/p&gt;
+
+\[\begin{align*}
+    M = \frac{s_i}{U} &amp;amp;\approx \frac{f}{U}\\
+    \frac{C}{M} &amp;amp;\approx \frac{CU}{f}
+\end{align*}\]
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/dofformula3.png&quot; alt=&quot;dofformula3.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Recall the aperture diameter is \(\frac{f}{N}\). Let \(D_1\) be the &lt;strong&gt;front depth of field&lt;/strong&gt; and \(D_2\) be the &lt;strong&gt;back depth of field&lt;/strong&gt;. By similar triangles we get:&lt;/p&gt;
+
+\[\frac{D_1}{CU/f} = \frac{U-D_1}{f/N}\]
+
+&lt;p&gt;which gives an expression for the front depth of field:&lt;/p&gt;
+
+\[D_1 = \frac{NCU^2}{f^2+NCU}\]
+
+&lt;p&gt;Similarly, the back depth of field is:&lt;/p&gt;
+
+\[D_2 = \frac{NCU^2}{f^2-NCU}\]
+
+&lt;p&gt;We sum those to get the total depth of field:&lt;/p&gt;
+
+\[D = D_1 + D_2 = \frac{2NCU^2f^2}{f^4-N^2C^2U^2} \tag{1}\]
+
+&lt;p&gt;The \(N^2C^2U^2\) term can be ignored when the conjugate circle of confusion is small relative to the aperture,&lt;sup id=&quot;fnref:conj&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:conj&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; giving the final formula for depth of field:&lt;/p&gt;
+
+\[D = \frac{2NCU^2}{f^2} \tag{2}\]
+
+&lt;p&gt;While it may not be the most accurate formula, it does illustrate the relationships between its component variables for reasonable object distances. An interactive depth of field applet can be found &lt;a href=&quot;https://graphics.stanford.edu/courses/cs178-14/applets/dof.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;hyperfocal-distance&quot;&gt;Hyperfocal distance&lt;/h2&gt;
+
+&lt;p&gt;The back depth of field becomes infinite if:&lt;/p&gt;
+
+\[U = \frac{f^2}{NC} \triangleq H\]
+
+&lt;p&gt;In that case, the front depth of field becomes:&lt;/p&gt;
+
+\[D_1 = \frac{NCU^2}{f^2-NCU} = \frac{H}{2}\]
+
+&lt;p&gt;That is, if the object distance is set to the &lt;strong&gt;hyperfocal distance&lt;/strong&gt; \(H\) (equivalently, if you focus at \(H\)), everything from distance \(\frac{H}{2}\) to infinity will be in focus. It’s a good number to know on its own, especially for certain use cases like landscape photography.&lt;/p&gt;
+
+&lt;p&gt;We can also express the depth of field in terms of \(H\). Without disregarding the term \(U^2N^2C^2\) in the denominator of eq. 1, we get:&lt;/p&gt;
+
+\[D = \frac{2HU^2}{H^2-U^2}\]
+
+&lt;p&gt;Now, another perspective on what it means to ignore the term \(U^2N^2C^2\), is that the hyperfocal distance is much larger than the object distance, or \(U^2 \ll H^2\). If so, then the formula reduces to eq. 2, or equivalently:&lt;/p&gt;
+
+\[D = \frac{2U^2}{H}\]
+
+&lt;p&gt;So the simplified depth of field formula, eq 2, relies on the object distance \(U\) falling within a “nice” range, roughly specified by:&lt;/p&gt;
+
+\[f\ll U \ll H\]
+
+&lt;h2 id=&quot;macro-depth-of-field&quot;&gt;Macro Depth of Field&lt;/h2&gt;
+
+&lt;p&gt;Our derivation for the depth of field doesn’t quite work for macro lenses, because of the assumption that \(f=s_i\). Discarding it, the accurate formula for small object distances can be stated, in terms of \(M\):&lt;/p&gt;
+
+\[D_{\text{macro}}=\frac{2NC(M+1)}{M^2} \tag{3}\]
+
+&lt;h2 id=&quot;other-derivations&quot;&gt;Other Derivations&lt;/h2&gt;
+
+&lt;p&gt;The derivations above use the \(f=s_i\) approximation pretty early, which makes the calculations easier but gives less general formulas. In particular, the general versions would better convey where the macro version comes from. Of course there’s even more complicated versions dealing with things like thick lenses. &lt;a href=&quot;https://www.largeformatphotography.info/articles/DoFinDepth.pdf&quot;&gt;Here&lt;/a&gt; and &lt;a href=&quot;https://www.imajtrek.com/new_page_10.htm&quot;&gt;here&lt;/a&gt; are some more complete derivations.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;N,C,U,f&lt;/th&gt;
+      &lt;th&gt;H&lt;/th&gt;
+      &lt;th&gt;M&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;any \(U\)&lt;/td&gt;
+      &lt;td&gt;\(\frac{2NCUf^2(U-f)}{f^4-N^2C^2(U-f)^2}\)&lt;/td&gt;
+      &lt;td&gt;\(\frac{2HU(U-f)}{H^2-(U-f)^2}\)&lt;/td&gt;
+      &lt;td&gt;\(\frac{2NC(M+1)}{M^2-\left(\frac{NC}{f}\right)^2}\)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(f\ll U\)&lt;/td&gt;
+      &lt;td&gt;\(\frac{2NCU^2f^2}{f^4-N^2C^2U^2}\)&lt;/td&gt;
+      &lt;td&gt;\(\frac{2HU^2}{H^2-U^2}\)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(U\ll H\)&lt;/td&gt;
+      &lt;td&gt;\(\frac{2NC(U-f)}{f^2}\)&lt;/td&gt;
+      &lt;td&gt;\(\frac{2U(U-H)}{H}\)&lt;/td&gt;
+      &lt;td&gt;\(\frac{2NC(M+1)}{M^2}\)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(f\ll U\ll H\)&lt;/td&gt;
+      &lt;td&gt;\(\frac{2NCU^2}{f^2}\)&lt;/td&gt;
+      &lt;td&gt;\(\frac{2U^2}{H}\)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The table shows several variations of the formula, depending on the assumptions made on the object distance \(U\), and the particular terms used.&lt;sup id=&quot;fnref:yourself&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:yourself&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, any method relies on the Gaussian Lens formula, and therefore the paraxial approximation.&lt;/p&gt;
+
+&lt;h1 id=&quot;depth-of-field-in-practice&quot;&gt;Depth of Field In Practice&lt;/h1&gt;
+
+&lt;p&gt;For intuition’s sake, depth of field is simplified by necessity. Most of the conclusions drawn below use the simpler versions of the equations, and therefore apply to midrange distances. Some &lt;a href=&quot;https://theonlinephotographer.typepad.com/the_online_photographer/2009/06/depth-of-field-hellthe-sequel.html&quot;&gt;people&lt;/a&gt; will bemoan these approximations, but as long as we’re aware of their limitations, it shouldn’t be a problem.&lt;/p&gt;
+
+&lt;h2 id=&quot;basic-relationships&quot;&gt;Basic Relationships&lt;/h2&gt;
+
+&lt;p&gt;We use eq. 2 for the observations below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/doffnumber.png&quot; alt=&quot;doffnumber.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Depth of field is linear with f-number.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/dofsubjectdistance.png&quot; alt=&quot;dofsubjectdistance.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Depth of field is quadratic with object distance.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/doffocallength.png&quot; alt=&quot;doffocallength.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Depth of field is inverse-quadratic with focal length.&lt;/p&gt;
+
+&lt;h2 id=&quot;dolly-zoom&quot;&gt;Dolly Zoom&lt;/h2&gt;
+
+&lt;p&gt;Recall in a dolly zoom, the magnification of the subject stays constant by increasing both object distance and focal length in a principled manner.&lt;/p&gt;
+
+&lt;p&gt;By eq. 3, when magnification is held constant, the depth of field depends on neither focal length nor object distance. Due to perspective distortion, however, the blurriness of the background will change, since the FOV has changed and the blurred elements take up a different amount of screen space.&lt;/p&gt;
+
+&lt;h2 id=&quot;sensor-size&quot;&gt;Sensor Size&lt;/h2&gt;
+
+&lt;p&gt;As the sensor size goes down:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;the focal length tends to go down to maintain FOV&lt;/li&gt;
+  &lt;li&gt;the pixel size tends to go down to maintain resolution, which makes the circle of confusion smaller&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Focal length has a greater effect (squared, compared to linear, from eq. 2) than circle of confusion, so generally speaking, as sensor size \(\times 2\), depth of field is \(\times \frac{1}{2}\).&lt;/p&gt;
+
+&lt;h2 id=&quot;circle-of-confusion&quot;&gt;Circle of Confusion&lt;/h2&gt;
+
+&lt;p&gt;The circle of confusion depends on many things, including: the sensing medium, reproduction medium, viewing distance, human vision, etc. Some typical cases:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;35 mm film to print: .02 mm (on negative)&lt;/li&gt;
+  &lt;li&gt;high-end SLR: 6 μm (1 pixel)&lt;/li&gt;
+  &lt;li&gt;can go smaller when downsizing for the web or for a poor lens&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The lectures show example depth of field calculations for different photographs taken by Levoy, including viewing considerations. They’re too large to reproduce, and it would be pointless to show downsized ones, so I urge you to check out the lecture slides.&lt;/p&gt;
+
+&lt;h2 id=&quot;bokeh&quot;&gt;Bokeh&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/bokeh.jpg&quot; alt=&quot;bokeh.jpg&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Bokeh&lt;/strong&gt; is the appearance of small out-of-focus features in a photograph with shallow depth of field. The shape of the features are determined by the boundary of the aperture. In the picture above, the slightly closed blades on the aperture produce octagonal lights. Not every image has noticeable bokeh; it is most pronounced with point light sources.&lt;/p&gt;
+
+&lt;p&gt;It’s pronounced &lt;em&gt;bow-cuh&lt;/em&gt;!&lt;/p&gt;
+
+&lt;h2 id=&quot;seeing-through-occlusions&quot;&gt;Seeing Through Occlusions&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/dofocclusion.png&quot; alt=&quot;dofocclusion.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The depth of field blur is not the same as a convolution. Using a shallow enough depth of field, we can eliminate occlusions, which would not be possible by blurring a static image featuring the occlusion. Apparently a chain link fence sat between the camera and the owl in the picture above, but it is not visible. Some of the rays from the owl got blocked, but some made it around the fence wire. A given pixel, then, may have a mixture of colors from the owl and the fence, and the result on the image is not an outright occlusion, but decreased contrast.&lt;/p&gt;
+
+&lt;h1 id=&quot;lens-aberrations&quot;&gt;Lens Aberrations&lt;/h1&gt;
+
+&lt;p&gt;Let’s recap the assumptions we made so far:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Geometric instead of physical optics&lt;/li&gt;
+  &lt;li&gt;Spherical lenses&lt;/li&gt;
+  &lt;li&gt;Paraxial approximation of ray angles&lt;/li&gt;
+  &lt;li&gt;Thin lenses instead of thick, or even compound lenses&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There’s seven main types of lens aberrations. We can divide lens aberrations into:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;chromatic aberrations (CA)&lt;/strong&gt;: two aberrations rooted in the varying wavelengths of light&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;monochromatic aberrations&lt;/strong&gt;: five Seidel aberrations for monochromatic light&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Another way to&lt;/p&gt;
+
+&lt;h2 id=&quot;chromatic-aberrations&quot;&gt;Chromatic Aberrations&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/prism.png&quot; alt=&quot;prism.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The index of refraction varies by wavelength! That’s how an optical prism works after all. The &lt;strong&gt;dispersion&lt;/strong&gt; is the variation in refractive index by wavelength. It’s modeled by some function, for instance the &lt;strong&gt;Sellmeier equation&lt;/strong&gt; (right subimage above), outputting a single refractive index for a given wavelength.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Higher dispersion means greater variation&lt;/li&gt;
+  &lt;li&gt;Amount of variation depends on the material&lt;/li&gt;
+  &lt;li&gt;Index is typically higher for blue than red, meaning blue light bends more&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There’s two kinds of CA:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;longitudinal&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;em&gt;cause&lt;/em&gt;: lens has different effective focal lengths for different wavelengths of light&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;effect&lt;/em&gt;: different colors on the image will be out of focus&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;lateral&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;em&gt;cause&lt;/em&gt;: different colors have different magnifications&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;effect&lt;/em&gt;: colors on the image will be magnified (with respect to the optical axis) different amounts, producing “color fringing” towards the edges&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/chromaticaberration.png&quot; alt=&quot;chromaticaberration.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s possible to correct longitudinal CA with an additional lens element. The right subimage shows an &lt;strong&gt;achromatic doublet&lt;/strong&gt;, composed of a normal convex element and a complementary concave element with different dispersions (crown and flint refer to the different glass types). By adjusting the dispersions, we can correct at two wavelengths. In the right subimage, the doublet is designed so red and blue light are aligned. Though green wavelengths are imperfectly corrected, the overall dispersion is greatly reduced. Longitudinal CA can be also be corrected by lowering the aperture, so the light hits the lens closer to the normal (I think), limiting dispersion.&lt;/p&gt;
+
+&lt;p&gt;Lateral CA can be somewhat corrected either with a lens construction symmetrical about the aperture, or with software.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/chromaticab.gif&quot; alt=&quot;chromaticab.gif&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The two kinds of chromatic aberration are shown above side-by-side. Notice how longitudinal CA takes the form of out-of-focus elements spread uniformly across the whole image. In lateral CA we can clearly see the radial magnification of different colors, with a stronger effect at the edges.&lt;/p&gt;
+
+&lt;h2 id=&quot;spherical-aberrations&quot;&gt;Spherical Aberrations&lt;/h2&gt;
+
+&lt;p&gt;Remember the goal of a lens is to focus light rays at a point.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/lenstypes.png&quot; alt=&quot;lenstypes.png&quot; width=&quot;250&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The lens shape which focuses incoming rays to a single point is actually a hyperboloid. In contrast, a spherical lens exhibits what’s called &lt;strong&gt;spherical aberration&lt;/strong&gt;, which can be corrected by stopping down the aperture.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/softfocus.jpg&quot; alt=&quot;softfocus.jpg&quot; width=&quot;400&quot; /&gt;
+&lt;em&gt;Left: soft focus on; right: soft focus off&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Spherical lenses are more common simply because they’re easier to make. It’s still possible to buy a “soft focus” lens, which intentionally does not correct spherical aberration.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/expkernel.png&quot; alt=&quot;expkernel.png&quot; width=&quot;150&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Fun fact: the soft focus effect is equivalent to a post-processing convolution with the exponential kernel.&lt;/p&gt;
+
+&lt;h2 id=&quot;coma&quot;&gt;Coma&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/coma.png&quot; alt=&quot;coma.png&quot; width=&quot;200&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Coma&lt;/strong&gt; is when the magnification varies based on distance from the optical axis, similar to lateral CA. Unlike lateral CA, it can be reduced by stopping down the aperture.&lt;/p&gt;
+
+&lt;h2 id=&quot;astigmatism&quot;&gt;Astigmatism&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/astigatism.png&quot; alt=&quot;astigatism.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Astigmatism&lt;/strong&gt; is when rays in the transverse plane (x-z plane) focus at a different distance from the rays in the sagittal plane (y-z plane). There’s two kinds:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;opthalmic&lt;/strong&gt;: due to radially asymmetric (oblong) lens&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;optical&lt;/strong&gt;: even for radially symmetric lens; the third-order aberration&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It can be reduced by stopping down the aperture.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/astigmatismopthalmic.png&quot; alt=&quot;astigmatismopthalmic.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The effect is shown above. Note that vertical or horizontal focus should be different in strength, or else it’s just a normal, out-of-focus lens.&lt;/p&gt;
+
+&lt;h2 id=&quot;field-curvature&quot;&gt;Field Curvature&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Field curvature&lt;/strong&gt; refers to the fact that spherical objects focus a curved surface in object space onto a curved surface in image space. If the object surface is flat, the corresponding image surface must be even more curved. Only some ring on a flat imaging plane will be in focus. It can be fixed by closing down the aperture.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/fieldcurvature.png&quot; alt=&quot;fieldcurvature.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The top subimage shows the required object and image surfaces for a focused image using a spherical lens. The bottom subimages show different ranges of radii in focus.&lt;/p&gt;
+
+&lt;h2 id=&quot;distortion&quot;&gt;Distortion&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/distortion.jpg&quot; alt=&quot;distortion.jpg&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There’s three kinds of distortion:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;pincusion&lt;/strong&gt;: magnification increases further from the optical axis&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;barrel&lt;/strong&gt;: magnification decreases further from the optical axis&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;mustache&lt;/strong&gt;: mix of the two above&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It is easily correctable with software.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Clarification&lt;/strong&gt;: From the image above, it might look like the magnification doesn’t change along the horizontal and vertical axes, but it does, and would be visible with a larger grid.&lt;/p&gt;
+
+&lt;h2 id=&quot;not-perspective&quot;&gt;NOT Perspective&lt;/h2&gt;
+
+&lt;p&gt;Notice how perspective isn’t in the list. It’s &lt;em&gt;not&lt;/em&gt; a lens distortion or aberration! Perspective can only produce “distortion” in a subjective sense, taking into account an object’s typical viewing distance.&lt;/p&gt;
+
+&lt;h1 id=&quot;other-lens-artifacts&quot;&gt;Other Lens Artifacts&lt;/h1&gt;
+
+&lt;p&gt;There are several other effects besides aberrations, that may or may not be desired.&lt;/p&gt;
+
+&lt;h2 id=&quot;veiling-glare&quot;&gt;Veiling Glare&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/veilingglare1.jpg&quot; alt=&quot;veilingglare1.jpg&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Veiling glare&lt;/strong&gt; is a glare lowering contrast throughout the image.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/veilingglare.png&quot; alt=&quot;veilingglare.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;At every interface, both refraction and reflection occur. The image above shows how a few reflections can cause a ray from one source to produce two outgoing rays. Usually more light refracts than it reflects, but the light coming from the secondary rays is enough to lower the contrast of the image. It can be reduced by anti-reflection coatings to block unwanted reflections, and lens hoods to block excessive incoming light.&lt;/p&gt;
+
+&lt;h2 id=&quot;lens-flare&quot;&gt;Lens Flare&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/lensflare.jpg&quot; alt=&quot;lensflare.jpg&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Lens flares&lt;/strong&gt; (or &lt;strong&gt;ghosting&lt;/strong&gt;) are structured artifacts which move predictably around the image based on the direction of the camera (it’s easier to see what it is than to try to explain it). The image above includes a special case where the light source looks star-shaped, called a &lt;strong&gt;starburst&lt;/strong&gt;. Lens flares can be reduced with a lens hood, or by moving the light source out of the frame.&lt;/p&gt;
+
+&lt;h2 id=&quot;vignetting&quot;&gt;Vignetting&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/vignetting.png&quot; alt=&quot;vignetting.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Vignetting&lt;/strong&gt; is the darkening of an image around the edges. From another perspective, it is the soft boundary of the image circle coming into view.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/vignetting1.png&quot; alt=&quot;vignetting1.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The first kind is &lt;strong&gt;optical vignetting&lt;/strong&gt;, due to the distance traveled from the lens to the sensor. In the diagram above, we see several things happening, all based on the angle \(\theta\) the pixel makes lies above the horizontal:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Irradiance is proportional to the projected area of aperture as seen by the sensor. In other words, at point \(H\), the sensor sees the aperture as an ellipse with less area compared to the circle that point \(A\) would see. This area decreases as \(\cos\theta\).&lt;sup id=&quot;fnref:projellipse&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:projellipse&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  &lt;li&gt;Irradiance is proportional to the projected area of the pixel as seen by the aperture. Basically, the previous effect works backwards, with the aperture seeing an stretched out pixel at \(H\) compared to \(A\), with area also decreasing as \(\cos\theta\).&lt;/li&gt;
+  &lt;li&gt;Irradiance is proportional to squared distance from aperture to pixel, and distance rises as \(1/\cos\theta\).&lt;/li&gt;
+  &lt;li&gt;Combining all three, light drops as \(\cos^4\theta\).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/vignetting2.png&quot; alt=&quot;vignetting2.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There’s also &lt;strong&gt;optical vignetting&lt;/strong&gt;, where the light coming from wide angles is blocked by the barrel of the lens, especially noticeable for wide apertures, as seen in the bottom-left lens from the left subimage above. The main result is once again a decrease in light on the edges. Since the effective shape of the aperture changes, so does the bokeh (if present) towards the edges of an image, known as the &lt;strong&gt;cat’s eye effect&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;There’s &lt;strong&gt;mechanical vignetting&lt;/strong&gt;, caused by incorrect add-ons for the lens, or a lens whose image circle is too small for the sensor. In both cases, the image shows a relatively sharp cutoff to black in the shape of whatever obstacles lie in front of the lens.&lt;/p&gt;
+
+&lt;p&gt;Finally, there’s &lt;strong&gt;pixel vignetting&lt;/strong&gt; due to sensor construction. For light coming in at an angle, the walls of the pixel cast shadows, reducing light captured at the edges of the sensor.&lt;/p&gt;
+
+&lt;p&gt;Unlike the previous two artifacts, vignetting is digitally correctable, although noise might increase as pixels are brightened. Optical vignetting can be lowered by decreasing the aperture, and mechanical vignetting is eliminated by using compatible camera parts.&lt;/p&gt;
+
+&lt;h2 id=&quot;diffraction&quot;&gt;Diffraction&lt;/h2&gt;
+
+&lt;p&gt;Here we’ll briefly dip our feet into the wave aspects of light. &lt;strong&gt;Diffraction&lt;/strong&gt; is when light spreads out as it passes through an aperture. The result is a slight blurring of the image (yet again). When diffraction causes a noticeable blur, the lens is said to have become &lt;em&gt;diffraction limited&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The amount of spreading increase as the aperture diameter &lt;em&gt;decreases&lt;/em&gt; and the distance from the sensor &lt;em&gt;increases&lt;/em&gt;, so the blur varies with \(N=\frac{f}{A}\). It also depends on pixel size, just like depth of field, and the wavelength of the light. In practice, diffraction only comes into play around at&lt;/p&gt;
+
+&lt;p&gt;Note: Diffraction is also responsible for the image circle, and hence vignetting.&lt;/p&gt;
+
+&lt;h1 id=&quot;lens-systems&quot;&gt;Lens Systems&lt;/h1&gt;
+
+&lt;h2 id=&quot;telephoto&quot;&gt;Telephoto&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/telephoto.png&quot; alt=&quot;telephoto.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A &lt;strong&gt;telephoto lens&lt;/strong&gt; has a long focal length at a compressed size. Normally, a convex lens would have to be positioned at the middle line in the diagram above, at distance \(f\) from the sensor. To fit the same lens in a more compact space, the strength of the convex lens is boosted, and it’s combined with a concave lens to refocus the rays at the original point, as in figure (a). Figure (b) shows a &lt;strong&gt;reverse telephoto lens&lt;/strong&gt; using the opposite mechanism, in order to make room for a reflex mirror in an SLR, for instance.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/telephoto1.png&quot; alt=&quot;telephoto1.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is one of Levoy’s drawings, which might be clearer. The blue lens is the original, and the green is the telephoto combination. They have the same focal length.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/telephoto2.png&quot; alt=&quot;telephoto2.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here’s a comparison.&lt;/p&gt;
+
+&lt;h2 id=&quot;zoom&quot;&gt;Zoom&lt;/h2&gt;
+
+&lt;p&gt;Zoom lenses have many components, but allow for variable focal length.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/zoom.png&quot; alt=&quot;zoom.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Only two elements are shown above, but the point is that the different elements have to move at varying rates to offer a linear zoom.&lt;/p&gt;
+
+&lt;p&gt;You can experiment with zoom on an interactive applet found &lt;a href=&quot;https://graphics.stanford.edu/courses/cs178-14/applets/zoom.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;lens-design&quot;&gt;Lens Design&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/lenssoftware.png&quot; alt=&quot;lenssoftware.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Modern lens systems are designed with software, using optimization to craft good lens recipes. Usually they do not optimize the selection and arrangement of lens elements, instead minimizing aberrations by adjusting the surface shapes. The recipes for modern cameras are kept secret; supposedly even the patents for commercial lenses don’t reveal the exact recipe.&lt;/p&gt;
+
+&lt;h1 id=&quot;examples&quot;&gt;Examples&lt;/h1&gt;
+
+&lt;h2 id=&quot;eyeglasses-i&quot;&gt;Eyeglasses I&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; The professor has glasses with the prescription:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;right eye: -.75 diopters&lt;/li&gt;
+  &lt;li&gt;left eye: -1.00 diopters&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;What’s wrong with the professor’s eyes?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; The professor has myopia (nearsightedness).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/eyeproblems.png&quot; alt=&quot;eyeproblems.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;His eye is stronger than normal, with a focal point in front of the retina (which we know since the diagram shows parallel incoming rays). A concave lens is needed to “weaken” it, so the light hits the retina properly. Note that nearby objects will converge further back based on the Gaussian lens formula, and with the lens they may now focus &lt;em&gt;behind&lt;/em&gt; the retina. The professor will need to remove his glasses to see close things properly.&lt;/p&gt;
+
+&lt;h2 id=&quot;macro-lenses&quot;&gt;Macro Lenses&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; How can the Casio EX-F1 at 73mm and the Canon MP-E 65mm macro, which have similar \(f\)’s, have such different focusing distances?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; Because macro lenses are built to allow long \(s_i\), which requires lower \(s_o\), given similar \(f\).&lt;/p&gt;
+
+&lt;h2 id=&quot;close-up-filters&quot;&gt;Close-Up Filters&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; If we attach a close-up filter of power \(\frac{1}{500\text{mm}}\) to a lens with focal length \(f=200\text{mm}\) and minimum object distance \(s_o=1000\text{mm}\),&lt;sup id=&quot;fnref:wrong&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:wrong&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt; how close can we focus on the object?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; By the Gaussian lens formula, in order to change the object distance \(s_o\) we have to change either the image distance \(s_i\) or the focal length \(f\). What a close-up filter allows you to do is reduce the object distance for a &lt;em&gt;fixed image distance&lt;/em&gt; by tweaking the overall focal length. Remember, for a given focal length, a camera’s minimum focus distance is based on the furthest the sensor can get from the lens.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/closeup.png&quot; alt=&quot;closeup.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;By the Gaussian lens formula, the image distance for the lens without the filter, corresponding to the minimum object distance, must be:&lt;/p&gt;
+
+\[s_i = \frac{1}{\frac{1}{f}-\frac{1}{s_o}} = \frac{1}{\frac{1}{200\text{mm}} -\frac{1}{1000\text{mm}}} = 250\text{mm}\]
+
+&lt;p&gt;Now using the close-up filter on the lens (set at the same focal length as before), the combined power is:&lt;/p&gt;
+
+\[\begin{align*}
+    \frac{1}{200 \text{mm}} + \frac{1}{500\text{mm}} &amp;amp;= \frac{1}{143\text{mm}}\\[1em]
+    5.0 + 2.0 &amp;amp;= 7.0 \text{ diopters}
+\end{align*}\]
+
+&lt;p&gt;So at the minimum in-lens image distance, the close-up filter allows the object distance to be:&lt;/p&gt;
+
+\[s_o = \frac{1}{\frac{1}{f}-\frac{1}{s_i}} = \frac{1}{\frac{1}{143\text{mm}} -\frac{1}{250\text{mm}}} = 334\text{mm}\]
+
+&lt;p&gt;That’s about a \(\times 3\) improvement over 1000 mm!&lt;/p&gt;
+
+&lt;p&gt;We can measure the magnification with and without the lens.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;with: \(\frac{250}{1000} = 1:4\)&lt;/li&gt;
+  &lt;li&gt;without: \(\frac{250}{334} = 3:4\)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/closeup1.png&quot; alt=&quot;closeup1.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And there’s the side-by-side comparison. It works!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Clarification:&lt;/strong&gt; the close-up filter reduces the focal length to 145 mm, which is still in the range of the lens (45-200 mm), so why not just reduce the focal length without the filter? For this lens, a lower focal length gives a lower image distance (and it may be true for all zoom lenses), and consequently we just wouldn’t be able to get as close to the object. Here’s the full explanation from the man himself:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;What I may have failed to make clear enough during lecture is, while the modified focal length of 143mm with the close-up filter does lie within the range already offered by the 45-200mm zoom lens, with the filter you are achieving that focal length while the lens is configured for 200mm. In that configuration, the barrel is fully extended, producing an image distance of 250mm, and (applying the Gaussian lens formula) an object distance so of 334mm. If the lens without the closeup filter were configured for this same focal length of 143mm the barrel would not be fully extended, so the image distance would be less than 250mm (I don’t know how much less - it depends on the lens mechanics), and the object distance would be longer than 334mm. Or if the lens without the closeup filter were configured for a focal length of 200mm, even though the barrel is fully extended and the image distance is 250mm, the object distance would be 1000mm. Thus, the filter allows you to combine the maximum barrel extension (hence the longest possible image distance) with an otherwise impossibly short object distance, producing higher magnification.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;eyeglasses-ii&quot;&gt;Eyeglasses II&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; The professor’s eyes are worse than he let on. His glasses actually have the prescription:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;right eye: -0.75 -1.00 axis 135&lt;/li&gt;
+  &lt;li&gt;left eye: -1.00 -0.75 axis 180&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;What’s wrong with the professor’s eyes?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; The professor has myopia &lt;em&gt;and&lt;/em&gt; astigmatism.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/optics/astigmatism1.png&quot; alt=&quot;astigmatism1.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In glasses, astigmatism can be fixed with an additional cylindrical lens component (in addition to the concave lens needed for myopia); cylindrical refers to the curvature of the surface, not to the shape of the entire lens. Levoy drew the picture above to help explain, but unfortunately I don’t understand it.&lt;/p&gt;
+
+&lt;h2 id=&quot;chromatic-aberrations-for-humans&quot;&gt;Chromatic Aberrations For Humans&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Why don’t humans experience chromatic aberration?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; The word goes, our eye produces it, but our brain corrects it. In the lecture, someone asked a followup on the possibility that it has something to do with the reduced resolution of our retinas at the edges. Levoy thought it was an interesting point, and so do I.&lt;/p&gt;
+
+&lt;h1 id=&quot;unresolved-questions&quot;&gt;Unresolved Questions&lt;/h1&gt;
+
+&lt;p&gt;These are questions I had. Skip if you’re clueless ha&lt;/p&gt;
+
+&lt;h2 id=&quot;paraxial-approximation-1&quot;&gt;Paraxial Approximation&lt;/h2&gt;
+
+&lt;p&gt;I’m confused about whether the paraxial approximation means:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;the light ray makes a small angle with the horizontal&lt;/li&gt;
+  &lt;li&gt;the light ray hits the lens at a low height, i.e. giving a low \(e\)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If it’s the first one, then I don’t understand how the paraxial approximation is used  (via the Gaussian lens formula) for the derivation of macro depth of field, since the angle could be large. If it’s the second one, then it allows the angle to be large, but that seems to destroy the trigonometric approximations.&lt;/p&gt;
+
+&lt;h2 id=&quot;frustrum-shape&quot;&gt;Frustrum Shape&lt;/h2&gt;
+
+&lt;p&gt;I’m pretty certain that the in-focus planes corresponding to each object plane converge to the focal point and not the optical center. I’m just not sure if Levoy was also talking about a separate frustrum converging to the optical center somehow.&lt;/p&gt;
+
+&lt;h2 id=&quot;chromatic-aberrations-1&quot;&gt;Chromatic Aberrations&lt;/h2&gt;
+
+&lt;p&gt;I’m confused about the mathematical basis for longitudinal and lateral CA. They are supposedly caused by variation in magnification and focal length, based on the wavelength of light. We can draw this connection by:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;relating both magnification and focal length to image and object distance by their respective definitions&lt;/li&gt;
+  &lt;li&gt;relating those to refractive index with the lens maker’s formula&lt;/li&gt;
+  &lt;li&gt;relating the refractive index to wavelength&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Considering object distance is fixed, what really matters is image distance. So how can the two types of CA occur separately? Why doesn’t an achromatic doublet fix both types of CA, if it corrects the image distances for different wavelengths?&lt;/p&gt;
+
+&lt;h2 id=&quot;aberrations-in-general&quot;&gt;Aberrations In General&lt;/h2&gt;
+
+&lt;p&gt;I have more questions about all the aberrations.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Why can’t we fix lateral CA by stopping down the aperture, while we can do so for monochromatic oblique aberrations?&lt;/li&gt;
+  &lt;li&gt;How does stopping down the aperture help for any of the aberrations it can reduce?&lt;/li&gt;
+  &lt;li&gt;What’s the difference between spherical aberration and field curvature?&lt;/li&gt;
+  &lt;li&gt;What’s the difference between coma and pincushion distortion?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:cropfactor&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Possibly helpful note: The index of refraction is like the crop factor, in that we’re comparing all measurements to a baseline measurement. For crop factor it was the 35 mm sensor size, and for index of refraction it is the speed of light. &lt;a href=&quot;#fnref:cropfactor&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:change&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;I modified the notation from Levoy so it would be easier to label refractions on both the left and right side, and mostly finished the derivation of the Lensmaker’s formula, which he skips for brevity. I basically follow Hecht, except he makes the transmitted rays from the left-side interface converge to a real image at \(P\) (figure 5.6), but when introducing the right-side interface, he makes the same rays diverge for no apparent reason, making a virtual image at \(P'\) (figure 5.14). &lt;a href=&quot;#fnref:change&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:size&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;The formula technically doesn’t say anything about relative sizes, but it’s trivial to show the relationship with magnification, which we show later in this note. &lt;a href=&quot;#fnref:size&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:conj&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Levoy gives that explanation in the lecture, and here I explain his explanation. The denominator is \(f^4-N^2C^2U^2\), and by algebra we can basically discard the right term if \(f^4 \gg N^2C^2U^2\). Here’s the simplification:&lt;/p&gt;
+
+\[\begin{align*}f^4&amp;amp;\gg N^2C^2U^2\\ f^2&amp;amp;\gg NCU\\ \frac{f}{N}&amp;amp;\gg\frac{CU}{f}\end{align*}\]
+
+      &lt;p&gt;The left side is the aperture, and the right is the conjugate circle of confusion. &lt;a href=&quot;#fnref:conj&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:yourself&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;If you just want to jump between formulas, all you really need is (1) \(M=\frac{f}{U-f}\), introduced in the Magnification section, and (2) \(H=\frac{f^2}{NC}+f\approx \frac{f^2}{NC}\); when we introduced they hyperfocal distance we used the approximation to start, but the true expression may be necessary. &lt;a href=&quot;#fnref:yourself&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:projellipse&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;I found this &lt;a href=&quot;https://math.stackexchange.com/questions/2385120/area-of-a-circle-as-it-changes-to-an-ellipse-when-viewing-at-different-angles&quot;&gt;SO thread&lt;/a&gt; on the topic. &lt;a href=&quot;#fnref:projellipse&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:wrong&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;I think the lens has a minimum focus distance of \(1000\text{mm}\), but in the slides Levoy says minimum object distance. There may be some kind of discrepancy in the numbers but the example is still illustrative so I kept it. &lt;a href=&quot;#fnref:wrong&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="note" /><category term="optics" /><summary type="html">This note is based on lectures 3 and 4 of Levoy’s Digital Photography. It covers basic geometric optics starting with refraction, and ends with aberrations and other lens effects. These lectures are more math-heavy to begin with, and on top of that I tried to round out the proofs. Luckily it’s nothing advanced.</summary></entry><entry><title type="html">Digital Photography Notes - Image Formation</title><link href="/note/2021/10/20/image-formation.html" rel="alternate" type="text/html" title="Digital Photography Notes - Image Formation" /><published>2021-10-20T00:00:00-05:00</published><updated>2021-10-20T00:00:00-05:00</updated><id>/note/2021/10/20/image-formation</id><content type="html" xml:base="/note/2021/10/20/image-formation.html">&lt;blockquote&gt;
+  &lt;p&gt;This note is based on lecture 1 of Levoy’s Digital Photography. It covers the basics of photography, including perspective, imaging properties, camera anatomy, and tradeoffs. Beyond the bare minimum, I tried to include intuition about things, and clarify common confusions.&lt;/p&gt;
+
+  &lt;p&gt;I expanded the material and rearranged the contents from the original lecture to be a bit more comprehensive. I like how Levoy starts with perspective and basic optics, before diving into all of the camera internals, so I kept that.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#goals-for-this-note&quot; id=&quot;markdown-toc-goals-for-this-note&quot;&gt;Goals For This Note&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#perspective&quot; id=&quot;markdown-toc-perspective&quot;&gt;Perspective&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#vanishing-points&quot; id=&quot;markdown-toc-vanishing-points&quot;&gt;Vanishing Points&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#perspective-distortion&quot; id=&quot;markdown-toc-perspective-distortion&quot;&gt;Perspective Distortion&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#distortion-on-the-periphery&quot; id=&quot;markdown-toc-distortion-on-the-periphery&quot;&gt;Distortion on the Periphery&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#directing-the-light&quot; id=&quot;markdown-toc-directing-the-light&quot;&gt;Directing The Light&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#early-imaging-devices&quot; id=&quot;markdown-toc-early-imaging-devices&quot;&gt;Early Imaging Devices&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#lenses&quot; id=&quot;markdown-toc-lenses&quot;&gt;Lenses&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#camera-anatomy&quot; id=&quot;markdown-toc-camera-anatomy&quot;&gt;Camera Anatomy&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#lens&quot; id=&quot;markdown-toc-lens&quot;&gt;Lens&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#shutter&quot; id=&quot;markdown-toc-shutter&quot;&gt;Shutter&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#sensors&quot; id=&quot;markdown-toc-sensors&quot;&gt;Sensors&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#types-of-photographic-cameras&quot; id=&quot;markdown-toc-types-of-photographic-cameras&quot;&gt;Types of Photographic Cameras&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#view-camera&quot; id=&quot;markdown-toc-view-camera&quot;&gt;View Camera&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#single-lens-reflex-slr-camera&quot; id=&quot;markdown-toc-single-lens-reflex-slr-camera&quot;&gt;Single-Lens Reflex (SLR) Camera&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#point-and-shoot-pns-camera&quot; id=&quot;markdown-toc-point-and-shoot-pns-camera&quot;&gt;Point-and-Shoot (PNS) Camera&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#phone-camera&quot; id=&quot;markdown-toc-phone-camera&quot;&gt;Phone Camera&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#mirrorless-camera&quot; id=&quot;markdown-toc-mirrorless-camera&quot;&gt;Mirrorless Camera&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#lens-and-sensor-interactions&quot; id=&quot;markdown-toc-lens-and-sensor-interactions&quot;&gt;Lens and Sensor Interactions&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#changing-focus-distance&quot; id=&quot;markdown-toc-changing-focus-distance&quot;&gt;Changing Focus Distance&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#maintaining-focus-distance&quot; id=&quot;markdown-toc-maintaining-focus-distance&quot;&gt;Maintaining Focus Distance&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#changing-field-of-view&quot; id=&quot;markdown-toc-changing-field-of-view&quot;&gt;Changing Field of View&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#maintaining-field-of-view&quot; id=&quot;markdown-toc-maintaining-field-of-view&quot;&gt;Maintaining Field of View&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#dolly-zoom&quot; id=&quot;markdown-toc-dolly-zoom&quot;&gt;Dolly Zoom&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-exposure-triangle&quot; id=&quot;markdown-toc-the-exposure-triangle&quot;&gt;The Exposure Triangle&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#the-key-takeaway&quot; id=&quot;markdown-toc-the-key-takeaway&quot;&gt;The Key Takeaway!!&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#shutter-speed&quot; id=&quot;markdown-toc-shutter-speed&quot;&gt;Shutter Speed&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#common-stops&quot; id=&quot;markdown-toc-common-stops&quot;&gt;Common Stops&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#side-effect-motion-blur&quot; id=&quot;markdown-toc-side-effect-motion-blur&quot;&gt;Side Effect: Motion Blur&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#aperture&quot; id=&quot;markdown-toc-aperture&quot;&gt;Aperture&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#common-stops-1&quot; id=&quot;markdown-toc-common-stops-1&quot;&gt;Common Stops&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#side-effect-depth-of-field&quot; id=&quot;markdown-toc-side-effect-depth-of-field&quot;&gt;Side-Effect: Depth of Field&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#iso&quot; id=&quot;markdown-toc-iso&quot;&gt;ISO&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#common-stops-2&quot; id=&quot;markdown-toc-common-stops-2&quot;&gt;Common Stops&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#side-effect-noise&quot; id=&quot;markdown-toc-side-effect-noise&quot;&gt;Side Effect: Noise&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#exposure-triangle-again&quot; id=&quot;markdown-toc-exposure-triangle-again&quot;&gt;Exposure Triangle, Again&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#exercises&quot; id=&quot;markdown-toc-exercises&quot;&gt;Exercises&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;goals-for-this-note&quot;&gt;Goals For This Note&lt;/h1&gt;
+&lt;p&gt;This note is based on lecture 1 of Levoy’s Digital Photography. It covers the basics of photography, including perspective, imaging properties, camera anatomy, and tradeoffs. Beyond the bare minimum, I tried to include intuition about things, and clarify common confusions.&lt;/p&gt;
+
+&lt;p&gt;I expanded the material and rearranged the contents from the original lecture to be a bit more comprehensive. I like how Levoy starts with perspective and basic optics, before diving into all of the camera internals, so I kept that.&lt;/p&gt;
+
+&lt;h1 id=&quot;perspective&quot;&gt;Perspective&lt;/h1&gt;
+&lt;p&gt;First we have two main assumptions:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Light moves in a &lt;strong&gt;straight line&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;The lines &lt;strong&gt;converge to a point&lt;/strong&gt; at the eye.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There’s two versions of perspective:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Natural perspective&lt;/strong&gt; (Euclid): larger objects subtend smaller visual angles&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Linear perspective&lt;/strong&gt; (Brunelleschi): lines of sight intersect a &lt;strong&gt;visual plane&lt;/strong&gt;; larger objects correspond with larger images on the visual plane (aka. image plane, canvas, sensor)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/perspectives.png&quot; alt=&quot;perspectives.png&quot; width=&quot;500&quot; /&gt;
+&lt;em&gt;Left: natural perspective; right: linear perspective&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that the two versions are not equivalent since \(\frac{y_2}{y_1}\neq\frac{\theta_2}{\theta_1}\). Linear perspective is chosen going forward.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/similartriangles.png&quot; alt=&quot;similartriangles.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Consider a point \(P\) in the scene and correspondent point \(P'\) on the intersecting image plane. Mostly ignoring what the variables mean, we can set up an equation using similar triangles:&lt;/p&gt;
+
+\[\frac{y}{h}=\frac{f}{Z}\]
+
+&lt;p&gt;We can see that the image height \(y\) depends &lt;em&gt;inversely&lt;/em&gt; on the real distance \(z\). That is, farther objects look smaller on the visual plane.&lt;/p&gt;
+
+&lt;h2 id=&quot;vanishing-points&quot;&gt;Vanishing Points&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/alberti.png&quot; alt=&quot;alberti.png&quot; width=&quot;600&quot; /&gt;
+&lt;em&gt;Alberti’s Method&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;We know that lines of light converge at the eye, and the image above illustrates how these lines are represented on the image plane. Take note of the &lt;strong&gt;vanishing point&lt;/strong&gt;. The left portion of the diagram shows that points further away land higher on the visual plane. In the limit, infinitely far points will be located at the vanishing point in the image. The right portion shows (not as clearly) parallel lines in the real world converging to a vanishing point on the visual plane. Note that if the parallel lines in the scene are &lt;em&gt;also&lt;/em&gt; parallel to the image plane, then they &lt;em&gt;will not&lt;/em&gt; converge to a vanishing point.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/vanishingpoints.png&quot; alt=&quot;vanishingpoints.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the image above, the red lines trace out (some) of the lines parallel in the scene which converge to a vanishing point in the image. Notice how, in 1-point perspective (top-left subimage), the horizontal and vertical lines parallel to the image plane don’t converge, as stated.&lt;/p&gt;
+
+&lt;p&gt;The same image mentions the three well-known modes of perspective, supposedly based on the “number of vanishing points”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/4thvp.png&quot; alt=&quot;4thvp.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Actually, any pair of parallel lines will converge to a point, so there are technically infinite vanishing points. The reason we usually only consider three modes of perspective is the tendency to picture “blocky” shapes, like buildings; for more info see [[Vanishing Points]].&lt;/p&gt;
+
+&lt;h2 id=&quot;perspective-distortion&quot;&gt;Perspective Distortion&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/portraitdolly.png&quot; alt=&quot;portraitdolly.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, observe the three different pictures taken of the same woman. The left and maybe right images can be considered distorted, while the middle one is normal. What’s going on?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/lowangle.png&quot; alt=&quot;lowangle.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The apparent “distortion” is simply perspective working as usual. The diagram above shows a birds-eye view of a head with ears and a nose. The left side corresponds with the left image of the woman, and the right side corresponds with the right image of the woman. The left image was taken very close to the camera (roughly marked by \(O\)) while the right image was taken far away. &lt;strong&gt;Perspective distortion&lt;/strong&gt; is just perspective applied to objects at distances very different from typical viewing distances. I’d say it’s the least “distorty” distortion.&lt;/p&gt;
+
+&lt;p&gt;Note: The effect on the right is often called &lt;em&gt;lens compression&lt;/em&gt;, which is dumb because the lens has nothing to do with it. Stick with perspective distortion.&lt;/p&gt;
+
+&lt;p&gt;You can quickly replicate this in front of a mirror. Look at your reflection at a normal distance, then move forward as much as possible. Watch your ears and nose specifically.&lt;sup id=&quot;fnref:accommodation&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:accommodation&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;distortion-on-the-periphery&quot;&gt;Distortion on the Periphery&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/naturalperspectivedistortion.png&quot; alt=&quot;naturalperspectivedistortion.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There appears to be a kind of perspective distortion which concerns objects on the periphery, which may or may not be separate from the previous section. Supposedly, an object viewed from a different viewing distance than the picture was taken will look distorted near the edges. The same topic was brought up in this &lt;a href=&quot;https://blog.photoshelter.com/2018/06/a-mathematician-weighs-in-on-lens-compression/&quot;&gt;article&lt;/a&gt; but I can’t find a name for the phenomenon. I’ll update this section if I find out more.&lt;/p&gt;
+
+&lt;h1 id=&quot;directing-the-light&quot;&gt;Directing The Light&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/scatter.png&quot; alt=&quot;scatter.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Objects scatter light in many angles, and sensors will integrate light from many angles. Without directing the light from the scene to the sensor in some fashion, the whole sensor would end up recording similar colors.&lt;/p&gt;
+
+&lt;h2 id=&quot;early-imaging-devices&quot;&gt;Early Imaging Devices&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/covsdurer.png&quot; alt=&quot;covsdurer.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The image above shows two devices. The bottom one shows light passing through a glass plane, exactly like our earlier construction of an intersecting visual plane. While it works for tracing, it cannot function as a sensor due to the scattering as previously mentioned. The top device is a &lt;em&gt;camera obscura&lt;/em&gt;, or &lt;strong&gt;pinhole camera&lt;/strong&gt;. The light passes through the pinhole, producing a flipped image on the wall behind it. Except for the flip and some scale differences, the images on the glass and the wall are the same.&lt;/p&gt;
+
+&lt;p&gt;Benefits of pinhole camera:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;No distortion (except diffraction)&lt;/li&gt;
+  &lt;li&gt;Infinite depth of field: everything is in focus&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/widerpinhole.png&quot; alt=&quot;widerpinhole.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If the pinhole is too large, the whole image becomes blurred, as we can see above. It is too small, we experience diffraction effects (blurring again). If we avoid both those problems, the pinhole still has the downside of letting in little light.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/nowlens.png&quot; alt=&quot;nowlens.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Instead we can use a convex chunk of glass called a &lt;strong&gt;lens&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;lenses&quot;&gt;Lenses&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/lensoptics.png&quot; alt=&quot;lensoptics.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Observe how a simple lens works in the image above. The &lt;strong&gt;focal length&lt;/strong&gt; \(f\) is:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;a property of the lens&lt;/li&gt;
+  &lt;li&gt;cannot be changed (for simple lenses)&lt;/li&gt;
+  &lt;li&gt;signifies where parallel light rays converge&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/gausslens1.png&quot; alt=&quot;gausslens1.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Above is an idealized diagram of light passing through a lens. Levoy calls it &lt;strong&gt;Gauss’ lens tracing construction&lt;/strong&gt;, but everyone else seems to call it a ray diagram.&lt;/p&gt;
+
+&lt;p&gt;The focal length is &lt;em&gt;not&lt;/em&gt; where any given object is in focus. The diagram above shows a lens, the focal length (the distance from the lens to either of the two dots), an &lt;strong&gt;object&lt;/strong&gt; (the left arrow), and its flipped &lt;strong&gt;image&lt;/strong&gt; (the right arrow). The horizontal distance from the object to the center of the lens is called the &lt;strong&gt;object distance&lt;/strong&gt;; the &lt;strong&gt;image distance&lt;/strong&gt; is similarly defined.&lt;/p&gt;
+
+&lt;p&gt;The diagram also traces the light rays from &lt;em&gt;a single point&lt;/em&gt; on the object. We can see that the outer rays form a diamond, and the left and right points of the diamond indicate where the object and sensor should be for the object to be in focus. We can actually say that any image point on the same vertical line is in focus (we’d just have to draw lots of diamonds). Since we usually work in three dimensions, the vertical line turns into a vertical plane, called the &lt;strong&gt;focal plane&lt;/strong&gt;, which corresponds to the sensor of the camera. The position of the sensor determines what objects in the world are in focus. The distance from the center of the lens to an in-focus plane in the scene is called the &lt;strong&gt;focus distance&lt;/strong&gt;.&lt;sup id=&quot;fnref:working&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:working&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Clarification&lt;/strong&gt;: The object and image distances can be used outside the context of the sensor. Usually we also discuss objects forming a focused image at the focal plane, but if not it must be explicitly stated.&lt;/p&gt;
+
+&lt;p&gt;The basic relationship between object distance \(s_o\), image distance \(s_i\), and focal length \(f\) is:&lt;/p&gt;
+
+\[\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f}\]
+
+&lt;p&gt;To get a good intuition about the formula, here is a &lt;a href=&quot;https://ophysics.com/l12.html&quot;&gt;good website&lt;/a&gt; to play with the optics of a simple lens. In particular:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;see what happens to the image when you move the object past twice the focal length (or past \(2f\)).&lt;/li&gt;
+  &lt;li&gt;when you move the object in between \(2f\) and \(f\).&lt;/li&gt;
+  &lt;li&gt;when you move the object to \(f\)&lt;/li&gt;
+  &lt;li&gt;when you move the object between \(f\) and \(0\).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For more info, check out [[Optics]].&lt;/p&gt;
+
+&lt;h1 id=&quot;camera-anatomy&quot;&gt;Camera Anatomy&lt;/h1&gt;
+
+&lt;p&gt;Equipped with an intuition about light and lens, we can now learn how an image is captured. Though a camera has many components, we will cover three basic ones: the &lt;strong&gt;lens&lt;/strong&gt;, &lt;strong&gt;shutter&lt;/strong&gt;, and &lt;strong&gt;sensor&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;lens&quot;&gt;Lens&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/lenscross.jpg&quot; alt=&quot;lenscross.jpg&quot; width=&quot;300&quot; /&gt;
+&lt;em&gt;Cross section of a lens&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Earlier we made the simplification of a single lens. In fact, a typical camera lens has multiple lens elements mounted on a common axis, forming a &lt;strong&gt;compound lens&lt;/strong&gt;. The advantage over a single lens is a reduction of optical abberations.&lt;/p&gt;
+
+&lt;p&gt;Compound lenses can be classified by whether they can change their focal length:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;zoom&lt;/strong&gt;: the lens elements can move to change the focal length of the compound lens
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;varifocal zoom&lt;/strong&gt;: the objects in focus change as the focal length (zoom amount) changes&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;parfocal zoom&lt;/strong&gt;: the objects in focus &lt;em&gt;don’t&lt;/em&gt; change as the focal length changes&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;prime&lt;/strong&gt;: the focal length is fixed&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Prime lenses tend to be smaller, sharper, but more expensive than zoom lenses. Varifocal lenses are more common in photography, while parfocal lenses are used more in cinema and broadcast TV. Remember, we can always change the focus distance, even on prime lenses, by moving the lens closer to or farther from the sensor.&lt;/p&gt;
+
+&lt;p&gt;The lens elements are all contained in a complex housing. In the middle lies the &lt;strong&gt;aperture&lt;/strong&gt;, surrounded by about half the lens elements on both sides. It’s an adjustable opening that affects how much light &lt;em&gt;passively&lt;/em&gt; enters the camera body.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Clarification&lt;/strong&gt;: When we’re talking about a camera “lens”, we’re referring to the whole assembly, including the lens elements, the aperture, and the housing. The lens is sometimes referred to as the “glass”. While the term still refers to the whole assembly, it comes from the large amount of glass in the lens due to the lens elements.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/imagecircle.jpg&quot; alt=&quot;imagecircle.jpg&quot; width=&quot;300&quot; /&gt;
+&lt;em&gt;A simulation of the image circle&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The cross section of the cone of light exiting the lens is called the &lt;strong&gt;image circle&lt;/strong&gt;. Until now we’ve assumed the sensor was inscribed within the image circle, but that’s not necessariy true. If the sensor is larger, then &lt;strong&gt;vignetting&lt;/strong&gt; can occur in the image, meaning the corners and/or edges of the sensor won’t be fully exposed. If the sensor is smaller, then it is underutilizing the light provided by the lens, or &lt;strong&gt;cropping&lt;/strong&gt;. Vignetting is usually undesirable, but cropping isn’t necessarily bad.&lt;/p&gt;
+
+&lt;p&gt;Each lens has a &lt;strong&gt;lens format&lt;/strong&gt;, defining the size of the light cone it casts, which determines its sensor compatibility. A lens can be used on sensor sizes less than or equal to the size it was designed for, without vignetting.&lt;/p&gt;
+
+&lt;p&gt;In summary, the lens has three independent, distinguishing features:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;focal length range&lt;/li&gt;
+  &lt;li&gt;aperture range&lt;/li&gt;
+  &lt;li&gt;lens format&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;shutter&quot;&gt;Shutter&lt;/h2&gt;
+
+&lt;p&gt;The shutter is crucial for letting &lt;em&gt;precise&lt;/em&gt; amounts of light hit the sensor. It begins closed, letting &lt;em&gt;no&lt;/em&gt; light hit the sensor, and only opens briefly when a picture is taken. A shutter cycle (open, close, and reset) is often called an &lt;strong&gt;exposure&lt;/strong&gt; (a term which also refers to the amount of light hitting the sensor &lt;em&gt;during&lt;/em&gt; the exposure; see the section Exposure Triangle). The &lt;strong&gt;shutter speed&lt;/strong&gt; is an adjustable property of the shutter determining the speed of the exposure.&lt;/p&gt;
+
+&lt;p&gt;Shutters can be classified in several ways:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;mechanical&lt;/strong&gt;: a physical mechanism in front of the sensor to block light
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;leaf (or diaphragm) shutter&lt;/strong&gt;: a series of blades in a circle which open and close, located in the lens&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;focal-plane shutter&lt;/strong&gt;: one or two “curtains” which open and close; located just in front of the sensor&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;electronic&lt;/strong&gt;: implemented in the sensor electronically
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;global shutter&lt;/strong&gt;: the entire sensor is exposed at once&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;rolling shutter&lt;/strong&gt;: the sensor is exposed line by line&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/2shutter.jpg&quot; alt=&quot;2shutter.jpg&quot; width=&quot;400&quot; /&gt;
+&lt;em&gt;Left: leaf shutter; right: focal-plane shutter&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Note: a leaf shutter looks kind of like an aperture but it’s not the same!&lt;/p&gt;
+
+&lt;p&gt;Leaf shutters are quiet and relatively slow, while focal-plane shutters are loud and fast, and can cause vibrations during the shot. Electronic shutters can be even faster than focal-plane shutters, without any noise or vibrations. Rolling shutters are pretty common on consumer cameras, while global shutters are mostly limited to small resolutions or high-end cameras. Finally, rolling shutters are susceptible to &lt;strong&gt;rolling shutter distortion&lt;/strong&gt;, also called the “jello effect”. For more info see [[Shutters]].&lt;/p&gt;
+
+&lt;h2 id=&quot;sensors&quot;&gt;Sensors&lt;/h2&gt;
+
+&lt;p&gt;Light is directed by the lens onto either a photographic film or a digital sensor. We’ll limit the discussion in this section to the latter.&lt;/p&gt;
+
+&lt;p&gt;First, there are two main types of imaging sensors:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Charge-coupled device (CCD)&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Complementary metal–oxide–semiconductor (CMOS)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;CMOS sensors are almost ubiquitous in digital consumer cameras, while CCDs have been relegated to niches like scientific imaging or astrophotography.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/sensorsizes.jpg&quot; alt=&quot;sensorsizes.jpg&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;sensor format&lt;/strong&gt; or sensor size, captures the dimensions of the sensor in milimeters. The image above shows many common digital sensor sizes. The 35mm format is called a &lt;strong&gt;full-frame&lt;/strong&gt; sensor.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Terminology Rant&lt;/strong&gt;: Sensor formats have names like Pentax 645D or Micro Four Thirds. These usually have &lt;em&gt;nothing&lt;/em&gt; to do with the sensor dimensions they represent. The 35 mm format is not 35 mm in width, height, or diagonal, and gets its name from 35 mm film. The 1-inch format is closer to half an inch in width, and gets its name from television camera tubes.&lt;/p&gt;
+
+&lt;p&gt;A sensor is a big grid of &lt;strong&gt;pixels&lt;/strong&gt; or &lt;strong&gt;photosites&lt;/strong&gt;, and each pixel is like a bucket for photons. When a picture is taken, light fills the buckets for the desired period of time. The data read off the sensor corresponds to the amount of light gathered in each pixel.&lt;/p&gt;
+
+&lt;p&gt;The number of pixels on a sensor, or the &lt;strong&gt;resolution&lt;/strong&gt;, is measured in megapixels or MP, which stands for a million pixels. The resolution can also be represented by an ordered pair of pixels along the width and height. The ratio of pixels along the width vs height is called the &lt;strong&gt;aspect ratio&lt;/strong&gt;. For example, 24 MP is equivalent to 6000 x 4000 pixels, which gives an aspect ratio of 3:2.&lt;sup id=&quot;fnref:aspectratio&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:aspectratio&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;The same lens can give different aspect ratios via cropping. For example, the 3:2 sensor can be cropped to 16:9. Since pixels are cut off, the resolution decreases.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/aspectratio1.png&quot; alt=&quot;aspectratio1.png&quot; width=&quot;300&quot; /&gt;
+&lt;em&gt;Different aspect ratios inscribed on the image circle&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, the pixels themselves can be different sizes, and are measured in microns (μm). Two sensors can have the same size but differing resolutions if the pixel sizes are different.&lt;/p&gt;
+
+&lt;p&gt;In summary, the three independent, distinguishing features of a sensor are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;sensor format&lt;/li&gt;
+  &lt;li&gt;resolution&lt;/li&gt;
+  &lt;li&gt;pixel size&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For more info, see [[Digital Photographic Sensors]]&lt;/p&gt;
+
+&lt;h1 id=&quot;types-of-photographic-cameras&quot;&gt;Types of Photographic Cameras&lt;/h1&gt;
+
+&lt;p&gt;Here is a collection of different kinds of cameras used for taking still pictures, presented in roughly chronological order by the time they were created. We will see how the components from the previous section can be combined.&lt;/p&gt;
+
+&lt;h2 id=&quot;view-camera&quot;&gt;View Camera&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/viewcamera.png&quot; alt=&quot;viewcamera.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A view camera is composed of two parts, a front and rear standard, connected by a pleated box. Modern view cameras are sometimes called &lt;em&gt;large-format&lt;/em&gt; cameras, referring to their large sensors. Though the basic design is fairly old, dating to the nineteenth century, it offers the greatest freedom of positioning for the lens relative to the sensor, which is why it still finds use today.&lt;/p&gt;
+
+&lt;p&gt;The light passes through the lens and aperture (not pictured), casting an inverted image on a glass pane in the back. Once the image is composed, the shutter is closed, the glass is manually replaced with film, and the shutter is triggered, exposing a photographic film. The film is a light-sensitive material used to capture the image.&lt;/p&gt;
+
+&lt;p&gt;View cameras use a leaf shutter, located in the middle of the lens.&lt;/p&gt;
+
+&lt;h2 id=&quot;single-lens-reflex-slr-camera&quot;&gt;Single-Lens Reflex (SLR) Camera&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/slr.png&quot; alt=&quot;slr.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The basic SLR design is shared by most modern cameras.&lt;/p&gt;
+
+&lt;p&gt;Here it’s easier to see that the lens (not labeled) is really a complex assembly of lenses, with an aperture in the middle. Instead of viewing the image on a glass pane, we now have a viewfinder. The light normally passes through the lens, bounces off a mirror, passes through a [[Pentaprism]] or pentamirror above (not labeled), and exits the viewfinder. Finally, notice how the shutter is located right in front of the film, rather than inside the lens.&lt;/p&gt;
+
+&lt;p&gt;When a picture is taken, the mirror flips up, allowing light to pass to the shutter, and the shutter opens briefly, exposing the film. Finally the shutter closes and the mirror flips back down. The mirror movement makes SLRs louder than other types of cameras.&lt;/p&gt;
+
+&lt;p&gt;SLRs use focal-plane shutters. A digital SLR or DSLR just replaces the film with a digital sensor.&lt;/p&gt;
+
+&lt;h2 id=&quot;point-and-shoot-pns-camera&quot;&gt;Point-and-Shoot (PNS) Camera&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/pns.jpg&quot; alt=&quot;pns.jpg&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;PNS or compact cameras are typically cheap, small, and useful for taking quick photos. Unlike on (D)SLRs and mirrorless cameras, the lenses are usually non-interchangeable. Mobile phones have mostly pushed PNS cameras out of the market.&lt;/p&gt;
+
+&lt;p&gt;Since the light in the viewfinder takes a different path from the the light hitting the film, the viewfinder isn’t a completely accurate representation of the final image.&lt;/p&gt;
+
+&lt;p&gt;There are digital versions, replacing the film with a digital sensor. Unlike the previous two camera types, most PNS cameras use electronic shutters.&lt;/p&gt;
+
+&lt;h2 id=&quot;phone-camera&quot;&gt;Phone Camera&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/phonecamera.jpg&quot; alt=&quot;phonecamera.jpg&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Mobile phones come with one or more small cameras. These cameras have electronic shutters, lenses with fixed focus and tiny focal lengths, and small sensors with small pixels and medium-low resolutions. A recent trend has been to include multiple cameras with different focal length lenses. Instead of optical zoom, most phone cameras use digital zoom, meaning the image is cropped and enlarged &lt;em&gt;after&lt;/em&gt; exposure. The phone screen contains all the controls and serves as the viewfinder.&lt;/p&gt;
+
+&lt;h2 id=&quot;mirrorless-camera&quot;&gt;Mirrorless Camera&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/mirrorless.jpg&quot; alt=&quot;mirrorless.jpg&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A mirrorless camera is very similar to a DSLR, but it ditches the mirror and optical viewfinder. The new electronic viewfinder relies on the light hitting the image sensor in real-time, meaning the shutter must be open in its default state.&lt;/p&gt;
+
+&lt;p&gt;Like (D)SLRs, mirrorless cameras primarily use mechanical shutters. When a picture is taken, the shutter closes in preparation, then opens briefly, closes again, then opens to make the electronic viewfinder available again. Some mirrorless cameras implement hybrid electronic-mechanical shutters to reduce vibrations. For both DSLRs and mirrorless cameras, a live electronic viewfinder with lower resolution will utilize an electronic shutter. A purely electronic shutter doesn’t have fast enough readout speeds for the full resolution, however, and would produce a strong jello effect.&lt;/p&gt;
+
+&lt;p&gt;The term “mirrorless camera” always refers to a digital camera.&lt;/p&gt;
+
+&lt;h1 id=&quot;lens-and-sensor-interactions&quot;&gt;Lens and Sensor Interactions&lt;/h1&gt;
+
+&lt;p&gt;For this section, let’s limit the settings we have direct control over to the following:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;focal length&lt;/li&gt;
+  &lt;li&gt;sensor size&lt;/li&gt;
+  &lt;li&gt;image distance&lt;/li&gt;
+  &lt;li&gt;object distance&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;By manipulating those, we can predictably affect properties of our image like:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;focus distance&lt;/li&gt;
+  &lt;li&gt;field of view&lt;/li&gt;
+  &lt;li&gt;perspective distortion&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;changing-focus-distance&quot;&gt;Changing Focus Distance&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/changefocus.png&quot; alt=&quot;changefocus.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To focus on different things, we change the distance of the sensor relative to the lens (in cameras, it is actually the lens that moves). That is:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;by &lt;em&gt;fixing&lt;/em&gt; the focal length…&lt;/li&gt;
+  &lt;li&gt;and &lt;em&gt;changing&lt;/em&gt; the distance between lens and sensor…&lt;/li&gt;
+  &lt;li&gt;we are &lt;em&gt;changing&lt;/em&gt; the focus distance&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Looking at the top lens diagram, we put the sensor at the focal length. This gives us parallel lines on the left, which will only converge &lt;em&gt;at infinity&lt;/em&gt;. In other words, if we place the sensor right at the focal length, only objects infinitely far away will be perfectly in focus.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;minimum focus distance&lt;/strong&gt;&lt;sup id=&quot;fnref:mfd&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:mfd&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; represents the closest distance at which a lens can focus, based on the the maximum distance the sensor can move away from the lens. Though it will likely be longer, it’s physically limited by the focal length, since the sensor would have to be placed at infinity.&lt;/p&gt;
+
+&lt;h2 id=&quot;maintaining-focus-distance&quot;&gt;Maintaining Focus Distance&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/tree.png&quot; alt=&quot;tree.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The diagram above&lt;sup id=&quot;fnref:focallength&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:focallength&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt; illustrates lenses with different focal lengths. &lt;strong&gt;Stronger lenses&lt;/strong&gt;, so called because they bend light more strongly, have smaller focal lengths. &lt;strong&gt;Weaker lenses&lt;/strong&gt; have longer focal lengths. We can also say:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;if we want to &lt;em&gt;fix&lt;/em&gt; the focus distance…&lt;/li&gt;
+  &lt;li&gt;and &lt;em&gt;change&lt;/em&gt; the focal length (changing the lens)…&lt;/li&gt;
+  &lt;li&gt;we need to &lt;em&gt;change&lt;/em&gt; the distance between lens and sensor&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;changing-field-of-view&quot;&gt;Changing Field of View&lt;/h2&gt;
+
+&lt;p&gt;The extent of the world captured in the image is the &lt;strong&gt;field of view (FOV)&lt;/strong&gt;, and is represented as an angle. There’s two ways to change the field of view:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;change the focal length&lt;/li&gt;
+  &lt;li&gt;change the sensor size&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/sensorfov1.png&quot; alt=&quot;sensorfov1.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the original tree diagram, we ignored the sensor size. Now we show a fixed sensor size, shown in red. Notice how a longer focal length corresponds with a lower fov, which makes sense since a weaker lens can bend less light to hit the same sensor.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/focallengthfov.png&quot; alt=&quot;focallengthfov.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The image above offers an even better visualization of the same relationship.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/sensorfov.png&quot; alt=&quot;sensorfov.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The other way to change FOV is to change the sensor size. This version of the diagram includes a red and a yellow sensor, with corresponding fovs. Obviously, if the sensor is smaller, it will capture a smaller angle of the world.&lt;/p&gt;
+
+&lt;p&gt;Both relationships are captured in the following equation, derivable from simple trigonometry:&lt;/p&gt;
+
+\[FOV = 2\arctan\left(\frac{h}{2f}\right)\]
+
+&lt;p&gt;where \(h\) is the height of the sensor and \(f\) is the focal length.&lt;/p&gt;
+
+&lt;h2 id=&quot;maintaining-field-of-view&quot;&gt;Maintaining Field of View&lt;/h2&gt;
+
+&lt;p&gt;Sensor size and focal length should increase proportionally to keep the same FOV. This principle is the basis for a popular way of comparing lens-sensor systems, described below.&lt;/p&gt;
+
+&lt;p&gt;Sensor sizes can be compared using a &lt;strong&gt;crop factor&lt;/strong&gt;, which can be expressed as a formula:&lt;/p&gt;
+
+\[\text{crop factor} = \frac{\text{diagonal of full-frame sensor}}{\text{diagonal of this sensor}}\]
+
+&lt;p&gt;A full-frame sensor has a crop factor of 1, and serves as a reference format to which other sizes are compared. For example, the smaller micro 4/3 sensor has a crop factor of ~2. Besides facilitating sensor comparison, the crop factor is used to convert true focal lengths to a focal length which would produce the same FOV on a full-frame sensor.&lt;/p&gt;
+
+&lt;p&gt;Let’s say we’re using a 50 mm lens with a micro 4/3 sensor, which has a crop factor of 2.0. To “erase” the cropping effect due to the sensor, we can multiply the focal length by the crop factor. So a 50 mm micro 4/3 lens is equivalent to a 75 mm full-frame lens.&lt;/p&gt;
+
+&lt;h2 id=&quot;dolly-zoom&quot;&gt;Dolly Zoom&lt;/h2&gt;
+
+&lt;p&gt;If we change the focal length and the position of the camera (object distance) in the right way, we can get a nice effect called the &lt;strong&gt;dolly zoom&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/dolly1.png&quot; alt=&quot;dolly1.png&quot; width=&quot;150&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here’s a picture of the Dolly Zoom in action. The camera moves away from the subject, while increasing focal length. The key is to combine these in such a way that the size of the subject in the image remains &lt;em&gt;fixed&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/dolly.png&quot; alt=&quot;dolly.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here’s a sample result, starting from the left and ending with the right. Notice how we can only fix the size of objects in one plane parallel to the sensor. The woman stays the same size, but the apparent size of the man in the back (in a further plane) changes. In other words, perspective relationships are &lt;em&gt;not preserved&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Note: the same effect was used to capture the pictues of the woman in the Perspective Distortion section.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Clarification&lt;/strong&gt;: Both focal length and object distance contribute to keeping the woman the same size. However, it can be wrongly concluded that a higher focal length produces more lens compression. As we established earlier, changes in perspective relationships are due to changing object distance. We just happen to place the camera closer to the subjects when using a wide-angle (low focal length) lens.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-exposure-triangle&quot;&gt;The Exposure Triangle&lt;/h1&gt;
+
+&lt;p&gt;From now on we assume we’re working with digital sensors instead of film, since the differences are minor.&lt;/p&gt;
+
+&lt;p&gt;As we saw, the captured image depends on the amount of light hitting the sensor. This quantity is known as the &lt;strong&gt;exposure&lt;/strong&gt; \(H\), and is related to &lt;strong&gt;irradiance&lt;/strong&gt; \(E\) and &lt;strong&gt;exposure time&lt;/strong&gt; \(T\) like so:&lt;/p&gt;
+
+\[H=E\times T\]
+
+&lt;ul&gt;
+  &lt;li&gt;Irradiance, controlled by aperture, is the amount of light falling on a unit area of the sensor per second.&lt;/li&gt;
+  &lt;li&gt;Exposure time, controlled by the shutter speed, is the time in seconds in which the sensor is exposed.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Finally, &lt;em&gt;after&lt;/em&gt; the light hits the sensor, the brightness of the final image can be increased electronically via a parameter called the &lt;strong&gt;ISO&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Aperture, shutter speed, and ISO are closely connected, forming the &lt;strong&gt;exposure triangle&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Terminology Rant&lt;/strong&gt;: The term exposure is confusing. First, as stated earlier, it can refer to a single shutter cycle or the quantity of light hitting the sensor during that shutter cycle. Second, ISO &lt;em&gt;doesn’t affect exposure at all&lt;/em&gt;, but people still include it in the so-called “exposure triangle”. Any triangle including ISO should be about brightness, but the “brightness triangle” hasn’t caught on yet…&lt;/p&gt;
+
+&lt;h2 id=&quot;the-key-takeaway&quot;&gt;The Key Takeaway!!&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/exptriangle.jpg&quot; alt=&quot;exptriangle.jpg&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The image above shows different scales for each component of the triangle. Each component has predictable effects on the brightness of the resulting image, as we’ll see in the coming sections, and we can standardize the scales of the components against the change in brightness. What this means is that, for example, one step, or “stop”, on the ISO scale &lt;em&gt;has the same relative effect on brightness&lt;/em&gt; as one step on the aperture scale.&lt;/p&gt;
+
+&lt;h2 id=&quot;shutter-speed&quot;&gt;Shutter Speed&lt;/h2&gt;
+
+&lt;p&gt;The shutter speed or exposure time \(T\), measured in fractions of a second, is the time the shutter is open. It has a &lt;em&gt;linear effect&lt;/em&gt; on the exposure, until the sensor saturates (it cannot integrate any more light). Below are sample shutter speeds, and common uses:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;1/2000: birds in flight&lt;/li&gt;
+  &lt;li&gt;1/1000: sports&lt;/li&gt;
+  &lt;li&gt;1/250: portraits&lt;/li&gt;
+  &lt;li&gt;1/125: landscapes&lt;/li&gt;
+  &lt;li&gt;5: blurring water&lt;/li&gt;
+  &lt;li&gt;20: astrophotography&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Terminology Rant&lt;/strong&gt;: Why is shutter &lt;em&gt;speed&lt;/em&gt; measured in seconds? Why is it not called shutter &lt;em&gt;time&lt;/em&gt;? Now we’re stuck with higher shutter speeds having smaller units, like 1/2000, and lower shutter speeds having larger units, like 1/125. (…this is just the beginning – wait until we get to aperture)&lt;/p&gt;
+
+&lt;p&gt;Humans can hand-hold down to 1/60. There is sometimes an additional mode called bulb (often symbolized as B), which allows one to keep the shutter open manually as long as desired.&lt;/p&gt;
+
+&lt;p&gt;The shutter speed abstracts away many details about the shutter itself. In particular, it applies to mechanical and electronic shutters.&lt;/p&gt;
+
+&lt;p&gt;[[Shutters]]&lt;/p&gt;
+
+&lt;h3 id=&quot;common-stops&quot;&gt;Common Stops&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/shutterstop.png&quot; alt=&quot;shutterstop.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The shutter speeds increase regularly by \(\times 2\), increasing brightness by \(\times 2\).&lt;sup id=&quot;fnref:stopconspiracy&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:stopconspiracy&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;side-effect-motion-blur&quot;&gt;Side Effect: Motion Blur&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Motion blur&lt;/strong&gt; is self-explanatory. It is usually treated qualitatively.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/motionblur.png&quot; alt=&quot;motionblur.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Shutter speed is &lt;em&gt;directly proportional&lt;/em&gt; to &lt;strong&gt;motion blur&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;aperture&quot;&gt;Aperture&lt;/h2&gt;
+
+&lt;p&gt;Recall the aperture is a hole in the lens that determines how much light enters the body, or the irradiance \(E\). The irradiance is proportional to:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;the &lt;em&gt;square&lt;/em&gt; of the aperture diameter \(A\)&lt;/li&gt;
+  &lt;li&gt;the &lt;em&gt;inverse square&lt;/em&gt; of the distance between the aperture and the sensor (~ the focal length \(f\))&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;(1) is because the diameter is related to the area of a circle as \(\text{area}=\pi(\frac{A}{2})^2\). If the diameter is \(\times 2\), the light coming through the circular aperture is \(\times 4\).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/irradiancedistance.png&quot; alt=&quot;irradiancedistance.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;(2) can be visualized using a cone of light coming from the lens (see the image above). If the distance to the sensor increases \(\times 2\), by similar triangles, the diameter of the circular base of the cone increases \(\times 2\). From the same principle as (1), the area of the base of the cone increases \(\times 4\). Assuming the light exiting the aperture is the same amount, by conservation of energy we can say the amount of light hitting the base of the cone, or the irradiance, decreases \(\times 4\).&lt;/p&gt;
+
+&lt;p&gt;In order for the aperture values to capture both (1) and (2), a unitless quantity called the &lt;strong&gt;f-number&lt;/strong&gt; or f-stop is defined as:&lt;/p&gt;
+
+\[N=\frac{f}{A}\]
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/aperturesize1.png&quot; alt=&quot;aperturesize1.png&quot; width=&quot;400&quot; /&gt;
+&lt;em&gt;Two lenses with the same aperture N&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;We’re usually interested in the aperture diameter relative to whatever focal length we’re using, so it is customary to write the f-number as a fraction \(f/N\). For example, referring to the image above:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;\(f\)/2.0 on a 50mm lens means the aperture diameter is 25mm&lt;/li&gt;
+  &lt;li&gt;\(f\)/2.0 on a 100mm lens means the aperture diameter is 50mm&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Following the pattern, it’s clear that a telephoto lens (large focal length) with a small f-number requires fat lenses.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Terminology Rant&lt;/strong&gt;: The notation is complete trash! When you change the aperture, you are only controlling the diameter, and not the distance to the sensor. However, the aperture is usually expressed as an f-number instead of the diameter. The f-number is technically \(N\), but is almost always expressed as \(f/N\), for some value of \(N\). The “\(f/\)” is pure notation for the f-number, like a “$” represents dollars. What is supposedly clever and cool about this notation is that, from the formula for the f-number, \(f/N\) actually produces the aperture diameter \(A\). So when we’re talking about “aperture”, we really mean a ratio of focal length to aperture diameter, which we write to look like the aperture diameter.&lt;/p&gt;
+
+&lt;p&gt;It gets worse when we’re communicating aperture: consider a) \(f/2.0\) and b) \(f/2.8\). We say:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;(a) and (b) are called apertures &lt;em&gt;or&lt;/em&gt; f-numbers interchangeably&lt;/li&gt;
+  &lt;li&gt;(a) is a smaller f-number than (b)&lt;/li&gt;
+  &lt;li&gt;(a) is a higher aperture than (b)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To summarize, when stating f-numbers or apertures (“set the f-number to …”), we use the &lt;em&gt;notation&lt;/em&gt; \(f/N\), but when comparing f-numbers (“this f-number is higher/lower than that f-number” or “increase/decrease the f-number”) we use \(N\), BUT when comparing apertures, we use the &lt;em&gt;fraction&lt;/em&gt; \(f/N\). &lt;em&gt;Capiche&lt;/em&gt;?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/aperture1.png&quot; alt=&quot;aperture1.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Clarification&lt;/strong&gt;: It might seem that a smaller aperture would decrease the image circle by “blocking” the outer edge, but it does not. Notice how some rays from any point on the object will always reach the sensor. The edge of the image circle may actually get sharper.&lt;/p&gt;
+
+&lt;p&gt;How does the f-number affect brightness? From the formula, if \(N\) increases \(\times 2\), then \(A\) is reduced \(\times 2\), which by (1) reduces the light by \(\times 4\).&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;\(f\)/2.0 to \(f\)/4.0 reduces light by \(\times 4\), as described&lt;/li&gt;
+  &lt;li&gt;To reduce light by \(\times 2\), increase \(N\) by \(\times \sqrt{2}\)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;common-stops-1&quot;&gt;Common Stops&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/aperturestop.png&quot; alt=&quot;aperturestop.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The f-numbers increase regularly by \(\times \sqrt{2}\), decreasing brightness by \(\times 2\).&lt;/p&gt;
+
+&lt;h3 id=&quot;side-effect-depth-of-field&quot;&gt;Side-Effect: Depth of Field&lt;/h3&gt;
+
+&lt;p&gt;The &lt;strong&gt;depth of field&lt;/strong&gt; is the range of acceptable focus. Smaller depth of fields produce more blurring of the background and foreground. Like motion blur, it is usually treated qualitatively.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/depthoffield.png&quot; alt=&quot;depthoffield.png&quot; width=&quot;500&quot; /&gt;
+&lt;em&gt;Left: low depth of field; right: high depth of field&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The aperture diameter is &lt;em&gt;inversely proportional&lt;/em&gt; to the depth of field.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Increasing \(N\) by \(\times 2\) increases depth of field by \(\times 2\).&lt;/li&gt;
+  &lt;li&gt;Changing \(N\) or \(f\) may not have any effect if the other compensates.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/depthoffield1.png&quot; alt=&quot;depthoffield1.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here’s a simplified explanation of how depth of field works:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;As we saw in the section “Changing Focus Distance”, there is always a point in the scene (or, really, a plane) in focus on the sensor.&lt;/li&gt;
+  &lt;li&gt;We can visualize this as a series of light cones (&lt;em&gt;top subimage&lt;/em&gt;).&lt;/li&gt;
+  &lt;li&gt;Moving the sensor causes a defocusing or blurring effect, equivalent to moving the point in the scene.&lt;/li&gt;
+  &lt;li&gt;The blurring must be smaller than our allowable &lt;strong&gt;circle of confusion&lt;/strong&gt; (&lt;em&gt;middle subimage&lt;/em&gt;)&lt;/li&gt;
+  &lt;li&gt;The circle of confusion corresponds with the &lt;strong&gt;depth of focus&lt;/strong&gt;, which corresponds with the depth of field.&lt;/li&gt;
+  &lt;li&gt;Notice how decreasing the aperture  \(\times 2\) increases the depth of field \(\times 2\) (&lt;em&gt;bottom subimage&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;iso&quot;&gt;ISO&lt;/h2&gt;
+
+&lt;p&gt;Whereas shutter speed and aperture are physical mechanisms, the ISO is a gain parameter. The ISO multiplies the analog signal &lt;em&gt;after&lt;/em&gt; light integration but &lt;em&gt;before&lt;/em&gt; conversion to a digital signal. It ultimately boosts the brightness of the final image.&lt;/p&gt;
+
+&lt;p&gt;Note that the ISO is different from raising exposure in post-processing (e.g. Photoshop), since the latter boosts the digital signal. Some cameras offer “expanded ISO”, which just boosts the digital signal.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-stops-2&quot;&gt;Common Stops&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/isostop.png&quot; alt=&quot;isostop.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The ISO increases regularly by \(\times 2\), increasing brightness by \(\times 2\).&lt;/p&gt;
+
+&lt;h3 id=&quot;side-effect-noise&quot;&gt;Side Effect: Noise&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/iso.png&quot; alt=&quot;iso.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The greater the ISO, the noisier the image. The picture above shows increasing ISO while keeping brightness constant via other means, highlighting the increasing noise.&lt;/p&gt;
+
+&lt;h2 id=&quot;exposure-triangle-again&quot;&gt;Exposure Triangle, Again&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/image-formation/talvala.jpg&quot; alt=&quot;talvala.jpg&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The green blobs represent changes to component(s) on the exposure triangle, while yellow blobs represent changes in brightness or side effects. Each green blob affects &lt;em&gt;two&lt;/em&gt; adjacent yellow blobs simultaneously. If we move the same number of stops for two components of the triangle at once, we can keep the brightness constant.&lt;/p&gt;
+
+&lt;p&gt;Here’s an interactive &lt;a href=&quot;https://sites.google.com/site/marclevoylectures/applets/variables-that-affect-exposure&quot;&gt;applet&lt;/a&gt; demonstrating these tradeoffs.&lt;/p&gt;
+
+&lt;h1 id=&quot;exercises&quot;&gt;Exercises&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Q: Does an \(f/2\) cell phone lens gather as much light from each patch of the scene as an \(f/2\) SLR lens?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; A phone camera lens has a smaller focal length because the sensor is small, which allows the FOV to stay about the same as an SLR (also to fit the form factor of a phone ). With \(f\) and \(A\) both smaller, the f-number (\(N=\frac{f}{A}\)) stays constant.&lt;/p&gt;
+
+&lt;p&gt;Another way to think about it is that the smaller phone lens gathers less light, but it is a stronger lens (smaller focal length), meaning it concentrates the light more, so the amount of light &lt;em&gt;per unit area&lt;/em&gt; remains the same.&lt;/p&gt;
+
+&lt;p&gt;Now, a phone lens has smaller pixels to keep the resolution, or pixel count, the same (or similar). The same number of pixels are exposed, but each captures fewer photons, so the result is noisier.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:accommodation&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;You might object that the experiment is ruined by various factors, including acommodation of the eyeball. The thing is, no matter how much you focus or defocus, your nose will still look fat and your ears will still be covered by the sides of your head. &lt;a href=&quot;#fnref:accommodation&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:working&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;There is another term called working distance, which measures the distance from the front of the lens to the subject. &lt;a href=&quot;#fnref:working&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:aspectratio&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Mathematically one resolution in MP can be satisfied by multiple aspect ratios, and I’m not sure if there’s some kind of standardization so we know which aspect ratio we mean by a given resolution. &lt;a href=&quot;#fnref:aspectratio&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:mfd&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Confusingly, minimum focus distance is measured from the closest object to the &lt;em&gt;sensor&lt;/em&gt;, not the lens. &lt;a href=&quot;#fnref:mfd&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:focallength&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Here we have a tree whose distance from the lens is much larger than the focal length \(f\). It’s not super clear in the diagram but the tree forms an image &lt;em&gt;just past&lt;/em&gt; \(f\) (not &lt;em&gt;at&lt;/em&gt; \(f\), since it’s not infinitely far away). &lt;a href=&quot;#fnref:focallength&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:stopconspiracy&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;The ticks on the shutter speed scale don’t &lt;em&gt;exactly&lt;/em&gt; progress by multiples of 2. Some are rounded off since the error is inconsequential for such small fractions and it makes mental math easier. &lt;a href=&quot;https://photo.stackexchange.com/questions/49860/is-there-a-sane-reason-why-%C2%B9%E2%81%84%E2%82%81%E2%82%82%E2%82%85-is-not-instead-exactly-half-of-%C2%B9%E2%81%84%E2%82%86%E2%82%80&quot;&gt;SO&lt;/a&gt; &lt;a href=&quot;#fnref:stopconspiracy&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="note" /><category term="photography," /><category term="perspective," /><category term="camera" /><summary type="html">This note is based on lecture 1 of Levoy’s Digital Photography. It covers the basics of photography, including perspective, imaging properties, camera anatomy, and tradeoffs. Beyond the bare minimum, I tried to include intuition about things, and clarify common confusions. I expanded the material and rearranged the contents from the original lecture to be a bit more comprehensive. I like how Levoy starts with perspective and basic optics, before diving into all of the camera internals, so I kept that.</summary></entry><entry><title type="html">Folding Paper</title><link href="/article/2021/10/02/folding-paper.html" rel="alternate" type="text/html" title="Folding Paper" /><published>2021-10-02T00:00:00-05:00</published><updated>2021-10-02T00:00:00-05:00</updated><id>/article/2021/10/02/folding-paper</id><content type="html" xml:base="/article/2021/10/02/folding-paper.html">&lt;blockquote&gt;
+  &lt;p&gt;I argue that the so-called folding paper puzzle fails to say anything about our ability to comprehend exponential growth.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;/h2&gt;
+&lt;p&gt;A common illustration of exponential growth begins with a piece of paper:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Q1: If you fold a piece of paper 50 times, how tall would it be?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You might guess a few feet, but if you do the math, the result is pretty surprising. Assuming a sheet of paper is .1 mm thick, then \(.0000001*2^{50} = 112589990.684 \text{km}\) which is about three-quarters the distance from the earth to the sun. Wow!&lt;/p&gt;
+
+&lt;p&gt;Is it really true that humans are incapable of thinking about exponents? Are we forever doomed to linear thinking? Here’s my thoughts as to why it’s a bit overblown.&lt;/p&gt;
+
+&lt;h2 id=&quot;folding-bad&quot;&gt;Folding Bad&lt;/h2&gt;
+&lt;p&gt;First, semantics.&lt;/p&gt;
+
+&lt;p&gt;Assuming a US Letter size sheet, aka “printer paper,” the dimensions are standardized at 8.5 x 11 in, or 215.9 x 279.4 mm. The only reputable source I could find for thickness was this random &lt;a href=&quot;https://files.support.epson.com/docid/cpd4/cpd43251/source/printers/source/specifications/reference/scp800/spex_paper_printer_scp800.html&quot;&gt;Epson support page&lt;/a&gt;, claiming roughly .1 mm. People have experience folding a piece of paper in half, let’s say at most five times, and assuming a typical folding pattern&lt;sup id=&quot;fnref:fold&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fold&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, the final dimensions of the folded paper are 53.975 x 34.925 x 3.2 mm. While the thickness is noticeably larger than before, we can see the width and length are still over ten times as large as the thickness.&lt;/p&gt;
+
+&lt;p&gt;The truth is, the paper is already difficult to fold. After a couple more folds, the paper cannot be folded without tearing at the crease. At eight folds, the thickness has already surpassed both width and height (13.49375 x 17.4625 x 25.6 mm). We started by creasing a flat object, but soon we’re slicing a paper tower on the vertical axis and stacking the halves on top of each other.&lt;sup id=&quot;fnref:decay&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:decay&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;Some potential problems:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The concept of folding only works for thin objects! If we were to fold something with any thickness, then we would rarely think to fold it along its longest dimension.&lt;/li&gt;
+  &lt;li&gt;It might not occur to someone that they are &lt;em&gt;doubling&lt;/em&gt; the thickness every fold, which is key to understanding the problem, even without reference to exponents.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It’s just a bad example. Here’s a better question:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Q2: What is the height of a stack of paper after doubling it 50 times?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Turns out, people will also give a hopelessly incorrect answer for stacking. What gives?&lt;/p&gt;
+
+&lt;h2 id=&quot;linear-case&quot;&gt;Linear Case&lt;/h2&gt;
+&lt;p&gt;Maybe it would help to look at a question with the same answer, but removing any exponentiation.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Q3: How high would a stack of one trillion papers be?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In general, for any exponential question where the stack is doubled \(n\) times, we can ask a linear question about a stack of \(2^n\) papers.&lt;/p&gt;
+
+&lt;p&gt;Some of the people I asked this question gave a wide range of estimates, ranging from the height of a skyscraper or Mt. Everest – still massive underestimates. These people can imagine the thickness of a single sheet, but seem to be using their gut, instead of running any kind of calculations, to extend this knowledge to the height of a large stack.&lt;/p&gt;
+
+&lt;p&gt;Some clever people will make much better guesses for Q3 than Q2. Let’s call a &lt;strong&gt;ballpark answer&lt;/strong&gt; one that’s the around the correct order of magnitude. The trick is, a ballpark answer doesn’t require hardly any calculation besides keeping track of zeros (powers of 10). A trillion has 12 zeros, and the thickness of paper has -1 zero in millimeters. Just add the zeros. In contrast, most people cannot exponentiate in their head without repeated multiplication, and there doesn’t seem to be a quick way to get the number of digits in the final answer (i.e. get a ballpark answer), without using the log function (which just takes us back to square one, since we lack a way to quickly calculate log).&lt;/p&gt;
+
+&lt;p&gt;So with a little thinking, we can easily solve a linear problem, but not the exponential problem. Humans are linear monkeys confirmed?&lt;/p&gt;
+
+&lt;h2 id=&quot;ban-arithmetic&quot;&gt;Ban Arithmetic&lt;/h2&gt;
+&lt;p&gt;Not so fast! The ease with which we can mentally calculate the correct number of digits in Q3 relies on reasonably-sized inputs. Let’s say we had a different linear question where we needed to multiply a number with 8962 digits by another number with 3899 digits. Summing the zeros is no longer trivial (not with my mental math abilities anyway). It would probably still be harder to mentally exponentiate enough times to arrive at the same answer. Soon we start considering efficient exponentiation algorithms, encodings etc…&lt;/p&gt;
+
+&lt;p&gt;All that goes against the spirit of the question. It would be a bit disappointing if the phrase “humans are not exponential, but linear, thinkers” boils down to “humans can’t exponentiate in their heads, but they can add zeros, sometimes.” I don’t think anyone can argue that exponentiation is a more complex operation than multiplication or addition. The question is supposed to reveal some structure in our intuition, not elementary observations about math, otherwise we wouldn’t be talking about the heights of paper towers at all.&lt;/p&gt;
+
+&lt;p&gt;I took it upon myself to come up with a new version of Q3 that discourages mental arithmetic:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Q4: In TWO SECONDS tell me how high a stack of one trillion papers would be.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;inverse-case&quot;&gt;Inverse Case&lt;/h2&gt;
+&lt;p&gt;Fine, now we have linear and exponential versions of the paper-stacking riddle we are about equally bad at answering. We can’t think exponentially or linearly, it seems, or maybe we just can’t think at all?&lt;/p&gt;
+
+&lt;p&gt;The previous questions, and especially the first two, were too focused on dumbfounding you with the final answer, warping your perfectly normal inability to perform fast, accurate mental math into some shocking moral about our poor linear minds. There’s no reason to construct the question in such a way that the final paper stack reaches three quarters of the distance from the Earth to the sun, other than to a) make absolutely certain you will get the answer incorrect so that b) whichever smart guy asks it can take pleasure in correcting you.&lt;/p&gt;
+
+&lt;p&gt;I present a much more modest version (disclaimer 1: it’s not mine; disclaimer 2: there’s no paper in this one):&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Q5: Imagine a lake, with a lily pad population which doubles every day. Say it takes 50 days for the lily pad to cover a lake. On what day is half the lake covered?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Some might guess around 30 days. In fact, no guessing or math is necessary. The lake is half-covered on the 49th day. Duh.&lt;/p&gt;
+
+&lt;p&gt;Q5 avoids asking us to project fifty iterations into the future, so it’s not setting us up for failure.&lt;sup id=&quot;fnref:simplest&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:simplest&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; Instead of showing us that we &lt;em&gt;don’t&lt;/em&gt; tend to think exponentially and leaving it at that, it gives us a simple, alternative perspective so we &lt;em&gt;can&lt;/em&gt;: &lt;strong&gt;most of the gains are stuffed at the end&lt;/strong&gt;! In the case of daily doubling, &lt;em&gt;half&lt;/em&gt; the value of &lt;em&gt;any&lt;/em&gt; given day was obtained within one day.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;You might say, “that’s a lot of words just to admit that the puzzle is useful after all.” Listen, I didn’t say it was useless, just overblown. It isn’t necessarilly stated that we &lt;em&gt;can’t&lt;/em&gt; think exponentially, but it’s always said with a shrug and a sigh, like some eternal truth. Even worse, we arrive at that conclusion through some paper-folding puzzle, when in reality there’s several things going on:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Exponentiation is inherently more complicated than multiplication and addition.&lt;/li&gt;
+  &lt;li&gt;We can’t intuit even linear approximations if they’re literally astronomical.&lt;/li&gt;
+  &lt;li&gt;We are perfectly capable of thinking exponentially. It just takes some practice.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Alright I’m done attacking a silly puzzle. Off to more productive things.&lt;/p&gt;
+
+&lt;h2 id=&quot;appendix&quot;&gt;Appendix&lt;/h2&gt;
+&lt;p&gt;Easy Python code to test out the folds yourself:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;paper&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;215.9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;279.4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# US Letter dimensions in mm
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;folds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;                 &lt;span class=&quot;c1&quot;&gt;# change to desired number of folds
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;folds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;paper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;paper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;paper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;paper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;paper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;paper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:fold&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;I assume folds parallel to the shortest of width \(w\) and height \(h\). If \(w&amp;lt;h&amp;lt;2w\) like US Letter sheets, then folds will always alternate along width and height. &lt;a href=&quot;#fnref:fold&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:decay&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;And just for fun, the width and height experience exponential decay: \(215.9*.5^{25}=.00000643\text{mm}\) and \(279.4*.5^{25}=.00000833\text{mm}\), both ending up close to the diameter of a DNA strand. &lt;a href=&quot;#fnref:decay&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:simplest&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;It’s the simplest too, and can technically be solved without even understanding exponentiation. In most cases though, people will visualize the growth of the lillies, leading them to think in some way about it. &lt;a href=&quot;#fnref:simplest&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="article" /><category term="exponential-growth" /><summary type="html">I argue that the so-called folding paper puzzle fails to say anything about our ability to comprehend exponential growth.</summary></entry><entry><title type="html">VI-sensor Project: Accompanying Tutorials</title><link href="/tutorial/2021/08/07/sensor-tutorials.html" rel="alternate" type="text/html" title="VI-sensor Project: Accompanying Tutorials" /><published>2021-08-07T00:00:00-05:00</published><updated>2021-08-07T00:00:00-05:00</updated><id>/tutorial/2021/08/07/sensor-tutorials</id><content type="html" xml:base="/tutorial/2021/08/07/sensor-tutorials.html">&lt;blockquote&gt;
   &lt;p&gt;Here’s the tutorials I put together for my VI-sensor project. I wrote them for myself several years ago so they were pretty minimal. I tried to flesh them out a bit more so maybe they can still be useful to others.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -729,7 +2447,7 @@ $ meshlab
   &lt;p&gt;–/–/– Decided ros sharp was overkill because all of the URDF stuff. Opted for ROSBridgeLib, which is just client implementation for Unity of all (most) ros messsages. It sucks and no working tutorial provided, and no active development, and simple data values are behind accessors, and everything has to be static?!?!?! Switch back to ros sharp, but have “Duplicate Assembly” errors, even after restarting in new project. Discovered I was dumb and copied the wrong folder. Unity client successfully connects to rosbridgeserver, but images are not updated in Unity.&lt;/p&gt;
 
   &lt;p&gt;–/–/– Discovered first 12 pixels in image data were bogus; turns out it is embedded info from camera. So no problem with ros side. On Unity side, texture and pose weren’t being updated because turns out can’t do stuff with textures outside render thread (ros sharp creates new thread). So moved rendering to IEnumerator and used UnityMainThreadDispatcher. Also, using LoadImage() on compressed image rostopic is muuuuch slower than LoadRawTextureData() on regular image topic. Result is image stream shows! Some opacity issue. Deep profile helps a ton. Position works! Rotation works! Turns out need to create new Position and Rotation and assign, rather than editing the values directly (?). At least for pose, could maybe get away with less frequent position updates + smoothing/lerping.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Michal Porubcin</name></author><category term="tutorial" /><category term="vio" /><category term="slam" /><category term="sensor" /><summary type="html">Here’s the tutorials I put together for my VI-sensor project. I wrote them for myself several years ago so they were pretty minimal. I tried to flesh them out a bit more so maybe they can still be useful to others.</summary></entry><entry><title type="html">What Isn’t Model-Based RL?</title><link href="/article/2021/08/06/model-based-rl.html" rel="alternate" type="text/html" title="What Isn’t Model-Based RL?" /><published>2021-08-06T00:00:00-05:00</published><updated>2021-08-06T00:00:00-05:00</updated><id>/article/2021/08/06/model-based-rl</id><content type="html" xml:base="/article/2021/08/06/model-based-rl.html">&lt;blockquote&gt;
+&lt;/blockquote&gt;</content><author><name>Michal Porubcin</name></author><category term="tutorial" /><category term="vio" /><category term="slam" /><category term="sensor" /><summary type="html">Here’s the tutorials I put together for my VI-sensor project. I wrote them for myself several years ago so they were pretty minimal. I tried to flesh them out a bit more so maybe they can still be useful to others.</summary></entry><entry><title type="html">What Isn’t Model-Based Reinforcement Learning?</title><link href="/article/2021/08/06/model-based-rl.html" rel="alternate" type="text/html" title="What Isn’t Model-Based Reinforcement Learning?" /><published>2021-08-06T00:00:00-05:00</published><updated>2021-08-06T00:00:00-05:00</updated><id>/article/2021/08/06/model-based-rl</id><content type="html" xml:base="/article/2021/08/06/model-based-rl.html">&lt;blockquote&gt;
   &lt;p&gt;Having only encountered model-free RL, I had a hard time pinning down what made a model-based RL algorithm for some reason, and here is my shot at the difference. This is not exactly a tutorial or anything, just an attempt to clear up some confusions I had with various terms. I try not to be too prescriptive.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -799,7 +2517,7 @@ $ meshlab
 
 &lt;h2 id=&quot;what-it-isnt&quot;&gt;What It Isn’t&lt;/h2&gt;
 &lt;h3 id=&quot;other-senses-of-model&quot;&gt;Other Senses of Model&lt;/h3&gt;
-&lt;p&gt;Since I brought up supervised learning, I ought to clarify an unfortunate overlap in terminology. “Model” as described above is &lt;em&gt;not&lt;/em&gt; the same as a supervised machine learning “model,” which rather refers to the output of a machine learning algorithm, without (necessarily) any connection to dynamics. The term “function approximator” is used to avoid confusion when supervised learning models are used in RL algorithms, for example in Deep Q-Learning.&lt;/p&gt;
+&lt;p&gt;Since I brought up supervised learning, I ought to clarify an unfortunate overlap in terminology. “Model” as described above is &lt;em&gt;not&lt;/em&gt; the same as a supervised machine learning “model,” which rather refers to the output of a machine learning algorithm, without (necessarily) any connection to dynamics. The term “function approximator” is used instead to avoid confusion when we’re dealing with RL algorithms, for example in Deep Q-Learning.&lt;/p&gt;
 
 &lt;p&gt;Yet another possible usage is a description of the MDP as a “model” of the environment. The assumption of an environment represented as an MDP characterizes the class of algorithms we consider in the first place, and therefore anticipates the model-based/model-free distinction in RL.&lt;/p&gt;
 
@@ -1309,11 +3027,9 @@ Thank you for your time.
 
 &lt;p&gt;We’re not done yet. We can turn off some ads in the Disqus dashboard. See the images:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/adsettings.png&quot; alt=&quot;adsettings&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/jekyll-tutorial/adsettings.png&quot; alt=&quot;adsettings.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/advancedsettings.png&quot; alt=&quot;advancedsettings&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We can also lazy load the comments in order to avoid slow loading of the main content. Instead, the comments are loaded when the user is close to the bottom of the page. Check out &lt;a href=&quot;https://usefulangle.com/post/251/disqus-comments-improve-page-load-speed&quot;&gt;this tutorial&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/jekyll-tutorial/advancedsettings.png&quot; alt=&quot;advancedsettings.png&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;excerpts&quot;&gt;Excerpts&lt;/h3&gt;
 
@@ -1345,10 +3061,10 @@ Thank you for your time.
 
 &lt;p&gt;Go to &lt;a href=&quot;https://fonts.google.com/&quot;&gt;Google Fonts&lt;/a&gt;, find a nice font family, select the desired styles (or create your own if it’s a variable font), (optionally at this stage, click the icon in the top right to open a sidebar, if it doesn’t happen automatically), from the sidebar select “@import”, copy the text INSIDE the style tags, and paste it in one of the scss files in _sass. Here’s a picture of the sidebar:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/font.png&quot; alt=&quot;sidebar&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/jekyll-tutorial/font.png&quot; alt=&quot;font.png&quot; width=&quot;250&quot; /&gt;
 &lt;em&gt;I dare you to use this font on your site.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Last step is to actually use it. For example, if we’re following closely to the minima styling files, we might see &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$base-font-family: &quot;Your Old Font&quot;, &quot;Helvetica Neue&quot;, &quot;Times New Roman&quot;, serif !default;&lt;/code&gt;. Replace the first option with the name of the font family we just imported.&lt;/p&gt;
+&lt;p&gt;Last step is to actually use it. For example, if we’re following closely to the minima styling files, we might see &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$base-font-family: &quot;Your Old Font&quot;, &quot;Helvetica Neue&quot;, &quot;Times New Roman&quot;, serif !default;&lt;/code&gt;. Replace the first option with the name of the font family we just imported.&lt;/p&gt;
 
 &lt;blockquote class=&quot;callout&quot;&gt;
   &lt;div class=&quot;flexy&quot;&gt;
@@ -1362,15 +3078,15 @@ Thank you for your time.
 &lt;h3 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h3&gt;
 &lt;p&gt;Footnotes are supported by Kramdown! See this &lt;a href=&quot;https://stackoverflow.com/a/48250535&quot;&gt;SO answer&lt;/a&gt; for how to use them and about compatibility.&lt;/p&gt;
 
-&lt;p&gt;Now, if you want to have a title above your footnotes, use this:&lt;/p&gt;
+&lt;p&gt;To write multi-line footnotes, indent the paragraphs after the first one. This allows you to add LaTeX math blocks in the footnotes, in addition to inline math.&lt;/p&gt;
+
+&lt;p&gt;Although I ended up not using a footnotes title, here’s how I did it when I had one:&lt;/p&gt;
 
 &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.footnotes&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;::before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;nl&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Footnotes:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;I think a footnotes title will be helpful if I end up having a references section in the same article, but I might change my mind.&lt;/p&gt;
 
 &lt;h3 id=&quot;images&quot;&gt;Images&lt;/h3&gt;
 
@@ -1386,11 +3102,24 @@ Thank you for your time.
 &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;alt_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;/assets/images/image.png&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Use &lt;strong&gt;absolute&lt;/strong&gt; links (full path from project root) when inserting an image in markdown.&lt;/p&gt;
+&lt;p&gt;It didn’t work for me without the first forward slash in the link (before “assets”).&lt;/p&gt;
+
+&lt;p&gt;To fix the size of the image, add some CSS:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;![&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;alt_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;/assets/images/image.png&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;{: width=&quot;500&quot;}
+
+OR
+
+![alt_text]{: width=&quot;500&quot;}
+...
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;alt_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;/assets/images/image.png&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also add a CSS class instead, and style it separately.&lt;/p&gt;
 
 &lt;h3 id=&quot;image-captions&quot;&gt;Image Captions&lt;/h3&gt;
 
-&lt;p&gt;Want to have image captions but don’t want to pollute your markdown files with specialized Liquid syntax? You’ve come to the right place : )&lt;/p&gt;
+&lt;p&gt;Want to have image captions but don’t want to pollute your markdown files with specialized Liquid syntax? You’ve come to the right place :)&lt;/p&gt;
 
 &lt;p&gt;Use this in markdown:&lt;/p&gt;
 
@@ -1450,7 +3179,7 @@ Thank you for your time.
 &lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;link text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;{{&lt;/span&gt; site.baseurl }}{% post_url 2021-07-19-post %})
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;What comes after &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post_url&lt;/code&gt;  is the name of the post file.&lt;/p&gt;
+&lt;p&gt;What comes after &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post_url&lt;/code&gt;  is the name of the post file, without the file extension (typically &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt;).&lt;/p&gt;
 
 &lt;h3 id=&quot;pagination&quot;&gt;Pagination&lt;/h3&gt;
 
@@ -1577,6 +3306,8 @@ layout: default
 
 &lt;p&gt;Annoying and frequent mistake: even if the code is automatically reloaded upon changes, if you just refresh your page you may reload a dead link so check the URL.&lt;/p&gt;
 
+&lt;p&gt;Another possibility is that title has changed. If so go back to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;localhost:4000&lt;/code&gt;, &lt;em&gt;reload&lt;/em&gt;, and navigate to the desired page. This happened to me on Safari.&lt;/p&gt;
+
 &lt;h3 id=&quot;bundle-install-fails&quot;&gt;Bundle Install Fails&lt;/h3&gt;
 
 &lt;p&gt;I remember having to delete the Gemfile.lock file to get my gems to install one time. I think it’s no big deal if you’re working solo but I’m not that knowledgeable about it so take it with a grain of salt.&lt;/p&gt;
@@ -1598,7 +3329,7 @@ layout: default
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="tutorial" /><category term="blog" /><category term="jekyll" /><summary type="html">Here are the notes and external tutorials I used and gathered while creating this blog. Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!</summary></entry><entry><title type="html">Project Reupload #3: VI-sensor</title><link href="/project/2021/07/21/sensor.html" rel="alternate" type="text/html" title="Project Reupload #3: VI-sensor" /><published>2021-07-21T00:00:00-05:00</published><updated>2021-07-21T00:00:00-05:00</updated><id>/project/2021/07/21/sensor</id><content type="html" xml:base="/project/2021/07/21/sensor.html">&lt;blockquote&gt;
-  &lt;p&gt;I’m writing posts on my old projects. Here I will introduce one of my most ambitious projects, the creation of a visual-inertial sensor for use with SLAM.&lt;/p&gt;
+  &lt;p&gt;I’m writing posts on my old projects. Here I will introduce one of my most ambitious projects (at the time), a visual-inertial sensor for use with SLAM.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;!--more--&gt;
@@ -1697,7 +3428,7 @@ layout: default
   &lt;li&gt;Why use SLAM at all?&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Some choices can be excused by incomplete knowledge, some were completely asinine, and all were cut off from a satisfactory level of deliberation in my stubborn commitment to the MVP.&lt;/p&gt;
+&lt;p&gt;Some choices can be excused by incomplete knowledge, some were completely asinine, and all were cut off from a satisfactory level of deliberation in my commitment to the MVP.&lt;/p&gt;
 
 &lt;h2 id=&quot;takeaways&quot;&gt;Takeaways&lt;/h2&gt;
 
@@ -1721,7 +3452,7 @@ layout: default
       &lt;p&gt;Not sponsored I promise. &lt;a href=&quot;#fnref:sponsor&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="project" /><category term="vio" /><category term="slam" /><category term="computer-vision" /><category term="hardware" /><category term="sensor" /><summary type="html">I’m writing posts on my old projects. Here I will introduce one of my most ambitious projects, the creation of a visual-inertial sensor for use with SLAM.</summary></entry><entry><title type="html">Project Reupload #2: Poker AI</title><link href="/project/2021/07/20/poker-ai.html" rel="alternate" type="text/html" title="Project Reupload #2: Poker AI" /><published>2021-07-20T00:00:00-05:00</published><updated>2021-07-20T00:00:00-05:00</updated><id>/project/2021/07/20/poker-ai</id><content type="html" xml:base="/project/2021/07/20/poker-ai.html">&lt;blockquote&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="project" /><category term="vio" /><category term="slam" /><category term="computer-vision" /><category term="hardware" /><category term="sensor" /><summary type="html">I’m writing posts on my old projects. Here I will introduce one of my most ambitious projects (at the time), a visual-inertial sensor for use with SLAM.</summary></entry><entry><title type="html">Project Reupload #2: Poker AI</title><link href="/project/2021/07/20/poker-ai.html" rel="alternate" type="text/html" title="Project Reupload #2: Poker AI" /><published>2021-07-20T00:00:00-05:00</published><updated>2021-07-20T00:00:00-05:00</updated><id>/project/2021/07/20/poker-ai</id><content type="html" xml:base="/project/2021/07/20/poker-ai.html">&lt;blockquote&gt;
   &lt;p&gt;I’m writing posts on my old projects. In this post, I’ll introduce my final project for one of my classes in junior year, a simplified implementation of a state-of-the-art poker AI.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -1768,23 +3499,23 @@ layout: default
 &lt;p&gt;At the time I had zero experience with poker or game theory, crucial components of Libratus (and only brief exposure to reinforcement learning, which hindered understanding of related game AI literature). It would take almost a whole week to get through a paper. I remember griping over the Notation and Background section of the paper &lt;a href=&quot;https://arxiv.org/abs/1705.02955&quot;&gt;Safe And Nested Subsolving For Imperfect-Information Games&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;deep-learning&quot;&gt;Deep Learning&lt;/h3&gt;
-&lt;p&gt;I skipped over this, but we were initially going to implement &lt;a href=&quot;https://science.sciencemag.org/content/356/6337/508&quot;&gt;DeepStack&lt;/a&gt;, a poker AI from 2017 that utilized deep learning. When we switched to Libratus, I think I just assumed there would be deep learning, because it seemed like the only way to tackle super challenging games like Go and Poker. I was shocked to find that Libratus did &lt;em&gt;not&lt;/em&gt; use deep learning and still performed better than DeepStack.&lt;/p&gt;
+&lt;p&gt;We were initially going to implement &lt;a href=&quot;https://science.sciencemag.org/content/356/6337/508&quot;&gt;DeepStack&lt;/a&gt;, a poker AI from 2017 that utilized deep learning. When we switched to Libratus, I think I just assumed there would be deep learning, because it seemed like the only way to tackle super challenging games like Go and Poker. I was shocked to find that Libratus did &lt;em&gt;not&lt;/em&gt; use deep learning and still performed better than DeepStack.&lt;/p&gt;
 
 &lt;h3 id=&quot;project-milestone&quot;&gt;Project Milestone&lt;/h3&gt;
 &lt;p&gt;Towards the middle of our project we realized just how complicated Libratus was. I thought we would be dealing with something like &lt;a href=&quot;https://www.nature.com/articles/nature24270&quot;&gt;AlphaGo Zero&lt;/a&gt; (the first successor to AlphaGo) which elegantly combined MCTS with a two-headed policy and value network, and removed “human data, guidance or domain knowledge beyond game rules.”&lt;/p&gt;
 
-&lt;p&gt;I discovered, however, that AlphaGo Zero was an anomaly among game AIs, and for Libratus, domain knowledge was just as important as game theory. Even worse, we were well into the project already, and we faced the all too common dilemma of building a complete, faithful implementation versus having something presentable at the end of the semester. For example we may not have fully implemented card and action abstractions, which are basically groupings of cards and actions to reduce the number of possibilities per turn.&lt;sup id=&quot;fnref:forgot&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:forgot&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;I discovered, however, that AlphaGo Zero was an anomaly among game AIs, and for Libratus, domain knowledge was just as important as game theory. Even worse, we were well into the project already, and we faced the all-too-common dilemma of building a complete, faithful implementation versus having something presentable at the end of the semester. For example we may not have fully implemented card and action abstractions, which are basically groupings of cards and actions to reduce the number of possibilities per turn.&lt;sup id=&quot;fnref:forgot&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:forgot&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;p&gt;It was at this point too that I became a bit jaded about benchmarking AIs with games. I might write another post about it, but in summary, the world-class poker bot transformed in my mind from a leap forward for AI into just another game someone was able to build an algorithm for.&lt;sup id=&quot;fnref:same&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:same&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; Not a unique view at all, and not a slight against Libratus either; it’s still an unprecedented feat.&lt;/p&gt;
 
 &lt;h3 id=&quot;core-algorithm-cracked&quot;&gt;Core Algorithm Cracked&lt;/h3&gt;
-&lt;p&gt;We got one major win, successfully writing MCCFR-p, the algorithm which computes a so-called blueprint strategy. We started by reading up on the more basic CFR algorithm (this &lt;a href=&quot;http://modelai.gettysburg.edu/2013/cfr/cfr.pdf&quot;&gt;paper&lt;/a&gt; specifically), and writing a basic implementation for Khun poker, a toy version of poker. We were then able to translate this to the more sophisticated algorithm on a bigger poker game.&lt;/p&gt;
+&lt;p&gt;We had one major win, successfully writing MCCFR-p, the algorithm which computes a so-called blueprint strategy. We started by reading up on the more basic CFR algorithm (this &lt;a href=&quot;http://modelai.gettysburg.edu/2013/cfr/cfr.pdf&quot;&gt;paper&lt;/a&gt; specifically), and writing a basic implementation for Khun poker, a toy version of poker. We were then able to translate this to the more sophisticated algorithm on a bigger poker game.&lt;/p&gt;
 
 &lt;h3 id=&quot;simulator-and-acpc-server&quot;&gt;Simulator and ACPC server&lt;/h3&gt;
 &lt;p&gt;The last stretch saw algorithmic challenges almost wholly replaced by engineering ones. We had to finalize the poker simulator, so a) we could demo the game and b) to simulate valid moves while pre-training the strategies. We wrote rules for Leduc poker which reduced the game size to something trainable on our puny machines (but still larger than Kuhn poker), but introduced its own difficulties because it’s a lesser known ruleset, and we had trouble validating it. Finally we needed to implement gameplay with other bots via an ACPC server. Luckily we found a Python wrapper and plugged it in.&lt;/p&gt;
 
 &lt;h2 id=&quot;takeaways&quot;&gt;Takeaways&lt;/h2&gt;
-&lt;p&gt;I at least was completely burnt out by the end, and just when we were getting a hang of things we put a bow on it and never touched it again. I highly doubt it was helpful to researchers, as we had hoped. The message “This is a work in progress” sits on the readme like a dead “open” sign on a dilapidated storefront. It’s all kind of a regret of mine! Still I have to remember this was my first class with a final project, and I learned an incredible amount in a short period of time. It was also my first attempt at reading through the literature of a certain field and trying to implement something in it from scratch. The repo is &lt;a href=&quot;https://github.com/michalp21/coms4995-finalproj&quot;&gt;here&lt;/a&gt; for the curious.&lt;/p&gt;
+&lt;p&gt;I at least was completely burnt out by the end, and just when we were getting a hang of things we put a bow on it and never touched it again. I highly doubt it was helpful to researchers, as we had hoped. The message “This is a work in progress” sits on the readme like a dead open sign on a dilapidated storefront. It’s all kind of a regret of mine! Still I have to remember this was my first class with a final project, and I learned an incredible amount in a short period of time. It was also my first attempt at reading through the literature of a certain field and trying to implement something in it from scratch. The repo is &lt;a href=&quot;https://github.com/michalp21/coms4995-finalproj&quot;&gt;here&lt;/a&gt; for the curious.&lt;/p&gt;
 
 &lt;p&gt;The research world doesn’t slow down. Noam Brown has continued putting out excellent work, such as &lt;a href=&quot;https://www.cs.cmu.edu/~noamb/papers/19-Science-Superhuman.pdf&quot;&gt;Pluribus&lt;/a&gt; for multiplayer poker, and &lt;a href=&quot;https://arxiv.org/abs/2007.13544&quot;&gt;ReBeL&lt;/a&gt;, which utilizes deep reinforcement learning. Someone seems to be working on an &lt;a href=&quot;https://github.com/fedden/poker_ai&quot;&gt;open-source&lt;/a&gt; implementation of Pluribus, and an official repo exists for ReBeL implemented on a different game called &lt;a href=&quot;https://github.com/facebookresearch/rebel&quot;&gt;Liar’s Dice&lt;/a&gt;. I’m excited to see what the future holds for poker AIs!&lt;/p&gt;
 
@@ -1833,118 +3564,4 @@ layout: default
 
 &lt;p&gt;It struck me late in the weekend that I went in with the explicit purpose of &lt;em&gt;finishing&lt;/em&gt; a game, yet I still found a way to muddle around with a completely unnecessary feature. Ludum Dare taught me to value the MVP over whatever new idea or silly intellectual problem catches my fancy, something I hadn’t figured out in over a year of game dev on the side.&lt;/p&gt;
 
-&lt;p&gt;I stopped working on any games after that. The semester of Ludum Dare 40, I took a Machine Learning class, which kickstarted my interest in AI. My game dev phase was far from a waste though. I didn’t use C# again, but experience with an extra language is never bad. I used Unity for several future projects, and the interface alone carries over to tons of different programs. And though it’s a bit difficult to articulate, there is a way of thinking like a game designer that I’ll always carry with me.&lt;/p&gt;</content><author><name>Michal Porubcin</name></author><category term="project" /><category term="game" /><category term="gamedev" /><category term="unity" /><summary type="html">I’m writing posts on my old projects. In this post, I talk about a game I made with Henry G. for Ludum Dare 40. I also talk about my old game dev experiences.</summary></entry><entry><title type="html">New Site!</title><link href="/article/2021/07/16/hello-world.html" rel="alternate" type="text/html" title="New Site!" /><published>2021-07-16T00:00:00-05:00</published><updated>2021-07-16T00:00:00-05:00</updated><id>/article/2021/07/16/hello-world</id><content type="html" xml:base="/article/2021/07/16/hello-world.html">&lt;blockquote&gt;
-  &lt;p&gt;Hello, world! Beep boop.&lt;/p&gt;
-
-  &lt;p&gt;This is my first post on my fresh new blog. The real introduction is &lt;a href=&quot;/about.html&quot;&gt;here&lt;/a&gt;; in this post I will just be commenting on my old site.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2 id=&quot;my-old-website&quot;&gt;My Old Website&lt;/h2&gt;
-
-&lt;p&gt;Before this I had a pretty barebones personal site written in vanilla HTML and CSS. I say “vanilla” but then you see this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/mostly-js.png&quot; alt=&quot;mostly-js&quot; /&gt;
-&lt;em&gt;would you like a side of HTML with your JavaScript?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Okay okay so I used Bootstrap, mostly on a friend’s recomendation, and because of “responsiveness.” I guess I didn’t believe in CDNs either?&lt;/p&gt;
-
-&lt;p&gt;Believe it or not I had some custom JavaScript in there too. Well, JQuery. Same difference.&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scroll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.scroll&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;css&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scrollTop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Corresponding HTML:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;scroll&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;svg&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;version=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;40&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;15&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2000/svg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;polygon&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;points=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0,0 34,0 17,15&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fill:#F7C7C4;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/svg&amp;gt;&lt;/span&gt;
-    Scroll for projects
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;svg&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;version=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;40&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;15&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2000/svg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;polygon&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;points=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0,0 34,0 17,15&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fill:#F7C7C4;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/svg&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Those two handcrafted triangle SVGs will be missed.&lt;/p&gt;
-
-&lt;p&gt;Here’s a snapshot of my old site.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/old-site-1.png&quot; alt=&quot;old-site-1&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The top of my site is a bland greeting, but hey the background was cool. It’s just the pixelate&amp;gt;crystallize filter in Photoshop over an angle gradient.&lt;/p&gt;
-
-&lt;blockquote class=&quot;callout&quot;&gt;
-  &lt;div class=&quot;flexy&quot;&gt;
-    
-      &lt;div class=&quot;callout-icon&quot;&gt;😐&lt;/div&gt;
-    
-    &lt;div class=&quot;callout-text&quot;&gt;The author is about to go on a tangent just to demo LaTeX and footnotes on his site.&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;the-crystallize-filter&quot;&gt;The Crystallize Filter&lt;/h2&gt;
-
-&lt;p&gt;That got me thinking, how does the crystallize filter actually work? Until we get those Adobe leaks our best starting point probably has something to do with Voronoi diagrams. I found a decent intro &lt;a href=&quot;https://elrnv.com/blog/weighted-lloyds-method-for-voronoi-tesselation/&quot;&gt;here&lt;/a&gt;. Considering a 2D diagram, define Voronoi sites as a set of \(n\) random points: \(\mathcal{P} = \{\vec{x}_i\}_{i=1}^n\), where \(\vec{x}_i \in \mathbb{R}^2\). Define the Voronoi tessellation generated by \(\mathcal{P}\) as the set of Voronoi regions \(\mathcal{V} = \{ V_i \}\), where for each point \(i\):&lt;/p&gt;
-
-\[V_i = \left\{ \vec{x} \in \mathbb{R}^2 \mathrel{}:\mathrel{} \|\vec{x} - \vec{x}_i\| &amp;lt; \|\vec{x} - \vec{x}_j\|,\ \, \forall j\not=i \right\}.\]
-
-&lt;p&gt;Here’s an example Voronoi diagram.&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/voronoi.png&quot; alt=&quot;voronoi&quot; /&gt;
-*Sites are the visible black dots. Regions are the colored polygons. Notice the uneven cell shapes.”&lt;/p&gt;
-
-&lt;p&gt;Each region is a polygonal cell where all points inside are closer to its corresponding site than any other site. Unfortunately some of the cells can look stretched out so we want to make them more homogenous. We can use something called &lt;a href=&quot;https://en.wikipedia.org/wiki/Lloyd%27s_algorithm&quot;&gt;Lloyd’s algorithm&lt;/a&gt; to spread the sites out more evenly, and make the regions more uniform. Define the centroid of a Voronoi region as:&lt;/p&gt;
-
-\[C_i = \frac{1}{A_i} \iint_{V_i} \vec{x}_i\, d\vec{x}\]
-
-&lt;p&gt;Where \(A_i\) is the area of the region. The centroid is not necessarily the same as the site. The idea is to use the centroids as new sites for a new tesselation, and over time the centroid will get closer to the sites until convergence.&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;why-i-switched-to-a-blog&quot;&gt;Why I Switched to a Blog&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/old-site-2.png&quot; alt=&quot;old-site-2&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The rest of my site showed off my projects on a grid of flippy panels with images on the front and short descriptions on the back. Two problems here:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;I couldn’t find appropriate images most of the time. I ended up using silly stock photos.&lt;/li&gt;
-  &lt;li&gt;I had to compact the project description into a Tweet-length quip.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Flippy cards are cute but impractical. But why switch to a blog? Why not ditch the cards and use a bigger description box? I’ll save it for a future post, but basically it was a natural outgrowth of my efforts to consolidate my knowledge. That and Jekyll is really nice. My two favorite things about Jekyll, in order:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Templates are encouraged. Even though it’s a bit more complex (due to the blog aspect, not the templates), my new site feels more modular and less gross.&lt;/li&gt;
-  &lt;li&gt;Thanks in part to templates, I can write posts exclusively in markdown, and I can focus more on the content. Even better for blogs, since blog posts are very template-able.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Demo checklist:&lt;/p&gt;
-&lt;ul class=&quot;task-list&quot;&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Blockquotes&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Headers&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Images&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Captions&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Code&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Callouts (and emojis)&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Footnotes&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;LaTeX&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Unordered lists&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Ordered lists&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Checkboxes&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Unchecked checkboxes 🤯&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Alright, demo complete :D stay tuned for more. Hope I can keep this up.&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;Image credit: Wikipedia &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;Surprise k-means? Surprise k-means. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="article" /><category term="blog" /><summary type="html">Hello, world! Beep boop. This is my first post on my fresh new blog. The real introduction is here; in this post I will just be commenting on my old site.</summary></entry></feed>
+&lt;p&gt;I stopped working on any games after that. The semester of Ludum Dare 40, I took a Machine Learning class, which kickstarted my interest in AI. My game dev phase was far from a waste though. I didn’t use C# again, but experience with an extra language is never bad. I used Unity for several future projects, and the interface alone carries over to tons of different programs. And though it’s a bit difficult to articulate, there is a way of thinking like a game designer that I’ll always carry with me.&lt;/p&gt;</content><author><name>Michal Porubcin</name></author><category term="project" /><category term="game" /><category term="gamedev" /><category term="unity" /><summary type="html">I’m writing posts on my old projects. In this post, I talk about a game I made with Henry G. for Ludum Dare 40. I also talk about my old game dev experiences.</summary></entry></feed>

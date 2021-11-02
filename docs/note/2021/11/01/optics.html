@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/main.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Digital Photography Notes - Optics | Xn</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Digital Photography Notes - Optics" />
+<meta name="author" content="Michal Porubcin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This note is based on lectures 3 and 4 of Levoy’s Digital Photography. It covers basic geometric optics starting with refraction, and ends with aberrations and other lens effects. These lectures are more math-heavy to begin with, and on top of that I tried to round out the proofs. Luckily it’s nothing advanced." />
+<meta property="og:description" content="This note is based on lectures 3 and 4 of Levoy’s Digital Photography. It covers basic geometric optics starting with refraction, and ends with aberrations and other lens effects. These lectures are more math-heavy to begin with, and on top of that I tried to round out the proofs. Luckily it’s nothing advanced." />
+<meta property="og:site_name" content="Xn" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-11-01T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Digital Photography Notes - Optics" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","datePublished":"2021-11-01T00:00:00-05:00","description":"This note is based on lectures 3 and 4 of Levoy’s Digital Photography. It covers basic geometric optics starting with refraction, and ends with aberrations and other lens effects. These lectures are more math-heavy to begin with, and on top of that I tried to round out the proofs. Luckily it’s nothing advanced.","url":"/note/2021/11/01/optics.html","mainEntityOfPage":{"@type":"WebPage","@id":"/note/2021/11/01/optics.html"},"author":{"@type":"Person","name":"Michal Porubcin"},"headline":"Digital Photography Notes - Optics","dateModified":"2021-11-01T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Xn" /><!-- Favicon -->
+  <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
+
+  <!-- MathJax for LaTeX -->
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body><header class="site-header">
+  <div class="site-header-logo">
+    <div class="logo">
+      <!-- <a class="site-title" href="/">Xn</a> -->
+      <a href="/">
+        <img src="/assets/images/logo.png" />
+      </a>
+    </div>
+  </div>
+  <div class="site-header-nav">
+    <nav class="site-nav">
+      <a class="page-link" href="/"> Home</a>
+      <a class="page-link" href="/category/project/"> Projects</a>
+      <a class="page-link" href="/categories.html"> Categories</a>
+      <a class="page-link" href="/tags.html"> Tags</a>
+      <a class="page-link" href="/archive.html"> Archive</a>
+      <a class="page-link" href="/about.html"> About</a>
+    </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Digital Photography Notes - Optics</h1>
+    <p class="post-meta">
+      <time datetime="2021-11-01T00:00:00-05:00" itemprop="datePublished">
+        
+        Nov 1, 2021
+      </time>
+
+      <!---->
+
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        by <span itemprop="name">Michal Porubcin</span>
+      </span>
+
+      <span class="post-categories">
+        <span>
+              
+              <a class="post-category" href="/category/note/">note&nbsp;</a>
+            </span>
+      </span>
+
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <blockquote>
+  <p>This note is based on lectures 3 and 4 of Levoy’s Digital Photography. It covers basic geometric optics starting with refraction, and ends with aberrations and other lens effects. These lectures are more math-heavy to begin with, and on top of that I tried to round out the proofs. Luckily it’s nothing advanced.</p>
+</blockquote>
+
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#physical-vs-geometrical-optics" id="markdown-toc-physical-vs-geometrical-optics">Physical vs Geometrical Optics</a></li>
+  <li><a href="#refraction" id="markdown-toc-refraction">Refraction</a></li>
+  <li><a href="#lens-shapes" id="markdown-toc-lens-shapes">Lens Shapes</a></li>
+  <li><a href="#gaussian-lens-formula" id="markdown-toc-gaussian-lens-formula">Gaussian Lens Formula</a>    <ul>
+      <li><a href="#simple-derivation" id="markdown-toc-simple-derivation">Simple Derivation</a></li>
+      <li><a href="#paraxial-approximation" id="markdown-toc-paraxial-approximation">Paraxial Approximation</a></li>
+    </ul>
+  </li>
+  <li><a href="#uses-for-the-gaussian-lens-formula" id="markdown-toc-uses-for-the-gaussian-lens-formula">Uses For The Gaussian Lens Formula</a>    <ul>
+      <li><a href="#changing-object-distance-revisited" id="markdown-toc-changing-object-distance-revisited">Changing Object Distance (Revisited)</a></li>
+      <li><a href="#virtual-images-and-objects" id="markdown-toc-virtual-images-and-objects">Virtual Images and Objects</a></li>
+      <li><a href="#concave-lenses" id="markdown-toc-concave-lenses">Concave Lenses</a></li>
+      <li><a href="#power-of-a-lens" id="markdown-toc-power-of-a-lens">Power of a Lens</a></li>
+      <li><a href="#magnification" id="markdown-toc-magnification">Magnification</a>        <ul>
+          <li><a href="#hardware-for-magnification" id="markdown-toc-hardware-for-magnification">Hardware For Magnification</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#3d-perspective-transform" id="markdown-toc-3d-perspective-transform">3D Perspective Transform</a></li>
+  <li><a href="#depth-of-field" id="markdown-toc-depth-of-field">Depth of Field</a>    <ul>
+      <li><a href="#derivation" id="markdown-toc-derivation">Derivation</a></li>
+      <li><a href="#hyperfocal-distance" id="markdown-toc-hyperfocal-distance">Hyperfocal distance</a></li>
+      <li><a href="#macro-depth-of-field" id="markdown-toc-macro-depth-of-field">Macro Depth of Field</a></li>
+      <li><a href="#other-derivations" id="markdown-toc-other-derivations">Other Derivations</a></li>
+    </ul>
+  </li>
+  <li><a href="#depth-of-field-in-practice" id="markdown-toc-depth-of-field-in-practice">Depth of Field In Practice</a>    <ul>
+      <li><a href="#basic-relationships" id="markdown-toc-basic-relationships">Basic Relationships</a></li>
+      <li><a href="#dolly-zoom" id="markdown-toc-dolly-zoom">Dolly Zoom</a></li>
+      <li><a href="#sensor-size" id="markdown-toc-sensor-size">Sensor Size</a></li>
+      <li><a href="#circle-of-confusion" id="markdown-toc-circle-of-confusion">Circle of Confusion</a></li>
+      <li><a href="#bokeh" id="markdown-toc-bokeh">Bokeh</a></li>
+      <li><a href="#seeing-through-occlusions" id="markdown-toc-seeing-through-occlusions">Seeing Through Occlusions</a></li>
+    </ul>
+  </li>
+  <li><a href="#lens-aberrations" id="markdown-toc-lens-aberrations">Lens Aberrations</a>    <ul>
+      <li><a href="#chromatic-aberrations" id="markdown-toc-chromatic-aberrations">Chromatic Aberrations</a></li>
+      <li><a href="#spherical-aberrations" id="markdown-toc-spherical-aberrations">Spherical Aberrations</a></li>
+      <li><a href="#coma" id="markdown-toc-coma">Coma</a></li>
+      <li><a href="#astigmatism" id="markdown-toc-astigmatism">Astigmatism</a></li>
+      <li><a href="#field-curvature" id="markdown-toc-field-curvature">Field Curvature</a></li>
+      <li><a href="#distortion" id="markdown-toc-distortion">Distortion</a></li>
+      <li><a href="#not-perspective" id="markdown-toc-not-perspective">NOT Perspective</a></li>
+    </ul>
+  </li>
+  <li><a href="#other-lens-artifacts" id="markdown-toc-other-lens-artifacts">Other Lens Artifacts</a>    <ul>
+      <li><a href="#veiling-glare" id="markdown-toc-veiling-glare">Veiling Glare</a></li>
+      <li><a href="#lens-flare" id="markdown-toc-lens-flare">Lens Flare</a></li>
+      <li><a href="#vignetting" id="markdown-toc-vignetting">Vignetting</a></li>
+      <li><a href="#diffraction" id="markdown-toc-diffraction">Diffraction</a></li>
+    </ul>
+  </li>
+  <li><a href="#lens-systems" id="markdown-toc-lens-systems">Lens Systems</a>    <ul>
+      <li><a href="#telephoto" id="markdown-toc-telephoto">Telephoto</a></li>
+      <li><a href="#zoom" id="markdown-toc-zoom">Zoom</a></li>
+      <li><a href="#lens-design" id="markdown-toc-lens-design">Lens Design</a></li>
+    </ul>
+  </li>
+  <li><a href="#examples" id="markdown-toc-examples">Examples</a>    <ul>
+      <li><a href="#eyeglasses-i" id="markdown-toc-eyeglasses-i">Eyeglasses I</a></li>
+      <li><a href="#macro-lenses" id="markdown-toc-macro-lenses">Macro Lenses</a></li>
+      <li><a href="#close-up-filters" id="markdown-toc-close-up-filters">Close-Up Filters</a></li>
+      <li><a href="#eyeglasses-ii" id="markdown-toc-eyeglasses-ii">Eyeglasses II</a></li>
+      <li><a href="#chromatic-aberrations-for-humans" id="markdown-toc-chromatic-aberrations-for-humans">Chromatic Aberrations For Humans</a></li>
+    </ul>
+  </li>
+  <li><a href="#unresolved-questions" id="markdown-toc-unresolved-questions">Unresolved Questions</a>    <ul>
+      <li><a href="#paraxial-approximation-1" id="markdown-toc-paraxial-approximation-1">Paraxial Approximation</a></li>
+      <li><a href="#frustrum-shape" id="markdown-toc-frustrum-shape">Frustrum Shape</a></li>
+      <li><a href="#chromatic-aberrations-1" id="markdown-toc-chromatic-aberrations-1">Chromatic Aberrations</a></li>
+      <li><a href="#aberrations-in-general" id="markdown-toc-aberrations-in-general">Aberrations In General</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="physical-vs-geometrical-optics">Physical vs Geometrical Optics</h1>
+
+<p><img src="/assets/images/optics/optics2kinds.png" alt="optics2kinds.png" width="500" /></p>
+
+<p>Optics, the study of light, is typically divided into two branches:</p>
+<ul>
+  <li><strong>geometrical optics</strong> characterizes light primarily as rays</li>
+  <li><strong>physical optics</strong>, or wave optics, characterizes light as a wave, with light rays drawn perpendicular to the wave</li>
+</ul>
+
+<p>That said, waves do give some nice intuition even in the first regime. The main difference is that geometrical optics <em>doesn’t</em> account for the effects of diffraction and interference. It’s a useful approximation when the light’s wavelength is much smaller than the objects it interacts with.</p>
+
+<h1 id="refraction">Refraction</h1>
+
+<p>Snell’s Law explains what happens to light when it passes between two transparent substances.</p>
+
+<p><img src="/assets/images/optics/snellslaw.png" alt="snellslaw.png" width="600" /></p>
+
+<p>The image above shows two mediums meeting at an <strong>interface</strong>. In the left subimage, the waves of light approach the interface at an angle of \(\theta_i\) above the horizontal, with speed \(v_i\), and recedes at angle \(\theta_t\) below the horizontal, with speed \(v_t\). In other words, the speed and direction of the light has changed.</p>
+
+<p>Here’s an intuitive explanation. Knowing that the velocity of light decreases in the second medium, the waves travel less distance over time, so they’re closer together. Now, notice how the incoming waves line up with the exiting waves at the interface: no lines are lost and no lines are created from thin air. For this property to hold, the waves must exit at a smaller angle.</p>
+
+<p>We can instead look at the light rays, shown in the right subimage. Due to perpendicularity, we get equivalent angles \(\theta_i,\theta_t\) with respect to the vertical, or <strong>normal</strong>. We get a few equalities:</p>
+
+\[\frac{x_i}{x_t} = \frac{\sin\theta_i}{\sin\theta_t} = \frac{v_i}{v_t}=\frac{n_t}{n_i}\]
+
+<p>The first equality is from trigonometry, the second is from proportionality of \(x\) and \(v\), and the third is from defining the <strong>index of refraction</strong><sup id="fnref:cropfactor" role="doc-noteref"><a href="#fn:cropfactor" class="footnote" rel="footnote">1</a></sup> or refractive index as:</p>
+
+\[n_r=\frac{\text{speed of light in vacuum}}{\text{speed of light in medium r}}\]
+
+<p>From the equations above we get the usual formulation of <strong>Snell’s Law</strong>:</p>
+
+\[n_1\sin\theta_1 = n_2\sin\theta_2\]
+
+<p>And wrapping up the example above, we notice a few things:</p>
+<ul>
+  <li>light travels <em>more slowly</em> and bends <em>closer to the normal</em> through substances with <em>higher refractive indices</em></li>
+  <li>light does not refract when hitting the interface perpendicularly</li>
+</ul>
+
+<p>Some common indices of refraction:</p>
+<ul>
+  <li>air: ~1.0</li>
+  <li>water: 1.33</li>
+  <li>glass: 1.5 - 1.8</li>
+</ul>
+
+<p><img src="/assets/images/optics/mirage1.jpg" alt="mirage1.jpg" width="500" /></p>
+
+<p>Refractive indices change with temperature. For example, hot air has a lower refractive index than cool air. This is the source of some <strong>mirages</strong>, like the commonly seen “wet road” phenomenon.</p>
+
+<p><img src="/assets/images/optics/mirage2.png" alt="mirage2.png" width="500" /></p>
+
+<p>In a bit more detail: in places with a gradient of hot air up high to cool air on the ground, some faraway light rays moving partially downward will bend away from the normal, flattening out and even curving upward! When they reach your eyes, it will seem like they originated from a point below the ground.</p>
+
+<h1 id="lens-shapes">Lens Shapes</h1>
+
+<p><img src="/assets/images/optics/refractionlens.png" alt="refractionlens.png" width="400" /></p>
+
+<p>When passing through a lens, light refracts twice:</p>
+<ul>
+  <li>it bends closer to the normal when entering the lens</li>
+  <li>it bends away from the normal when exiting the lens</li>
+</ul>
+
+<p>Light hitting the lens perpendicularly does not bend. The only place the light hits perpendicularly when entering <em>and</em> exiting the lens is on the <strong>principal or optical axis</strong> (\(\overline{C_2C_1}\) above).</p>
+
+<p><img src="/assets/images/optics/twocircles.png" alt="twocircles.png" width="300" /></p>
+
+<p>The two sides of a lens can be characterized by the radii of their respective circles (spheres in 3D). If they intersect, they form a <strong>convex lens</strong>, otherwise, they form a <strong>concave lens</strong>. They are also called <strong>positive</strong> and <strong>negative</strong> lenses, respectively.</p>
+
+<p><img src="/assets/images/optics/convexconcave.png" alt="convexconcave.png" width="200" /></p>
+
+<p>Lenses come in many shapes. Following convention, the radius is negative on the right half of a circle, and positive for the left half.</p>
+
+<p><img src="/assets/images/optics/convexconcave1.png" alt="convexconcave1.png" width="600" /></p>
+
+<p>Assuming light rays move left to right, if the rays meet at a point to the right of the lens, they produce a <strong>real image</strong>. If they diverge after the lens, the rays can be traced backwards, converging to a <strong>virtual image</strong> on the left side.</p>
+
+<p>Likewise, if the rays originate from a point to the left of the lens, we have a <strong>real object</strong>. If they come from a divergent source, they can be traced forward, meeting on the right side, forming a <strong>virtual object</strong> (not pictured).</p>
+
+<p>Parallel rays are on the border of convergent and divergent. We treat them as real, rather than virtual, points at infinity.</p>
+
+<h1 id="gaussian-lens-formula">Gaussian Lens Formula</h1>
+
+<h2 id="simple-derivation">Simple Derivation</h2>
+
+<p>From now on let’s assume our object is in focus, so we don’t have to keep saying object/image <em>focus</em> distance. There’s a pretty simple relationship between the object distance, the image distance, and the focal length that will help clarify all the virtual object/image business. In this derivation we make some pretty broad assumptions, in particular, that all parallel points pass through the focal point \(f\). We also use a convex lens for illustration, but the derivation works fine for concave lenses too.</p>
+
+<p><img src="/assets/images/optics/gaussray1.png" alt="gaussray1.png" width="400" /></p>
+
+<p>Using similar triangles, we get:</p>
+
+\[\begin{align*}
+\frac{\vert y_i \vert}{y_o} &amp;= \frac{s_i}{s_o}\\
+\frac{\vert y_i \vert}{y_o} &amp;= \frac{s_i-f}{f}\\
+\end{align*}\]
+
+<p>Equating and rearranging, we get the <strong>Gaussian lens formula</strong>:</p>
+
+\[\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f}\]
+
+<h2 id="paraxial-approximation">Paraxial Approximation</h2>
+
+<p>Note: I made some changes to the material on the slides.<sup id="fnref:change" role="doc-noteref"><a href="#fn:change" class="footnote" rel="footnote">2</a></sup> Levoy justifiably marks this section as optional.</p>
+
+<p>Here’s a longer derivation of the Gaussian lens formula from more fundamental premises. Again we use a convex lens but it works for concave too.</p>
+
+<p><img src="/assets/images/optics/paraxial.png" alt="paraxial.png" width="400" /></p>
+
+<p>Above we show a light ray shining from an object point \(O\), hitting a spherical surface with radius \(r_1\) (not labeled above), and landing on the image point \(P\). We use the <strong>paraxial approximation</strong>, which assumes \(e\approx 0\), or that the incident ray on the lens is nearly horizontal. As a result, we get several simplifications via trigonometry:</p>
+
+\[\begin{align*}
+\sin u &amp;= h/l \approx u \text{ (for } u \text{ in radians)}\\ 
+\cos u &amp;= z/l \approx 1\\
+\tan u &amp;\approx \sin u \approx u
+\end{align*}\]
+
+<p>This is called <strong>first-order optics</strong>, because we can get the same approximations from the first-degree Taylor polynomial of \(\sin u\) and \(\cos u\) centered at zero. Just to illustrate, the Taylor series expansions around zero are:</p>
+
+\[\begin{align*}
+\sin\phi = \phi - \frac{\phi^3}{3!} + \frac{\phi^5}{5!} - \frac{\phi^7}{7!} + \ldots\\
+\cos\phi = 1 - \frac{\phi^2}{2!} + \frac{\phi^4}{4!} - \frac{\phi^6}{6!} + \ldots
+\end{align*}\]
+
+<p>And we just use the first term to approximate each function.</p>
+
+<p><img src="/assets/images/optics/paraxial1.png" alt="paraxial1.png" width="400" /></p>
+
+<p>Recall Snell’s Law states \(n\sin \theta = n'\sin \theta'\). The paraxial approximation is:</p>
+
+\[n\theta \approx n'\theta'\]
+
+<p><img src="/assets/images/optics/paraxial2.png" alt="paraxial2.png" width="400" /></p>
+
+<p>We want an equation relating \(z_1'\) with \(z_1\). What follows is a bunch of elementary math. By geometry:</p>
+
+\[\begin{align*}
+\theta&amp;=u+a\\
+\theta'&amp;=a-u'\\
+\end{align*}\]
+
+<p>We use that to expand our Snell’s Law approximation:</p>
+
+\[n(u+a) \approx n'(a-u')\]
+
+<p>Then from trigonometry we can say:</p>
+
+\[\begin{align*}
+a \approx \sin(a) &amp;= \frac{h}{r_1}\\[1em]
+u \approx \tan(u) &amp;= \frac{h}{z_1}\\[1em]
+u' \approx \tan(u') &amp;= \frac{h}{z_1'}\\
+\end{align*}\]
+
+<p>We use those to manipulate our Snell’s Law approximation some more:</p>
+
+\[\begin{align*}
+n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\frac{h}{z_1'}\right)\\
+\Rightarrow \frac{n}{z_1}+\frac{n'}{z_1'} &amp;\approx \frac{n'-n}{r_1}\\
+\end{align*}\]
+
+<p>Notice how \(h\) has canceled out. No matter where a ray originating from \(O\) lands on the lens (no matter what height \(h\)), it will always hit \(P\). We have shown that there isn’t spherical aberration under the assumptions we made.</p>
+
+<p><img src="/assets/images/optics/paraxiala.png" alt="paraxiala.png" width="400" /></p>
+
+<p>We calculated light going from air to glass, but we also need to do glass back to air. Let the right side of the lens be a spherical surface of radius \(r_2\) (not labeled). After refracting once on the left side, the ray will hit refract on the right side, and finally land on \(Q\).</p>
+
+<p>We basically redo the calculations with new object and image points. The new image point is \(Q\), but what is the new object point? Well, the incident ray for the right side is just the transmitted ray from the left side, which intersects the optical axis at \(P\). So the image from the left interface becomes a <em>virtual</em> object at the right interface. For this reason, we let the distance from the right side of the lens to \(P\) be negative. The resulting equation is:</p>
+
+\[-\frac{n'}{z_2}+\frac{n}{z_2'} \approx \frac{n-n'}{r_2}\]
+
+<p>Summing the equations for the left and right sides, we get</p>
+
+\[\begin{align*}
+\frac{n}{z_1}+\frac{n}{z_2'} &amp;\approx (n'-n)\left(\frac{1}{r_1}-\frac{1}{r_2} \right) + \frac{n'}{z_2}-\frac{n'}{z_1'}\\
+\Rightarrow \frac{n}{z_1}+\frac{n}{z_2'} &amp;\approx (n'-n)\left(\frac{1}{r_1}-\frac{1}{r_2} \right) + \frac{n'd}{(z_1'-d)z_1'}
+\end{align*}\]
+
+<p>Where the second line uses \(\vert -z_2\vert = \vert z_1'\vert - d\) to simplify the right terms.</p>
+
+<p>Let’s use some nicer variables to represent the distances of the object and image to the left and right side of the lens, respectively: \(s_o = z_1\) and \(s_i = z_2'\). As \(d\rightarrow 0\), called the <strong>thin lens approximation</strong>, the right term approaches zero, and we obtain the <strong>lens maker’s formula</strong>:</p>
+
+\[\frac{1}{s_o} + \frac{1}{s_i} = (n' - 1)\left(\frac{1}{r_1} - \frac{1}{r_2}\right) \tag{3}\]
+
+<p>Note: we set \(n=1\), the refractive index of air.</p>
+
+<p>If we move the object \(s_0\) to infinity, the image distance \(s_i\) approaches the focal length \(f\), so we can say:</p>
+
+\[\frac{1}{f} = (n' - 1)\left(\frac{1}{r_1} - \frac{1}{r_2}\right) \tag{4}\]
+
+<p>Equating with the previous equation, we obtain the Gaussian lens formula:</p>
+
+\[\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f} \tag{5}\]
+
+<p>An interactive applet can be found <a href="https://sites.google.com/site/marclevoylectures/applets/gaussian-lens-formula">here</a>.</p>
+
+<h1 id="uses-for-the-gaussian-lens-formula">Uses For The Gaussian Lens Formula</h1>
+
+<p>The Gaussian lens formula serves the basis for the rest of this note, and much more. Here’s a few important uses.</p>
+
+<h2 id="changing-object-distance-revisited">Changing Object Distance (Revisited)</h2>
+
+<p>What can the Gaussian lens formula do for us?</p>
+
+<p><img src="/assets/images/optics/changefocus.png" alt="changefocus.png" width="300" /></p>
+
+<p>It basically dictates what happens in the image above. Again, it models the interactions of object distance, image distance, and focal length, <em>when the object is in focus</em>.</p>
+
+<p>If the sensor is at the focal point, then \(s_i=f\), and the object is focused at infinity (top drawing in the picture above).</p>
+
+<p>We can also have \(s_o=s_i=2f\) (third drawing):</p>
+
+\[\frac{1}{2f} + \frac{1}{2f} = \frac{1}{f}\]
+
+<p>giving us 1:1 imaging, which means the scene and image scales are the same. For example, a 36 mm wide object will fill a 36 mm wide sensor.<sup id="fnref:size" role="doc-noteref"><a href="#fn:size" class="footnote" rel="footnote">3</a></sup></p>
+
+<p>Similar to the first drawing, if \(s_o=f\) then \(s_i=\infty\) (not pictured), meaning we physically can’t focus on objects closer to the lens than \(f\).</p>
+
+<h2 id="virtual-images-and-objects">Virtual Images and Objects</h2>
+
+<p>What if the object distance is less than the focal length? Say \(s_o=\frac{f}{2}\). Then:</p>
+
+\[\frac{2}{f} + \frac{1}{s_i} = \frac{1}{f}\]
+
+<p>so \(s_i=-f\).</p>
+
+<p>In general:</p>
+<ul>
+  <li>if \(0&lt;s_o&lt;f\), then \(s_i&lt;0\)</li>
+  <li>if \(0&lt;s_i&lt;f\), then \(s_o&lt;0\)</li>
+</ul>
+
+<p>By convention, real objects lie to the left of the lens while real images lie to the right, and both have positive distances. Negative distances, then, correspond with <em>virtual</em> objects and images.</p>
+
+<h2 id="concave-lenses">Concave Lenses</h2>
+
+<p>So far we assumed we were working with a convex lens. By convention, convex lenses have positive focal length, while concave lenses have negative focal length. Concave lenses actually behave much nicer, creating a virtual image at any object distance. For example, let \(s_o=2\) and \(f=-1\).</p>
+
+\[\frac{1}{2} + \frac{1}{s_i} = -1\]
+
+<p>Then \(s_i=-\frac{2}{3}\).</p>
+
+<p>From the Gaussian lens formula, we can see that if \(s_o&gt;0\) (as it must be for a real object) and \(f&lt;0\), then it must be the case that \(s_i&lt;0\) and \(\vert s_i\vert&lt;s_o\).</p>
+
+<h2 id="power-of-a-lens">Power of a Lens</h2>
+
+<p>How can we compare the strengths of different lenses? Let’s define the <strong>power</strong> \(P\) of a lens as:</p>
+
+\[P=\frac{1}{f}\]
+
+<p>where the units are 1/meters, or <strong>diopters</strong>. Due to the convention from the previous section, convex lenses have positive diopters while concave lenses have negative diopters.</p>
+
+<p>If we combine two lenses, we can just add their diopters. The two equations are equivalent:</p>
+
+\[\begin{align*}
+    \frac{1}{f_{tot}} &amp;= \frac{1}{f_1} + \frac{1}{f_2}\\[1em]
+    P_{tot} &amp;= P_1 + P_2
+\end{align*}\]
+
+<h2 id="magnification">Magnification</h2>
+
+<p><img src="/assets/images/optics/gaussray1.png" alt="gaussray1.png" width="400" /></p>
+
+<p>By similar triangles, magnification can be determined from the image and object distances:</p>
+
+\[M \triangleq \frac{y_i}{y_o} = -\frac{s_i}{s_o} = -\frac{f}{s_o-f}\]
+
+<p>The triangle symbolizes equality by definition. The negative sign is just due to differing conventions; the heights have opposite signs depending whether they’re above or below the optical axis, unlike the object and image distances if neither is virtual.</p>
+
+<p><strong>Clarification</strong>: Most people, including Levoy later in the slides, seem to ignore the sign on magnification, effectively taking \(\vert M \vert\). From now on, I’m dropping the sign too.</p>
+
+<h3 id="hardware-for-magnification">Hardware For Magnification</h3>
+
+<p>Gathered from <a href="https://www.cambridgeincolour.com/tutorials/macro-extension-tubes-closeup.htm">this site</a>.</p>
+
+<p><strong>Extension tubes</strong>: devices fitted between the camera body and the lens, which increase magnification by increasing effective image distance.</p>
+<ul>
+  <li>Measured in mm.</li>
+  <li>They have no optics, but allow electronics to pass through. They can be stacked.</li>
+  <li>They raise the effective f-number, reducing the amount of light.</li>
+  <li>They’re better for wide-angle lenses.</li>
+</ul>
+
+<p><strong>Close-up filters/lenses</strong>: a special lens screwed onto the front of the actual lens, increasing magnfication by <em>decreasing</em> effective focal length.</p>
+<ul>
+  <li>Measured in diopters.</li>
+  <li>Optical elements may reduce image quality.</li>
+  <li>They’re better for telephoto lenses.</li>
+</ul>
+
+<p><strong>Teleconverters</strong>: like extension tubes, but with optics. They increase magnification by <em>increasing</em> effective focal length.</p>
+<ul>
+  <li>Measured by magnification multiplier (e.g. 1.4x)</li>
+  <li>Optical elements may reduce image quality.</li>
+  <li>They raise the effective f-number, reducing the amount of light.</li>
+</ul>
+
+<p><strong>Macro Lenses</strong>: the best and most expensive option for close-up photography.</p>
+<ul>
+  <li>Measured in \(M\).</li>
+  <li>Corrects for aberrations.</li>
+</ul>
+
+<p><strong>Clarification</strong>: Alright, you have to be wondering: how can close-up filters and teleconverters achieve the same thing in different ways? I’m not 100\% certain but here’s my thinking. Teleconverters work like telephoto lens elements, where a combination of lens elements can achieve the same focal length and object distance at a reduced image distance; see the Telephoto section below. Since the teleconverter is screwed in between the existing lens and the camera, the image distance doesn’t decrease, leading to an increase in the effective focal length.</p>
+
+<p>Close-up filters allow you to (drum roll) get close-up to the object, i.e. reduce object distance, by <em>lowering</em> focal length; see the example at the end of this note called Close-Up Filters. Based on the last expression for magnification, we can see that focal length and object distance aren’t related linearly, and I presume in close-up situations, the object distance has a stronger effect on the magnification than the focal length.</p>
+
+<p>In other words:</p>
+<ul>
+  <li>close-up filter: \(f\downarrow\quad s_o\Downarrow\quad s_i – \quad M\uparrow\)</li>
+  <li>teleconverter: \(f\uparrow\quad s_o – \quad s_i – \quad M\uparrow\)</li>
+</ul>
+
+<h1 id="3d-perspective-transform">3D Perspective Transform</h1>
+
+<p><img src="/assets/images/optics/frustrum.png" alt="frustrum.png" width="400" /></p>
+
+<p>A lens transforms a 3D object into a 3D image, and the sensor extracts a 2D slice of that image. We can think of this as an extension of the transform going directly from 3D to 2D from [[Image Formation]].</p>
+
+<p><strong>Clarification</strong>: How is that different from a pinhole camera? Recall that a pinhole camera performs a projective transformation. We previously showed one object and its image on one sensor.</p>
+
+<p><img src="/assets/images/optics/frustrum2d.png" alt="frustrum2d.png" width="400" /></p>
+
+<p>Here’s two objects and two sensors. A pinhole camera has infinite depth of field, so any placement of the sensor will capture both objects in focus (and in fact, the entirety of the visible scene).</p>
+
+<p><img src="/assets/images/optics/frustrum2d_lens.png" alt="frustrum2d_lens.png" width="400" /></p>
+
+<p>Replacing the pinhole with a lens, the sensor at any position will still capture both objects. The difference is that only one plane in the object space will be in focus for any given plane in image space (see the blurred arrows). For any square in object space, we get a trapezoid of the <em>corresponding focused objects</em> in image space, a bijective transformation. Moving from the 2D visualization to 3D, the square and trapezoid become a cube and pyramidal frustrum, as shown in Levoy’s drawing. The latter converges to the focal point, <em>not</em> the optical center of the lens, and no such transformation exists for the pinhole camera.</p>
+
+<p><img src="/assets/images/optics/perspectivetransform.png" alt="perspectivetransform.png" width="500" /></p>
+
+<p>The other point Levoy makes is that a linear change in object distance is accompanied by a <em>nonlinear</em> change in image distance, evident from Gauss’ lens formula, and illustrated by the grid lines in the image above. Note that the warped grid in image space <em>doesn’t</em> represent a 3D view of a plane sticking out of the page, but a trapezoid on the same plane as everything else in the diagram. The image comes from an <a href="https://sites.google.com/site/marclevoylectures/applets/operation-of-a-thin-lens">interactive applet</a>.</p>
+
+<h1 id="depth-of-field">Depth of Field</h1>
+
+<h2 id="derivation">Derivation</h2>
+
+<p><img src="/assets/images/optics/dofformula1.png" alt="dofformula1.png" width="500" /></p>
+
+<p>In [[Image Formation]] we gave a simplified presentation of the circle of confusion using symmetric cones. Now we use a more accurate diagram. The vertical line to the right of the lens signifies the <strong>circle of confusion</strong>, the in-focus image plane is the vertical line to the right of the lens, the area of acceptable focus is shaded red, and the width of this area is called the <strong>depth of focus</strong>. We define the <strong>conjugate of the circle of confusion</strong> and the <strong>depth of field</strong> similarly, to the left of the lens. It’s clear that the depth of field is asymmetrical around the in-focus object plane. In addition, the circle of confusion is usually smaller than its conjugate, which we can see from its formula; since usually \(0&lt;M&lt;1\), then usually \(\frac{C}{M}&gt;C\).</p>
+
+<p><img src="/assets/images/optics/dofformula2.png" alt="dofformula2.png" width="500" /></p>
+
+<p>Let \(U=s_o\), just for convention’s sake. We assume the object distance (focal distance) is much larger than the focal length, or \(U\gg f\), or equivalently \(f\approx s_i\).</p>
+
+\[\begin{align*}
+    M = \frac{s_i}{U} &amp;\approx \frac{f}{U}\\
+    \frac{C}{M} &amp;\approx \frac{CU}{f}
+\end{align*}\]
+
+<p><img src="/assets/images/optics/dofformula3.png" alt="dofformula3.png" width="500" /></p>
+
+<p>Recall the aperture diameter is \(\frac{f}{N}\). Let \(D_1\) be the <strong>front depth of field</strong> and \(D_2\) be the <strong>back depth of field</strong>. By similar triangles we get:</p>
+
+\[\frac{D_1}{CU/f} = \frac{U-D_1}{f/N}\]
+
+<p>which gives an expression for the front depth of field:</p>
+
+\[D_1 = \frac{NCU^2}{f^2+NCU}\]
+
+<p>Similarly, the back depth of field is:</p>
+
+\[D_2 = \frac{NCU^2}{f^2-NCU}\]
+
+<p>We sum those to get the total depth of field:</p>
+
+\[D = D_1 + D_2 = \frac{2NCU^2f^2}{f^4-N^2C^2U^2} \tag{1}\]
+
+<p>The \(N^2C^2U^2\) term can be ignored when the conjugate circle of confusion is small relative to the aperture,<sup id="fnref:conj" role="doc-noteref"><a href="#fn:conj" class="footnote" rel="footnote">4</a></sup> giving the final formula for depth of field:</p>
+
+\[D = \frac{2NCU^2}{f^2} \tag{2}\]
+
+<p>While it may not be the most accurate formula, it does illustrate the relationships between its component variables for reasonable object distances. An interactive depth of field applet can be found <a href="https://graphics.stanford.edu/courses/cs178-14/applets/dof.html">here</a>.</p>
+
+<h2 id="hyperfocal-distance">Hyperfocal distance</h2>
+
+<p>The back depth of field becomes infinite if:</p>
+
+\[U = \frac{f^2}{NC} \triangleq H\]
+
+<p>In that case, the front depth of field becomes:</p>
+
+\[D_1 = \frac{NCU^2}{f^2-NCU} = \frac{H}{2}\]
+
+<p>That is, if the object distance is set to the <strong>hyperfocal distance</strong> \(H\) (equivalently, if you focus at \(H\)), everything from distance \(\frac{H}{2}\) to infinity will be in focus. It’s a good number to know on its own, especially for certain use cases like landscape photography.</p>
+
+<p>We can also express the depth of field in terms of \(H\). Without disregarding the term \(U^2N^2C^2\) in the denominator of eq. 1, we get:</p>
+
+\[D = \frac{2HU^2}{H^2-U^2}\]
+
+<p>Now, another perspective on what it means to ignore the term \(U^2N^2C^2\), is that the hyperfocal distance is much larger than the object distance, or \(U^2 \ll H^2\). If so, then the formula reduces to eq. 2, or equivalently:</p>
+
+\[D = \frac{2U^2}{H}\]
+
+<p>So the simplified depth of field formula, eq 2, relies on the object distance \(U\) falling within a “nice” range, roughly specified by:</p>
+
+\[f\ll U \ll H\]
+
+<h2 id="macro-depth-of-field">Macro Depth of Field</h2>
+
+<p>Our derivation for the depth of field doesn’t quite work for macro lenses, because of the assumption that \(f=s_i\). Discarding it, the accurate formula for small object distances can be stated, in terms of \(M\):</p>
+
+\[D_{\text{macro}}=\frac{2NC(M+1)}{M^2} \tag{3}\]
+
+<h2 id="other-derivations">Other Derivations</h2>
+
+<p>The derivations above use the \(f=s_i\) approximation pretty early, which makes the calculations easier but gives less general formulas. In particular, the general versions would better convey where the macro version comes from. Of course there’s even more complicated versions dealing with things like thick lenses. <a href="https://www.largeformatphotography.info/articles/DoFinDepth.pdf">Here</a> and <a href="https://www.imajtrek.com/new_page_10.htm">here</a> are some more complete derivations.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>N,C,U,f</th>
+      <th>H</th>
+      <th>M</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>any \(U\)</td>
+      <td>\(\frac{2NCUf^2(U-f)}{f^4-N^2C^2(U-f)^2}\)</td>
+      <td>\(\frac{2HU(U-f)}{H^2-(U-f)^2}\)</td>
+      <td>\(\frac{2NC(M+1)}{M^2-\left(\frac{NC}{f}\right)^2}\)</td>
+    </tr>
+    <tr>
+      <td>\(f\ll U\)</td>
+      <td>\(\frac{2NCU^2f^2}{f^4-N^2C^2U^2}\)</td>
+      <td>\(\frac{2HU^2}{H^2-U^2}\)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>\(U\ll H\)</td>
+      <td>\(\frac{2NC(U-f)}{f^2}\)</td>
+      <td>\(\frac{2U(U-H)}{H}\)</td>
+      <td>\(\frac{2NC(M+1)}{M^2}\)</td>
+    </tr>
+    <tr>
+      <td>\(f\ll U\ll H\)</td>
+      <td>\(\frac{2NCU^2}{f^2}\)</td>
+      <td>\(\frac{2U^2}{H}\)</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The table shows several variations of the formula, depending on the assumptions made on the object distance \(U\), and the particular terms used.<sup id="fnref:yourself" role="doc-noteref"><a href="#fn:yourself" class="footnote" rel="footnote">5</a></sup></p>
+
+<p>Finally, any method relies on the Gaussian Lens formula, and therefore the paraxial approximation.</p>
+
+<h1 id="depth-of-field-in-practice">Depth of Field In Practice</h1>
+
+<p>For intuition’s sake, depth of field is simplified by necessity. Most of the conclusions drawn below use the simpler versions of the equations, and therefore apply to midrange distances. Some <a href="https://theonlinephotographer.typepad.com/the_online_photographer/2009/06/depth-of-field-hellthe-sequel.html">people</a> will bemoan these approximations, but as long as we’re aware of their limitations, it shouldn’t be a problem.</p>
+
+<h2 id="basic-relationships">Basic Relationships</h2>
+
+<p>We use eq. 2 for the observations below.</p>
+
+<p><img src="/assets/images/optics/doffnumber.png" alt="doffnumber.png" width="300" /></p>
+
+<p>Depth of field is linear with f-number.</p>
+
+<p><img src="/assets/images/optics/dofsubjectdistance.png" alt="dofsubjectdistance.png" width="600" /></p>
+
+<p>Depth of field is quadratic with object distance.</p>
+
+<p><img src="/assets/images/optics/doffocallength.png" alt="doffocallength.png" width="600" /></p>
+
+<p>Depth of field is inverse-quadratic with focal length.</p>
+
+<h2 id="dolly-zoom">Dolly Zoom</h2>
+
+<p>Recall in a dolly zoom, the magnification of the subject stays constant by increasing both object distance and focal length in a principled manner.</p>
+
+<p>By eq. 3, when magnification is held constant, the depth of field depends on neither focal length nor object distance. Due to perspective distortion, however, the blurriness of the background will change, since the FOV has changed and the blurred elements take up a different amount of screen space.</p>
+
+<h2 id="sensor-size">Sensor Size</h2>
+
+<p>As the sensor size goes down:</p>
+<ul>
+  <li>the focal length tends to go down to maintain FOV</li>
+  <li>the pixel size tends to go down to maintain resolution, which makes the circle of confusion smaller</li>
+</ul>
+
+<p>Focal length has a greater effect (squared, compared to linear, from eq. 2) than circle of confusion, so generally speaking, as sensor size \(\times 2\), depth of field is \(\times \frac{1}{2}\).</p>
+
+<h2 id="circle-of-confusion">Circle of Confusion</h2>
+
+<p>The circle of confusion depends on many things, including: the sensing medium, reproduction medium, viewing distance, human vision, etc. Some typical cases:</p>
+<ul>
+  <li>35 mm film to print: .02 mm (on negative)</li>
+  <li>high-end SLR: 6 μm (1 pixel)</li>
+  <li>can go smaller when downsizing for the web or for a poor lens</li>
+</ul>
+
+<p>The lectures show example depth of field calculations for different photographs taken by Levoy, including viewing considerations. They’re too large to reproduce, and it would be pointless to show downsized ones, so I urge you to check out the lecture slides.</p>
+
+<h2 id="bokeh">Bokeh</h2>
+
+<p><img src="/assets/images/optics/bokeh.jpg" alt="bokeh.jpg" width="400" /></p>
+
+<p><strong>Bokeh</strong> is the appearance of small out-of-focus features in a photograph with shallow depth of field. The shape of the features are determined by the boundary of the aperture. In the picture above, the slightly closed blades on the aperture produce octagonal lights. Not every image has noticeable bokeh; it is most pronounced with point light sources.</p>
+
+<p>It’s pronounced <em>bow-cuh</em>!</p>
+
+<h2 id="seeing-through-occlusions">Seeing Through Occlusions</h2>
+
+<p><img src="/assets/images/optics/dofocclusion.png" alt="dofocclusion.png" width="400" /></p>
+
+<p>The depth of field blur is not the same as a convolution. Using a shallow enough depth of field, we can eliminate occlusions, which would not be possible by blurring a static image featuring the occlusion. Apparently a chain link fence sat between the camera and the owl in the picture above, but it is not visible. Some of the rays from the owl got blocked, but some made it around the fence wire. A given pixel, then, may have a mixture of colors from the owl and the fence, and the result on the image is not an outright occlusion, but decreased contrast.</p>
+
+<h1 id="lens-aberrations">Lens Aberrations</h1>
+
+<p>Let’s recap the assumptions we made so far:</p>
+<ul>
+  <li>Geometric instead of physical optics</li>
+  <li>Spherical lenses</li>
+  <li>Paraxial approximation of ray angles</li>
+  <li>Thin lenses instead of thick, or even compound lenses</li>
+</ul>
+
+<p>There’s seven main types of lens aberrations. We can divide lens aberrations into:</p>
+<ul>
+  <li><strong>chromatic aberrations (CA)</strong>: two aberrations rooted in the varying wavelengths of light</li>
+  <li><strong>monochromatic aberrations</strong>: five Seidel aberrations for monochromatic light</li>
+</ul>
+
+<p>Another way to</p>
+
+<h2 id="chromatic-aberrations">Chromatic Aberrations</h2>
+
+<p><img src="/assets/images/optics/prism.png" alt="prism.png" width="500" /></p>
+
+<p>The index of refraction varies by wavelength! That’s how an optical prism works after all. The <strong>dispersion</strong> is the variation in refractive index by wavelength. It’s modeled by some function, for instance the <strong>Sellmeier equation</strong> (right subimage above), outputting a single refractive index for a given wavelength.</p>
+<ul>
+  <li>Higher dispersion means greater variation</li>
+  <li>Amount of variation depends on the material</li>
+  <li>Index is typically higher for blue than red, meaning blue light bends more</li>
+</ul>
+
+<p>There’s two kinds of CA:</p>
+<ul>
+  <li><strong>longitudinal</strong>
+    <ul>
+      <li><em>cause</em>: lens has different effective focal lengths for different wavelengths of light</li>
+      <li><em>effect</em>: different colors on the image will be out of focus</li>
+    </ul>
+  </li>
+  <li><strong>lateral</strong>
+    <ul>
+      <li><em>cause</em>: different colors have different magnifications</li>
+      <li><em>effect</em>: colors on the image will be magnified (with respect to the optical axis) different amounts, producing “color fringing” towards the edges</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/images/optics/chromaticaberration.png" alt="chromaticaberration.png" width="500" /></p>
+
+<p>It’s possible to correct longitudinal CA with an additional lens element. The right subimage shows an <strong>achromatic doublet</strong>, composed of a normal convex element and a complementary concave element with different dispersions (crown and flint refer to the different glass types). By adjusting the dispersions, we can correct at two wavelengths. In the right subimage, the doublet is designed so red and blue light are aligned. Though green wavelengths are imperfectly corrected, the overall dispersion is greatly reduced. Longitudinal CA can be also be corrected by lowering the aperture, so the light hits the lens closer to the normal (I think), limiting dispersion.</p>
+
+<p>Lateral CA can be somewhat corrected either with a lens construction symmetrical about the aperture, or with software.</p>
+
+<p><img src="/assets/images/optics/chromaticab.gif" alt="chromaticab.gif" width="400" /></p>
+
+<p>The two kinds of chromatic aberration are shown above side-by-side. Notice how longitudinal CA takes the form of out-of-focus elements spread uniformly across the whole image. In lateral CA we can clearly see the radial magnification of different colors, with a stronger effect at the edges.</p>
+
+<h2 id="spherical-aberrations">Spherical Aberrations</h2>
+
+<p>Remember the goal of a lens is to focus light rays at a point.</p>
+
+<p><img src="/assets/images/optics/lenstypes.png" alt="lenstypes.png" width="250" /></p>
+
+<p>The lens shape which focuses incoming rays to a single point is actually a hyperboloid. In contrast, a spherical lens exhibits what’s called <strong>spherical aberration</strong>, which can be corrected by stopping down the aperture.</p>
+
+<p><img src="/assets/images/optics/softfocus.jpg" alt="softfocus.jpg" width="400" />
+<em>Left: soft focus on; right: soft focus off</em></p>
+
+<p>Spherical lenses are more common simply because they’re easier to make. It’s still possible to buy a “soft focus” lens, which intentionally does not correct spherical aberration.</p>
+
+<p><img src="/assets/images/optics/expkernel.png" alt="expkernel.png" width="150" /></p>
+
+<p>Fun fact: the soft focus effect is equivalent to a post-processing convolution with the exponential kernel.</p>
+
+<h2 id="coma">Coma</h2>
+
+<p><img src="/assets/images/optics/coma.png" alt="coma.png" width="200" /></p>
+
+<p><strong>Coma</strong> is when the magnification varies based on distance from the optical axis, similar to lateral CA. Unlike lateral CA, it can be reduced by stopping down the aperture.</p>
+
+<h2 id="astigmatism">Astigmatism</h2>
+
+<p><img src="/assets/images/optics/astigatism.png" alt="astigatism.png" width="500" /></p>
+
+<p><strong>Astigmatism</strong> is when rays in the transverse plane (x-z plane) focus at a different distance from the rays in the sagittal plane (y-z plane). There’s two kinds:</p>
+<ul>
+  <li><strong>opthalmic</strong>: due to radially asymmetric (oblong) lens</li>
+  <li><strong>optical</strong>: even for radially symmetric lens; the third-order aberration</li>
+</ul>
+
+<p>It can be reduced by stopping down the aperture.</p>
+
+<p><img src="/assets/images/optics/astigmatismopthalmic.png" alt="astigmatismopthalmic.png" width="300" /></p>
+
+<p>The effect is shown above. Note that vertical or horizontal focus should be different in strength, or else it’s just a normal, out-of-focus lens.</p>
+
+<h2 id="field-curvature">Field Curvature</h2>
+
+<p><strong>Field curvature</strong> refers to the fact that spherical objects focus a curved surface in object space onto a curved surface in image space. If the object surface is flat, the corresponding image surface must be even more curved. Only some ring on a flat imaging plane will be in focus. It can be fixed by closing down the aperture.</p>
+
+<p><img src="/assets/images/optics/fieldcurvature.png" alt="fieldcurvature.png" width="300" /></p>
+
+<p>The top subimage shows the required object and image surfaces for a focused image using a spherical lens. The bottom subimages show different ranges of radii in focus.</p>
+
+<h2 id="distortion">Distortion</h2>
+
+<p><img src="/assets/images/optics/distortion.jpg" alt="distortion.jpg" width="500" /></p>
+
+<p>There’s three kinds of distortion:</p>
+<ul>
+  <li><strong>pincusion</strong>: magnification increases further from the optical axis</li>
+  <li><strong>barrel</strong>: magnification decreases further from the optical axis</li>
+  <li><strong>mustache</strong>: mix of the two above</li>
+</ul>
+
+<p>It is easily correctable with software.</p>
+
+<p><strong>Clarification</strong>: From the image above, it might look like the magnification doesn’t change along the horizontal and vertical axes, but it does, and would be visible with a larger grid.</p>
+
+<h2 id="not-perspective">NOT Perspective</h2>
+
+<p>Notice how perspective isn’t in the list. It’s <em>not</em> a lens distortion or aberration! Perspective can only produce “distortion” in a subjective sense, taking into account an object’s typical viewing distance.</p>
+
+<h1 id="other-lens-artifacts">Other Lens Artifacts</h1>
+
+<p>There are several other effects besides aberrations, that may or may not be desired.</p>
+
+<h2 id="veiling-glare">Veiling Glare</h2>
+
+<p><img src="/assets/images/optics/veilingglare1.jpg" alt="veilingglare1.jpg" width="400" /></p>
+
+<p><strong>Veiling glare</strong> is a glare lowering contrast throughout the image.</p>
+
+<p><img src="/assets/images/optics/veilingglare.png" alt="veilingglare.png" width="300" /></p>
+
+<p>At every interface, both refraction and reflection occur. The image above shows how a few reflections can cause a ray from one source to produce two outgoing rays. Usually more light refracts than it reflects, but the light coming from the secondary rays is enough to lower the contrast of the image. It can be reduced by anti-reflection coatings to block unwanted reflections, and lens hoods to block excessive incoming light.</p>
+
+<h2 id="lens-flare">Lens Flare</h2>
+
+<p><img src="/assets/images/optics/lensflare.jpg" alt="lensflare.jpg" width="400" /></p>
+
+<p><strong>Lens flares</strong> (or <strong>ghosting</strong>) are structured artifacts which move predictably around the image based on the direction of the camera (it’s easier to see what it is than to try to explain it). The image above includes a special case where the light source looks star-shaped, called a <strong>starburst</strong>. Lens flares can be reduced with a lens hood, or by moving the light source out of the frame.</p>
+
+<h2 id="vignetting">Vignetting</h2>
+
+<p><img src="/assets/images/optics/vignetting.png" alt="vignetting.png" width="300" /></p>
+
+<p><strong>Vignetting</strong> is the darkening of an image around the edges. From another perspective, it is the soft boundary of the image circle coming into view.</p>
+
+<p><img src="/assets/images/optics/vignetting1.png" alt="vignetting1.png" width="300" /></p>
+
+<p>The first kind is <strong>optical vignetting</strong>, due to the distance traveled from the lens to the sensor. In the diagram above, we see several things happening, all based on the angle \(\theta\) the pixel makes lies above the horizontal:</p>
+<ul>
+  <li>Irradiance is proportional to the projected area of aperture as seen by the sensor. In other words, at point \(H\), the sensor sees the aperture as an ellipse with less area compared to the circle that point \(A\) would see. This area decreases as \(\cos\theta\).<sup id="fnref:projellipse" role="doc-noteref"><a href="#fn:projellipse" class="footnote" rel="footnote">6</a></sup></li>
+  <li>Irradiance is proportional to the projected area of the pixel as seen by the aperture. Basically, the previous effect works backwards, with the aperture seeing an stretched out pixel at \(H\) compared to \(A\), with area also decreasing as \(\cos\theta\).</li>
+  <li>Irradiance is proportional to squared distance from aperture to pixel, and distance rises as \(1/\cos\theta\).</li>
+  <li>Combining all three, light drops as \(\cos^4\theta\).</li>
+</ul>
+
+<p><img src="/assets/images/optics/vignetting2.png" alt="vignetting2.png" width="600" /></p>
+
+<p>There’s also <strong>optical vignetting</strong>, where the light coming from wide angles is blocked by the barrel of the lens, especially noticeable for wide apertures, as seen in the bottom-left lens from the left subimage above. The main result is once again a decrease in light on the edges. Since the effective shape of the aperture changes, so does the bokeh (if present) towards the edges of an image, known as the <strong>cat’s eye effect</strong>.</p>
+
+<p>There’s <strong>mechanical vignetting</strong>, caused by incorrect add-ons for the lens, or a lens whose image circle is too small for the sensor. In both cases, the image shows a relatively sharp cutoff to black in the shape of whatever obstacles lie in front of the lens.</p>
+
+<p>Finally, there’s <strong>pixel vignetting</strong> due to sensor construction. For light coming in at an angle, the walls of the pixel cast shadows, reducing light captured at the edges of the sensor.</p>
+
+<p>Unlike the previous two artifacts, vignetting is digitally correctable, although noise might increase as pixels are brightened. Optical vignetting can be lowered by decreasing the aperture, and mechanical vignetting is eliminated by using compatible camera parts.</p>
+
+<h2 id="diffraction">Diffraction</h2>
+
+<p>Here we’ll briefly dip our feet into the wave aspects of light. <strong>Diffraction</strong> is when light spreads out as it passes through an aperture. The result is a slight blurring of the image (yet again). When diffraction causes a noticeable blur, the lens is said to have become <em>diffraction limited</em>.</p>
+
+<p>The amount of spreading increase as the aperture diameter <em>decreases</em> and the distance from the sensor <em>increases</em>, so the blur varies with \(N=\frac{f}{A}\). It also depends on pixel size, just like depth of field, and the wavelength of the light. In practice, diffraction only comes into play around at</p>
+
+<p>Note: Diffraction is also responsible for the image circle, and hence vignetting.</p>
+
+<h1 id="lens-systems">Lens Systems</h1>
+
+<h2 id="telephoto">Telephoto</h2>
+
+<p><img src="/assets/images/optics/telephoto.png" alt="telephoto.png" width="400" /></p>
+
+<p>A <strong>telephoto lens</strong> has a long focal length at a compressed size. Normally, a convex lens would have to be positioned at the middle line in the diagram above, at distance \(f\) from the sensor. To fit the same lens in a more compact space, the strength of the convex lens is boosted, and it’s combined with a concave lens to refocus the rays at the original point, as in figure (a). Figure (b) shows a <strong>reverse telephoto lens</strong> using the opposite mechanism, in order to make room for a reflex mirror in an SLR, for instance.</p>
+
+<p><img src="/assets/images/optics/telephoto1.png" alt="telephoto1.png" width="600" /></p>
+
+<p>Here is one of Levoy’s drawings, which might be clearer. The blue lens is the original, and the green is the telephoto combination. They have the same focal length.</p>
+
+<p><img src="/assets/images/optics/telephoto2.png" alt="telephoto2.png" width="600" /></p>
+
+<p>Here’s a comparison.</p>
+
+<h2 id="zoom">Zoom</h2>
+
+<p>Zoom lenses have many components, but allow for variable focal length.</p>
+
+<p><img src="/assets/images/optics/zoom.png" alt="zoom.png" width="400" /></p>
+
+<p>Only two elements are shown above, but the point is that the different elements have to move at varying rates to offer a linear zoom.</p>
+
+<p>You can experiment with zoom on an interactive applet found <a href="https://graphics.stanford.edu/courses/cs178-14/applets/zoom.html">here</a>.</p>
+
+<h2 id="lens-design">Lens Design</h2>
+
+<p><img src="/assets/images/optics/lenssoftware.png" alt="lenssoftware.png" width="400" /></p>
+
+<p>Modern lens systems are designed with software, using optimization to craft good lens recipes. Usually they do not optimize the selection and arrangement of lens elements, instead minimizing aberrations by adjusting the surface shapes. The recipes for modern cameras are kept secret; supposedly even the patents for commercial lenses don’t reveal the exact recipe.</p>
+
+<h1 id="examples">Examples</h1>
+
+<h2 id="eyeglasses-i">Eyeglasses I</h2>
+
+<p><strong>Q:</strong> The professor has glasses with the prescription:</p>
+<ul>
+  <li>right eye: -.75 diopters</li>
+  <li>left eye: -1.00 diopters</li>
+</ul>
+
+<p>What’s wrong with the professor’s eyes?</p>
+
+<p><strong>A:</strong> The professor has myopia (nearsightedness).</p>
+
+<p><img src="/assets/images/optics/eyeproblems.png" alt="eyeproblems.png" width="600" /></p>
+
+<p>His eye is stronger than normal, with a focal point in front of the retina (which we know since the diagram shows parallel incoming rays). A concave lens is needed to “weaken” it, so the light hits the retina properly. Note that nearby objects will converge further back based on the Gaussian lens formula, and with the lens they may now focus <em>behind</em> the retina. The professor will need to remove his glasses to see close things properly.</p>
+
+<h2 id="macro-lenses">Macro Lenses</h2>
+
+<p><strong>Q:</strong> How can the Casio EX-F1 at 73mm and the Canon MP-E 65mm macro, which have similar \(f\)’s, have such different focusing distances?</p>
+
+<p><strong>A:</strong> Because macro lenses are built to allow long \(s_i\), which requires lower \(s_o\), given similar \(f\).</p>
+
+<h2 id="close-up-filters">Close-Up Filters</h2>
+
+<p><strong>Q:</strong> If we attach a close-up filter of power \(\frac{1}{500\text{mm}}\) to a lens with focal length \(f=200\text{mm}\) and minimum object distance \(s_o=1000\text{mm}\),<sup id="fnref:wrong" role="doc-noteref"><a href="#fn:wrong" class="footnote" rel="footnote">7</a></sup> how close can we focus on the object?</p>
+
+<p><strong>A:</strong> By the Gaussian lens formula, in order to change the object distance \(s_o\) we have to change either the image distance \(s_i\) or the focal length \(f\). What a close-up filter allows you to do is reduce the object distance for a <em>fixed image distance</em> by tweaking the overall focal length. Remember, for a given focal length, a camera’s minimum focus distance is based on the furthest the sensor can get from the lens.</p>
+
+<p><img src="/assets/images/optics/closeup.png" alt="closeup.png" width="500" /></p>
+
+<p>By the Gaussian lens formula, the image distance for the lens without the filter, corresponding to the minimum object distance, must be:</p>
+
+\[s_i = \frac{1}{\frac{1}{f}-\frac{1}{s_o}} = \frac{1}{\frac{1}{200\text{mm}} -\frac{1}{1000\text{mm}}} = 250\text{mm}\]
+
+<p>Now using the close-up filter on the lens (set at the same focal length as before), the combined power is:</p>
+
+\[\begin{align*}
+    \frac{1}{200 \text{mm}} + \frac{1}{500\text{mm}} &amp;= \frac{1}{143\text{mm}}\\[1em]
+    5.0 + 2.0 &amp;= 7.0 \text{ diopters}
+\end{align*}\]
+
+<p>So at the minimum in-lens image distance, the close-up filter allows the object distance to be:</p>
+
+\[s_o = \frac{1}{\frac{1}{f}-\frac{1}{s_i}} = \frac{1}{\frac{1}{143\text{mm}} -\frac{1}{250\text{mm}}} = 334\text{mm}\]
+
+<p>That’s about a \(\times 3\) improvement over 1000 mm!</p>
+
+<p>We can measure the magnification with and without the lens.</p>
+<ul>
+  <li>with: \(\frac{250}{1000} = 1:4\)</li>
+  <li>without: \(\frac{250}{334} = 3:4\)</li>
+</ul>
+
+<p><img src="/assets/images/optics/closeup1.png" alt="closeup1.png" width="500" /></p>
+
+<p>And there’s the side-by-side comparison. It works!</p>
+
+<p><strong>Clarification:</strong> the close-up filter reduces the focal length to 145 mm, which is still in the range of the lens (45-200 mm), so why not just reduce the focal length without the filter? For this lens, a lower focal length gives a lower image distance (and it may be true for all zoom lenses), and consequently we just wouldn’t be able to get as close to the object. Here’s the full explanation from the man himself:</p>
+
+<blockquote>
+  <p>What I may have failed to make clear enough during lecture is, while the modified focal length of 143mm with the close-up filter does lie within the range already offered by the 45-200mm zoom lens, with the filter you are achieving that focal length while the lens is configured for 200mm. In that configuration, the barrel is fully extended, producing an image distance of 250mm, and (applying the Gaussian lens formula) an object distance so of 334mm. If the lens without the closeup filter were configured for this same focal length of 143mm the barrel would not be fully extended, so the image distance would be less than 250mm (I don’t know how much less - it depends on the lens mechanics), and the object distance would be longer than 334mm. Or if the lens without the closeup filter were configured for a focal length of 200mm, even though the barrel is fully extended and the image distance is 250mm, the object distance would be 1000mm. Thus, the filter allows you to combine the maximum barrel extension (hence the longest possible image distance) with an otherwise impossibly short object distance, producing higher magnification.</p>
+</blockquote>
+
+<h2 id="eyeglasses-ii">Eyeglasses II</h2>
+
+<p><strong>Q:</strong> The professor’s eyes are worse than he let on. His glasses actually have the prescription:</p>
+<ul>
+  <li>right eye: -0.75 -1.00 axis 135</li>
+  <li>left eye: -1.00 -0.75 axis 180</li>
+</ul>
+
+<p>What’s wrong with the professor’s eyes?</p>
+
+<p><strong>A:</strong> The professor has myopia <em>and</em> astigmatism.</p>
+
+<p><img src="/assets/images/optics/astigmatism1.png" alt="astigmatism1.png" width="300" /></p>
+
+<p>In glasses, astigmatism can be fixed with an additional cylindrical lens component (in addition to the concave lens needed for myopia); cylindrical refers to the curvature of the surface, not to the shape of the entire lens. Levoy drew the picture above to help explain, but unfortunately I don’t understand it.</p>
+
+<h2 id="chromatic-aberrations-for-humans">Chromatic Aberrations For Humans</h2>
+
+<p><strong>Q:</strong> Why don’t humans experience chromatic aberration?</p>
+
+<p><strong>A:</strong> The word goes, our eye produces it, but our brain corrects it. In the lecture, someone asked a followup on the possibility that it has something to do with the reduced resolution of our retinas at the edges. Levoy thought it was an interesting point, and so do I.</p>
+
+<h1 id="unresolved-questions">Unresolved Questions</h1>
+
+<p>These are questions I had. Skip if you’re clueless ha</p>
+
+<h2 id="paraxial-approximation-1">Paraxial Approximation</h2>
+
+<p>I’m confused about whether the paraxial approximation means:</p>
+<ul>
+  <li>the light ray makes a small angle with the horizontal</li>
+  <li>the light ray hits the lens at a low height, i.e. giving a low \(e\)</li>
+</ul>
+
+<p>If it’s the first one, then I don’t understand how the paraxial approximation is used  (via the Gaussian lens formula) for the derivation of macro depth of field, since the angle could be large. If it’s the second one, then it allows the angle to be large, but that seems to destroy the trigonometric approximations.</p>
+
+<h2 id="frustrum-shape">Frustrum Shape</h2>
+
+<p>I’m pretty certain that the in-focus planes corresponding to each object plane converge to the focal point and not the optical center. I’m just not sure if Levoy was also talking about a separate frustrum converging to the optical center somehow.</p>
+
+<h2 id="chromatic-aberrations-1">Chromatic Aberrations</h2>
+
+<p>I’m confused about the mathematical basis for longitudinal and lateral CA. They are supposedly caused by variation in magnification and focal length, based on the wavelength of light. We can draw this connection by:</p>
+<ul>
+  <li>relating both magnification and focal length to image and object distance by their respective definitions</li>
+  <li>relating those to refractive index with the lens maker’s formula</li>
+  <li>relating the refractive index to wavelength</li>
+</ul>
+
+<p>Considering object distance is fixed, what really matters is image distance. So how can the two types of CA occur separately? Why doesn’t an achromatic doublet fix both types of CA, if it corrects the image distances for different wavelengths?</p>
+
+<h2 id="aberrations-in-general">Aberrations In General</h2>
+
+<p>I have more questions about all the aberrations.</p>
+<ul>
+  <li>Why can’t we fix lateral CA by stopping down the aperture, while we can do so for monochromatic oblique aberrations?</li>
+  <li>How does stopping down the aperture help for any of the aberrations it can reduce?</li>
+  <li>What’s the difference between spherical aberration and field curvature?</li>
+  <li>What’s the difference between coma and pincushion distortion?</li>
+</ul>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:cropfactor" role="doc-endnote">
+      <p>Possibly helpful note: The index of refraction is like the crop factor, in that we’re comparing all measurements to a baseline measurement. For crop factor it was the 35 mm sensor size, and for index of refraction it is the speed of light. <a href="#fnref:cropfactor" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:change" role="doc-endnote">
+      <p>I modified the notation from Levoy so it would be easier to label refractions on both the left and right side, and mostly finished the derivation of the Lensmaker’s formula, which he skips for brevity. I basically follow Hecht, except he makes the transmitted rays from the left-side interface converge to a real image at \(P\) (figure 5.6), but when introducing the right-side interface, he makes the same rays diverge for no apparent reason, making a virtual image at \(P'\) (figure 5.14). <a href="#fnref:change" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:size" role="doc-endnote">
+      <p>The formula technically doesn’t say anything about relative sizes, but it’s trivial to show the relationship with magnification, which we show later in this note. <a href="#fnref:size" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:conj" role="doc-endnote">
+      <p>Levoy gives that explanation in the lecture, and here I explain his explanation. The denominator is \(f^4-N^2C^2U^2\), and by algebra we can basically discard the right term if \(f^4 \gg N^2C^2U^2\). Here’s the simplification:</p>
+
+\[\begin{align*}f^4&amp;\gg N^2C^2U^2\\ f^2&amp;\gg NCU\\ \frac{f}{N}&amp;\gg\frac{CU}{f}\end{align*}\]
+
+      <p>The left side is the aperture, and the right is the conjugate circle of confusion. <a href="#fnref:conj" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:yourself" role="doc-endnote">
+      <p>If you just want to jump between formulas, all you really need is (1) \(M=\frac{f}{U-f}\), introduced in the Magnification section, and (2) \(H=\frac{f^2}{NC}+f\approx \frac{f^2}{NC}\); when we introduced they hyperfocal distance we used the approximation to start, but the true expression may be necessary. <a href="#fnref:yourself" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:projellipse" role="doc-endnote">
+      <p>I found this <a href="https://math.stackexchange.com/questions/2385120/area-of-a-circle-as-it-changes-to-an-ellipse-when-viewing-at-different-angles">SO thread</a> on the topic. <a href="#fnref:projellipse" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:wrong" role="doc-endnote">
+      <p>I think the lens has a minimum focus distance of \(1000\text{mm}\), but in the slides Levoy says minimum object distance. There may be some kind of discrepancy in the numbers but the example is still illustrative so I kept it. <a href="#fnref:wrong" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div>
+
+  <div class="post-bibliography">
+    
+
+
+<div class="post-bibliography">
+  <ol class="bibliography"></ol>
+</div>
+  </div>
+
+  <div class="post-tags">
+    Tags:&nbsp; 
+    <span>
+      <!-- 
+        
+        <a class="post-tag" href="/tag/optics"><nobr>optics</nobr>&nbsp;</a>
+       -->
+          
+          <a href="/tag/optics/">optics&nbsp;</a>
+        </span>
+  </div>
+
+  <div class="page-navigation"><a class="prev" href="/note/2021/10/20/image-formation.html">&larr; Digital Photography Notes - Image Formation</a></div>  <div id="disqus_thread"></div>
+  <script>
+    // var disqus_config = function () {
+    //   this.page.url = '/note/2021/11/01/optics.html';
+    //   this.page.identifier = '/note/2021/11/01/optics.html';
+    // };
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://michalp21-github-io.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/note/2021/11/01/optics.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer">
+  2021 &copy; by Michal Porubcin. All Rights Reserved. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>. View on <a href="https://github.com/michalp21/michalp21.github.io" target="_blank">Github</a>.
+
+  <p>
+    <a href="/feed.xml" target="_blank">
+      <img src="/assets/images/logo_rss.png" />
+    </a>
+    <a href="https://github.com/michalp21" target="_blank">
+      <img src="/assets/images/logo_github.png" />
+    </a>
+  </p>
+
+</footer></body>
+
+</html>

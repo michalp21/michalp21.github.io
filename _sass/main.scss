@@ -53,10 +53,12 @@
 @charset "utf-8";
 
 // Define defaults for each variable.
-$base-font-family: "Petrona", "Cormorant Garamond", "Times New Roman", serif !default;
+$base-font-family: "JetBrains Mono", "Cormorant Garamond", "Times New Roman", serif !default;
+$alt-font-family: "Overpass Mono", "Cormorant Garamond", "Times New Roman", serif !default;
 $code-font-family: "Menlo", "Inconsolata", "Consolas", "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New", monospace;
-$base-font-size:   18px !default;
-$base-font-weight: 400 !default;
+$base-font-size:   14px !default;
+$alt-font-size:   24px !default;
+$base-font-weight: 300 !default;
 $code-font-size:   13px !default;
 // $code-font-weight: 500 !default;
 $small-font-size:  $base-font-size * 0.875 !default;
