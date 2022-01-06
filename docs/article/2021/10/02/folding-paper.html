@@ -23,8 +23,16 @@
   <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
 
   <!-- MathJax for LaTeX -->
+  <script>
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
   <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+
   </script>
 </head>
 <body><header class="site-header">
@@ -103,7 +111,7 @@
 <p>Some potential problems:</p>
 <ul>
   <li>The concept of folding only works for thin objects! If we were to fold something with any thickness, then we would rarely think to fold it along its longest dimension.</li>
-  <li>It might not occur to someone that they are <em>doubling</em> the thickness every fold, which is key to understanding the problem, even without reference to exponents.</li>
+  <li>It might not occur to people that they are <em>doubling</em> the thickness every fold, which is key to understanding the problem, even without reference to exponents.</li>
 </ul>
 
 <p>It’s just a bad example. Here’s a better question:</p>
@@ -156,7 +164,7 @@
 <p>Q5 avoids asking us to project fifty iterations into the future, so it’s not setting us up for failure.<sup id="fnref:simplest" role="doc-noteref"><a href="#fn:simplest" class="footnote" rel="footnote">3</a></sup> Instead of showing us that we <em>don’t</em> tend to think exponentially and leaving it at that, it gives us a simple, alternative perspective so we <em>can</em>: <strong>most of the gains are stuffed at the end</strong>! In the case of daily doubling, <em>half</em> the value of <em>any</em> given day was obtained within one day.</p>
 
 <h2 id="conclusion">Conclusion</h2>
-<p>You might say, “that’s a lot of words just to admit that the puzzle is useful after all.” Listen, I didn’t say it was useless, just overblown. It isn’t necessarilly stated that we <em>can’t</em> think exponentially, but it’s always said with a shrug and a sigh, like some eternal truth. Even worse, we arrive at that conclusion through some paper-folding puzzle, when in reality there’s several things going on:</p>
+<p>You might say, “that’s a lot of words just to admit that the puzzle is useful after all.” Listen, I didn’t say it was useless, just overblown. It isn’t necessarily stated that we <em>can’t</em> think exponentially, but it’s always said with a shrug and a sigh, like some eternal truth. Even worse, we arrive at that conclusion through some paper-folding puzzle, when in reality there’s several things going on:</p>
 <ul>
   <li>Exponentiation is inherently more complicated than multiplication and addition.</li>
   <li>We can’t intuit even linear approximations if they’re literally astronomical.</li>
@@ -190,7 +198,7 @@
       <p>And just for fun, the width and height experience exponential decay: \(215.9*.5^{25}=.00000643\text{mm}\) and \(279.4*.5^{25}=.00000833\text{mm}\), both ending up close to the diameter of a DNA strand. <a href="#fnref:decay" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
     <li id="fn:simplest" role="doc-endnote">
-      <p>It’s the simplest too, and can technically be solved without even understanding exponentiation. In most cases though, people will visualize the growth of the lillies, leading them to think in some way about it. <a href="#fnref:simplest" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p>It’s the simplest too, and can technically be solved without even understanding exponentiation. In most cases though, people will visualize the growth of the lilies, leading them to think in some way about it. <a href="#fnref:simplest" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>

@@ -1,4 +1,334 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-11-02T10:14:13-05:00</updated><id>/feed.xml</id><title type="html">Xn</title><subtitle>Personal Site</subtitle><author><name>Michal Porubcin</name></author><entry><title type="html">Digital Photography Notes - Optics</title><link href="/note/2021/11/01/optics.html" rel="alternate" type="text/html" title="Digital Photography Notes - Optics" /><published>2021-11-01T00:00:00-05:00</published><updated>2021-11-01T00:00:00-05:00</updated><id>/note/2021/11/01/optics</id><content type="html" xml:base="/note/2021/11/01/optics.html">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-06T09:59:18-06:00</updated><id>/feed.xml</id><title type="html">Xn</title><subtitle>Personal Site</subtitle><author><name>Michal Porubcin</name></author><entry><title type="html">Digital Photography Notes - Autofocus and Autoexposure</title><link href="/note/2022/01/05/autofocus-and-autoexposure.html" rel="alternate" type="text/html" title="Digital Photography Notes - Autofocus and Autoexposure" /><published>2022-01-05T00:00:00-06:00</published><updated>2022-01-05T00:00:00-06:00</updated><id>/note/2022/01/05/autofocus-and-autoexposure</id><content type="html" xml:base="/note/2022/01/05/autofocus-and-autoexposure.html">&lt;blockquote&gt;
+  &lt;p&gt;This note is based on lectures 6 and 7 of Levoy’s Digital Photography. It covers autofocus and metering. I found some content irrelevant so I moved them somewhere else for now.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#goals-for-this-note&quot; id=&quot;markdown-toc-goals-for-this-note&quot;&gt;Goals For This Note&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#autofocus&quot; id=&quot;markdown-toc-autofocus&quot;&gt;Autofocus&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#anatomy&quot; id=&quot;markdown-toc-anatomy&quot;&gt;Anatomy&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#autofocus-modes&quot; id=&quot;markdown-toc-autofocus-modes&quot;&gt;Autofocus Modes&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#types-of-autofocus&quot; id=&quot;markdown-toc-types-of-autofocus&quot;&gt;Types of Autofocus&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#phase-detection&quot; id=&quot;markdown-toc-phase-detection&quot;&gt;Phase Detection&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#contrast-detection&quot; id=&quot;markdown-toc-contrast-detection&quot;&gt;Contrast Detection&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#notes&quot; id=&quot;markdown-toc-notes&quot;&gt;Notes&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#alternatives&quot; id=&quot;markdown-toc-alternatives&quot;&gt;Alternatives&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#autoexposure&quot; id=&quot;markdown-toc-autoexposure&quot;&gt;Autoexposure&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#dynamic-range&quot; id=&quot;markdown-toc-dynamic-range&quot;&gt;Dynamic Range&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#metering&quot; id=&quot;markdown-toc-metering&quot;&gt;Metering&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#zone-system&quot; id=&quot;markdown-toc-zone-system&quot;&gt;Zone System&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#metering-modes&quot; id=&quot;markdown-toc-metering-modes&quot;&gt;Metering Modes&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#shooting-modes&quot; id=&quot;markdown-toc-shooting-modes&quot;&gt;Shooting Modes&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#other-exposure-tricks&quot; id=&quot;markdown-toc-other-exposure-tricks&quot;&gt;Other Exposure Tricks&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#examples&quot; id=&quot;markdown-toc-examples&quot;&gt;Examples&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#sunlight-vs-moonlight&quot; id=&quot;markdown-toc-sunlight-vs-moonlight&quot;&gt;Sunlight vs Moonlight&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#unresolved-questions&quot; id=&quot;markdown-toc-unresolved-questions&quot;&gt;Unresolved Questions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;goals-for-this-note&quot;&gt;Goals For This Note&lt;/h1&gt;
+
+&lt;p&gt;This note is based on lectures 6 and 7 of Levoy’s Digital Photography. It covers autofocus and metering. I found some content irrelevant so I moved them somewhere else for now.&lt;/p&gt;
+
+&lt;h1 id=&quot;autofocus&quot;&gt;Autofocus&lt;/h1&gt;
+&lt;p&gt;For a given distance from the lens to the sensor, only one distance from the lens into the scene will be in focus (see &lt;a href=&quot;/note/2021/11/01/optics.html#3d-perspective-transform&quot;&gt;Optics&lt;/a&gt;). In a “poorly focused” image, then, the thing we care about is not at this in-focus distance; see an example below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/unfocused.jpg&quot; alt=&quot;unfocused.jpg&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;anatomy&quot;&gt;Anatomy&lt;/h2&gt;
+&lt;p&gt;Let’s revisit the SLR cross section shown in &lt;a href=&quot;/note/2021/10/20/image-formation.html#single-lens-reflex-slr-camera&quot;&gt;Image Formation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/autofocus.png&quot; alt=&quot;autofocus.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The reflex mirror (big diagonal green line) is actually semi-transparent, letting some light through to another small mirror, which redirects it to an &lt;strong&gt;autofocus&lt;/strong&gt; unit, which adjusts the lens distance (black arrows). When light bounces through to the optical viewfinder, some of it is directed to an &lt;strong&gt;autoexposure&lt;/strong&gt; unit, which will adjust the pupil size. The horizontal green line is called the &lt;strong&gt;focusing screen&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;autofocus-modes&quot;&gt;Autofocus Modes&lt;/h2&gt;
+&lt;p&gt;There’s three main autofocus modes (exact names vary by brand):&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Single-shot AF&lt;/strong&gt;: focuses once then locks the focus&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Continuous AF&lt;/strong&gt;: continuous focus without locking; may intelligently track a subject so focus doesn’t lag&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Automatic AF&lt;/strong&gt;: continuous focus when the subject is determined to be moving; locks focus otherwise&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;types-of-autofocus&quot;&gt;Types of Autofocus&lt;/h2&gt;
+&lt;p&gt;There’s several focusing methods:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;active autofocus&lt;/strong&gt;: uses an active sensor, where the camera emits light or sound and detects how it reflects off the subject&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;passive autofocus&lt;/strong&gt;: calculated only from the light entering the lens.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;phase-based&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;contrast-based&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The video lecture makes the mechanisms behind both types of autofocus so clear and a text summary won’t do them justice. Watch starting &lt;a href=&quot;https://youtu.be/njlDb9-6aOU?t=2060&quot;&gt;here&lt;/a&gt; (timestamped). You can also play with the applets yourself: &lt;a href=&quot;https://sites.google.com/site/marclevoylectures/applets/phase-detection&quot;&gt;phase&lt;/a&gt; and &lt;a href=&quot;https://sites.google.com/site/marclevoylectures/applets/contrast-detection&quot;&gt;contrast&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;phase-detection&quot;&gt;Phase Detection&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/autofocusapplet.png&quot; alt=&quot;autofocusapplet.png&quot; width=&quot;500&quot; /&gt;
+&lt;em&gt;The disparity between the red and green peaks is shown at the bottom.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The light on either side of the optical axis hits the secondary mirror, passes through one of two lenslets, and strikes one of two small CCD sensors. As the image moves in and out of focus on the main image sensor, the images on the CCD sensors shift. The &lt;strong&gt;disparity&lt;/strong&gt; is the distance between the focus points on the CCD sensors, and when reduced past a certain point, the image will be focused on the main sensor. It’s equivalent in principle to depth-from-stereo in computer vision.&lt;/p&gt;
+
+&lt;p&gt;In practice, the signals won’t be single peaks as shown in the video, but more complex waveforms, and the distance to match the signals can be determined by &lt;strong&gt;cross-correlation&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/afpoints.jpg&quot; alt=&quot;afpoints.jpg&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The signals are calculated for small regions called &lt;strong&gt;AF points&lt;/strong&gt; (aka autofocus points, focus points, or focusing points), with each point having its own set of mirrors and CCDs. Higher-end cameras can have over 50 AF points.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/dualtypeautofocus.jpg&quot; alt=&quot;dualtypeautofocus.jpg&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The light entering either lenslet originates on opposite sides of a certain axis, say the vertical. That means horizontal disparities are easily calculated, while vertical ones are not. We can solve this by rotating the image 90 degress, but a better solution is to use &lt;strong&gt;cross-type&lt;/strong&gt; AF points, which doubles the number of mirrors and CCDs per focusing point, and permits disparity calculation on both the horizontal and vertical.&lt;/p&gt;
+
+&lt;p&gt;The relative position of the CCDs also matters, and spreading them out increases the accuracy of the disparity calculation. A &lt;strong&gt;double cross-type&lt;/strong&gt; AF point adds four &lt;em&gt;high precision&lt;/em&gt; CCDs on the far corners of a cross-type AF point to increase the accuracy of the disparity calculation (they are high precision only due to their greater separation). Note that these AF points take up more space so they are saved for the center of the image, and are typically limited to very wide apertures, like \(\geq f/2.8\).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/autofocussensor1.jpg&quot; alt=&quot;autofocussensor1.jpg&quot; width=&quot;500&quot; /&gt;
+&lt;em&gt;Canon 7D autofocus array&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Here’s an example autofocus CCD array represented in several different ways. To understand the diagram, note that the AFP numbers in the table correspond with the numbered white squares in the top subimage, and the horizontal and vertical numbers in the table correspond with the numbered colored CCDs in the middle subimage. Since every AF point in this array happens to be a cross-type (which isn’t necessarily true even in high-end cameras), each horizontal and vertical comes in pairs, hence the a and b for each number.&lt;sup id=&quot;fnref:double&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:double&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; Finally, the bottom subimage shows how the CCDs are shared among the AF points.&lt;/p&gt;
+
+&lt;p&gt;Phase detection has the advantage of knowing how much and in what direction to change focus, based on the disparity, so it’s fast. Most SLRs use phase detection.&lt;/p&gt;
+
+&lt;p&gt;Here’s an excellent &lt;a href=&quot;http://www.exclusivearchitecture.com/?page_id=1291&quot;&gt;article&lt;/a&gt; on autofocus that goes into a little more depth.&lt;/p&gt;
+
+&lt;h2 id=&quot;contrast-detection&quot;&gt;Contrast Detection&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/autofocusapplet2.png&quot; alt=&quot;autofocusapplet2.png&quot; width=&quot;500&quot; /&gt;
+&lt;em&gt;The detected contrast is shown on the right&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;A much simpler system. If the light does not converge at the main sensor, the image will be blurred, and the contrast in a small region will be low. Contrast is calculated using a local &lt;strong&gt;gradient&lt;/strong&gt; of pixel values. The camera will then change focus until it detects that the gradient has reached a maximum value. It’s equivalent in principle to depth-from-focus in computer vision.&lt;/p&gt;
+
+&lt;p&gt;There is no way to tell how much to change at any given time, so the camera has to “hunt” for the best focus, making it slow.&lt;/p&gt;
+
+&lt;p&gt;Most point and shoot and cell phone cameras use contrast detection, as well as DSLRs in live view.&lt;/p&gt;
+
+&lt;h2 id=&quot;notes&quot;&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Both approaches will fail on untextured images! Phase detection may also have trouble with repeating textures.&lt;/li&gt;
+  &lt;li&gt;Both approaches will fail in low light! In that case the camera may light up the scene with an &lt;strong&gt;autofocus lamp&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;Phase detection doesn’t work well for longer focal lengths.&lt;/li&gt;
+  &lt;li&gt;Phase detection can experience calibration errors.&lt;/li&gt;
+  &lt;li&gt;There’s a certain balance between focusing and metering. If the image is unfocused, the metering won’t be accurate, and vice versa. There will probably be some kind of iterative process based on the camera.&lt;/li&gt;
+  &lt;li&gt;Poor autofocus is more noticeable with shallow depth of field.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;alternatives&quot;&gt;Alternatives&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Laser time-of-flight&lt;/strong&gt;: Active autofocus. A beam of light hits some object of interest and the time it takes to return is measured, giving a focus depth. It is fast like phase detection but may fail in the outdoors or on windows.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Hybrid pixel&lt;/strong&gt;: The phase detection system is basically consolidated into single pixels, which are half covered so each pixel detects only the right or left half of the image. It becomes noisy in low light, considering each pixel is effectively cut in half. The pixels are spread throughout the main sensor, so there is no separate autofocus system. Depending on the implementation, the pixels may or may not be used for normal image capture as well; if not, then interpolation is required over the dedicated autofocus pixels. More information and visuals &lt;a href=&quot;http://www.exclusivearchitecture.com/?page_id=1332&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Dual pixel&lt;/strong&gt;: The successor to the hybrid pixel, where pixels are not dedicated to the left or right halves. Instead, each pixel is divided into two sub-pixels for autofocus purposes, and can be combined for regular image capture purposes. Every pixel on the main sensor is a dual pixel, so there’s no interpolation concerns, and the autofocus system has a higher resolution (more data to work with), so it’s less susceptible to noise and faster (but still not as fast as traditional phase detection). More information and visuals &lt;a href=&quot;http://www.exclusivearchitecture.com/?page_id=1342&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;autoexposure&quot;&gt;Autoexposure&lt;/h1&gt;
+&lt;p&gt;Just as a picture can be poorly focused, it can also be poorly exposed. Look at the picture below and you will see what an &lt;em&gt;incorrect&lt;/em&gt; exposure might be.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/overexposed.jpg&quot; alt=&quot;overexposed.jpg&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The picture above is &lt;strong&gt;overexposed&lt;/strong&gt; (colloquially: blown out); the opposite would be &lt;strong&gt;underexposed&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;dynamic-range&quot;&gt;Dynamic Range&lt;/h2&gt;
+&lt;p&gt;The ratio of the minimum and maximum of any signal (here, light) is called the &lt;strong&gt;dynamic range&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Estimated dynamic range of the world:&lt;sup id=&quot;fnref:source&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:source&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;800,000:1 – surface illuminated by the sun vs by the moon&lt;/li&gt;
+  &lt;li&gt;100:1 – diffuse white surface vs diffuse black surface&lt;/li&gt;
+  &lt;li&gt;80,000,000:1 – total dynamic range, from multiplication&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Estimated dynamic range of human vision:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;100:1 – photoreceptors range&lt;/li&gt;
+  &lt;li&gt;10:1 – variation in pupil area&lt;/li&gt;
+  &lt;li&gt;100,000:1 – neural adaptation&lt;/li&gt;
+  &lt;li&gt;100,000,000:1 – total dynamic range, from multiplication&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Estimated dynamic range of media (debatable):&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;40:1 – photographic print (more for glossy paper)&lt;/li&gt;
+  &lt;li&gt;50:1 – artists paints&lt;/li&gt;
+  &lt;li&gt;500:1 – negative film&lt;/li&gt;
+  &lt;li&gt;1,000:1 – LCD display (may be outdated)&lt;/li&gt;
+  &lt;li&gt;4,000:1 – digital SLR sensor&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We can also express how many bits it would take to represent a given dynamic range \(d\) by taking \(\vert\log_2(d)\vert\). For example:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The world – 26 bits!&lt;/li&gt;
+  &lt;li&gt;Digital SLR sensor – 12 bits&lt;/li&gt;
+  &lt;li&gt;JPEG – 8 bits (values from 0-255)&lt;/li&gt;
+  &lt;li&gt;Photographic paper – 5 bits&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We can make a few observations.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Most of the dynamic range of the world comes from illumination differences, i.e. the sheer amount of light the sun can pump out.&lt;/li&gt;
+  &lt;li&gt;Most of the dynamic range of human vision comes from neural adaptation.&lt;/li&gt;
+  &lt;li&gt;The camera sensor cannot see the full dynamic range of the world at once (by a long shot). We have to choose which 4000:1 out of the 80M:1 to capture on the sensor, a problem addressed by &lt;strong&gt;metering&lt;/strong&gt;. The same decision has to be made again when reproducing the image on media, a problem addressed by &lt;strong&gt;tone mapping&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;metering&quot;&gt;Metering&lt;/h2&gt;
+&lt;p&gt;Metering is when a camera uses exposure data to automatically adjust shutter speed and aperture, and correct the exposure.&lt;sup id=&quot;fnref:manual&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:manual&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; Remember, it’s about:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;shifting the limited dynamic range of the camera sensor…&lt;/li&gt;
+  &lt;li&gt;to properly match the portion of the dynamic range of the world…&lt;/li&gt;
+  &lt;li&gt;that’s exhibited in the given scene.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It’s assumed that the given scene itself doesn’t vary more than the range of the sensor, otherwise special techniques like &lt;strong&gt;exposure bracketing&lt;/strong&gt; have to be used.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/greycard.jpeg&quot; alt=&quot;greycard.jpeg&quot; width=&quot;250&quot; /&gt;
+&lt;em&gt;An 18% grey card&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Metering is hard because the camera doesn’t know what it’s looking at semantically. It will instead just assume the world is on average 18% gray, and increase or decrease exposure to match that level. The value 18% gray is called &lt;strong&gt;middle gray&lt;/strong&gt; and lies between 0% reflective (black) and 100% reflective (white).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/meteringintro.png&quot; alt=&quot;meteringintro.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The polar bear and gorilla above are not given their “true” colors due to the middle gray baseline.&lt;/p&gt;
+
+&lt;h2 id=&quot;zone-system&quot;&gt;Zone System&lt;/h2&gt;
+&lt;p&gt;Recall from &lt;a href=&quot;/note/2021/10/20/image-formation.html#the-exposure-triangle&quot;&gt;Image Formation&lt;/a&gt; that exposure is irradiance multiplied with exposure time. While exposure time is the same for every element of an image, the irradiance obviously varies. We can then think about each element in the image as having a separate exposure. We want to align the exposure of each element in a photograph with the brightness of its real-world counterpart.&lt;/p&gt;
+
+&lt;p&gt;Ansel Adams’ zone system offers guidance on just that. There are 11 zones, marked with roman numerals 0-X, and each zone differs by about 1 stop.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;X refers to the brightest white possible from a blank paper.&lt;/li&gt;
+  &lt;li&gt;V refers to middle gray&lt;/li&gt;
+  &lt;li&gt;0 indicates the darkest black reproducible on the paper&lt;/li&gt;
+  &lt;li&gt;numerals in between are given examples from the real world, for example IX is “snow in sunlight”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The zone system was applied to film photography, but the same idea carries over to digital; we simply plan the tones we want for each part of our scene. One way to visualize the tones of an image is with a &lt;strong&gt;histogram&lt;/strong&gt;, which shows the proportion of pixels at each brightness level:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/The-anatomy-of-a-histogram.jpg&quot; alt=&quot;The-anatomy-of-a-histogram.jpg&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Dark pictures will have left-leaning histograms, while bright pictures will be right-leaning. For color images, it can be further split into red, green, and blue histograms.&lt;/p&gt;
+
+&lt;h2 id=&quot;metering-modes&quot;&gt;Metering Modes&lt;/h2&gt;
+&lt;p&gt;The idea of averaging over all pixels and shooting for 18% gray is a bit of an oversimplification. There are several metering modes to choose from.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;center-weighted&lt;/strong&gt;: average with a greater weight on a large center region; suitable for portraits&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;spot&lt;/strong&gt;: average over a small, customizable region, usually the focus point; suitable for small objects of interest&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;matrix/evaluative&lt;/strong&gt;: the most sophisticated averaging method, encompassing many different techniques, and varying across different cameras (explained further below)
+    &lt;ul&gt;
+      &lt;li&gt;the image is divided into zones (the number varies), each zone is processed individually, then recombined&lt;/li&gt;
+      &lt;li&gt;may depend on autofocus point, color, focus distance, local contrast&lt;/li&gt;
+      &lt;li&gt;may learn from a database of images&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/metering-center.jpg&quot; alt=&quot;metering-center.jpg&quot; width=&quot;400&quot; /&gt;
+&lt;em&gt;Center-weighted metering&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/metering-spot.jpg&quot; alt=&quot;metering-spot.jpg&quot; width=&quot;400&quot; /&gt;
+&lt;em&gt;Spot metering&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s discuss evaluative mode in more depth. In most SLRs, the evaluative mode uses a low-res sensor looking at the focusing screen. The idea is to use large pixels or regions to get a high dynamic range.&lt;sup id=&quot;fnref:PNS&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:PNS&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; It’s similar to Adams’ zone system in that we’re determining the global exposure by combining measurements on individual regions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/metering1.png&quot; alt=&quot;metering1.png&quot; width=&quot;800&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here’s an example of low-res images used for metering. What should the exposures be? In particular, should we allow the regions with white pixels to be overexposed?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/metering3.png&quot; alt=&quot;metering3.png&quot; width=&quot;800&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Based on the full resolution images, we might not care that the white pixels in the fire are overexposed, but we might care about the white pixels on the book.&lt;/p&gt;
+
+&lt;p&gt;It’s possible to keep a database of low-res images paired with good settings. To meter a new image, we could find the most similar image in the database and fetch the settings. Another option is to train a learning algorithm to do produce optimal settings for a given image.&lt;/p&gt;
+
+&lt;p&gt;Future approaches might add face detection, (learned) object recognition, personalization based on shooting history or online image collections, or collaborative metering (inspired by collaborative filtering for recommendations).&lt;/p&gt;
+
+&lt;h2 id=&quot;shooting-modes&quot;&gt;Shooting Modes&lt;/h2&gt;
+&lt;p&gt;The shooting mode (aka camera mode) determines what settings the camera controls based on metering:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Auto&lt;/strong&gt;: the camera controls aperture, shutter speed, and ISO (and potentially more)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Program (P)&lt;/strong&gt;: like auto, except you can choose among fixed combinations of aperture and shutter speed.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Aperture priority (A)&lt;/strong&gt;: auto, except you can change aperture&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Shutter priority (S)&lt;/strong&gt;: auto, except you can change shutter speed&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Manual (M)&lt;/strong&gt;: you can change aperture, shutter speed, and ISO&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/modedial.jpg&quot; alt=&quot;modedial.jpg&quot; width=&quot;400&quot; /&gt;
+&lt;em&gt;Typical mode dial on a DSLR&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;other-exposure-tricks&quot;&gt;Other Exposure Tricks&lt;/h2&gt;
+&lt;p&gt;There’s even more ways to get the perfect exposure:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;exposure compensation&lt;/strong&gt;: we can adjust the baseline a few stops higher or lower than 18%
+    &lt;ul&gt;
+      &lt;li&gt;this is the technique used on the polar bear and gorilla in the second column above&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;exposure lock (AE lock)&lt;/strong&gt;: freezes the exposure
+    &lt;ul&gt;
+      &lt;li&gt;you can obtain the desired exposure by pointing your camera somewhere else, locking the exposure, then recomposing your shot and taking the picture&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;exposure bracketing (HDR imaging)&lt;/strong&gt;: useful when the dynamic range of the scene is wider than the camera can capture
+    &lt;ul&gt;
+      &lt;li&gt;the same picture is taken multiple times with different settings in order to capture the dynamic range of different regions of the image (e.g. the sky and the foreground)&lt;/li&gt;
+      &lt;li&gt;they are combined in post, replacing poorly exposed regions in one shot with the correctly exposed regions in another shot&lt;/li&gt;
+      &lt;li&gt;it is popular in phones to have an HDR setting, where the whole process is performed automatically in one press of the shutter button.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;examples&quot;&gt;Examples&lt;/h1&gt;
+&lt;h2 id=&quot;sunlight-vs-moonlight&quot;&gt;Sunlight vs Moonlight&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Q: How many stops do the settings used to take the two images below differ by?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/sunmoon.png&quot; alt=&quot;sunmoon.png&quot; width=&quot;800&quot; /&gt;
+&lt;strong&gt;A:&lt;/strong&gt; First note that the left image was taken during the daytime, and the right image was taken at night. Although they look similarly bright in the images, it will be clear from the shooting settings how different the scenes were in terms of illumination.&lt;/p&gt;
+
+&lt;p&gt;Let’s look at the ratio of each component of the exposure triangle:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Shutter speed: \(8 : \frac{1}{500} \approx 2^{12}\)&lt;/li&gt;
+  &lt;li&gt;Focal length: \(\frac{1}{1.7} : \frac{1}{6.3} \approx 2^2\)&lt;/li&gt;
+  &lt;li&gt;ISO: \(400 : 100 = 2^2\)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Recall that one stop of light is given by a factor of \(\sqrt{2}\) for focal length, but a factor of \(2\) for shutter speed and ISO. So to get our answer we can add all the exponents above, but double the contribution of the focal length, giving \(12 + 2(2) + 2 = 18\). The settings used to take the two images differ by 18 stops!&lt;/p&gt;
+
+&lt;p&gt;Apparently, the images above are JPEGs, and as a result, their brightness doesn’t vary linearly with the brightness of the scene. The JPEG values are related to the RAW values by the following formula:&lt;/p&gt;
+
+\[\text{JPEG value} = (\text{RAW value}/65536)^{1/\gamma} \times 255\]
+
+&lt;p&gt;where \(\gamma=2.1\). The result is a logarithmic function which makes all pixels brighter, but more greatly affects the dark pixels:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/autofocus-and-autoexposure/jpeg_raw.png&quot; alt=&quot;jpeg_raw.png&quot; width=&quot;400&quot; /&gt;
+&lt;em&gt;Red is JPEG values as a function of RAW values; Blue is a linear relationship for comparison.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This is known as &lt;strong&gt;gamma correction&lt;/strong&gt; or gamma transformation, and is used because human perception is more sensitive to relative differences in dark tones compared to light tones. As a result, the RAW light tones are &lt;em&gt;compacted&lt;/em&gt; in the output JPEG range, while dark tones are &lt;em&gt;expanded&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;We can therefore say the lighter tones, like the snow pixels, differ more in the RAW format, giving maybe a \(2\times\) boost in variation.&lt;/p&gt;
+
+&lt;h1 id=&quot;unresolved-questions&quot;&gt;Unresolved Questions&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Does the use of an autofocus lamp make it active autofocus or is it still considered passive autofocus?&lt;/li&gt;
+  &lt;li&gt;I’m not sure I believe that the pupil is responsible for such a small fraction of our dynamic range. I’ll look into it more.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:double&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;AF point 10 is a double cross-type, and the same point applies. &lt;a href=&quot;#fnref:double&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:source&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;I wish I had a source for the examples besides the slides. &lt;a href=&quot;#fnref:source&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:manual&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;The information is still available to the user in manual mode, even though it won’t affect the settings. &lt;a href=&quot;#fnref:manual&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:PNS&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;A PNS doesn’t have this option so it has to use the main image sensor with smaller, more easily saturated pixels. If it’s over- or under-exposed, it won’t necessarily know how much to change the exposure, so it’ll have to guess and check again. &lt;a href=&quot;#fnref:PNS&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="note" /><category term="photography" /><summary type="html">This note is based on lectures 6 and 7 of Levoy’s Digital Photography. It covers autofocus and metering. I found some content irrelevant so I moved them somewhere else for now.</summary></entry><entry><title type="html">Digital Photography Notes - Optics</title><link href="/note/2021/11/01/optics.html" rel="alternate" type="text/html" title="Digital Photography Notes - Optics" /><published>2021-11-01T00:00:00-05:00</published><updated>2021-11-01T00:00:00-05:00</updated><id>/note/2021/11/01/optics</id><content type="html" xml:base="/note/2021/11/01/optics.html">&lt;blockquote&gt;
   &lt;p&gt;This note is based on lectures 3 and 4 of Levoy’s Digital Photography. It covers basic geometric optics starting with refraction, and ends with aberrations and other lens effects. These lectures are more math-heavy to begin with, and on top of that I tried to round out the proofs. Luckily it’s nothing advanced.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -263,17 +593,19 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;Let’s use some nicer variables to represent the distances of the object and image to the left and right side of the lens, respectively: \(s_o = z_1\) and \(s_i = z_2'\). As \(d\rightarrow 0\), called the &lt;strong&gt;thin lens approximation&lt;/strong&gt;, the right term approaches zero, and we obtain the &lt;strong&gt;lens maker’s formula&lt;/strong&gt;:&lt;/p&gt;
 
-\[\frac{1}{s_o} + \frac{1}{s_i} = (n' - 1)\left(\frac{1}{r_1} - \frac{1}{r_2}\right) \tag{3}\]
+\[\begin{equation}
+\frac{1}{s_o} + \frac{1}{s_i} = (n' - 1)\left(\frac{1}{r_1} - \frac{1}{r_2}\right)\label{eq:lmf}
+\end{equation}\]
 
 &lt;p&gt;Note: we set \(n=1\), the refractive index of air.&lt;/p&gt;
 
 &lt;p&gt;If we move the object \(s_0\) to infinity, the image distance \(s_i\) approaches the focal length \(f\), so we can say:&lt;/p&gt;
 
-\[\frac{1}{f} = (n' - 1)\left(\frac{1}{r_1} - \frac{1}{r_2}\right) \tag{4}\]
+\[\frac{1}{f} = (n' - 1)\left(\frac{1}{r_1} - \frac{1}{r_2}\right)\]
 
 &lt;p&gt;Equating with the previous equation, we obtain the Gaussian lens formula:&lt;/p&gt;
 
-\[\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f} \tag{5}\]
+\[\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f}\]
 
 &lt;p&gt;An interactive applet can be found &lt;a href=&quot;https://sites.google.com/site/marclevoylectures/applets/gaussian-lens-formula&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
@@ -364,7 +696,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
   &lt;li&gt;They’re better for wide-angle lenses.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;Close-up filters/lenses&lt;/strong&gt;: a special lens screwed onto the front of the actual lens, increasing magnfication by &lt;em&gt;decreasing&lt;/em&gt; effective focal length.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Close-up filters/lenses&lt;/strong&gt;: a special lens screwed onto the front of the actual lens, increasing magnification by &lt;em&gt;decreasing&lt;/em&gt; effective focal length.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Measured in diopters.&lt;/li&gt;
   &lt;li&gt;Optical elements may reduce image quality.&lt;/li&gt;
@@ -384,7 +716,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
   &lt;li&gt;Corrects for aberrations.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;Clarification&lt;/strong&gt;: Alright, you have to be wondering: how can close-up filters and teleconverters achieve the same thing in different ways? I’m not 100\% certain but here’s my thinking. Teleconverters work like telephoto lens elements, where a combination of lens elements can achieve the same focal length and object distance at a reduced image distance; see the Telephoto section below. Since the teleconverter is screwed in between the existing lens and the camera, the image distance doesn’t decrease, leading to an increase in the effective focal length.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Clarification&lt;/strong&gt;: Alright, you have to be wondering: how can close-up filters and teleconverters achieve the same thing in different ways? I’m not 100% certain but here’s my thinking. Teleconverters work like telephoto lens elements, where a combination of lens elements can achieve the same focal length and object distance at a reduced image distance; see the Telephoto section below. Since the teleconverter is screwed in between the existing lens and the camera, the image distance doesn’t decrease, leading to an increase in the effective focal length.&lt;/p&gt;
 
 &lt;p&gt;Close-up filters allow you to (drum roll) get close-up to the object, i.e. reduce object distance, by &lt;em&gt;lowering&lt;/em&gt; focal length; see the example at the end of this note called Close-Up Filters. Based on the last expression for magnification, we can see that focal length and object distance aren’t related linearly, and I presume in close-up situations, the object distance has a stronger effect on the magnification than the focal length.&lt;/p&gt;
 
@@ -398,7 +730,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/optics/frustrum.png&quot; alt=&quot;frustrum.png&quot; width=&quot;400&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;A lens transforms a 3D object into a 3D image, and the sensor extracts a 2D slice of that image. We can think of this as an extension of the transform going directly from 3D to 2D from [[Image Formation]].&lt;/p&gt;
+&lt;p&gt;A lens transforms a 3D object into a 3D image, and the sensor extracts a 2D slice of that image. We can think of this as an extension of the transform going directly from 3D to 2D from &lt;a href=&quot;/note/2021/10/20/image-formation.html&quot;&gt;Image Formation&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Clarification&lt;/strong&gt;: How is that different from a pinhole camera? Recall that a pinhole camera performs a projective transformation. We previously showed one object and its image on one sensor.&lt;/p&gt;
 
@@ -420,7 +752,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/optics/dofformula1.png&quot; alt=&quot;dofformula1.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;In [[Image Formation]] we gave a simplified presentation of the circle of confusion using symmetric cones. Now we use a more accurate diagram. The vertical line to the right of the lens signifies the &lt;strong&gt;circle of confusion&lt;/strong&gt;, the in-focus image plane is the vertical line to the right of the lens, the area of acceptable focus is shaded red, and the width of this area is called the &lt;strong&gt;depth of focus&lt;/strong&gt;. We define the &lt;strong&gt;conjugate of the circle of confusion&lt;/strong&gt; and the &lt;strong&gt;depth of field&lt;/strong&gt; similarly, to the left of the lens. It’s clear that the depth of field is asymmetrical around the in-focus object plane. In addition, the circle of confusion is usually smaller than its conjugate, which we can see from its formula; since usually \(0&amp;lt;M&amp;lt;1\), then usually \(\frac{C}{M}&amp;gt;C\).&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&quot;/note/2021/10/20/image-formation.html&quot;&gt;Image Formation&lt;/a&gt; we gave a simplified presentation of the circle of confusion using symmetric cones. Now we use a more accurate diagram. The vertical line to the right of the lens signifies the &lt;strong&gt;circle of confusion&lt;/strong&gt;, the in-focus image plane is the vertical line to the right of the lens, the area of acceptable focus is shaded red, and the width of this area is called the &lt;strong&gt;depth of focus&lt;/strong&gt;. We define the &lt;strong&gt;conjugate of the circle of confusion&lt;/strong&gt; and the &lt;strong&gt;depth of field&lt;/strong&gt; similarly, to the left of the lens. It’s clear that the depth of field is asymmetrical around the in-focus object plane. In addition, the circle of confusion is usually smaller than its conjugate, which we can see from its formula; since usually \(0&amp;lt;M&amp;lt;1\), then usually \(\frac{C}{M}&amp;gt;C\).&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/optics/dofformula2.png&quot; alt=&quot;dofformula2.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
 
@@ -447,11 +779,15 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;We sum those to get the total depth of field:&lt;/p&gt;
 
-\[D = D_1 + D_2 = \frac{2NCU^2f^2}{f^4-N^2C^2U^2} \tag{1}\]
+\[\begin{equation}
+D = D_1 + D_2 = \frac{2NCU^2f^2}{f^4-N^2C^2U^2} \label{eq:dof1}
+\end{equation}\]
 
 &lt;p&gt;The \(N^2C^2U^2\) term can be ignored when the conjugate circle of confusion is small relative to the aperture,&lt;sup id=&quot;fnref:conj&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:conj&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; giving the final formula for depth of field:&lt;/p&gt;
 
-\[D = \frac{2NCU^2}{f^2} \tag{2}\]
+\[\begin{equation}
+D = \frac{2NCU^2}{f^2} \label{eq:dof2}
+\end{equation}\]
 
 &lt;p&gt;While it may not be the most accurate formula, it does illustrate the relationships between its component variables for reasonable object distances. An interactive depth of field applet can be found &lt;a href=&quot;https://graphics.stanford.edu/courses/cs178-14/applets/dof.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
@@ -467,15 +803,15 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;That is, if the object distance is set to the &lt;strong&gt;hyperfocal distance&lt;/strong&gt; \(H\) (equivalently, if you focus at \(H\)), everything from distance \(\frac{H}{2}\) to infinity will be in focus. It’s a good number to know on its own, especially for certain use cases like landscape photography.&lt;/p&gt;
 
-&lt;p&gt;We can also express the depth of field in terms of \(H\). Without disregarding the term \(U^2N^2C^2\) in the denominator of eq. 1, we get:&lt;/p&gt;
+&lt;p&gt;We can also express the depth of field in terms of \(H\). Without disregarding the term \(U^2N^2C^2\) in the denominator of \eqref{eq:dof1}, we get:&lt;/p&gt;
 
 \[D = \frac{2HU^2}{H^2-U^2}\]
 
-&lt;p&gt;Now, another perspective on what it means to ignore the term \(U^2N^2C^2\), is that the hyperfocal distance is much larger than the object distance, or \(U^2 \ll H^2\). If so, then the formula reduces to eq. 2, or equivalently:&lt;/p&gt;
+&lt;p&gt;Now, another perspective on what it means to ignore the term \(U^2N^2C^2\), is that the hyperfocal distance is much larger than the object distance, or \(U^2 \ll H^2\). If so, then the formula reduces to \eqref{eq:dof2}, or equivalently:&lt;/p&gt;
 
 \[D = \frac{2U^2}{H}\]
 
-&lt;p&gt;So the simplified depth of field formula, eq 2, relies on the object distance \(U\) falling within a “nice” range, roughly specified by:&lt;/p&gt;
+&lt;p&gt;So the simplified depth of field formula, \eqref{eq:dof2}, relies on the object distance \(U\) falling within a “nice” range, roughly specified by:&lt;/p&gt;
 
 \[f\ll U \ll H\]
 
@@ -483,7 +819,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;Our derivation for the depth of field doesn’t quite work for macro lenses, because of the assumption that \(f=s_i\). Discarding it, the accurate formula for small object distances can be stated, in terms of \(M\):&lt;/p&gt;
 
-\[D_{\text{macro}}=\frac{2NC(M+1)}{M^2} \tag{3}\]
+\[D_{\text{macro}}=\frac{2NC(M+1)}{M^2}\]
 
 &lt;h2 id=&quot;other-derivations&quot;&gt;Other Derivations&lt;/h2&gt;
 
@@ -528,15 +864,13 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;The table shows several variations of the formula, depending on the assumptions made on the object distance \(U\), and the particular terms used.&lt;sup id=&quot;fnref:yourself&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:yourself&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;p&gt;Finally, any method relies on the Gaussian Lens formula, and therefore the paraxial approximation.&lt;/p&gt;
-
 &lt;h1 id=&quot;depth-of-field-in-practice&quot;&gt;Depth of Field In Practice&lt;/h1&gt;
 
 &lt;p&gt;For intuition’s sake, depth of field is simplified by necessity. Most of the conclusions drawn below use the simpler versions of the equations, and therefore apply to midrange distances. Some &lt;a href=&quot;https://theonlinephotographer.typepad.com/the_online_photographer/2009/06/depth-of-field-hellthe-sequel.html&quot;&gt;people&lt;/a&gt; will bemoan these approximations, but as long as we’re aware of their limitations, it shouldn’t be a problem.&lt;/p&gt;
 
 &lt;h2 id=&quot;basic-relationships&quot;&gt;Basic Relationships&lt;/h2&gt;
 
-&lt;p&gt;We use eq. 2 for the observations below.&lt;/p&gt;
+&lt;p&gt;We use \eqref{eq:dof2} for the observations below.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/optics/doffnumber.png&quot; alt=&quot;doffnumber.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
 
@@ -554,7 +888,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;Recall in a dolly zoom, the magnification of the subject stays constant by increasing both object distance and focal length in a principled manner.&lt;/p&gt;
 
-&lt;p&gt;By eq. 3, when magnification is held constant, the depth of field depends on neither focal length nor object distance. Due to perspective distortion, however, the blurriness of the background will change, since the FOV has changed and the blurred elements take up a different amount of screen space.&lt;/p&gt;
+&lt;p&gt;By \eqref{eq:lmf}, when magnification is held constant, the depth of field depends on neither focal length nor object distance. Due to perspective distortion, however, the blurriness of the background will change, since the FOV has changed and the blurred elements take up a different amount of screen space.&lt;/p&gt;
 
 &lt;h2 id=&quot;sensor-size&quot;&gt;Sensor Size&lt;/h2&gt;
 
@@ -564,7 +898,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
   &lt;li&gt;the pixel size tends to go down to maintain resolution, which makes the circle of confusion smaller&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Focal length has a greater effect (squared, compared to linear, from eq. 2) than circle of confusion, so generally speaking, as sensor size \(\times 2\), depth of field is \(\times \frac{1}{2}\).&lt;/p&gt;
+&lt;p&gt;Focal length has a greater effect (squared, compared to linear, from \eqref{eq:dof2}) than circle of confusion, so generally speaking, as sensor size \(\times 2\), depth of field is \(\times \frac{1}{2}\).&lt;/p&gt;
 
 &lt;h2 id=&quot;circle-of-confusion&quot;&gt;Circle of Confusion&lt;/h2&gt;
 
@@ -583,7 +917,9 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;&lt;strong&gt;Bokeh&lt;/strong&gt; is the appearance of small out-of-focus features in a photograph with shallow depth of field. The shape of the features are determined by the boundary of the aperture. In the picture above, the slightly closed blades on the aperture produce octagonal lights. Not every image has noticeable bokeh; it is most pronounced with point light sources.&lt;/p&gt;
 
-&lt;p&gt;It’s pronounced &lt;em&gt;bow-cuh&lt;/em&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;It’s pronounced &lt;em&gt;BOW-cuh&lt;/em&gt;!&lt;/del&gt;&lt;/p&gt;
+
+&lt;p&gt;Everyone seems to have a strong belief about the pronunciation, and everyone’s belief seems to be different. I’m personally switching to &lt;em&gt;boh-keh&lt;/em&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;seeing-through-occlusions&quot;&gt;Seeing Through Occlusions&lt;/h2&gt;
 
@@ -724,7 +1060,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/optics/veilingglare.png&quot; alt=&quot;veilingglare.png&quot; width=&quot;300&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;At every interface, both refraction and reflection occur. The image above shows how a few reflections can cause a ray from one source to produce two outgoing rays. Usually more light refracts than it reflects, but the light coming from the secondary rays is enough to lower the contrast of the image. It can be reduced by anti-reflection coatings to block unwanted reflections, and lens hoods to block excessive incoming light.&lt;/p&gt;
+&lt;p&gt;At every interface, both refraction and reflection occur. The image above shows how a few reflections can cause a ray from one source to produce two outgoing rays. Usually more light refracts than it reflects, but the light coming from the secondary rays is enough to lower the contrast of the image. It can be reduced by anti-reflection coatings to block unwanted reflections within the lens, and lens hoods to block excessive incoming light.&lt;/p&gt;
 
 &lt;h2 id=&quot;lens-flare&quot;&gt;Lens Flare&lt;/h2&gt;
 
@@ -762,7 +1098,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 
 &lt;p&gt;Here we’ll briefly dip our feet into the wave aspects of light. &lt;strong&gt;Diffraction&lt;/strong&gt; is when light spreads out as it passes through an aperture. The result is a slight blurring of the image (yet again). When diffraction causes a noticeable blur, the lens is said to have become &lt;em&gt;diffraction limited&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;The amount of spreading increase as the aperture diameter &lt;em&gt;decreases&lt;/em&gt; and the distance from the sensor &lt;em&gt;increases&lt;/em&gt;, so the blur varies with \(N=\frac{f}{A}\). It also depends on pixel size, just like depth of field, and the wavelength of the light. In practice, diffraction only comes into play around at&lt;/p&gt;
+&lt;p&gt;The amount of spreading increases as the aperture diameter &lt;em&gt;decreases&lt;/em&gt; and the distance from the sensor &lt;em&gt;increases&lt;/em&gt;, so the blur varies with \(N=\frac{f}{A}\). It also depends on pixel size, just like depth of field, and the wavelength of the light.&lt;/p&gt;
 
 &lt;p&gt;Note: Diffraction is also responsible for the image circle, and hence vignetting.&lt;/p&gt;
 
@@ -952,7 +1288,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
       &lt;p&gt;I think the lens has a minimum focus distance of \(1000\text{mm}\), but in the slides Levoy says minimum object distance. There may be some kind of discrepancy in the numbers but the example is still illustrative so I kept it. &lt;a href=&quot;#fnref:wrong&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="note" /><category term="optics" /><summary type="html">This note is based on lectures 3 and 4 of Levoy’s Digital Photography. It covers basic geometric optics starting with refraction, and ends with aberrations and other lens effects. These lectures are more math-heavy to begin with, and on top of that I tried to round out the proofs. Luckily it’s nothing advanced.</summary></entry><entry><title type="html">Digital Photography Notes - Image Formation</title><link href="/note/2021/10/20/image-formation.html" rel="alternate" type="text/html" title="Digital Photography Notes - Image Formation" /><published>2021-10-20T00:00:00-05:00</published><updated>2021-10-20T00:00:00-05:00</updated><id>/note/2021/10/20/image-formation</id><content type="html" xml:base="/note/2021/10/20/image-formation.html">&lt;blockquote&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="note" /><category term="photography" /><summary type="html">This note is based on lectures 3 and 4 of Levoy’s Digital Photography. It covers basic geometric optics starting with refraction, and ends with aberrations and other lens effects. These lectures are more math-heavy to begin with, and on top of that I tried to round out the proofs. Luckily it’s nothing advanced.</summary></entry><entry><title type="html">Digital Photography Notes - Image Formation</title><link href="/note/2021/10/20/image-formation.html" rel="alternate" type="text/html" title="Digital Photography Notes - Image Formation" /><published>2021-10-20T00:00:00-05:00</published><updated>2021-10-20T00:00:00-05:00</updated><id>/note/2021/10/20/image-formation</id><content type="html" xml:base="/note/2021/10/20/image-formation.html">&lt;blockquote&gt;
   &lt;p&gt;This note is based on lecture 1 of Levoy’s Digital Photography. It covers the basics of photography, including perspective, imaging properties, camera anatomy, and tradeoffs. Beyond the bare minimum, I tried to include intuition about things, and clarify common confusions.&lt;/p&gt;
 
   &lt;p&gt;I expanded the material and rearranged the contents from the original lecture to be a bit more comprehensive. I like how Levoy starts with perspective and basic optics, before diving into all of the camera internals, so I kept that.&lt;/p&gt;
@@ -961,7 +1297,6 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 &lt;!--more--&gt;
 
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#goals-for-this-note&quot; id=&quot;markdown-toc-goals-for-this-note&quot;&gt;Goals For This Note&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#perspective&quot; id=&quot;markdown-toc-perspective&quot;&gt;Perspective&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#vanishing-points&quot; id=&quot;markdown-toc-vanishing-points&quot;&gt;Vanishing Points&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#perspective-distortion&quot; id=&quot;markdown-toc-perspective-distortion&quot;&gt;Perspective Distortion&lt;/a&gt;&lt;/li&gt;
@@ -1017,11 +1352,6 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#exercises&quot; id=&quot;markdown-toc-exercises&quot;&gt;Exercises&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h1 id=&quot;goals-for-this-note&quot;&gt;Goals For This Note&lt;/h1&gt;
-&lt;p&gt;This note is based on lecture 1 of Levoy’s Digital Photography. It covers the basics of photography, including perspective, imaging properties, camera anatomy, and tradeoffs. Beyond the bare minimum, I tried to include intuition about things, and clarify common confusions.&lt;/p&gt;
-
-&lt;p&gt;I expanded the material and rearranged the contents from the original lecture to be a bit more comprehensive. I like how Levoy starts with perspective and basic optics, before diving into all of the camera internals, so I kept that.&lt;/p&gt;
 
 &lt;h1 id=&quot;perspective&quot;&gt;Perspective&lt;/h1&gt;
 &lt;p&gt;First we have two main assumptions:&lt;/p&gt;
@@ -1593,7 +1923,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
       &lt;p&gt;The ticks on the shutter speed scale don’t &lt;em&gt;exactly&lt;/em&gt; progress by multiples of 2. Some are rounded off since the error is inconsequential for such small fractions and it makes mental math easier. &lt;a href=&quot;https://photo.stackexchange.com/questions/49860/is-there-a-sane-reason-why-%C2%B9%E2%81%84%E2%82%81%E2%82%82%E2%82%85-is-not-instead-exactly-half-of-%C2%B9%E2%81%84%E2%82%86%E2%82%80&quot;&gt;SO&lt;/a&gt; &lt;a href=&quot;#fnref:stopconspiracy&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="note" /><category term="photography," /><category term="perspective," /><category term="camera" /><summary type="html">This note is based on lecture 1 of Levoy’s Digital Photography. It covers the basics of photography, including perspective, imaging properties, camera anatomy, and tradeoffs. Beyond the bare minimum, I tried to include intuition about things, and clarify common confusions. I expanded the material and rearranged the contents from the original lecture to be a bit more comprehensive. I like how Levoy starts with perspective and basic optics, before diving into all of the camera internals, so I kept that.</summary></entry><entry><title type="html">Folding Paper</title><link href="/article/2021/10/02/folding-paper.html" rel="alternate" type="text/html" title="Folding Paper" /><published>2021-10-02T00:00:00-05:00</published><updated>2021-10-02T00:00:00-05:00</updated><id>/article/2021/10/02/folding-paper</id><content type="html" xml:base="/article/2021/10/02/folding-paper.html">&lt;blockquote&gt;
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="note" /><category term="photography" /><summary type="html">This note is based on lecture 1 of Levoy’s Digital Photography. It covers the basics of photography, including perspective, imaging properties, camera anatomy, and tradeoffs. Beyond the bare minimum, I tried to include intuition about things, and clarify common confusions. I expanded the material and rearranged the contents from the original lecture to be a bit more comprehensive. I like how Levoy starts with perspective and basic optics, before diving into all of the camera internals, so I kept that.</summary></entry><entry><title type="html">Folding Paper</title><link href="/article/2021/10/02/folding-paper.html" rel="alternate" type="text/html" title="Folding Paper" /><published>2021-10-02T00:00:00-05:00</published><updated>2021-10-02T00:00:00-05:00</updated><id>/article/2021/10/02/folding-paper</id><content type="html" xml:base="/article/2021/10/02/folding-paper.html">&lt;blockquote&gt;
   &lt;p&gt;I argue that the so-called folding paper puzzle fails to say anything about our ability to comprehend exponential growth.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -1620,7 +1950,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 &lt;p&gt;Some potential problems:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;The concept of folding only works for thin objects! If we were to fold something with any thickness, then we would rarely think to fold it along its longest dimension.&lt;/li&gt;
-  &lt;li&gt;It might not occur to someone that they are &lt;em&gt;doubling&lt;/em&gt; the thickness every fold, which is key to understanding the problem, even without reference to exponents.&lt;/li&gt;
+  &lt;li&gt;It might not occur to people that they are &lt;em&gt;doubling&lt;/em&gt; the thickness every fold, which is key to understanding the problem, even without reference to exponents.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;It’s just a bad example. Here’s a better question:&lt;/p&gt;
@@ -1673,7 +2003,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
 &lt;p&gt;Q5 avoids asking us to project fifty iterations into the future, so it’s not setting us up for failure.&lt;sup id=&quot;fnref:simplest&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:simplest&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; Instead of showing us that we &lt;em&gt;don’t&lt;/em&gt; tend to think exponentially and leaving it at that, it gives us a simple, alternative perspective so we &lt;em&gt;can&lt;/em&gt;: &lt;strong&gt;most of the gains are stuffed at the end&lt;/strong&gt;! In the case of daily doubling, &lt;em&gt;half&lt;/em&gt; the value of &lt;em&gt;any&lt;/em&gt; given day was obtained within one day.&lt;/p&gt;
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;You might say, “that’s a lot of words just to admit that the puzzle is useful after all.” Listen, I didn’t say it was useless, just overblown. It isn’t necessarilly stated that we &lt;em&gt;can’t&lt;/em&gt; think exponentially, but it’s always said with a shrug and a sigh, like some eternal truth. Even worse, we arrive at that conclusion through some paper-folding puzzle, when in reality there’s several things going on:&lt;/p&gt;
+&lt;p&gt;You might say, “that’s a lot of words just to admit that the puzzle is useful after all.” Listen, I didn’t say it was useless, just overblown. It isn’t necessarily stated that we &lt;em&gt;can’t&lt;/em&gt; think exponentially, but it’s always said with a shrug and a sigh, like some eternal truth. Even worse, we arrive at that conclusion through some paper-folding puzzle, when in reality there’s several things going on:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Exponentiation is inherently more complicated than multiplication and addition.&lt;/li&gt;
   &lt;li&gt;We can’t intuit even linear approximations if they’re literally astronomical.&lt;/li&gt;
@@ -1707,7 +2037,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;amp;\approx n'\left(\frac{h}{r_1}
       &lt;p&gt;And just for fun, the width and height experience exponential decay: \(215.9*.5^{25}=.00000643\text{mm}\) and \(279.4*.5^{25}=.00000833\text{mm}\), both ending up close to the diameter of a DNA strand. &lt;a href=&quot;#fnref:decay&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:simplest&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;It’s the simplest too, and can technically be solved without even understanding exponentiation. In most cases though, people will visualize the growth of the lillies, leading them to think in some way about it. &lt;a href=&quot;#fnref:simplest&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;It’s the simplest too, and can technically be solved without even understanding exponentiation. In most cases though, people will visualize the growth of the lilies, leading them to think in some way about it. &lt;a href=&quot;#fnref:simplest&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="article" /><category term="exponential-growth" /><summary type="html">I argue that the so-called folding paper puzzle fails to say anything about our ability to comprehend exponential growth.</summary></entry><entry><title type="html">VI-sensor Project: Accompanying Tutorials</title><link href="/tutorial/2021/08/07/sensor-tutorials.html" rel="alternate" type="text/html" title="VI-sensor Project: Accompanying Tutorials" /><published>2021-08-07T00:00:00-05:00</published><updated>2021-08-07T00:00:00-05:00</updated><id>/tutorial/2021/08/07/sensor-tutorials</id><content type="html" xml:base="/tutorial/2021/08/07/sensor-tutorials.html">&lt;blockquote&gt;
@@ -2801,7 +3131,9 @@ $ meshlab
       &lt;li&gt;&lt;a href=&quot;#images&quot; id=&quot;markdown-toc-images&quot;&gt;Images&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#image-captions&quot; id=&quot;markdown-toc-image-captions&quot;&gt;Image Captions&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#latex&quot; id=&quot;markdown-toc-latex&quot;&gt;LaTeX&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#latex-automatic-equation-numbering&quot; id=&quot;markdown-toc-latex-automatic-equation-numbering&quot;&gt;LaTeX: Automatic Equation Numbering&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#links&quot; id=&quot;markdown-toc-links&quot;&gt;Links&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#links-to-headers&quot; id=&quot;markdown-toc-links-to-headers&quot;&gt;Links to Headers&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#pagination&quot; id=&quot;markdown-toc-pagination&quot;&gt;Pagination&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#references&quot; id=&quot;markdown-toc-references&quot;&gt;References&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#table-of-contents&quot; id=&quot;markdown-toc-table-of-contents&quot;&gt;Table of Contents&lt;/a&gt;&lt;/li&gt;
@@ -2816,6 +3148,23 @@ $ meshlab
       &lt;li&gt;&lt;a href=&quot;#browser-problems&quot; id=&quot;markdown-toc-browser-problems&quot;&gt;Browser Problems&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;layout: post
+title: “Jekyll Blog Tutorial (+ Lots of Features)”
+categories: tutorial
+tags: blog jekyll
+—&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Here are the notes and external tutorials I used and gathered while creating this blog. Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;TOC&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
@@ -3137,26 +3486,57 @@ OR
 
 &lt;p&gt;There are many outdated tutorials for LaTeX out there, so don’t follow them!&lt;/p&gt;
 
-&lt;p&gt;In includes/head.html (or somewhere in the head section of your site), add:&lt;/p&gt;
+&lt;p&gt;In includes/head.html (or somewhere in the head section of your site), add the import script:&lt;/p&gt;
 
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;MathJax-script&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;async&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;&amp;lt;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;MathJax-script&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;async&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Notice we are using mathjax 3, which is faster than mathjax 2. Notice we are not using the mathjax cdn (&lt;a href=&quot;http://cdn.mathjax.org&quot;&gt;cdn.mathjax.org&lt;/a&gt;) since it was &lt;a href=&quot;https://www.mathjax.org/cdn-shutting-down/&quot;&gt;shut down&lt;/a&gt;. It may still work due to a redirect to &lt;a href=&quot;http://cdnjs.cloudflare.com&quot;&gt;cdnjs.cloudflare.com&lt;/a&gt;. We use jsdelivr instead. Finally, be sure to use https instead of http or mathjax may be blocked for security reasons.&lt;/p&gt;
 
-&lt;p&gt;Finally, in markdown, surround LaTeX expressions with double dollar signs: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$y=x^2$$&lt;/code&gt;, for both inline and block expressions. Instead of using dedicated syntax, block expressions have to be separated from surrounding text by a newline on each side.&lt;/p&gt;
+&lt;p&gt;There’s a few &lt;a href=&quot;https://docs.mathjax.org/en/latest/input/tex/differences.html&quot;&gt;differences&lt;/a&gt; from real LaTeX, but most importantly, only the math mode is implemented (with the exception of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\ref&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\eqref&lt;/code&gt;); the text mode from LaTeX is replaced by markdown/HTML. Additionally, by default, both inline and block LaTeX expressions are signified by double dollar signs: e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$y=x^2$$&lt;/code&gt;. Instead of using dedicated syntax, block expressions have to be separated from surrounding text by a newline on each side.&lt;/p&gt;
 
-&lt;p&gt;If you use a font called Crimson Text (and possibly other fonts), from Google Fonts, the LaTeX expressions may be too small on Firefox. If you use mathjax 2 for whatever reason, see &lt;a href=&quot;https://groups.google.com/g/mathjax-users/c/v3W-daBz87k/m/xjxFFdfQBQAJ&quot;&gt;here&lt;/a&gt; for an explanation and two possible fixes. Those solutions did not work for me with mathjax 3, so I just switched to a different font.&lt;/p&gt;
+&lt;p&gt;See the &lt;a href=&quot;https://docs.mathjax.org/en/latest/web/configuration.html&quot;&gt;documentation&lt;/a&gt; to configure mathjax (it’s different from mathjax 2!) In short, just add a global object called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MathJax&lt;/code&gt; in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag before the import script.&lt;/p&gt;
 
-&lt;p&gt;Random note: if you want to type a vertical bar in inline LaTeX, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\vert&lt;/code&gt;, because otherwise Jekyll might think it’s the start of a table.&lt;/p&gt;
+&lt;p&gt;Random note 1: if you want to type a vertical bar in inline LaTeX, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\vert&lt;/code&gt;, because otherwise kramdown might think it’s the start of a table.&lt;/p&gt;
+
+&lt;p&gt;Random note 2: If you use a font called Crimson Text (and possibly other fonts), from Google Fonts, the LaTeX expressions may be too small on Firefox. If you use mathjax 2 for whatever reason, see &lt;a href=&quot;https://groups.google.com/g/mathjax-users/c/v3W-daBz87k/m/xjxFFdfQBQAJ&quot;&gt;here&lt;/a&gt; for an explanation and two possible fixes. Those solutions did not work for me with mathjax 3, so I just switched to a different font.&lt;/p&gt;
+
+&lt;h3 id=&quot;latex-automatic-equation-numbering&quot;&gt;LaTeX: Automatic Equation Numbering&lt;/h3&gt;
+
+&lt;p&gt;Add automatic equation numbering for LaTeX in the MathJax configuration.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;MathJax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MathJax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;tex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;ams&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then in a compatible environment, add a label:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$$
+&lt;span class=&quot;se&quot;&gt;\b&lt;/span&gt;egin{equation}
+&lt;span class=&quot;se&quot;&gt;\f&lt;/span&gt;rac{1}{s_o} + &lt;span class=&quot;se&quot;&gt;\f&lt;/span&gt;rac{1}{s_i} = &lt;span class=&quot;se&quot;&gt;\f&lt;/span&gt;rac{1}{f} &lt;span class=&quot;se&quot;&gt;\l&lt;/span&gt;abel{eq:glf}
+&lt;span class=&quot;se&quot;&gt;\e&lt;/span&gt;nd{equation}
+$$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, reference it:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Blablabla look at this cool formula &lt;span class=&quot;se&quot;&gt;\e&lt;/span&gt;qref&lt;span class=&quot;se&quot;&gt;\e&lt;/span&gt;qref{eq:glf}.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;links&quot;&gt;Links&lt;/h3&gt;
 
 &lt;p&gt;Links are added like this in markdown:&lt;/p&gt;
 
-&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;link text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;http://www.example.com/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;link text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;http://www.example.com&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;You can also separate the path from the rest like so:&lt;/p&gt;
@@ -3174,6 +3554,18 @@ OR
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;What comes after &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post_url&lt;/code&gt;  is the name of the post file, without the file extension (typically &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Note: In Jekyll 4 you don’t need to put the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{{site.baseurl}}&lt;/code&gt; part; see the &lt;a href=&quot;https://jekyllrb.com/docs/liquid/tags/#links&quot;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;links-to-headers&quot;&gt;Links to Headers&lt;/h3&gt;
+
+&lt;p&gt;If a header on a page has a CSS id on it, you can link to it directly (when the reader goes to the page it will scroll directly to that header). If you know the id, just add it to the URL in your link after a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#&lt;/code&gt; symbol. Here’s two examples, one for an external link and one for an internal one.&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;link text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;http://www.example.com#the-header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;link text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;{{&lt;/span&gt; site.baseurl }}{% post_url 2021-07-19-post %}#the-header)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So how do you find the header id? External websites may have a link icon next to each header with the direct URL. If not, you might still find ids with inspect element. For internal links, it’s possible to autogenerate header ids, which are formatted as the header name, but lowercased and connected by dashes. So &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;The Header&lt;/code&gt; turns into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;the-header&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;pagination&quot;&gt;Pagination&lt;/h3&gt;
 
@@ -3300,7 +3692,7 @@ layout: default
 
 &lt;p&gt;Annoying and frequent mistake: even if the code is automatically reloaded upon changes, if you just refresh your page you may reload a dead link so check the URL.&lt;/p&gt;
 
-&lt;p&gt;Another possibility is that title has changed. If so go back to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;localhost:4000&lt;/code&gt;, &lt;em&gt;reload&lt;/em&gt;, and navigate to the desired page. This happened to me on Safari.&lt;/p&gt;
+&lt;p&gt;Another possibility is that title or category has changed. If so go back to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;localhost:4000&lt;/code&gt;, &lt;em&gt;reload&lt;/em&gt;, and navigate to the desired page. This happened to me on Safari.&lt;/p&gt;
 
 &lt;h3 id=&quot;bundle-install-fails&quot;&gt;Bundle Install Fails&lt;/h3&gt;
 
@@ -3522,40 +3914,4 @@ layout: default
       &lt;p&gt;Same applies to all versions of AlphaGo by the way. &lt;a href=&quot;#fnref:same&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="project" /><category term="game" /><category term="poker" /><category term="reinforcement-learning" /><summary type="html">I’m writing posts on my old projects. In this post, I’ll introduce my final project for one of my classes in junior year, a simplified implementation of a state-of-the-art poker AI.</summary></entry><entry><title type="html">Project Reupload #1: Wisp</title><link href="/project/2021/07/19/wisp.html" rel="alternate" type="text/html" title="Project Reupload #1: Wisp" /><published>2021-07-19T00:00:00-05:00</published><updated>2021-07-19T00:00:00-05:00</updated><id>/project/2021/07/19/wisp</id><content type="html" xml:base="/project/2021/07/19/wisp.html">&lt;blockquote&gt;
-  &lt;p&gt;I’m writing posts on my old projects. In this post, I talk about a game I made with Henry G. for Ludum Dare 40. I also talk about my old game dev experiences.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2 id=&quot;before-the-actual-project-i-will-tell-you-about-my-previous-life-as-an-aspiring-game-dev-deal-with-it&quot;&gt;Before The Actual Project I Will Tell You About My Previous Life As an Aspiring Game Dev, Deal With It&lt;/h2&gt;
-
-&lt;p&gt;Prior to discovering AI, I guess I could say game dev was my first choice of career. I made my first game back in high school with GameMaker. In college I ran through enough Unity tutorials to make an (unpublished) Android puzzle game. I vaguely recall some back-and-forth with Zynga about a summer internship, but withdrew my application.&lt;/p&gt;
-
-&lt;p&gt;I decided to start a new project with a larger scope. Down the line I met Henry at gamedev club and even convinced him to help me out somehow. Unfortunately we weren’t making much meaningful progress because I kept adding features and underestimating the ballooning scope of the project. I had started with a basic multiplayer pirate-themed game with attack-defense gameplay like Clash of Clans – a big task already! Then I thought, why not add a two-phased battle? How about custom attacks for each troop with MOBA-style cooldowns? Maybe clans? (Why was I such a Supercell fanboy?)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/pirates.png&quot; alt=&quot;pirates&quot; /&gt;
-&lt;em&gt;Flat Boats at Dusk, 2017. Acrylic on canvas.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;I also got stuck on details. I wanted deployed troops to avoid colliding, and I came across a paper about &lt;a href=&quot;https://gamma.cs.unc.edu/RVO/icra2008.pdf&quot;&gt;reciprocal velocity obstacles&lt;/a&gt; (the first research paper I ever read of my own volition, to my knowledge). I decided to code it in C# right in Unity, even though Henry later found a library which implemented it efficiently. We didn’t even need such strict collision avoidance; a proximity-based repelling force would have sufficed.&lt;/p&gt;
-
-&lt;p&gt;It wasn’t getting anywhere, and in fact it never did get anywhere. In light of all this, Henry eventually suggested we try doing Ludum Dare, a competition to build a game from scratch over a single weekend. I can’t speak for him, but I at least saw the opportunity to walk away with a finished game.&lt;/p&gt;
-
-&lt;h2 id=&quot;ludum-dare-40&quot;&gt;Ludum Dare 40&lt;/h2&gt;
-
-&lt;p&gt;Every Ludum Dare has a theme, and for 2017 it was: &lt;strong&gt;The more you have, the worse it is&lt;/strong&gt;. After some brainstorming, we decided on a &lt;a href=&quot;https://en.wikipedia.org/wiki/Roguelike&quot;&gt;rogue-like&lt;/a&gt; game. Rogue-likes are a specific subgenre of role-playing games, and a key commonality is procedurally generated dungeons, yet another feature I secretly wanted to add to my pirate game.&lt;/p&gt;
-
-&lt;p&gt;It was sort of an interesting problem. We had parameters for room count, room size, and hall size. We built the rooms randomly, then connected them with a minimum spanning tree, and added a few extra halls based on another connectivity parameter. We used Unity Tilemap to implement the actual grid.&lt;/p&gt;
-
-&lt;p&gt;None of that was relevant to the theme of course. We stuffed the entire theme into a lighting buddy orbiting the player, called a wisp. The player could make the wisp brighter to see more of the dungeon, but the monsters would become more aggressive. It was pretty hard – I don’t even think we gave the player a weapon. We scattered healing potions around the map, but they gave some light too, making the monsters more aggressive in the vicinity.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/wisp1.png&quot; alt=&quot;wisp1&quot; /&gt;
-&lt;em&gt;Some in-game screenshots&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;We didn’t win anything, but I think some guy on YouTube played a bunch of submissions and said some slightly positive things about ours. I wish I could find it!&lt;/p&gt;
-
-&lt;h2 id=&quot;takeaways&quot;&gt;Takeaways&lt;/h2&gt;
-
-&lt;p&gt;It struck me late in the weekend that I went in with the explicit purpose of &lt;em&gt;finishing&lt;/em&gt; a game, yet I still found a way to muddle around with a completely unnecessary feature. Ludum Dare taught me to value the MVP over whatever new idea or silly intellectual problem catches my fancy, something I hadn’t figured out in over a year of game dev on the side.&lt;/p&gt;
-
-&lt;p&gt;I stopped working on any games after that. The semester of Ludum Dare 40, I took a Machine Learning class, which kickstarted my interest in AI. My game dev phase was far from a waste though. I didn’t use C# again, but experience with an extra language is never bad. I used Unity for several future projects, and the interface alone carries over to tons of different programs. And though it’s a bit difficult to articulate, there is a way of thinking like a game designer that I’ll always carry with me.&lt;/p&gt;</content><author><name>Michal Porubcin</name></author><category term="project" /><category term="game" /><category term="gamedev" /><category term="unity" /><summary type="html">I’m writing posts on my old projects. In this post, I talk about a game I made with Henry G. for Ludum Dare 40. I also talk about my old game dev experiences.</summary></entry></feed>
+&lt;/div&gt;</content><author><name>Michal Porubcin</name></author><category term="project" /><category term="game" /><category term="poker" /><category term="reinforcement-learning" /><summary type="html">I’m writing posts on my old projects. In this post, I’ll introduce my final project for one of my classes in junior year, a simplified implementation of a state-of-the-art poker AI.</summary></entry></feed>

@@ -23,8 +23,16 @@
   <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
 
   <!-- MathJax for LaTeX -->
+  <script>
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
   <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+
   </script>
 </head>
 <body><header class="site-header">
@@ -106,7 +114,9 @@
       <li><a href="#images" id="markdown-toc-images">Images</a></li>
       <li><a href="#image-captions" id="markdown-toc-image-captions">Image Captions</a></li>
       <li><a href="#latex" id="markdown-toc-latex">LaTeX</a></li>
+      <li><a href="#latex-automatic-equation-numbering" id="markdown-toc-latex-automatic-equation-numbering">LaTeX: Automatic Equation Numbering</a></li>
       <li><a href="#links" id="markdown-toc-links">Links</a></li>
+      <li><a href="#links-to-headers" id="markdown-toc-links-to-headers">Links to Headers</a></li>
       <li><a href="#pagination" id="markdown-toc-pagination">Pagination</a></li>
       <li><a href="#references" id="markdown-toc-references">References</a></li>
       <li><a href="#table-of-contents" id="markdown-toc-table-of-contents">Table of Contents</a></li>
@@ -121,6 +131,23 @@
       <li><a href="#browser-problems" id="markdown-toc-browser-problems">Browser Problems</a></li>
     </ul>
   </li>
+</ul>
+
+<hr />
+<p>layout: post
+title: “Jekyll Blog Tutorial (+ Lots of Features)”
+categories: tutorial
+tags: blog jekyll
+—</p>
+
+<blockquote>
+  <p>Here are the notes and external tutorials I used and gathered while creating this blog. Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!</p>
+</blockquote>
+
+<!--more-->
+
+<ul>
+  <li>TOC</li>
 </ul>
 
 <h2 id="summary">Summary</h2>
@@ -442,26 +469,57 @@ OR
 
 <p>There are many outdated tutorials for LaTeX out there, so don’t follow them!</p>
 
-<p>In includes/head.html (or somewhere in the head section of your site), add:</p>
+<p>In includes/head.html (or somewhere in the head section of your site), add the import script:</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">script</span> <span class="nt">type</span><span class="o">=</span><span class="s1">"text/javascript"</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"MathJax-script"</span> <span class="nt">async</span>
-  <span class="nt">src</span><span class="o">=</span><span class="s1">"&lt;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&gt;"</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">id=</span><span class="s">"MathJax-script"</span> <span class="na">async</span>
+  <span class="na">src=</span><span class="s">"&lt;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&gt;"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/script&gt;</span>
 </code></pre></div></div>
 
 <p>Notice we are using mathjax 3, which is faster than mathjax 2. Notice we are not using the mathjax cdn (<a href="http://cdn.mathjax.org">cdn.mathjax.org</a>) since it was <a href="https://www.mathjax.org/cdn-shutting-down/">shut down</a>. It may still work due to a redirect to <a href="http://cdnjs.cloudflare.com">cdnjs.cloudflare.com</a>. We use jsdelivr instead. Finally, be sure to use https instead of http or mathjax may be blocked for security reasons.</p>
 
-<p>Finally, in markdown, surround LaTeX expressions with double dollar signs: <code class="language-plaintext highlighter-rouge">$$y=x^2$$</code>, for both inline and block expressions. Instead of using dedicated syntax, block expressions have to be separated from surrounding text by a newline on each side.</p>
+<p>There’s a few <a href="https://docs.mathjax.org/en/latest/input/tex/differences.html">differences</a> from real LaTeX, but most importantly, only the math mode is implemented (with the exception of <code class="language-plaintext highlighter-rouge">\ref</code> and <code class="language-plaintext highlighter-rouge">\eqref</code>); the text mode from LaTeX is replaced by markdown/HTML. Additionally, by default, both inline and block LaTeX expressions are signified by double dollar signs: e.g. <code class="language-plaintext highlighter-rouge">$$y=x^2$$</code>. Instead of using dedicated syntax, block expressions have to be separated from surrounding text by a newline on each side.</p>
 
-<p>If you use a font called Crimson Text (and possibly other fonts), from Google Fonts, the LaTeX expressions may be too small on Firefox. If you use mathjax 2 for whatever reason, see <a href="https://groups.google.com/g/mathjax-users/c/v3W-daBz87k/m/xjxFFdfQBQAJ">here</a> for an explanation and two possible fixes. Those solutions did not work for me with mathjax 3, so I just switched to a different font.</p>
+<p>See the <a href="https://docs.mathjax.org/en/latest/web/configuration.html">documentation</a> to configure mathjax (it’s different from mathjax 2!) In short, just add a global object called <code class="language-plaintext highlighter-rouge">MathJax</code> in a <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> tag before the import script.</p>
 
-<p>Random note: if you want to type a vertical bar in inline LaTeX, use <code class="language-plaintext highlighter-rouge">\vert</code>, because otherwise Jekyll might think it’s the start of a table.</p>
+<p>Random note 1: if you want to type a vertical bar in inline LaTeX, use <code class="language-plaintext highlighter-rouge">\vert</code>, because otherwise kramdown might think it’s the start of a table.</p>
+
+<p>Random note 2: If you use a font called Crimson Text (and possibly other fonts), from Google Fonts, the LaTeX expressions may be too small on Firefox. If you use mathjax 2 for whatever reason, see <a href="https://groups.google.com/g/mathjax-users/c/v3W-daBz87k/m/xjxFFdfQBQAJ">here</a> for an explanation and two possible fixes. Those solutions did not work for me with mathjax 3, so I just switched to a different font.</p>
+
+<h3 id="latex-automatic-equation-numbering">LaTeX: Automatic Equation Numbering</h3>
+
+<p>Add automatic equation numbering for LaTeX in the MathJax configuration.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+<span class="nx">MathJax</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">MathJax</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">tex</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">tags</span><span class="p">:</span> <span class="dl">'</span><span class="s1">ams</span><span class="dl">'</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>Then in a compatible environment, add a label:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$$
+<span class="se">\b</span>egin{equation}
+<span class="se">\f</span>rac{1}{s_o} + <span class="se">\f</span>rac{1}{s_i} = <span class="se">\f</span>rac{1}{f} <span class="se">\l</span>abel{eq:glf}
+<span class="se">\e</span>nd{equation}
+$$
+</code></pre></div></div>
+
+<p>Finally, reference it:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Blablabla look at this cool formula <span class="se">\e</span>qref<span class="se">\e</span>qref{eq:glf}.
+</code></pre></div></div>
 
 <h3 id="links">Links</h3>
 
 <p>Links are added like this in markdown:</p>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">link text</span><span class="p">](</span><span class="sx">http://www.example.com/</span><span class="p">)</span>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">link text</span><span class="p">](</span><span class="sx">http://www.example.com</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>You can also separate the path from the rest like so:</p>
@@ -479,6 +537,18 @@ OR
 </code></pre></div></div>
 
 <p>What comes after <code class="language-plaintext highlighter-rouge">post_url</code>  is the name of the post file, without the file extension (typically <code class="language-plaintext highlighter-rouge">.md</code>).</p>
+
+<p>Note: In Jekyll 4 you don’t need to put the <code class="language-plaintext highlighter-rouge">{{site.baseurl}}</code> part; see the <a href="https://jekyllrb.com/docs/liquid/tags/#links">documentation</a>.</p>
+
+<h3 id="links-to-headers">Links to Headers</h3>
+
+<p>If a header on a page has a CSS id on it, you can link to it directly (when the reader goes to the page it will scroll directly to that header). If you know the id, just add it to the URL in your link after a <code class="language-plaintext highlighter-rouge">#</code> symbol. Here’s two examples, one for an external link and one for an internal one.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">link text</span><span class="p">](</span><span class="sx">http://www.example.com#the-header</span><span class="p">)</span>
+<span class="p">[</span><span class="nv">link text</span><span class="p">](</span><span class="sx">{{</span> site.baseurl }}{% post_url 2021-07-19-post %}#the-header)
+</code></pre></div></div>
+
+<p>So how do you find the header id? External websites may have a link icon next to each header with the direct URL. If not, you might still find ids with inspect element. For internal links, it’s possible to autogenerate header ids, which are formatted as the header name, but lowercased and connected by dashes. So <code class="language-plaintext highlighter-rouge">The Header</code> turns into <code class="language-plaintext highlighter-rouge">the-header</code>.</p>
 
 <h3 id="pagination">Pagination</h3>
 
@@ -605,7 +675,7 @@ layout: default
 
 <p>Annoying and frequent mistake: even if the code is automatically reloaded upon changes, if you just refresh your page you may reload a dead link so check the URL.</p>
 
-<p>Another possibility is that title has changed. If so go back to <code class="language-plaintext highlighter-rouge">localhost:4000</code>, <em>reload</em>, and navigate to the desired page. This happened to me on Safari.</p>
+<p>Another possibility is that title or category has changed. If so go back to <code class="language-plaintext highlighter-rouge">localhost:4000</code>, <em>reload</em>, and navigate to the desired page. This happened to me on Safari.</p>
 
 <h3 id="bundle-install-fails">Bundle Install Fails</h3>
 

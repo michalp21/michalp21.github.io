@@ -2,7 +2,7 @@
 layout: post
 title: "Digital Photography Notes - Image Formation"
 categories: note
-tags: photography, perspective, camera
+tags: photography
 ---
 
 > This note is based on lecture 1 of Levoy's Digital Photography. It covers the basics of photography, including perspective, imaging properties, camera anatomy, and tradeoffs. Beyond the bare minimum, I tried to include intuition about things, and clarify common confusions.
@@ -13,11 +13,6 @@ tags: photography, perspective, camera
 
 - TOC
 {:toc}
-
-# Goals For This Note
-This note is based on lecture 1 of Levoy's Digital Photography. It covers the basics of photography, including perspective, imaging properties, camera anatomy, and tradeoffs. Beyond the bare minimum, I tried to include intuition about things, and clarify common confusions.
-
-I expanded the material and rearranged the contents from the original lecture to be a bit more comprehensive. I like how Levoy starts with perspective and basic optics, before diving into all of the camera internals, so I kept that.
 
 # Perspective
 First we have two main assumptions:

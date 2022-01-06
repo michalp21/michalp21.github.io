@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/main.css"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Digital Photography Notes - Autofocus and Autoexposure | Xn</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Digital Photography Notes - Autofocus and Autoexposure" />
+<meta name="author" content="Michal Porubcin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This note is based on lectures 6 and 7 of Levoy’s Digital Photography. It covers autofocus and metering. I found some content irrelevant so I moved them somewhere else for now." />
+<meta property="og:description" content="This note is based on lectures 6 and 7 of Levoy’s Digital Photography. It covers autofocus and metering. I found some content irrelevant so I moved them somewhere else for now." />
+<meta property="og:site_name" content="Xn" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-05T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Digital Photography Notes - Autofocus and Autoexposure" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","datePublished":"2022-01-05T00:00:00-06:00","description":"This note is based on lectures 6 and 7 of Levoy’s Digital Photography. It covers autofocus and metering. I found some content irrelevant so I moved them somewhere else for now.","url":"/note/2022/01/05/autofocus-and-autoexposure.html","mainEntityOfPage":{"@type":"WebPage","@id":"/note/2022/01/05/autofocus-and-autoexposure.html"},"author":{"@type":"Person","name":"Michal Porubcin"},"headline":"Digital Photography Notes - Autofocus and Autoexposure","dateModified":"2022-01-05T00:00:00-06:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Xn" /><!-- Favicon -->
+  <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
+
+  <!-- MathJax for LaTeX -->
+  <script>
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+
+  </script>
+</head>
+<body><header class="site-header">
+  <div class="site-header-logo">
+    <div class="logo">
+      <!-- <a class="site-title" href="/">Xn</a> -->
+      <a href="/">
+        <img src="/assets/images/logo.png" />
+      </a>
+    </div>
+  </div>
+  <div class="site-header-nav">
+    <nav class="site-nav">
+      <a class="page-link" href="/"> Home</a>
+      <a class="page-link" href="/category/project/"> Projects</a>
+      <a class="page-link" href="/categories.html"> Categories</a>
+      <a class="page-link" href="/tags.html"> Tags</a>
+      <a class="page-link" href="/archive.html"> Archive</a>
+      <a class="page-link" href="/about.html"> About</a>
+    </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Digital Photography Notes - Autofocus and Autoexposure</h1>
+    <p class="post-meta">
+      <time datetime="2022-01-05T00:00:00-06:00" itemprop="datePublished">
+        
+        Jan 5, 2022
+      </time>
+
+      <!---->
+
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        by <span itemprop="name">Michal Porubcin</span>
+      </span>
+
+      <span class="post-categories">
+        <span>
+              
+              <a class="post-category" href="/category/note/">note&nbsp;</a>
+            </span>
+      </span>
+
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <blockquote>
+  <p>This note is based on lectures 6 and 7 of Levoy’s Digital Photography. It covers autofocus and metering. I found some content irrelevant so I moved them somewhere else for now.</p>
+</blockquote>
+
+<!--more-->
+
+<ul id="markdown-toc">
+  <li><a href="#goals-for-this-note" id="markdown-toc-goals-for-this-note">Goals For This Note</a></li>
+  <li><a href="#autofocus" id="markdown-toc-autofocus">Autofocus</a>    <ul>
+      <li><a href="#anatomy" id="markdown-toc-anatomy">Anatomy</a></li>
+      <li><a href="#autofocus-modes" id="markdown-toc-autofocus-modes">Autofocus Modes</a></li>
+      <li><a href="#types-of-autofocus" id="markdown-toc-types-of-autofocus">Types of Autofocus</a></li>
+      <li><a href="#phase-detection" id="markdown-toc-phase-detection">Phase Detection</a></li>
+      <li><a href="#contrast-detection" id="markdown-toc-contrast-detection">Contrast Detection</a></li>
+      <li><a href="#notes" id="markdown-toc-notes">Notes</a></li>
+      <li><a href="#alternatives" id="markdown-toc-alternatives">Alternatives</a></li>
+    </ul>
+  </li>
+  <li><a href="#autoexposure" id="markdown-toc-autoexposure">Autoexposure</a>    <ul>
+      <li><a href="#dynamic-range" id="markdown-toc-dynamic-range">Dynamic Range</a></li>
+      <li><a href="#metering" id="markdown-toc-metering">Metering</a></li>
+      <li><a href="#zone-system" id="markdown-toc-zone-system">Zone System</a></li>
+      <li><a href="#metering-modes" id="markdown-toc-metering-modes">Metering Modes</a></li>
+      <li><a href="#shooting-modes" id="markdown-toc-shooting-modes">Shooting Modes</a></li>
+      <li><a href="#other-exposure-tricks" id="markdown-toc-other-exposure-tricks">Other Exposure Tricks</a></li>
+    </ul>
+  </li>
+  <li><a href="#examples" id="markdown-toc-examples">Examples</a>    <ul>
+      <li><a href="#sunlight-vs-moonlight" id="markdown-toc-sunlight-vs-moonlight">Sunlight vs Moonlight</a></li>
+    </ul>
+  </li>
+  <li><a href="#unresolved-questions" id="markdown-toc-unresolved-questions">Unresolved Questions</a></li>
+</ul>
+
+<h1 id="goals-for-this-note">Goals For This Note</h1>
+
+<p>This note is based on lectures 6 and 7 of Levoy’s Digital Photography. It covers autofocus and metering. I found some content irrelevant so I moved them somewhere else for now.</p>
+
+<h1 id="autofocus">Autofocus</h1>
+<p>For a given distance from the lens to the sensor, only one distance from the lens into the scene will be in focus (see <a href="/note/2021/11/01/optics.html#3d-perspective-transform">Optics</a>). In a “poorly focused” image, then, the thing we care about is not at this in-focus distance; see an example below:</p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/unfocused.jpg" alt="unfocused.jpg" width="400" /></p>
+
+<h2 id="anatomy">Anatomy</h2>
+<p>Let’s revisit the SLR cross section shown in <a href="/note/2021/10/20/image-formation.html#single-lens-reflex-slr-camera">Image Formation</a>.</p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/autofocus.png" alt="autofocus.png" width="400" /></p>
+
+<p>The reflex mirror (big diagonal green line) is actually semi-transparent, letting some light through to another small mirror, which redirects it to an <strong>autofocus</strong> unit, which adjusts the lens distance (black arrows). When light bounces through to the optical viewfinder, some of it is directed to an <strong>autoexposure</strong> unit, which will adjust the pupil size. The horizontal green line is called the <strong>focusing screen</strong>.</p>
+
+<h2 id="autofocus-modes">Autofocus Modes</h2>
+<p>There’s three main autofocus modes (exact names vary by brand):</p>
+<ul>
+  <li><strong>Single-shot AF</strong>: focuses once then locks the focus</li>
+  <li><strong>Continuous AF</strong>: continuous focus without locking; may intelligently track a subject so focus doesn’t lag</li>
+  <li><strong>Automatic AF</strong>: continuous focus when the subject is determined to be moving; locks focus otherwise</li>
+</ul>
+
+<h2 id="types-of-autofocus">Types of Autofocus</h2>
+<p>There’s several focusing methods:</p>
+<ul>
+  <li><strong>active autofocus</strong>: uses an active sensor, where the camera emits light or sound and detects how it reflects off the subject</li>
+  <li><strong>passive autofocus</strong>: calculated only from the light entering the lens.
+    <ul>
+      <li><strong>phase-based</strong></li>
+      <li><strong>contrast-based</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<p>The video lecture makes the mechanisms behind both types of autofocus so clear and a text summary won’t do them justice. Watch starting <a href="https://youtu.be/njlDb9-6aOU?t=2060">here</a> (timestamped). You can also play with the applets yourself: <a href="https://sites.google.com/site/marclevoylectures/applets/phase-detection">phase</a> and <a href="https://sites.google.com/site/marclevoylectures/applets/contrast-detection">contrast</a>.</p>
+
+<h2 id="phase-detection">Phase Detection</h2>
+<p><img src="/assets/images/autofocus-and-autoexposure/autofocusapplet.png" alt="autofocusapplet.png" width="500" />
+<em>The disparity between the red and green peaks is shown at the bottom.</em></p>
+
+<p>The light on either side of the optical axis hits the secondary mirror, passes through one of two lenslets, and strikes one of two small CCD sensors. As the image moves in and out of focus on the main image sensor, the images on the CCD sensors shift. The <strong>disparity</strong> is the distance between the focus points on the CCD sensors, and when reduced past a certain point, the image will be focused on the main sensor. It’s equivalent in principle to depth-from-stereo in computer vision.</p>
+
+<p>In practice, the signals won’t be single peaks as shown in the video, but more complex waveforms, and the distance to match the signals can be determined by <strong>cross-correlation</strong>.</p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/afpoints.jpg" alt="afpoints.jpg" width="400" /></p>
+
+<p>The signals are calculated for small regions called <strong>AF points</strong> (aka autofocus points, focus points, or focusing points), with each point having its own set of mirrors and CCDs. Higher-end cameras can have over 50 AF points.</p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/dualtypeautofocus.jpg" alt="dualtypeautofocus.jpg" width="400" /></p>
+
+<p>The light entering either lenslet originates on opposite sides of a certain axis, say the vertical. That means horizontal disparities are easily calculated, while vertical ones are not. We can solve this by rotating the image 90 degress, but a better solution is to use <strong>cross-type</strong> AF points, which doubles the number of mirrors and CCDs per focusing point, and permits disparity calculation on both the horizontal and vertical.</p>
+
+<p>The relative position of the CCDs also matters, and spreading them out increases the accuracy of the disparity calculation. A <strong>double cross-type</strong> AF point adds four <em>high precision</em> CCDs on the far corners of a cross-type AF point to increase the accuracy of the disparity calculation (they are high precision only due to their greater separation). Note that these AF points take up more space so they are saved for the center of the image, and are typically limited to very wide apertures, like \(\geq f/2.8\).</p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/autofocussensor1.jpg" alt="autofocussensor1.jpg" width="500" />
+<em>Canon 7D autofocus array</em></p>
+
+<p>Here’s an example autofocus CCD array represented in several different ways. To understand the diagram, note that the AFP numbers in the table correspond with the numbered white squares in the top subimage, and the horizontal and vertical numbers in the table correspond with the numbered colored CCDs in the middle subimage. Since every AF point in this array happens to be a cross-type (which isn’t necessarily true even in high-end cameras), each horizontal and vertical comes in pairs, hence the a and b for each number.<sup id="fnref:double" role="doc-noteref"><a href="#fn:double" class="footnote" rel="footnote">1</a></sup> Finally, the bottom subimage shows how the CCDs are shared among the AF points.</p>
+
+<p>Phase detection has the advantage of knowing how much and in what direction to change focus, based on the disparity, so it’s fast. Most SLRs use phase detection.</p>
+
+<p>Here’s an excellent <a href="http://www.exclusivearchitecture.com/?page_id=1291">article</a> on autofocus that goes into a little more depth.</p>
+
+<h2 id="contrast-detection">Contrast Detection</h2>
+<p><img src="/assets/images/autofocus-and-autoexposure/autofocusapplet2.png" alt="autofocusapplet2.png" width="500" />
+<em>The detected contrast is shown on the right</em></p>
+
+<p>A much simpler system. If the light does not converge at the main sensor, the image will be blurred, and the contrast in a small region will be low. Contrast is calculated using a local <strong>gradient</strong> of pixel values. The camera will then change focus until it detects that the gradient has reached a maximum value. It’s equivalent in principle to depth-from-focus in computer vision.</p>
+
+<p>There is no way to tell how much to change at any given time, so the camera has to “hunt” for the best focus, making it slow.</p>
+
+<p>Most point and shoot and cell phone cameras use contrast detection, as well as DSLRs in live view.</p>
+
+<h2 id="notes">Notes</h2>
+<ul>
+  <li>Both approaches will fail on untextured images! Phase detection may also have trouble with repeating textures.</li>
+  <li>Both approaches will fail in low light! In that case the camera may light up the scene with an <strong>autofocus lamp</strong>.</li>
+  <li>Phase detection doesn’t work well for longer focal lengths.</li>
+  <li>Phase detection can experience calibration errors.</li>
+  <li>There’s a certain balance between focusing and metering. If the image is unfocused, the metering won’t be accurate, and vice versa. There will probably be some kind of iterative process based on the camera.</li>
+  <li>Poor autofocus is more noticeable with shallow depth of field.</li>
+</ul>
+
+<h2 id="alternatives">Alternatives</h2>
+<ul>
+  <li><strong>Laser time-of-flight</strong>: Active autofocus. A beam of light hits some object of interest and the time it takes to return is measured, giving a focus depth. It is fast like phase detection but may fail in the outdoors or on windows.</li>
+  <li><strong>Hybrid pixel</strong>: The phase detection system is basically consolidated into single pixels, which are half covered so each pixel detects only the right or left half of the image. It becomes noisy in low light, considering each pixel is effectively cut in half. The pixels are spread throughout the main sensor, so there is no separate autofocus system. Depending on the implementation, the pixels may or may not be used for normal image capture as well; if not, then interpolation is required over the dedicated autofocus pixels. More information and visuals <a href="http://www.exclusivearchitecture.com/?page_id=1332">here</a>.</li>
+  <li><strong>Dual pixel</strong>: The successor to the hybrid pixel, where pixels are not dedicated to the left or right halves. Instead, each pixel is divided into two sub-pixels for autofocus purposes, and can be combined for regular image capture purposes. Every pixel on the main sensor is a dual pixel, so there’s no interpolation concerns, and the autofocus system has a higher resolution (more data to work with), so it’s less susceptible to noise and faster (but still not as fast as traditional phase detection). More information and visuals <a href="http://www.exclusivearchitecture.com/?page_id=1342">here</a>.</li>
+</ul>
+
+<h1 id="autoexposure">Autoexposure</h1>
+<p>Just as a picture can be poorly focused, it can also be poorly exposed. Look at the picture below and you will see what an <em>incorrect</em> exposure might be.</p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/overexposed.jpg" alt="overexposed.jpg" width="400" /></p>
+
+<p>The picture above is <strong>overexposed</strong> (colloquially: blown out); the opposite would be <strong>underexposed</strong>.</p>
+
+<h2 id="dynamic-range">Dynamic Range</h2>
+<p>The ratio of the minimum and maximum of any signal (here, light) is called the <strong>dynamic range</strong>.</p>
+
+<p>Estimated dynamic range of the world:<sup id="fnref:source" role="doc-noteref"><a href="#fn:source" class="footnote" rel="footnote">2</a></sup></p>
+<ul>
+  <li>800,000:1 – surface illuminated by the sun vs by the moon</li>
+  <li>100:1 – diffuse white surface vs diffuse black surface</li>
+  <li>80,000,000:1 – total dynamic range, from multiplication</li>
+</ul>
+
+<p>Estimated dynamic range of human vision:</p>
+<ul>
+  <li>100:1 – photoreceptors range</li>
+  <li>10:1 – variation in pupil area</li>
+  <li>100,000:1 – neural adaptation</li>
+  <li>100,000,000:1 – total dynamic range, from multiplication</li>
+</ul>
+
+<p>Estimated dynamic range of media (debatable):</p>
+<ul>
+  <li>40:1 – photographic print (more for glossy paper)</li>
+  <li>50:1 – artists paints</li>
+  <li>500:1 – negative film</li>
+  <li>1,000:1 – LCD display (may be outdated)</li>
+  <li>4,000:1 – digital SLR sensor</li>
+</ul>
+
+<p>We can also express how many bits it would take to represent a given dynamic range \(d\) by taking \(\vert\log_2(d)\vert\). For example:</p>
+<ul>
+  <li>The world – 26 bits!</li>
+  <li>Digital SLR sensor – 12 bits</li>
+  <li>JPEG – 8 bits (values from 0-255)</li>
+  <li>Photographic paper – 5 bits</li>
+</ul>
+
+<p>We can make a few observations.</p>
+<ul>
+  <li>Most of the dynamic range of the world comes from illumination differences, i.e. the sheer amount of light the sun can pump out.</li>
+  <li>Most of the dynamic range of human vision comes from neural adaptation.</li>
+  <li>The camera sensor cannot see the full dynamic range of the world at once (by a long shot). We have to choose which 4000:1 out of the 80M:1 to capture on the sensor, a problem addressed by <strong>metering</strong>. The same decision has to be made again when reproducing the image on media, a problem addressed by <strong>tone mapping</strong>.</li>
+</ul>
+
+<h2 id="metering">Metering</h2>
+<p>Metering is when a camera uses exposure data to automatically adjust shutter speed and aperture, and correct the exposure.<sup id="fnref:manual" role="doc-noteref"><a href="#fn:manual" class="footnote" rel="footnote">3</a></sup> Remember, it’s about:</p>
+<ul>
+  <li>shifting the limited dynamic range of the camera sensor…</li>
+  <li>to properly match the portion of the dynamic range of the world…</li>
+  <li>that’s exhibited in the given scene.</li>
+</ul>
+
+<p>It’s assumed that the given scene itself doesn’t vary more than the range of the sensor, otherwise special techniques like <strong>exposure bracketing</strong> have to be used.</p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/greycard.jpeg" alt="greycard.jpeg" width="250" />
+<em>An 18% grey card</em></p>
+
+<p>Metering is hard because the camera doesn’t know what it’s looking at semantically. It will instead just assume the world is on average 18% gray, and increase or decrease exposure to match that level. The value 18% gray is called <strong>middle gray</strong> and lies between 0% reflective (black) and 100% reflective (white).</p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/meteringintro.png" alt="meteringintro.png" width="400" /></p>
+
+<p>The polar bear and gorilla above are not given their “true” colors due to the middle gray baseline.</p>
+
+<h2 id="zone-system">Zone System</h2>
+<p>Recall from <a href="/note/2021/10/20/image-formation.html#the-exposure-triangle">Image Formation</a> that exposure is irradiance multiplied with exposure time. While exposure time is the same for every element of an image, the irradiance obviously varies. We can then think about each element in the image as having a separate exposure. We want to align the exposure of each element in a photograph with the brightness of its real-world counterpart.</p>
+
+<p>Ansel Adams’ zone system offers guidance on just that. There are 11 zones, marked with roman numerals 0-X, and each zone differs by about 1 stop.</p>
+<ul>
+  <li>X refers to the brightest white possible from a blank paper.</li>
+  <li>V refers to middle gray</li>
+  <li>0 indicates the darkest black reproducible on the paper</li>
+  <li>numerals in between are given examples from the real world, for example IX is “snow in sunlight”</li>
+</ul>
+
+<p>The zone system was applied to film photography, but the same idea carries over to digital; we simply plan the tones we want for each part of our scene. One way to visualize the tones of an image is with a <strong>histogram</strong>, which shows the proportion of pixels at each brightness level:</p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/The-anatomy-of-a-histogram.jpg" alt="The-anatomy-of-a-histogram.jpg" width="400" /></p>
+
+<p>Dark pictures will have left-leaning histograms, while bright pictures will be right-leaning. For color images, it can be further split into red, green, and blue histograms.</p>
+
+<h2 id="metering-modes">Metering Modes</h2>
+<p>The idea of averaging over all pixels and shooting for 18% gray is a bit of an oversimplification. There are several metering modes to choose from.</p>
+<ul>
+  <li><strong>center-weighted</strong>: average with a greater weight on a large center region; suitable for portraits</li>
+  <li><strong>spot</strong>: average over a small, customizable region, usually the focus point; suitable for small objects of interest</li>
+  <li><strong>matrix/evaluative</strong>: the most sophisticated averaging method, encompassing many different techniques, and varying across different cameras (explained further below)
+    <ul>
+      <li>the image is divided into zones (the number varies), each zone is processed individually, then recombined</li>
+      <li>may depend on autofocus point, color, focus distance, local contrast</li>
+      <li>may learn from a database of images</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/metering-center.jpg" alt="metering-center.jpg" width="400" />
+<em>Center-weighted metering</em></p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/metering-spot.jpg" alt="metering-spot.jpg" width="400" />
+<em>Spot metering</em></p>
+
+<p>Let’s discuss evaluative mode in more depth. In most SLRs, the evaluative mode uses a low-res sensor looking at the focusing screen. The idea is to use large pixels or regions to get a high dynamic range.<sup id="fnref:PNS" role="doc-noteref"><a href="#fn:PNS" class="footnote" rel="footnote">4</a></sup> It’s similar to Adams’ zone system in that we’re determining the global exposure by combining measurements on individual regions.</p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/metering1.png" alt="metering1.png" width="800" /></p>
+
+<p>Here’s an example of low-res images used for metering. What should the exposures be? In particular, should we allow the regions with white pixels to be overexposed?</p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/metering3.png" alt="metering3.png" width="800" /></p>
+
+<p>Based on the full resolution images, we might not care that the white pixels in the fire are overexposed, but we might care about the white pixels on the book.</p>
+
+<p>It’s possible to keep a database of low-res images paired with good settings. To meter a new image, we could find the most similar image in the database and fetch the settings. Another option is to train a learning algorithm to do produce optimal settings for a given image.</p>
+
+<p>Future approaches might add face detection, (learned) object recognition, personalization based on shooting history or online image collections, or collaborative metering (inspired by collaborative filtering for recommendations).</p>
+
+<h2 id="shooting-modes">Shooting Modes</h2>
+<p>The shooting mode (aka camera mode) determines what settings the camera controls based on metering:</p>
+<ul>
+  <li><strong>Auto</strong>: the camera controls aperture, shutter speed, and ISO (and potentially more)</li>
+  <li><strong>Program (P)</strong>: like auto, except you can choose among fixed combinations of aperture and shutter speed.</li>
+  <li><strong>Aperture priority (A)</strong>: auto, except you can change aperture</li>
+  <li><strong>Shutter priority (S)</strong>: auto, except you can change shutter speed</li>
+  <li><strong>Manual (M)</strong>: you can change aperture, shutter speed, and ISO</li>
+</ul>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/modedial.jpg" alt="modedial.jpg" width="400" />
+<em>Typical mode dial on a DSLR</em></p>
+
+<h2 id="other-exposure-tricks">Other Exposure Tricks</h2>
+<p>There’s even more ways to get the perfect exposure:</p>
+<ul>
+  <li><strong>exposure compensation</strong>: we can adjust the baseline a few stops higher or lower than 18%
+    <ul>
+      <li>this is the technique used on the polar bear and gorilla in the second column above</li>
+    </ul>
+  </li>
+  <li><strong>exposure lock (AE lock)</strong>: freezes the exposure
+    <ul>
+      <li>you can obtain the desired exposure by pointing your camera somewhere else, locking the exposure, then recomposing your shot and taking the picture</li>
+    </ul>
+  </li>
+  <li><strong>exposure bracketing (HDR imaging)</strong>: useful when the dynamic range of the scene is wider than the camera can capture
+    <ul>
+      <li>the same picture is taken multiple times with different settings in order to capture the dynamic range of different regions of the image (e.g. the sky and the foreground)</li>
+      <li>they are combined in post, replacing poorly exposed regions in one shot with the correctly exposed regions in another shot</li>
+      <li>it is popular in phones to have an HDR setting, where the whole process is performed automatically in one press of the shutter button.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="examples">Examples</h1>
+<h2 id="sunlight-vs-moonlight">Sunlight vs Moonlight</h2>
+<p><strong>Q: How many stops do the settings used to take the two images below differ by?</strong></p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/sunmoon.png" alt="sunmoon.png" width="800" />
+<strong>A:</strong> First note that the left image was taken during the daytime, and the right image was taken at night. Although they look similarly bright in the images, it will be clear from the shooting settings how different the scenes were in terms of illumination.</p>
+
+<p>Let’s look at the ratio of each component of the exposure triangle:</p>
+<ul>
+  <li>Shutter speed: \(8 : \frac{1}{500} \approx 2^{12}\)</li>
+  <li>Focal length: \(\frac{1}{1.7} : \frac{1}{6.3} \approx 2^2\)</li>
+  <li>ISO: \(400 : 100 = 2^2\)</li>
+</ul>
+
+<p>Recall that one stop of light is given by a factor of \(\sqrt{2}\) for focal length, but a factor of \(2\) for shutter speed and ISO. So to get our answer we can add all the exponents above, but double the contribution of the focal length, giving \(12 + 2(2) + 2 = 18\). The settings used to take the two images differ by 18 stops!</p>
+
+<p>Apparently, the images above are JPEGs, and as a result, their brightness doesn’t vary linearly with the brightness of the scene. The JPEG values are related to the RAW values by the following formula:</p>
+
+\[\text{JPEG value} = (\text{RAW value}/65536)^{1/\gamma} \times 255\]
+
+<p>where \(\gamma=2.1\). The result is a logarithmic function which makes all pixels brighter, but more greatly affects the dark pixels:</p>
+
+<p><img src="/assets/images/autofocus-and-autoexposure/jpeg_raw.png" alt="jpeg_raw.png" width="400" />
+<em>Red is JPEG values as a function of RAW values; Blue is a linear relationship for comparison.</em></p>
+
+<p>This is known as <strong>gamma correction</strong> or gamma transformation, and is used because human perception is more sensitive to relative differences in dark tones compared to light tones. As a result, the RAW light tones are <em>compacted</em> in the output JPEG range, while dark tones are <em>expanded</em>.</p>
+
+<p>We can therefore say the lighter tones, like the snow pixels, differ more in the RAW format, giving maybe a \(2\times\) boost in variation.</p>
+
+<h1 id="unresolved-questions">Unresolved Questions</h1>
+<ul>
+  <li>Does the use of an autofocus lamp make it active autofocus or is it still considered passive autofocus?</li>
+  <li>I’m not sure I believe that the pupil is responsible for such a small fraction of our dynamic range. I’ll look into it more.</li>
+</ul>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:double" role="doc-endnote">
+      <p>AF point 10 is a double cross-type, and the same point applies. <a href="#fnref:double" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:source" role="doc-endnote">
+      <p>I wish I had a source for the examples besides the slides. <a href="#fnref:source" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:manual" role="doc-endnote">
+      <p>The information is still available to the user in manual mode, even though it won’t affect the settings. <a href="#fnref:manual" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:PNS" role="doc-endnote">
+      <p>A PNS doesn’t have this option so it has to use the main image sensor with smaller, more easily saturated pixels. If it’s over- or under-exposed, it won’t necessarily know how much to change the exposure, so it’ll have to guess and check again. <a href="#fnref:PNS" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div>
+
+  <div class="post-bibliography">
+    
+
+
+<div class="post-bibliography">
+  <ol class="bibliography"></ol>
+</div>
+  </div>
+
+  <div class="post-tags">
+    Tags:&nbsp; 
+    <span>
+      <!-- 
+        
+        <a class="post-tag" href="/tag/photography"><nobr>photography</nobr>&nbsp;</a>
+       -->
+          
+          <a href="/tag/photography/">photography&nbsp;</a>
+        </span>
+  </div>
+
+  <div class="page-navigation"><a class="prev" href="/note/2021/11/01/optics.html">&larr; Digital Photography Notes - Optics</a></div>  <div id="disqus_thread"></div>
+  <script>
+    // var disqus_config = function () {
+    //   this.page.url = '/note/2022/01/05/autofocus-and-autoexposure.html';
+    //   this.page.identifier = '/note/2022/01/05/autofocus-and-autoexposure.html';
+    // };
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://michalp21-github-io.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<a class="u-url" href="/note/2022/01/05/autofocus-and-autoexposure.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer">
+  2021 &copy; by Michal Porubcin. All Rights Reserved. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>. View on <a href="https://github.com/michalp21/michalp21.github.io" target="_blank">Github</a>.
+
+  <p>
+    <a href="/feed.xml" target="_blank">
+      <img src="/assets/images/logo_rss.png" />
+    </a>
+    <a href="https://github.com/michalp21" target="_blank">
+      <img src="/assets/images/logo_github.png" />
+    </a>
+  </p>
+
+</footer></body>
+
+</html>

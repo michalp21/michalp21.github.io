@@ -46,6 +46,10 @@ ul, ol, dl, figure,
   margin-bottom: $spacing-unit / 1.8;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  margin-top: $spacing-unit / 4.6;
+}
+
 hr {
   margin-top: $spacing-unit;
   margin-bottom: $spacing-unit;
@@ -128,6 +132,7 @@ li {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   font-family: $alt-font-family;
+  line-height: 1.3;
 }
 
 

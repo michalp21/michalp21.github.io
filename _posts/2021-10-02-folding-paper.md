@@ -27,7 +27,7 @@ The truth is, the paper is already difficult to fold. After a couple more folds,
 
 Some potential problems:
 - The concept of folding only works for thin objects! If we were to fold something with any thickness, then we would rarely think to fold it along its longest dimension.
-- It might not occur to someone that they are *doubling* the thickness every fold, which is key to understanding the problem, even without reference to exponents.
+- It might not occur to people that they are *doubling* the thickness every fold, which is key to understanding the problem, even without reference to exponents.
 
 It's just a bad example. Here's a better question:
 
@@ -71,7 +71,7 @@ Some might guess around 30 days. In fact, no guessing or math is necessary. The 
 Q5 avoids asking us to project fifty iterations into the future, so it's not setting us up for failure.[^simplest] Instead of showing us that we *don't* tend to think exponentially and leaving it at that, it gives us a simple, alternative perspective so we *can*: **most of the gains are stuffed at the end**! In the case of daily doubling, *half* the value of *any* given day was obtained within one day.
 
 ## Conclusion
-You might say, "that's a lot of words just to admit that the puzzle is useful after all." Listen, I didn't say it was useless, just overblown. It isn't necessarilly stated that we *can't* think exponentially, but it's always said with a shrug and a sigh, like some eternal truth. Even worse, we arrive at that conclusion through some paper-folding puzzle, when in reality there's several things going on:
+You might say, "that's a lot of words just to admit that the puzzle is useful after all." Listen, I didn't say it was useless, just overblown. It isn't necessarily stated that we *can't* think exponentially, but it's always said with a shrug and a sigh, like some eternal truth. Even worse, we arrive at that conclusion through some paper-folding puzzle, when in reality there's several things going on:
 - Exponentiation is inherently more complicated than multiplication and addition.
 - We can't intuit even linear approximations if they're literally astronomical.
 - We are perfectly capable of thinking exponentially. It just takes some practice.
@@ -97,4 +97,4 @@ print(paper)
 
 [^fold]: I assume folds parallel to the shortest of width $$w$$ and height $$h$$. If $$w<h<2w$$ like US Letter sheets, then folds will always alternate along width and height.
 [^decay]: And just for fun, the width and height experience exponential decay: $$215.9*.5^{25}=.00000643\text{mm}$$ and $$279.4*.5^{25}=.00000833\text{mm}$$, both ending up close to the diameter of a DNA strand.
-[^simplest]: It's the simplest too, and can technically be solved without even understanding exponentiation. In most cases though, people will visualize the growth of the lillies, leading them to think in some way about it.
+[^simplest]: It's the simplest too, and can technically be solved without even understanding exponentiation. In most cases though, people will visualize the growth of the lilies, leading them to think in some way about it.

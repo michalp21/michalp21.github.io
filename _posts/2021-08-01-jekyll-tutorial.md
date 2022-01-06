@@ -12,6 +12,20 @@ tags: blog jekyll
 - TOC
 {:toc}
 
+---
+layout: post
+title: "Jekyll Blog Tutorial (+ Lots of Features)"
+categories: tutorial
+tags: blog jekyll
+---
+
+> Here are the notes and external tutorials I used and gathered while creating this blog. Includes everything from Gemfiles to plugins to LaTeX. No life story, no fluff!
+
+<!--more-->
+
+- TOC
+{:toc}
+
 ## Summary
 I built this blog with Jekyll, and this is a compilation of tutorials I used, along with my own notes on the steps I took. Lilian's [site](https://github.com/lilianweng/lil-log) is my inspiration. I use Github Pages to host the site, but I do use incompatible plugins.
 
@@ -337,9 +351,9 @@ Source: this [SO thread](https://stackoverflow.com/questions/19331362/using-an-i
 
 There are many outdated tutorials for LaTeX out there, so don't follow them!
 
-In includes/head.html (or somewhere in the head section of your site), add:
+In includes/head.html (or somewhere in the head section of your site), add the import script:
 
-```css
+```html
 <script type="text/javascript" id="MathJax-script" async
   src="<https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js>">
 </script>
@@ -347,18 +361,52 @@ In includes/head.html (or somewhere in the head section of your site), add:
 
 Notice we are using mathjax 3, which is faster than mathjax 2. Notice we are not using the mathjax cdn ([cdn.mathjax.org](http://cdn.mathjax.org)) since it was [shut down](https://www.mathjax.org/cdn-shutting-down/). It may still work due to a redirect to [cdnjs.cloudflare.com](http://cdnjs.cloudflare.com). We use jsdelivr instead. Finally, be sure to use https instead of http or mathjax may be blocked for security reasons.
 
-Finally, in markdown, surround LaTeX expressions with double dollar signs: `$$y=x^2$$`, for both inline and block expressions. Instead of using dedicated syntax, block expressions have to be separated from surrounding text by a newline on each side.
+There's a few [differences](https://docs.mathjax.org/en/latest/input/tex/differences.html) from real LaTeX, but most importantly, only the math mode is implemented (with the exception of `\ref` and `\eqref`); the text mode from LaTeX is replaced by markdown/HTML. Additionally, by default, both inline and block LaTeX expressions are signified by double dollar signs: e.g. `$$y=x^2$$`. Instead of using dedicated syntax, block expressions have to be separated from surrounding text by a newline on each side.
 
-If you use a font called Crimson Text (and possibly other fonts), from Google Fonts, the LaTeX expressions may be too small on Firefox. If you use mathjax 2 for whatever reason, see [here](https://groups.google.com/g/mathjax-users/c/v3W-daBz87k/m/xjxFFdfQBQAJ) for an explanation and two possible fixes. Those solutions did not work for me with mathjax 3, so I just switched to a different font.
+See the [documentation](https://docs.mathjax.org/en/latest/web/configuration.html) to configure mathjax (it's different from mathjax 2!) In short, just add a global object called `MathJax` in a `<script>` tag before the import script.
 
-Random note: if you want to type a vertical bar in inline LaTeX, use `\vert`, because otherwise Jekyll might think it's the start of a table.
+Random note 1: if you want to type a vertical bar in inline LaTeX, use `\vert`, because otherwise kramdown might think it's the start of a table.
+
+Random note 2: If you use a font called Crimson Text (and possibly other fonts), from Google Fonts, the LaTeX expressions may be too small on Firefox. If you use mathjax 2 for whatever reason, see [here](https://groups.google.com/g/mathjax-users/c/v3W-daBz87k/m/xjxFFdfQBQAJ) for an explanation and two possible fixes. Those solutions did not work for me with mathjax 3, so I just switched to a different font.
+
+### LaTeX: Automatic Equation Numbering
+
+Add automatic equation numbering for LaTeX in the MathJax configuration. 
+
+```html
+<script>
+MathJax = {
+    window.MathJax = {
+        tex: {
+            tags: 'ams'
+        }
+    };
+};
+</script>
+```
+
+Then in a compatible environment, add a label:
+
+```markdown
+$$
+\begin{equation}
+\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f} \label{eq:glf}
+\end{equation}
+$$
+```
+
+Finally, reference it:
+
+```markdown
+Blablabla look at this cool formula \eqref\eqref{eq:glf}.
+```
 
 ### Links
 
 Links are added like this in markdown:
 
 ```markdown
-[link text](http://www.example.com/)
+[link text](http://www.example.com)
 ```
 
 You can also separate the path from the rest like so:
@@ -380,6 +428,21 @@ An **internal link**, or a link to another post on your site, looks like this:
 {%endraw%}
 
 What comes after `post_url`  is the name of the post file, without the file extension (typically `.md`).
+
+Note: In Jekyll 4 you don't need to put the {%raw%}`{{site.baseurl}}`{%endraw%} part; see the [documentation](https://jekyllrb.com/docs/liquid/tags/#links).
+
+### Links to Headers
+
+If a header on a page has a CSS id on it, you can link to it directly (when the reader goes to the page it will scroll directly to that header). If you know the id, just add it to the URL in your link after a `#` symbol. Here's two examples, one for an external link and one for an internal one.
+
+{%raw%}
+```markdown
+[link text](http://www.example.com#the-header)
+[link text]({{ site.baseurl }}{% post_url 2021-07-19-post %}#the-header)
+```
+{%endraw%}
+
+So how do you find the header id? External websites may have a link icon next to each header with the direct URL. If not, you might still find ids with inspect element. For internal links, it's possible to autogenerate header ids, which are formatted as the header name, but lowercased and connected by dashes. So `The Header` turns into `the-header`.
 
 ### Pagination
 
@@ -515,7 +578,7 @@ This class of issues is fixed by having at least a double digit IQ.
 
 Annoying and frequent mistake: even if the code is automatically reloaded upon changes, if you just refresh your page you may reload a dead link so check the URL.
 
-Another possibility is that title has changed. If so go back to `localhost:4000`, *reload*, and navigate to the desired page. This happened to me on Safari.
+Another possibility is that title or category has changed. If so go back to `localhost:4000`, *reload*, and navigate to the desired page. This happened to me on Safari.
 
 ### Bundle Install Fails
 

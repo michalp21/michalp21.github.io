@@ -23,8 +23,16 @@
   <link rel="shortcut icon" href="/assets/favicon_io/favicon.ico">
 
   <!-- MathJax for LaTeX -->
+  <script>
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
   <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+
   </script>
 </head>
 <body><header class="site-header">
@@ -341,17 +349,19 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
 
 <p>Let’s use some nicer variables to represent the distances of the object and image to the left and right side of the lens, respectively: \(s_o = z_1\) and \(s_i = z_2'\). As \(d\rightarrow 0\), called the <strong>thin lens approximation</strong>, the right term approaches zero, and we obtain the <strong>lens maker’s formula</strong>:</p>
 
-\[\frac{1}{s_o} + \frac{1}{s_i} = (n' - 1)\left(\frac{1}{r_1} - \frac{1}{r_2}\right) \tag{3}\]
+\[\begin{equation}
+\frac{1}{s_o} + \frac{1}{s_i} = (n' - 1)\left(\frac{1}{r_1} - \frac{1}{r_2}\right)\label{eq:lmf}
+\end{equation}\]
 
 <p>Note: we set \(n=1\), the refractive index of air.</p>
 
 <p>If we move the object \(s_0\) to infinity, the image distance \(s_i\) approaches the focal length \(f\), so we can say:</p>
 
-\[\frac{1}{f} = (n' - 1)\left(\frac{1}{r_1} - \frac{1}{r_2}\right) \tag{4}\]
+\[\frac{1}{f} = (n' - 1)\left(\frac{1}{r_1} - \frac{1}{r_2}\right)\]
 
 <p>Equating with the previous equation, we obtain the Gaussian lens formula:</p>
 
-\[\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f} \tag{5}\]
+\[\frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f}\]
 
 <p>An interactive applet can be found <a href="https://sites.google.com/site/marclevoylectures/applets/gaussian-lens-formula">here</a>.</p>
 
@@ -442,7 +452,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
   <li>They’re better for wide-angle lenses.</li>
 </ul>
 
-<p><strong>Close-up filters/lenses</strong>: a special lens screwed onto the front of the actual lens, increasing magnfication by <em>decreasing</em> effective focal length.</p>
+<p><strong>Close-up filters/lenses</strong>: a special lens screwed onto the front of the actual lens, increasing magnification by <em>decreasing</em> effective focal length.</p>
 <ul>
   <li>Measured in diopters.</li>
   <li>Optical elements may reduce image quality.</li>
@@ -462,7 +472,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
   <li>Corrects for aberrations.</li>
 </ul>
 
-<p><strong>Clarification</strong>: Alright, you have to be wondering: how can close-up filters and teleconverters achieve the same thing in different ways? I’m not 100\% certain but here’s my thinking. Teleconverters work like telephoto lens elements, where a combination of lens elements can achieve the same focal length and object distance at a reduced image distance; see the Telephoto section below. Since the teleconverter is screwed in between the existing lens and the camera, the image distance doesn’t decrease, leading to an increase in the effective focal length.</p>
+<p><strong>Clarification</strong>: Alright, you have to be wondering: how can close-up filters and teleconverters achieve the same thing in different ways? I’m not 100% certain but here’s my thinking. Teleconverters work like telephoto lens elements, where a combination of lens elements can achieve the same focal length and object distance at a reduced image distance; see the Telephoto section below. Since the teleconverter is screwed in between the existing lens and the camera, the image distance doesn’t decrease, leading to an increase in the effective focal length.</p>
 
 <p>Close-up filters allow you to (drum roll) get close-up to the object, i.e. reduce object distance, by <em>lowering</em> focal length; see the example at the end of this note called Close-Up Filters. Based on the last expression for magnification, we can see that focal length and object distance aren’t related linearly, and I presume in close-up situations, the object distance has a stronger effect on the magnification than the focal length.</p>
 
@@ -476,7 +486,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
 
 <p><img src="/assets/images/optics/frustrum.png" alt="frustrum.png" width="400" /></p>
 
-<p>A lens transforms a 3D object into a 3D image, and the sensor extracts a 2D slice of that image. We can think of this as an extension of the transform going directly from 3D to 2D from [[Image Formation]].</p>
+<p>A lens transforms a 3D object into a 3D image, and the sensor extracts a 2D slice of that image. We can think of this as an extension of the transform going directly from 3D to 2D from <a href="/note/2021/10/20/image-formation.html">Image Formation</a>.</p>
 
 <p><strong>Clarification</strong>: How is that different from a pinhole camera? Recall that a pinhole camera performs a projective transformation. We previously showed one object and its image on one sensor.</p>
 
@@ -498,7 +508,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
 
 <p><img src="/assets/images/optics/dofformula1.png" alt="dofformula1.png" width="500" /></p>
 
-<p>In [[Image Formation]] we gave a simplified presentation of the circle of confusion using symmetric cones. Now we use a more accurate diagram. The vertical line to the right of the lens signifies the <strong>circle of confusion</strong>, the in-focus image plane is the vertical line to the right of the lens, the area of acceptable focus is shaded red, and the width of this area is called the <strong>depth of focus</strong>. We define the <strong>conjugate of the circle of confusion</strong> and the <strong>depth of field</strong> similarly, to the left of the lens. It’s clear that the depth of field is asymmetrical around the in-focus object plane. In addition, the circle of confusion is usually smaller than its conjugate, which we can see from its formula; since usually \(0&lt;M&lt;1\), then usually \(\frac{C}{M}&gt;C\).</p>
+<p>In <a href="/note/2021/10/20/image-formation.html">Image Formation</a> we gave a simplified presentation of the circle of confusion using symmetric cones. Now we use a more accurate diagram. The vertical line to the right of the lens signifies the <strong>circle of confusion</strong>, the in-focus image plane is the vertical line to the right of the lens, the area of acceptable focus is shaded red, and the width of this area is called the <strong>depth of focus</strong>. We define the <strong>conjugate of the circle of confusion</strong> and the <strong>depth of field</strong> similarly, to the left of the lens. It’s clear that the depth of field is asymmetrical around the in-focus object plane. In addition, the circle of confusion is usually smaller than its conjugate, which we can see from its formula; since usually \(0&lt;M&lt;1\), then usually \(\frac{C}{M}&gt;C\).</p>
 
 <p><img src="/assets/images/optics/dofformula2.png" alt="dofformula2.png" width="500" /></p>
 
@@ -525,11 +535,15 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
 
 <p>We sum those to get the total depth of field:</p>
 
-\[D = D_1 + D_2 = \frac{2NCU^2f^2}{f^4-N^2C^2U^2} \tag{1}\]
+\[\begin{equation}
+D = D_1 + D_2 = \frac{2NCU^2f^2}{f^4-N^2C^2U^2} \label{eq:dof1}
+\end{equation}\]
 
 <p>The \(N^2C^2U^2\) term can be ignored when the conjugate circle of confusion is small relative to the aperture,<sup id="fnref:conj" role="doc-noteref"><a href="#fn:conj" class="footnote" rel="footnote">4</a></sup> giving the final formula for depth of field:</p>
 
-\[D = \frac{2NCU^2}{f^2} \tag{2}\]
+\[\begin{equation}
+D = \frac{2NCU^2}{f^2} \label{eq:dof2}
+\end{equation}\]
 
 <p>While it may not be the most accurate formula, it does illustrate the relationships between its component variables for reasonable object distances. An interactive depth of field applet can be found <a href="https://graphics.stanford.edu/courses/cs178-14/applets/dof.html">here</a>.</p>
 
@@ -545,15 +559,15 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
 
 <p>That is, if the object distance is set to the <strong>hyperfocal distance</strong> \(H\) (equivalently, if you focus at \(H\)), everything from distance \(\frac{H}{2}\) to infinity will be in focus. It’s a good number to know on its own, especially for certain use cases like landscape photography.</p>
 
-<p>We can also express the depth of field in terms of \(H\). Without disregarding the term \(U^2N^2C^2\) in the denominator of eq. 1, we get:</p>
+<p>We can also express the depth of field in terms of \(H\). Without disregarding the term \(U^2N^2C^2\) in the denominator of \eqref{eq:dof1}, we get:</p>
 
 \[D = \frac{2HU^2}{H^2-U^2}\]
 
-<p>Now, another perspective on what it means to ignore the term \(U^2N^2C^2\), is that the hyperfocal distance is much larger than the object distance, or \(U^2 \ll H^2\). If so, then the formula reduces to eq. 2, or equivalently:</p>
+<p>Now, another perspective on what it means to ignore the term \(U^2N^2C^2\), is that the hyperfocal distance is much larger than the object distance, or \(U^2 \ll H^2\). If so, then the formula reduces to \eqref{eq:dof2}, or equivalently:</p>
 
 \[D = \frac{2U^2}{H}\]
 
-<p>So the simplified depth of field formula, eq 2, relies on the object distance \(U\) falling within a “nice” range, roughly specified by:</p>
+<p>So the simplified depth of field formula, \eqref{eq:dof2}, relies on the object distance \(U\) falling within a “nice” range, roughly specified by:</p>
 
 \[f\ll U \ll H\]
 
@@ -561,7 +575,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
 
 <p>Our derivation for the depth of field doesn’t quite work for macro lenses, because of the assumption that \(f=s_i\). Discarding it, the accurate formula for small object distances can be stated, in terms of \(M\):</p>
 
-\[D_{\text{macro}}=\frac{2NC(M+1)}{M^2} \tag{3}\]
+\[D_{\text{macro}}=\frac{2NC(M+1)}{M^2}\]
 
 <h2 id="other-derivations">Other Derivations</h2>
 
@@ -606,15 +620,13 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
 
 <p>The table shows several variations of the formula, depending on the assumptions made on the object distance \(U\), and the particular terms used.<sup id="fnref:yourself" role="doc-noteref"><a href="#fn:yourself" class="footnote" rel="footnote">5</a></sup></p>
 
-<p>Finally, any method relies on the Gaussian Lens formula, and therefore the paraxial approximation.</p>
-
 <h1 id="depth-of-field-in-practice">Depth of Field In Practice</h1>
 
 <p>For intuition’s sake, depth of field is simplified by necessity. Most of the conclusions drawn below use the simpler versions of the equations, and therefore apply to midrange distances. Some <a href="https://theonlinephotographer.typepad.com/the_online_photographer/2009/06/depth-of-field-hellthe-sequel.html">people</a> will bemoan these approximations, but as long as we’re aware of their limitations, it shouldn’t be a problem.</p>
 
 <h2 id="basic-relationships">Basic Relationships</h2>
 
-<p>We use eq. 2 for the observations below.</p>
+<p>We use \eqref{eq:dof2} for the observations below.</p>
 
 <p><img src="/assets/images/optics/doffnumber.png" alt="doffnumber.png" width="300" /></p>
 
@@ -632,7 +644,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
 
 <p>Recall in a dolly zoom, the magnification of the subject stays constant by increasing both object distance and focal length in a principled manner.</p>
 
-<p>By eq. 3, when magnification is held constant, the depth of field depends on neither focal length nor object distance. Due to perspective distortion, however, the blurriness of the background will change, since the FOV has changed and the blurred elements take up a different amount of screen space.</p>
+<p>By \eqref{eq:lmf}, when magnification is held constant, the depth of field depends on neither focal length nor object distance. Due to perspective distortion, however, the blurriness of the background will change, since the FOV has changed and the blurred elements take up a different amount of screen space.</p>
 
 <h2 id="sensor-size">Sensor Size</h2>
 
@@ -642,7 +654,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
   <li>the pixel size tends to go down to maintain resolution, which makes the circle of confusion smaller</li>
 </ul>
 
-<p>Focal length has a greater effect (squared, compared to linear, from eq. 2) than circle of confusion, so generally speaking, as sensor size \(\times 2\), depth of field is \(\times \frac{1}{2}\).</p>
+<p>Focal length has a greater effect (squared, compared to linear, from \eqref{eq:dof2}) than circle of confusion, so generally speaking, as sensor size \(\times 2\), depth of field is \(\times \frac{1}{2}\).</p>
 
 <h2 id="circle-of-confusion">Circle of Confusion</h2>
 
@@ -661,7 +673,9 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
 
 <p><strong>Bokeh</strong> is the appearance of small out-of-focus features in a photograph with shallow depth of field. The shape of the features are determined by the boundary of the aperture. In the picture above, the slightly closed blades on the aperture produce octagonal lights. Not every image has noticeable bokeh; it is most pronounced with point light sources.</p>
 
-<p>It’s pronounced <em>bow-cuh</em>!</p>
+<p><del>It’s pronounced <em>BOW-cuh</em>!</del></p>
+
+<p>Everyone seems to have a strong belief about the pronunciation, and everyone’s belief seems to be different. I’m personally switching to <em>boh-keh</em>.</p>
 
 <h2 id="seeing-through-occlusions">Seeing Through Occlusions</h2>
 
@@ -802,7 +816,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
 
 <p><img src="/assets/images/optics/veilingglare.png" alt="veilingglare.png" width="300" /></p>
 
-<p>At every interface, both refraction and reflection occur. The image above shows how a few reflections can cause a ray from one source to produce two outgoing rays. Usually more light refracts than it reflects, but the light coming from the secondary rays is enough to lower the contrast of the image. It can be reduced by anti-reflection coatings to block unwanted reflections, and lens hoods to block excessive incoming light.</p>
+<p>At every interface, both refraction and reflection occur. The image above shows how a few reflections can cause a ray from one source to produce two outgoing rays. Usually more light refracts than it reflects, but the light coming from the secondary rays is enough to lower the contrast of the image. It can be reduced by anti-reflection coatings to block unwanted reflections within the lens, and lens hoods to block excessive incoming light.</p>
 
 <h2 id="lens-flare">Lens Flare</h2>
 
@@ -840,7 +854,7 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
 
 <p>Here we’ll briefly dip our feet into the wave aspects of light. <strong>Diffraction</strong> is when light spreads out as it passes through an aperture. The result is a slight blurring of the image (yet again). When diffraction causes a noticeable blur, the lens is said to have become <em>diffraction limited</em>.</p>
 
-<p>The amount of spreading increase as the aperture diameter <em>decreases</em> and the distance from the sensor <em>increases</em>, so the blur varies with \(N=\frac{f}{A}\). It also depends on pixel size, just like depth of field, and the wavelength of the light. In practice, diffraction only comes into play around at</p>
+<p>The amount of spreading increases as the aperture diameter <em>decreases</em> and the distance from the sensor <em>increases</em>, so the blur varies with \(N=\frac{f}{A}\). It also depends on pixel size, just like depth of field, and the wavelength of the light.</p>
 
 <p>Note: Diffraction is also responsible for the image circle, and hence vignetting.</p>
 
@@ -1048,14 +1062,14 @@ n\left(\frac{h}{z_1}+\frac{h}{r_1}\right) &amp;\approx n'\left(\frac{h}{r_1}-\fr
     <span>
       <!-- 
         
-        <a class="post-tag" href="/tag/optics"><nobr>optics</nobr>&nbsp;</a>
+        <a class="post-tag" href="/tag/photography"><nobr>photography</nobr>&nbsp;</a>
        -->
           
-          <a href="/tag/optics/">optics&nbsp;</a>
+          <a href="/tag/photography/">photography&nbsp;</a>
         </span>
   </div>
 
-  <div class="page-navigation"><a class="prev" href="/note/2021/10/20/image-formation.html">&larr; Digital Photography Notes - Image Formation</a></div>  <div id="disqus_thread"></div>
+  <div class="page-navigation"><a class="prev" href="/note/2021/10/20/image-formation.html">&larr; Digital Photography Notes - Image Formation</a><a class="next" href="/note/2022/01/05/autofocus-and-autoexposure.html">Digital Photography Notes - Autofocus and Autoexposure &rarr;</a></div>  <div id="disqus_thread"></div>
   <script>
     // var disqus_config = function () {
     //   this.page.url = '/note/2021/11/01/optics.html';

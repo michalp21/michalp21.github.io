@@ -130,6 +130,8 @@ body { font: 300 14px/1.65 "JetBrains Mono", "Cormorant Garamond", "Times New Ro
 /** Set `margin-bottom` to maintain vertical rhythm */
 h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure, .highlight { margin-bottom: 16.6666666667px; }
 
+h1, h2, h3, h4, h5, h6 { margin-top: 6.5217391304px; }
+
 hr { margin-top: 30px; margin-bottom: 30px; color: #ccf3de; border-radius: 5px; }
 
 /** `main` element */
@@ -153,7 +155,7 @@ ul, ol { margin-left: 30px; }
 li > ul, li > ol { margin-bottom: 0; }
 
 /** Headings */
-h1, h2, h3, h4, h5, h6 { font-weight: 700; font-family: "Overpass Mono", "Cormorant Garamond", "Times New Roman", serif; }
+h1, h2, h3, h4, h5, h6 { font-weight: 700; font-family: "Overpass Mono", "Cormorant Garamond", "Times New Roman", serif; line-height: 1.3; }
 
 /** Links */
 a { color: #2fc472; text-decoration: none; }
